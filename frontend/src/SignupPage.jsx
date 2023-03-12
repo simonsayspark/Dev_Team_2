@@ -5,8 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from 'react-router-dom';
 
-
-export const LoginPage = () => {
+export const SignupPage = () => {
     return <>
         <Form>
             <Form.Group className='mb-3' controlId='name'>
@@ -20,15 +19,14 @@ export const LoginPage = () => {
             </Form.Group>
 
             <Button>
-                Sign in
+                Sign up
             </Button>
 
             <Container fluid>
                 <Row className='text-center mt-5'>
-                    <Col>Don't have an account? <NavLink to={'/signup'} className='nav-link'>Sign up</NavLink></Col>
+                    <Col>Already have an account? <NavLink to={'/login'} className='nav-link'>Sign in</NavLink></Col>
                 </Row>
             </Container>
         </Form>
     </>
-
 }
