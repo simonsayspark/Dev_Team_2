@@ -12,6 +12,7 @@ create table companies (
 create table employees (
     employee_id int AUTOINCREMENT primary key,
     ename VARCHAR (50),
+    epassword VARCHAR (50),
     role VARCHAR (50),
     company_id int,
     foreign key(company_id) references companies
