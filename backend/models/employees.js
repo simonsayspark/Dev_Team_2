@@ -14,7 +14,7 @@ const getAllEmployees = async () => {
     return results;
 }
 
-const getEmployeeById = async () => {
+const getEmployeeById = async (id) => {
     const query = knex(EMPLOYEES_TABLE).where({ id });
     const results = await query;
     return results;

@@ -10,4 +10,16 @@ router.post('/', async (req, res, next) => {
     next();
 })
 
+router.get('/', async (req, res, next) => {
+    if (req.query.id) {
+        const employeeById = await req.models.employees.getEmployeeById(req.query.id);
+        res.json(employeeById);
+        next();
+    } else {
+        const allEmployees = await req.models.employees.getAllEmployees();
+        res.json(allEmployees);
+        next();
+    }
+})
+
 module.exports = router;
