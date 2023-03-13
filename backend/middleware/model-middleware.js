@@ -9,6 +9,4 @@ const createModelsMiddleware = async (req, res, next) => {
     }
     next();
 }
-module.exports = {
-    createModelsMiddleware
-}
+module.exports = createModelsMiddleware;

@@ -1,37 +1,37 @@
-const express = require('express')
-const app = express()
-const port = 8000
+require('dotenv').config();
+const express = require('express');
+const bodyParser = require('body-parser');
+const employeesRoutes = require('./routes/employees');
+const companiesRoutes = require('./routes/companies');
+const ceoRoutes = require('./routes/ceo');
 
-// Enable Cross-Origin Resource Sharing
-const cors = require('cors')
+const createModelsMiddleware = require('./middleware/model-middleware');
+
+const app = express();
+const port = 8000;
+const cors = require('cors');
+app.use(bodyParser.json());
 app.use(cors()) // This has to be before any routes
+app.use(createModelsMiddleware);
 
 // Enable JSON parsing
 app.use(express.json())
 
 // Connect to mysql
-const mysql = require('mysql')
+const mysql = require('mysql');
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'NotSoCoolPassword',
-  database: 'DBUI'
+  host: process.env.MYSQL_LOCAL_HOST,
+  user: process.env.MYSQL_LOCAL_USER,
+  password: process.env.MYSQL_LOCAL_PASS,
+  database: process.env.MYSQL_DB
 })
 
 connection.connect()
 
 // API routes
-app.post('/employees', async (req, res) => {
-    const { name, password, role, company_id } = req.body;
-    const query = `INSERT INTO employees (ename, epassword, role, company_id) VALUES ('${name}', '${password}', '${role}', ${company_id})`;
-    connection.query(query, (err, rows, fields) => {
-        if (err) throw err
-
-        console.log(rows)
-        res.status(200)
-        res.send('Successfully added user!')
-    })
-})
+app.use('/employees', employeesRoutes);
+app.use('/companies', companiesRoutes);
+app.use('/ceo', ceoRoutes);
 
 // Start server
 app.listen(port, () => {
