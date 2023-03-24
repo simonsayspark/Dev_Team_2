@@ -7,6 +7,9 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { addEmployee } from "./api/employeeApi";
 import { useNavigate } from "react-router-dom";
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton';
+//CEO, Finacial Manager, Employee
 const employeeValues = {
   name: "",
   password: "",
@@ -14,13 +17,21 @@ const employeeValues = {
   company_id: 1, //FIXME temporary placeholder
 };
 
+
+
 export const SignupPage = () => {
   const [values, setValues] = useState(employeeValues);
+  const [roleValue, setRoleValue] = useState("Select-Role")
   const navigate = useNavigate();
+
+  const handleSelect = (e) => {
+    console.log(e);
+    setRoleValue(e)
+  }
 
   return (
     <>
-      <div className="wrapper d-flex justify-content-center align-items-center"> 
+      <div className="wrapper d-flex justify-content-center align-items-center">
         <Form>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Name</Form.Label>
@@ -45,6 +56,21 @@ export const SignupPage = () => {
               }
             />
           </Form.Group>
+
+          <Dropdown
+            onSelect={handleSelect}>
+
+            <Dropdown.Toggle variant="success" id="dropdown-menu">
+              {roleValue}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item eventKey='CEO'>CEO</Dropdown.Item>
+              <Dropdown.Item eventKey='Financial Manager'>Financial Manager</Dropdown.Item>
+              <Dropdown.Item eventKey='Employee'>Employee</Dropdown.Item>
+            </Dropdown.Menu>
+
+          </Dropdown>
+
 
           <Button
             type="submit"
