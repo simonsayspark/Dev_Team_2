@@ -36,6 +36,10 @@ export const LoginPage = () => {
             Submit
           </Button>
 
+          <NavLink to={"/"} className="nav-link">
+            Back to Home
+          </NavLink>
+
           <Container fluid>
             <Row className="text-center mt-5">
               <Col>
