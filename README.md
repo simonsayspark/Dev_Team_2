@@ -16,7 +16,7 @@ A website for employees who go on business lunches to be able to request reimbur
   7. Select amount to reimburse for claims
 
 # Name Options 
-\- Vote with a * next to the name you want in the list or add one to the list
+### - Vote with a * next to the name you want in the list or add one to the list
 1. PaybackPro
 1. ClaimCaddy *
 1. ReceiptRelief
