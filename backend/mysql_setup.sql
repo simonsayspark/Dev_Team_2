@@ -23,8 +23,17 @@ create table employees (
     foreign key(company_id) references companies(company_id)
 );
 
---create table claims (
+create table claims (
+    claim_number int auto_increment primary key,
+    employee_id int,
+    company_id int,
+    order_date date,
+    amount_requested int,
+    amount_reimbursed int,
+    claim_status VARCHAR(50),
+    foreign key(employee_id) references employees(employee_id),
+    foreign key(company_id) references companies(company_id)
 
---);
+);
 
 --possibly will add financial table in future
