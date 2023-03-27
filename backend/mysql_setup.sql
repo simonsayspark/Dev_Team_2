@@ -4,7 +4,8 @@ USE DBUI;
 
 create table ceo (
     ceo_id int auto_increment primary key,
-    cname VARCHAR (50)
+    cname VARCHAR (50),
+    cpassword VARCHAR (50)
 );
 
 create table companies (
