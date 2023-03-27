@@ -13,8 +13,9 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 //CEO, Finacial Manager, Employee
 const employeeValues = {
   name: "",
+  email: "",
   password: "",
-  role: "Employee", //FIXME temporary placeholder
+  role: "",
   company_id: 1, //FIXME temporary placeholder
 };
 
@@ -31,11 +32,18 @@ export const SignupPage = () => {
       setDisableButton(false) //FIXME maybe disable button until all fields are filled??
     }
     setRoleValue(e)
+    setValues({ ...values, role: e })
   }
 
   const createAccount = () => {
     if (roleValue === 'CEO') {
-      addCeo(values).then(navigate("/"));
+      const ceoValues = {
+        name: values.name,
+        email: values.email,
+        password: values.password
+      }
+
+      addCeo(ceoValues).then(navigate("/"));
     } else { //Employee or Financial Manager
       addEmployee(values).then(navigate("/"));
     }
