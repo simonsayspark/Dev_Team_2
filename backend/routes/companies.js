@@ -3,6 +3,13 @@ const express = require('express');
 router = express.Router();
 router.use(bodyParser.json());
 
+router.post('/', async (req, res, next) => {
+    const { name, ceoId } = req.body;
+    const registerCompany = await req.models.companies.createCompany(name, ceoId);
+    res.status(201).json(registerCompany);
+    next();
+})
+
 router.get('/', async (req, res, next) => {
     if (req.query.id) {
         const companyById = await req.models.companies.getCompanyById(req.query.id);
