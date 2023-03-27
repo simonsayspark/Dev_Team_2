@@ -4,8 +4,8 @@ router = express.Router();
 router.use(bodyParser.json());
 
 router.post('/', async (req, res, next) => {
-    const { name, password} = req.body;
-    const registerCeo = await req.models.ceo.createCeo(name, password);
+    const { name, email, password} = req.body;
+    const registerCeo = await req.models.ceo.createCeo(name, email, password);
     res.status(201).json(registerCeo);
     next();
 })

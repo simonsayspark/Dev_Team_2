@@ -2,11 +2,11 @@ const knex = require('../database/knex');
 const CEO_TABLE = 'ceo';
 const bcrypt = require('bcrypt');
 
-const createCeo = async (cname, cpassword) => {
+const createCeo = async (cname, cemail, cpassword) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(cpassword, salt);
 
-    const query = knex(EMPLOYEES_TABLE).insert({cname, hashedPassword});
+    const query = knex(EMPLOYEES_TABLE).insert({cname, cemail, cpassword: hashedPassword});
     const results = await query;
     return results;
 }
