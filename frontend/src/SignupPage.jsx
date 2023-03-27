@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { addEmployee } from "./api/employeeApi";
+import { addCeo } from "./api/ceoApi";
 import { useNavigate } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -21,12 +22,23 @@ const employeeValues = {
 
 export const SignupPage = () => {
   const [values, setValues] = useState(employeeValues);
-  const [roleValue, setRoleValue] = useState("Select-Role")
+  const [roleValue, setRoleValue] = useState("Select-Role");
+  const [disableButton, setDisableButton] = useState(true);
   const navigate = useNavigate();
 
   const handleSelect = (e) => {
-    console.log(e);
+    if (disableButton) {
+      setDisableButton(false) //FIXME maybe disable button until all fields are filled??
+    }
     setRoleValue(e)
+  }
+
+  const createAccount = () => {
+    if (roleValue === 'CEO') {
+      addCeo(values).then(navigate("/"));
+    } else { //Employee or Financial Manager
+      addEmployee(values).then(navigate("/"));
+    }
   }
 
   return (
@@ -74,8 +86,9 @@ export const SignupPage = () => {
 
           <Button
             type="submit"
+            disabled={disableButton}
             onClick={() => {
-              addEmployee(values).then(navigate("/"));
+              createAccount();
             }}
           >
             Sign up
