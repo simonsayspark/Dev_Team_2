@@ -5,6 +5,7 @@ USE DBUI;
 create table ceo (
     ceo_id int auto_increment primary key,
     cname VARCHAR (50),
+    cemail VARCHAR (50),
     cpassword VARCHAR (50)
 );
 
@@ -18,6 +19,7 @@ create table companies (
 create table employees (
     employee_id int auto_increment primary key,
     ename VARCHAR (50),
+    eemail VARCHAR (50),
     epassword VARCHAR (50),
     role VARCHAR (50),
     company_id int,
