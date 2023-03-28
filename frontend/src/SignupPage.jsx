@@ -10,6 +10,7 @@ import { addCeo } from "./api/ceoApi";
 import { getCompanies } from "./api/companiesApi";
 import { useNavigate } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown'
+import Navbar from 'react-bootstrap/Navbar';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 //CEO, Finacial Manager, Employee
 const employeeValues = {
@@ -73,6 +74,12 @@ export const SignupPage = () => {
 
   return (
     <>
+      <Navbar fixed="top" bg="light" expand="lg">
+        <Container fluid className="m-0">
+          <Navbar.Brand><NavLink to={"/"} className="nav-link">Website Name</NavLink></Navbar.Brand>
+        </Container>
+      </Navbar>
+
       <div className="wrapper d-flex justify-content-center align-items-center">
         <Form>
           <Form.Group className="mb-3" controlId="name">
