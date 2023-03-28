@@ -31,13 +31,13 @@ export const LoginPage = () => {
       <div className="wrapper d-flex justify-content-center align-items-center">
         <Form noValidate validated={validated} onSubmit={handleSubmit} className="rounded p-4 p-sm-3">
           <Form.Group className="mb-3" controlId="name">
-            <Form.Label>Name</Form.Label>
-            <Form.Control required type="name" placeholder="Enter name" />
+            <Form.Label>Email</Form.Label>
+            <Form.Control required type="email" placeholder="Enter email" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="password">
             <Form.Label>Password</Form.Label>
-            <Form.Control required type="password" placeholder="Password" />
+            <Form.Control required type="password" placeholder="Enter password" />
           </Form.Group>
 
           <Button variant="primary" type="submit">
