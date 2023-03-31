@@ -32,8 +32,8 @@ create table claims (
     company_id int,
     order_date date,
     amount_requested int,
-    amount_reimbursed int,
-    claim_status VARCHAR(50),
+    amount_reimbursed int DEFAULT NULL, 
+    claim_status VARCHAR(50) DEFAULT 'Pending',
     foreign key(employee_id) references employees(employee_id),
     foreign key(company_id) references companies(company_id)
 

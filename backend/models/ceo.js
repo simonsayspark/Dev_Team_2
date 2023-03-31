@@ -6,7 +6,7 @@ const createCeo = async (cname, cemail, cpassword) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(cpassword, salt);
 
-    const query = knex(EMPLOYEES_TABLE).insert({cname, cemail, cpassword: hashedPassword});
+    const query = knex(CEO_TABLE).insert({cname, cemail, cpassword: hashedPassword});
     const results = await query;
     return results;
 }
