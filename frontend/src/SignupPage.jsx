@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import Navbar from "react-bootstrap/Navbar";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import logo from "./logo.png";
+
 //CEO, Finacial Manager, Employee
 const employeeValues = {
   name: "",
@@ -86,13 +88,18 @@ export const SignupPage = () => {
       </Navbar>
 
       <Row>
-        <Col className=""></Col>
         <Col>
-          <Container className="wrapper d-flex justify-content-center align-items-center">
+          <Container className="d-flex m-5">
+            <img src={logo} alt="logo" className="image"></img>
+          </Container>
+        </Col>
+        <Col>
+          <Container className="wrapper d-flex justify-content-center align-items-center mt-1">
             <Form>
-              <Form.Group className="mb-3" controlId="name">
+              <Form.Group className="mb-3 forms" controlId="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
+                  className=""
                   type="name"
                   placeholder="Enter name"
                   value={values.name}
