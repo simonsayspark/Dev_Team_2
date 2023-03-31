@@ -11,12 +11,14 @@ router.post('/', async (req, res, next) => {
 })
 
 router.get('/', async (req, res, next) => {
+    console.log('Req.query:')
+    console.log(req.query)
     if (req.query.id) {
         const employeeById = await req.models.employees.getEmployeeById(req.query.id);
         res.json(employeeById);
         next();
-    } else if (req.query.email) {
-        const employeeByEmail = await req.models.ceo.getEmployeeByEmail(req.query.email);
+    } else if (req.query.eemail) {
+        const employeeByEmail = await req.models.employees.getEmployeeByEmail(req.query.eemail);
         res.json(employeeByEmail);
         next();
     } else {

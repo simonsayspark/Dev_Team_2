@@ -1,6 +1,13 @@
+import { useContext } from "react";
+import { UserContext } from "./App";
 
-export const HomePage = () => {
+export const HomePage = ({ setCurrentUser }) => {
+    const currentUser = useContext(UserContext);
+
+    function logout() {
+        setCurrentUser(undefined);
+    }
     return <>
-        <p>Home Page</p>
+        Hello {currentUser.name}!
     </>
 }

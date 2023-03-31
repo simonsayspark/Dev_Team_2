@@ -24,7 +24,7 @@ const getEmployeeById = async (id) => {
 }
 
 const getEmployeeByEmail = async (eemail) => {
-    const query = knex(CEO_TABLE).where({ eemail });
+    const query = knex(EMPLOYEES_TABLE).where({ eemail });
     const results = await query;
     return results;
 }
