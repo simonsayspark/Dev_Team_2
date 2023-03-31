@@ -23,8 +23,15 @@ const getCeoById = async (id) => {
     return results;
 }
 
+const getCeoByEmail = async (cemail) => {
+    const query = knex(CEO_TABLE).where({ cemail });
+    const results = await query;
+    return results;
+}
+
 module.exports = {
     createCeo,
     getAllCeo,
-    getCeoById
+    getCeoById,
+    getCeoByEmail
 }

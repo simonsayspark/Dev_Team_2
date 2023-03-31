@@ -15,6 +15,10 @@ router.get('/', async (req, res, next) => {
         const employeeById = await req.models.employees.getEmployeeById(req.query.id);
         res.json(employeeById);
         next();
+    } else if (req.query.email) {
+        const employeeByEmail = await req.models.ceo.getEmployeeByEmail(req.query.email);
+        res.json(employeeByEmail);
+        next();
     } else {
         const allEmployees = await req.models.employees.getAllEmployees();
         res.json(allEmployees);
