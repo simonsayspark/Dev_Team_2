@@ -1,6 +1,12 @@
 const knex = require('../database/knex');
 const COMPANIES_TABLE = 'companies';
 
+const createCompany = async (name, ceoId) => {
+    const query = knex(COMPANIES_TABLE).insert({name, ceoId});
+    const results = await query;
+    return results;
+}
+
 const getAllCompanies = async () => {
     const query = knex(COMPANIES_TABLE);
     const results = await query;
@@ -14,6 +20,7 @@ const getCompanyById = async (id) => {
 }
 
 module.exports = {
+    createCompany,
     getAllCompanies,
     getCompanyById
 }
