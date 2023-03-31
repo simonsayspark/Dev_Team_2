@@ -1,0 +1,18 @@
+# mysql database name
+MYSQL_DB=DBUI
+# mysql port (usually 3306)
+MYSQL_PORT=3306
+
+# mysql local database login user
+MYSQL_LOCAL_USER=root
+# mysql local database login password
+MYSQL_LOCAL_PASS=NotSoCoolPassword
+# mysql local database host URL
+MYSQL_LOCAL_HOST=localhost
+
+# mysql cloud database login user
+MYSQL_CLOUD_USER=team2
+# mysql cloud database login password
+MYSQL_CLOUD_PASS=NotSoCoolPassword
+# mysql cloud database host URL
+MYSQL_CLOUD_HOST=dev-team-2-db.clvrvcse2hmo.us-east-2.rds.amazonaws.com
