@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Navbar from "react-bootstrap/Navbar";
 import Alert from "react-bootstrap/Alert";
 import { NavLink, useNavigate } from "react-router-dom";
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { getEmployeeByEmail } from "./api/employeeApi";
 
 import bcrypt from 'bcryptjs'
@@ -18,9 +18,18 @@ const formValues = {
 export const LoginPage = ({ setCurrentUser }) => {
   const navigate = useNavigate();
 
+  const [disableButton, setDisableButton] = useState(true);
   const [validated, setValidated] = useState(false);
   const [values, setValues] = useState(formValues);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (values.email && values.password) {
+      setDisableButton(false);
+    } else {
+      setDisableButton(true);
+    }
+  }, [values])  
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -41,7 +50,6 @@ export const LoginPage = ({ setCurrentUser }) => {
         }
       })
     }
-
     setError("Incorrect email or password. Please enter a valid email and password and try again.");
   }
 
@@ -61,7 +69,6 @@ export const LoginPage = ({ setCurrentUser }) => {
             </Alert>
           }
 
-
           <Form noValidate validated={validated} onSubmit={handleSubmit} className="rounded p-4 p-sm-3">
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Email</Form.Label>
@@ -70,6 +77,11 @@ export const LoginPage = ({ setCurrentUser }) => {
                             value={values.email}
                             onChange={(delta) => {
                               setValues({ ...values, email: delta.target.value });
+                              // if (values.email && values.password) {
+                              //   setDisableButton(false);
+                              // } else {
+                              //   setDisableButton(true);
+                              // }
                             }}
               />
             </Form.Group>
@@ -81,12 +93,18 @@ export const LoginPage = ({ setCurrentUser }) => {
                             value={values.password}
                             onChange={(delta) => {
                               setValues({ ...values, password: delta.target.value });
+                              // if (values.email && values.password) {
+                              //   setDisableButton(false);
+                              // } else {
+                              //   setDisableButton(true);
+                              // }
                             }} 
               />
             </Form.Group>
 
             <Button className="col-12 mt-2"
-                    variant="primary" 
+                    variant="primary"
+                    disabled={disableButton} 
                     onClick={() => {
                       login();
                     }}>
@@ -96,7 +114,7 @@ export const LoginPage = ({ setCurrentUser }) => {
             <Container fluid>
               <Row className="text-center mt-4">
                 <Col>
-                  Don't have an account?{" "}
+                  Don't have an account?
                   <NavLink to={"/signup"} className="nav-link">
                     Sign up
                   </NavLink>

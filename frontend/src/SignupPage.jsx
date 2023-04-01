@@ -18,7 +18,7 @@ const employeeValues = {
   email: "",
   password: "",
   role: "",
-  company_id: -1
+  company_id: 0
 };
 export const SignupPage = () => {
   const [values, setValues] = useState(employeeValues);
@@ -31,12 +31,19 @@ export const SignupPage = () => {
     getCompanies().then(x => setCompanies(x));
   }, []);
 
+  useEffect(() => {
+    if (values.name && values.email
+       && values.password && values.role && values.company_id) {
+      setDisableButton(false);
+    } else {
+      setDisableButton(true);
+    }
+  }, [values])  
+
+
   const navigate = useNavigate();
 
   const handleRoleSelect = (e) => {
-    if (disableButton) {
-      setDisableButton(false) //FIXME maybe disable button until all fields are filled??
-    }
     setRoleValue(e)
     setValues({ ...values, role: e })
   }
