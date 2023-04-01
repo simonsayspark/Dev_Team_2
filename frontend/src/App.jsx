@@ -12,7 +12,8 @@ export const App = () => {
     const [ currentUser, setCurrentUser ] = useState(undefined);
     const _setCurrentUser = user => setCurrentUser(user);
     
-    useEffect(() => {
+    //the following useEffects allow for user persistence (so if the page is reloaded, you aren't logged out)
+    useEffect(() => { 
       const temp = window.localStorage.getItem('CURRENT_USER');
       if (temp !== 'undefined') setCurrentUser(JSON.parse(temp));
     }, [])
@@ -20,8 +21,7 @@ export const App = () => {
       window.localStorage.setItem('CURRENT_USER', JSON.stringify(currentUser));
     }, [currentUser])  
 
-    if (!currentUser) {
-        console.log('NO CURRENT USER')
+    if (!currentUser) { //if no one is logged in
         return (
             <Router>
                 <Routes>
@@ -33,9 +33,7 @@ export const App = () => {
         )    
     }
 
-    console.log('THERE IS A CURRENT USER')
-    console.log(currentUser)
-    return (
+    return ( //if someone is logged in
         <UserContext.Provider value={ currentUser }>
             <Router>
                 <Routes>
