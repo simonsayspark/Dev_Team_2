@@ -5,14 +5,19 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import React, {useState} from "react";
 import { getEmployeeByEmail } from "./api/employeeApi";
+
+import bcrypt from 'bcryptjs'
+
 const formValues = {
   email: "",
   password: "",
 };
 export const LoginPage = ({ setCurrentUser }) => {
+  const navigate = useNavigate();
+
   const [validated, setValidated] = useState(false);
   const [values, setValues] = useState(formValues);
 
@@ -31,7 +36,15 @@ export const LoginPage = ({ setCurrentUser }) => {
       getEmployeeByEmail(values.email).then(x => {
         console.log('GOT EMPLOYEE:');
         console.log(x);
-        // setCurrentUser()
+
+        if (bcrypt.compareSync(values.password, x[0].epassword)) {
+          console.log('CORRECT');
+          setCurrentUser(x[0]);
+          navigate('/home');
+          console.log('done')
+        } else {
+          console.log('INCORRECT')
+        }
       })
     }
   }
@@ -69,7 +82,6 @@ export const LoginPage = ({ setCurrentUser }) => {
           </Form.Group>
 
           <Button variant="primary" 
-                  type="submit"
                   onClick={() => {
                     login();
                   }}>

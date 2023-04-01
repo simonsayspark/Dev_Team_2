@@ -1,0 +1,1 @@
+INSERT INTO ceo (cname, cemail, cpassword) VALUES ('Bob Smith', 'bob.smith@gmail.com', 'aPassword')

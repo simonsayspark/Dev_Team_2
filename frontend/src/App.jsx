@@ -21,23 +21,26 @@ export const App = () => {
     }, [currentUser])  
 
     if (!currentUser) {
+        console.log('NO CURRENT USER')
         return (
             <Router>
                 <Routes>
                     <Route path='/' element={ <LandingPage/> }/>
-                    <Route path='/login' element={ <LoginPage/> }/>
+                    <Route path='/login' element={ <LoginPage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/signup' element={ <SignupPage/> }/>
                 </Routes>
             </Router>
         )    
     }
 
+    console.log('THERE IS A CURRENT USER')
+    console.log(currentUser)
     return (
         <UserContext.Provider value={ currentUser }>
             <Router>
                 <Routes>
                     <Route path='/' element={ <LandingPage/> }/>
-                    <Route path='/login' element={ <LoginPage/> }/>
+                    <Route path='/login' element={ <LoginPage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/home' element={ <HomePage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/signup' element={ <SignupPage/> }/>
                 </Routes>

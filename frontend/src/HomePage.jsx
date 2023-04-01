@@ -7,7 +7,16 @@ export const HomePage = ({ setCurrentUser }) => {
     function logout() {
         setCurrentUser(undefined);
     }
-    return <>
-        Hello {currentUser.name}!
-    </>
+
+    if (currentUser.ceo_id) { //CEO homepage
+        return <>
+            Hello {currentUser.cname}!
+        </>
+    } 
+    
+    else if (currentUser.employee_id) { //Employee or Financial Manager homepage
+        return <>
+            Hello {currentUser.ename}!
+        </>
+    }
 }

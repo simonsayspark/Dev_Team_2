@@ -1,6 +1,6 @@
 const knex = require('../database/knex');
 const EMPLOYEES_TABLE = 'employees';
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const createEmployee = async (ename, eemail, epassword, role, company_id) => {
     const salt = await bcrypt.genSalt(10);
