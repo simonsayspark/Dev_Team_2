@@ -51,7 +51,7 @@ export const LoginPage = ({ setCurrentUser }) => {
 
   return (
     <>
-      <Navbar fixed="top" bg="light" expand="lg">
+      <Navbar sticky="top" bg="light" expand="lg">
         <Container fluid className="m-0">
           <Navbar.Brand><NavLink to={"/"} className="nav-link">DoughBack</NavLink></Navbar.Brand>
         </Container>
