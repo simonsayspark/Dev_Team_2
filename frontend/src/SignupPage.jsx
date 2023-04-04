@@ -11,6 +11,7 @@ import { getCompanies } from "./api/companiesApi";
 import { useNavigate } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown'
 import Navbar from 'react-bootstrap/Navbar';
+import Alert from "react-bootstrap/Alert";
 import DropdownButton from 'react-bootstrap/DropdownButton';
 //CEO, Finacial Manager, Employee
 const employeeValues = {
@@ -26,6 +27,7 @@ export const SignupPage = () => {
   const [companyValue, setCompanyValue] = useState("Select-Company");
   const [disableButton, setDisableButton] = useState(true);
   const [companies, setCompanies] = useState(undefined);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     getCompanies().then(x => setCompanies(x));
@@ -72,7 +74,13 @@ export const SignupPage = () => {
       addCeo(ceoValues).then(navigate("/"));
     } else { //Employee or Financial Manager
       console.log('Adding Employee/Financial Manager');
-      addEmployee(values).then(navigate("/"));
+      addEmployee(values).then((e) => {
+        if (!e['message']) {
+          navigate("/");
+        } else {
+          setError(e['message']);
+        }
+      });
     }
   }
 
@@ -86,6 +94,12 @@ export const SignupPage = () => {
 
       <Container className="pt-5">
         <div className="bg-light p-3 mx-auto p-md-5 pb-md-3 col-xl-6 mb-4">
+          {error !== "" && 
+            <Alert key={'danger'} variant={'danger'}>
+              {error}
+            </Alert>
+          }
+          
           <Form>
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Name</Form.Label>
@@ -161,7 +175,6 @@ export const SignupPage = () => {
 
             <Button
               className="col-12 mt-3"
-              type="submit"
               disabled={disableButton}
               onClick={() => {
                 createAccount();
