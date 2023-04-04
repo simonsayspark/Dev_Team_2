@@ -47,10 +47,11 @@ export const LoginPage = ({ setCurrentUser }) => {
         if (bcrypt.compareSync(values.password, x[0].epassword)) {
           setCurrentUser(x[0]);
           navigate('/home');
+        } else {
+          setError("Incorrect email or password. Please enter a valid email and password and try again.");
         }
       })
     }
-    setError("Incorrect email or password. Please enter a valid email and password and try again.");
   }
 
   return (
