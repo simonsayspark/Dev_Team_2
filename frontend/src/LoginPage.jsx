@@ -44,10 +44,13 @@ export const LoginPage = ({ setCurrentUser }) => {
   const login = () => {
     if (values.email && values.password) { //makes sure email and password have values
       getEmployeeByEmail(values.email).then(x => {
-        if (bcrypt.compareSync(values.password, x[0].epassword)) {
+        if (x.length === 0) { //if no account exists with given email
+          setError("Incorrect email or password. Please enter a valid email and password and try again.");
+        }
+        else if (bcrypt.compareSync(values.password, x[0].epassword)) {
           setCurrentUser(x[0]);
           navigate('/home');
-        } else {
+        } else { //if account with given email exists, but password is incorrect
           setError("Incorrect email or password. Please enter a valid email and password and try again.");
         }
       })
