@@ -6,16 +6,44 @@ import { LoginPage } from './LoginPage';
 import { HomePage } from './HomePage';
 import { SignupPage } from './SignupPage';
 
+export const UserContext = createContext();
+
 export const App = () => {
-    return (
-        <Router>
-            <Routes>
-                <Route path='/' element={ <LandingPage/> }/>
-                <Route path='/login' element={ <LoginPage/> }/>
-                <Route path='/home' element={ <HomePage/> }/>
-                <Route path='/signup' element={ <SignupPage/> }/>
-            </Routes>
-        </Router>
+    const [ currentUser, setCurrentUser ] = useState(undefined);
+    const _setCurrentUser = user => setCurrentUser(user);
+    
+    //the following useEffects allow for user persistence (so if the page is reloaded, you aren't logged out)
+    useEffect(() => { 
+      const temp = window.localStorage.getItem('CURRENT_USER');
+      if (temp !== 'undefined') setCurrentUser(JSON.parse(temp));
+    }, [])
+    useEffect(() => {
+      window.localStorage.setItem('CURRENT_USER', JSON.stringify(currentUser));
+    }, [currentUser])  
+
+    if (!currentUser) { //if no one is logged in
+        return (
+            <Router>
+                <Routes>
+                    <Route path='/' element={ <LandingPage/> }/>
+                    <Route path='/login' element={ <LoginPage setCurrentUser={ _setCurrentUser }/> }/>
+                    <Route path='/signup' element={ <SignupPage/> }/>
+                </Routes>
+            </Router>
+        )    
+    }
+
+    return ( //if someone is logged in
+        <UserContext.Provider value={ currentUser }>
+            <Router>
+                <Routes>
+                    <Route path='/' element={ <LandingPage/> }/>
+                    <Route path='/login' element={ <LoginPage setCurrentUser={ _setCurrentUser }/> }/>
+                    <Route path='/home' element={ <HomePage setCurrentUser={ _setCurrentUser }/> }/>
+                    <Route path='/signup' element={ <SignupPage/> }/>
+                </Routes>
+            </Router>
+        </UserContext.Provider>
     )
 };
 

@@ -6,7 +6,7 @@ create table ceo (
     ceo_id int auto_increment primary key,
     cname VARCHAR (50),
     cemail VARCHAR (50),
-    cpassword VARCHAR (50)
+    cpassword VARCHAR (60)
 );
 
 create table companies (
@@ -19,8 +19,8 @@ create table companies (
 create table employees (
     employee_id int auto_increment primary key,
     ename VARCHAR (50),
-    eemail VARCHAR (50),
-    epassword VARCHAR (50),
+    eemail VARCHAR (50) UNIQUE,
+    epassword VARCHAR (60),
     role VARCHAR (50),
     company_id int,
     foreign key(company_id) references companies(company_id)
