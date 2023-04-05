@@ -13,7 +13,7 @@ export const LandingPage = () => {
     <>
       <Navbar sticky="top" bg="light" expand="lg">
         <Container fluid className="m-0">
-          <Navbar.Brand>Website Name</Navbar.Brand>
+          <Navbar.Brand><NavLink to={"/"} className="nav-link">DoughBack</NavLink></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse>
             <Nav className="me-auto ">
