@@ -55,10 +55,10 @@ export const LandingPage = () => {
 
       <Container>
         <Row className="text-center mt-5 mb-2">
-          <Col className="display-6"> About Us</Col>
+          <Col className="display-4"> About Us</Col>
         </Row>
         <Row className="text-center mb-5">
-          <Col className="fs-5">
+          <Col className="fs-4">
             Welcome to our platform, where employees can easily request reimbursement for any legitimate business expenses, ranging from lunches to other expenses. Our user-friendly platform empowers employees to focus on their work instead of complicated reimbursement procedures, while providing the financial team with a streamlined process to approve or deny requests. With the CEO having the final say, our platform ensures top-level oversight to keep the company's finances in order.
           </Col>
         </Row>
@@ -77,31 +77,45 @@ export const LandingPage = () => {
       <Container>
 
         <Row className="text-center mt-5 mb-4">
-          <Col className="display-6 "> How it Works</Col>
+          <Col className="display-4 "> How it Works</Col>
         </Row>
+
+        <br />
 
         <Row>
           <Col className="p-0">
             <Image src="/tyler-franta-iusJ25iYu1c-unsplash.jpg" className="img-fluid mx-auto" ></Image>
           </Col>
-          <Col className="p-0">
+          <Col className="p-0 text-center">
+         
+          <div className="display-6">Employee</div>
+          <br/>            
+            <p className= "fs-4">  The employee is any member of a company who has gone on a business lunch and wishes to request reimbursement for their expenses. They can submit claims through the website, which will then be reviewed by the financial manager.</p>
 
           </Col>
         </Row>
         <Row>
-          <Col className="p-0">
+          <Col className="p-0 text-center">
+       
+            
+            <div className="display-6">Financial Manager</div>
+            <br/>            
+            <p className= "fs-4"> The financial manager is responsible for overseeing the financial team, which includes treasurers and other financial professionals. They are in charge of approving or denying reimbursement requests for business lunches made by employees on the website.</p>
 
           </Col>
           <Col className="p-0">
-            <Image src="/tyler-franta-iusJ25iYu1c-unsplash.jpg" className="img-fluid mx-auto"></Image>
+            <Image src="/employee.png" className="img-fluid mx-auto"></Image>
           </Col>
         </Row>
         <Row>
           <Col className="p-0">
-            <Image src="/tyler-franta-iusJ25iYu1c-unsplash.jpg" className="img-fluid mx-auto" ></Image>
+            <Image src="/boss.png" className="img-fluid mx-auto" ></Image>
           </Col>
-          <Col className="p-0">
-
+          <Col className="p-0 text-center ">
+        
+           <div className = "display-6">CEO</div> 
+           <br/>
+           <p className = "fs-4">The CEO is the highest-ranking executive in a company and has ultimate authority over all business decisions, including the reimbursement process for business lunches. They have the final say in any disputes or issues that arise from the reimbursement process.</p>
           </Col>
         </Row>
 
