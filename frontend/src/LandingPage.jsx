@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import { Link, NavLink } from "react-router-dom";
 import Carousel from 'react-bootstrap/Carousel';
+import Image from 'react-bootstrap/Image'
 
 
 export const LandingPage = () => {
@@ -25,7 +26,7 @@ export const LandingPage = () => {
 
               </NavLink>
               <NavLink href="#service" className="nav-link">
-                Our Service
+                How it Works
               </NavLink>
               <NavLink href="#contact" className="nav-link">Contact</NavLink>
             </Nav>
@@ -63,51 +64,7 @@ export const LandingPage = () => {
         </Row>
       </Container>
 
-      <Container>
 
-
-
-        <Carousel>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="/Ceo-img.png"
-              alt="Shrek slide"
-            />
-            <Carousel.Caption>
-              <h3>CEO</h3>
-              <p>Create and manage your company with ease.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="/tyler-franta-iusJ25iYu1c-unsplash.jpg"
-              alt="Second slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Financial Manager</h3>
-              <p>Approve and deny transactions.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="/expense-reimbursements.png"
-              alt="Third slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Employee</h3>
-              <p>
-                Submit transaction forms.
-              </p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-
-      </Container>
       {/* 
         Add more content down here, such as an about section, a mission
         statement, etc.
@@ -118,31 +75,100 @@ export const LandingPage = () => {
         */}
 
       <Container>
+
+        <Row className="text-center mt-5 mb-4">
+          <Col className="display-6 "> How it Works</Col>
+        </Row>
+
         <Row>
+          <Col className="p-0">
+            <Image src="/tyler-franta-iusJ25iYu1c-unsplash.jpg" className="img-fluid mx-auto" ></Image>
+          </Col>
+          <Col className="p-0">
 
-          <Col>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="p-0">
 
+          </Col>
+          <Col className="p-0">
+            <Image src="/tyler-franta-iusJ25iYu1c-unsplash.jpg" className="img-fluid mx-auto"></Image>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="p-0">
+            <Image src="/tyler-franta-iusJ25iYu1c-unsplash.jpg" className="img-fluid mx-auto" ></Image>
+          </Col>
+          <Col className="p-0">
 
           </Col>
         </Row>
 
 
+
       </Container>
+
+      {/* <Container>
+
+
+
+<Carousel>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="/Ceo-img.png"
+      alt="Shrek slide"
+    />
+    <Carousel.Caption>
+      <h3>CEO</h3>
+      <p>Create and manage your company with ease.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="/tyler-franta-iusJ25iYu1c-unsplash.jpg"
+      alt="Second slide"
+    />
+
+    <Carousel.Caption>
+      <h3>Financial Manager</h3>
+      <p>Approve and deny transactions.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="/expense-reimbursements.png"
+      alt="Third slide"
+    />
+
+    <Carousel.Caption>
+      <h3>Employee</h3>
+      <p>
+        Submit transaction forms.
+      </p>
+    </Carousel.Caption>
+  </Carousel.Item>
+</Carousel>
+
+</Container> */}
 
 
 
       <Container className="mt-5 p-5">
 
         <Row className="bg-light" >
-          
-          <Col className ="display-5 text-center">Contact Us</Col>
-            
-            <div className = "ms-3">       
+
+          <Col className="display-5 text-center">Contact Us</Col>
+
+          <div className="ms-3">
             <p><strong>Name:</strong> DoughBack</p>
             <p><strong>Number:</strong> 123-456-789</p>
             <p><strong>Email:</strong> DoughBack@gmail.com</p>
             <p><strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205</p>
-            </div>  
+          </div>
 
         </Row>
       </Container>
@@ -150,3 +176,6 @@ export const LandingPage = () => {
     </>
   );
 };
+
+
+
