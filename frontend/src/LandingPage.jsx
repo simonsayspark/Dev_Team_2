@@ -50,14 +50,14 @@ export const LandingPage = () => {
 
       </Container>
 
-      <br/>
+      <br />
 
       <Container>
         <Row className="text-center mt-5 mb-2">
-          <Col className ="display-6"> About Us</Col>
+          <Col className="display-6"> About Us</Col>
         </Row>
         <Row className="text-center mb-5">
-          <Col className = "fs-5">
+          <Col className="fs-5">
             Welcome to our platform, where employees can easily request reimbursement for any legitimate business expenses, ranging from lunches to other expenses. Our user-friendly platform empowers employees to focus on their work instead of complicated reimbursement procedures, while providing the financial team with a streamlined process to approve or deny requests. With the CEO having the final say, our platform ensures top-level oversight to keep the company's finances in order.
           </Col>
         </Row>
@@ -131,16 +131,19 @@ export const LandingPage = () => {
 
 
 
-      <Container>
-        <Row>
-          <Col>
-            <p> Contact info</p>
-            <p><strong>Name:</strong>DoughBack</p>
-            <p><strong>Email:</strong>DoughBack@gmail.com</p>
-            <p><strong>Phone:</strong> 123.456.789</p>
-            <p><strong>Address:</strong>6425 Boaz Lane Dallas TX 75205</p>
+      <Container className="mt-5 p-5">
 
-          </Col>
+        <Row className="bg-light" >
+          
+          <Col className ="display-5 text-center">Contact Us</Col>
+            
+            <div className = "ms-3">       
+            <p><strong>Name:</strong> DoughBack</p>
+            <p><strong>Number:</strong> 123-456-789</p>
+            <p><strong>Email:</strong> DoughBack@gmail.com</p>
+            <p><strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205</p>
+            </div>  
+
         </Row>
       </Container>
 
