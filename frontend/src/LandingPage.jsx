@@ -22,6 +22,7 @@ export const LandingPage = () => {
               </NavLink>
               <NavLink href="#aboutus" className="nav-link">
                 About us
+
               </NavLink>
               <NavLink href="#service" className="nav-link">
                 Our Service
@@ -46,7 +47,20 @@ export const LandingPage = () => {
             beyond.
           </Col>
         </Row>
-        <Row className="">About us</Row>
+
+      </Container>
+
+      <br/>
+
+      <Container>
+        <Row className="text-center mt-5 mb-2">
+          <Col className ="display-6"> About Us</Col>
+        </Row>
+        <Row className="text-center mb-5">
+          <Col className = "fs-5">
+            Welcome to our platform, where employees can easily request reimbursement for any legitimate business expenses, ranging from lunches to other expenses. Our user-friendly platform empowers employees to focus on their work instead of complicated reimbursement procedures, while providing the financial team with a streamlined process to approve or deny requests. With the CEO having the final say, our platform ensures top-level oversight to keep the company's finances in order.
+          </Col>
+        </Row>
       </Container>
 
       <Container>
@@ -120,7 +134,7 @@ export const LandingPage = () => {
       <Container>
         <Row>
           <Col>
-            <p> Contaat info</p>
+            <p> Contact info</p>
             <p><strong>Name:</strong>DoughBack</p>
             <p><strong>Email:</strong>DoughBack@gmail.com</p>
             <p><strong>Phone:</strong> 123.456.789</p>
