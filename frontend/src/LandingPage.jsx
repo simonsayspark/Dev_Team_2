@@ -74,7 +74,7 @@ export const LandingPage = () => {
         https://nomadictribe.com/
         */}
 
-      <Container>
+      <Container fluid>
 
         <Row className="text-center mt-5 mb-4">
           <Col className="display-4 "> How it Works</Col>
@@ -83,10 +83,10 @@ export const LandingPage = () => {
         <br />
 
         <Row>
-          <Col className="p-0">
+          <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
             <Image src="/tyler-franta-iusJ25iYu1c-unsplash.jpg" className="img-fluid mx-auto" ></Image>
           </Col>
-          <Col className="p-0 text-center">
+          <Col className="p-0 my-auto text-center">
          
           <div className="display-6">Employee</div>
           <br/>            
@@ -95,7 +95,7 @@ export const LandingPage = () => {
           </Col>
         </Row>
         <Row>
-          <Col className="p-0 text-center">
+          <Col className="p-0 my-auto text-center" xs={{order:'last'}} sm md lg={{order: 'first'}} xl xxl> 
        
             
             <div className="display-6">Financial Manager</div>
@@ -103,15 +103,15 @@ export const LandingPage = () => {
             <p className= "fs-4"> The financial manager is responsible for overseeing the financial team, which includes treasurers and other financial professionals. They are in charge of approving or denying reimbursement requests for business lunches made by employees on the website.</p>
 
           </Col>
-          <Col className="p-0">
+          <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
             <Image src="/employee.png" className="img-fluid mx-auto"></Image>
           </Col>
         </Row>
         <Row>
-          <Col className="p-0">
+          <Col className="p-0" xs={12} sm={12} md={122} lg xl xxl>
             <Image src="/boss.png" className="img-fluid mx-auto" ></Image>
           </Col>
-          <Col className="p-0 text-center ">
+          <Col className="p-0 my-auto text-center ">
         
            <div className = "display-6">CEO</div> 
            <br/>
@@ -175,7 +175,7 @@ export const LandingPage = () => {
 
         <Row className="bg-light" >
 
-          <Col className="display-5 text-center">Contact Us</Col>
+          <Col className="display-5 text-center mb-3">Contact Us</Col>
 
           <div className="ms-3">
             <p><strong>Name:</strong> DoughBack</p>
