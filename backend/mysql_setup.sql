@@ -5,7 +5,7 @@ USE DBUI;
 create table ceo (
     ceo_id int auto_increment primary key,
     cname VARCHAR (50),
-    cemail VARCHAR (50),
+    cemail VARCHAR (50) UNIQUE,
     cpassword VARCHAR (60)
 );
 
@@ -32,8 +32,11 @@ create table claims ( --look for this --
     company_id int,
     order_date date,
     amount_requested int,
+    category VARCHAR(50),
+    claim_description VARCHAR(200),
     amount_reimbursed int DEFAULT NULL, 
     claim_status VARCHAR(50) DEFAULT 'Pending',
+    ceo_comment VARCHAR(200) DEFAULT '',
     foreign key(employee_id) references employees(employee_id),
     foreign key(company_id) references companies(company_id)
 
