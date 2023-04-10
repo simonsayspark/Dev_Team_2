@@ -7,9 +7,70 @@ import Nav from "react-bootstrap/Nav";
 import { Link, NavLink } from "react-router-dom";
 import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image'
-
+import React, { useState, useEffect, useRef } from 'react';
 
 export const LandingPage = () => {
+  const homeRef = useRef(0);
+  const aboutUsRef = useRef(0);
+  const howItWorksRef1 = useRef(0);
+  const howItWorksRef2 = useRef(0);
+  const howItWorksRef3 = useRef(0);
+  const howItWorksRef4 = useRef(0);
+  const contactUsRef = useRef(0);
+
+  const [homeLoaded, setHomeLoaded] = useState(false);
+  const [aboutLoaded, setAboutLoaded] = useState(false);
+  const [worksLoaded1, setWorksLoaded1] = useState(false);
+  const [worksLoaded2, setWorksLoaded2] = useState(false);
+  const [worksLoaded3, setWorksLoaded3] = useState(false);
+  const [worksLoaded4, setWorksLoaded4] = useState(false);
+  const [contactLoaded, setContactLoaded] = useState(false);
+ 
+  //inspired by code found at: https://stackoverflow.com/questions/53158796/get-scroll-position-with-reactjs
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+    // console.log('Window:')
+    // console.log(window)
+    const position = window.pageYOffset + (0.75 * window.innerHeight);
+    setScrollPosition(position);
+
+    if (position >= homeRef.current.offsetTop) {
+      setHomeLoaded(true);
+    }
+    if (position >= aboutUsRef.current.offsetTop) {
+      setAboutLoaded(true);
+    }
+    if (position >= howItWorksRef1.current.offsetTop) {
+      setWorksLoaded1(true);
+    }
+    if (position >= howItWorksRef2.current.offsetTop) {
+      setWorksLoaded2(true);
+    }
+    if (position >= howItWorksRef3.current.offsetTop) {
+      setWorksLoaded3(true);
+    }
+    if (position >= howItWorksRef4.current.offsetTop) {
+      setWorksLoaded4(true);
+    }
+    if (position >= contactUsRef.current.offsetTop) {
+      setContactLoaded(true);
+    }
+
+    console.log(position);
+    console.log(homeRef.current.offsetTop);
+    console.log(aboutUsRef.current.offsetTop);
+    console.log(howItWorksRef1.current.offsetTop);
+    console.log(contactUsRef.current.offsetTop);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
   return (
     <>
       <Navbar sticky="top" bg="light" expand="lg">
@@ -41,7 +102,7 @@ export const LandingPage = () => {
         </Container>
       </Navbar>
 
-      <Container fluid>
+      <Container fluid ref={homeRef} className={`${homeLoaded ? "unhideIt" : "hideIt"}`}>
         <Row className="text-center mt-5 ">
           <Col className="display-2">
             Expense reimbursements made simple - for every business lunch and
@@ -53,7 +114,7 @@ export const LandingPage = () => {
 
       <br />
 
-      <Container>
+      <Container ref={aboutUsRef} className={`${aboutLoaded ? "unhideIt" : "hideIt"}`}>
         <Row className="text-center mt-5 mb-2">
           <Col className="display-4"> About Us</Col>
         </Row>
@@ -76,13 +137,13 @@ export const LandingPage = () => {
 
       <Container fluid>
 
-        <Row className="text-center mt-5 mb-4">
+        <Row ref={howItWorksRef1} className={`text-center mt-5 mb-4 ${worksLoaded1 ? "unhideIt" : "hideIt"}`}>
           <Col className="display-4 "> How it Works</Col>
         </Row>
 
         <br />
 
-        <Row>
+        <Row ref={howItWorksRef2} className={`${worksLoaded2 ? "unhideIt" : "hideIt"}`}>
           <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
             <Image src="/tyler-franta-iusJ25iYu1c-unsplash.jpg" className="img-fluid mx-auto" ></Image>
           </Col>
@@ -94,7 +155,7 @@ export const LandingPage = () => {
 
           </Col>
         </Row>
-        <Row>
+        <Row ref={howItWorksRef3} className={`${worksLoaded3 ? "unhideIt" : "hideIt"}`}>
           <Col className="p-0 my-auto text-center" xs={{order:'last'}} sm md lg={{order: 'first'}} xl xxl> 
        
             
@@ -107,8 +168,8 @@ export const LandingPage = () => {
             <Image src="/employee.png" className="img-fluid mx-auto"></Image>
           </Col>
         </Row>
-        <Row>
-          <Col className="p-0" xs={12} sm={12} md={122} lg xl xxl>
+        <Row ref={howItWorksRef4} className={`${worksLoaded4 ? "unhideIt" : "hideIt"}`}>
+          <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
             <Image src="/boss.png" className="img-fluid mx-auto" ></Image>
           </Col>
           <Col className="p-0 my-auto text-center ">
@@ -171,7 +232,7 @@ export const LandingPage = () => {
 
 
 
-      <Container className="mt-5 p-5">
+      <Container ref={contactUsRef} className={`mt-5 p-5 ${aboutLoaded ? "unhideIt" : "hideIt"}`}>
 
         <Row className="bg-light" >
 
