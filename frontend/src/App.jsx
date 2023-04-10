@@ -5,6 +5,7 @@ import { LandingPage } from './LandingPage';
 import { LoginPage } from './LoginPage';
 import { HomePage } from './HomePage';
 import { SignupPage } from './SignupPage';
+import { AddTransaction } from './components/transaction/addTransaction';
 
 export const UserContext = createContext();
 
@@ -41,6 +42,7 @@ export const App = () => {
                     <Route path='/login' element={ <LoginPage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/home' element={ <HomePage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/signup' element={ <SignupPage/> }/>
+                    <Route path='/addTransaction' element={ <AddTransaction/> }/>
                 </Routes>
             </Router>
         </UserContext.Provider>

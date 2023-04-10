@@ -27,7 +27,7 @@ create table employees (
 );
 
 create table claims ( --look for this --
-    claim_number int auto_increment primary key,
+    claim_number int auto_increment primary key,  --dont worry about this--    
     employee_id int,
     company_id int,
     order_date date,
