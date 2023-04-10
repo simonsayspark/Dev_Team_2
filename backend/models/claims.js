@@ -1,14 +1,14 @@
 const knex = require('../database/knex');
 const CLAIMS_TABLE = 'claims';
 
-const createClaim = async (employee_id, company_id, order_date, amount_requested, amount_reimbursed, claim_status) => {
-    const query = knex(CLAIMS_TABLE).insert({employee_id, company_id, order_date, amount_requested, amount_reimbursed, claim_status});
+const createClaim = async (employee_id, company_id, order_date, amount_requested, category, claim_description) => {
+    const query = knex(CLAIMS_TABLE).insert({employee_id, company_id, order_date, amount_requested, category, claim_description});
     const results = await query;
     return results;
 }
 
-const updateClaim = async (employee_id, company_id, order_date, amount_requested, amount_reimbursed, claim_status) => {
-    const query = knex(CLAIMS_TABLE).update({employee_id, company_id, order_date, amount_requested, amount_reimbursed, claim_status});
+const updateClaim = async (employee_id, company_id, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status) => {
+    const query = knex(CLAIMS_TABLE).update({employee_id, company_id, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status});
     const results = await query;
     return results;
 }
