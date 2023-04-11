@@ -63,6 +63,8 @@ export const LandingPage = () => {
     console.log(contactUsRef.current.offsetTop);
   };
 
+
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -79,13 +81,15 @@ export const LandingPage = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse>
             <Nav className="me-auto ">
-              <NavLink href="#home" className="nav-link">
+              <NavLink href="#home" className="nav-link"> 
                 Home
               </NavLink>
-              <NavLink href="#aboutus" className="nav-link">
+              <NavLink href="#aboutUs" className="nav-link">
                 About us
 
               </NavLink>
+
+              
               <NavLink href="#service" className="nav-link">
                 How it Works
               </NavLink>
@@ -114,9 +118,12 @@ export const LandingPage = () => {
 
       <br />
 
-      <Container ref={aboutUsRef} className={`${aboutLoaded ? "unhideIt" : "hideIt"}`}>
+      <Container ref={aboutUsRef}  className={`${aboutLoaded ? "unhideIt" : "hideIt"}`}>
         <Row className="text-center mt-5 mb-2">
-          <Col className="display-4"> About Us</Col>
+          <div id = "aboutUs">
+          <Col className="display-4" > About Us</Col>
+
+          </div>
         </Row>
         <Row className="text-center mb-5">
           <Col className="fs-4">

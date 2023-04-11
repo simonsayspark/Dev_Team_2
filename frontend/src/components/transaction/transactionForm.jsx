@@ -42,8 +42,11 @@ export const TransactionForm = () => {
             {console.log(amount_requested)}
             {console.log(category)}
             {console.log(claim_description)}
+
+
+            <div className="row"> 
         
-            <Form>
+            <Form >
                 <Form.Group className="col-3 inline" controlId="order_date">
                     <Form.Label>Date</Form.Label>
                     <Form.Control type="date"
@@ -70,6 +73,8 @@ export const TransactionForm = () => {
 
                 </Form.Group>
             </Form>
+
+            </div>
 
 
             <Form>

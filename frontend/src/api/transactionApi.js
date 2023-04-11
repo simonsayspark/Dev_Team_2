@@ -10,3 +10,17 @@ export const addTransaction = (transaction) => new Promise ((resolve, reject) =>
         reject(x);
     });
 });
+
+
+export const getTransaction =() => new Promise ((resolve, reject) =>{
+
+    axios.get(`${apiEndpoint}/claims`)
+    .then(x => resolve(x.data))
+    .catch(x=>{
+
+        alert(x);
+        reject(x);
+    });
+
+});
+
