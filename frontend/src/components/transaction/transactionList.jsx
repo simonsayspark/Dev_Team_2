@@ -11,7 +11,7 @@ const TransactionList = () => {
   
     useEffect(() => {
       const fetchTransactions = async () => {
-        const fetchedTransactions = await getTransactions(currentUser.company_id);
+        const fetchedTransactions = await getTransaction(currentUser.company_id);
         setTransactions(fetchedTransactions);
       };
       fetchTransactions();
@@ -20,7 +20,7 @@ const TransactionList = () => {
     return (
       <div>
         {transactions.map((transaction) => (
-          <Transaction key={transaction.id} transaction={transaction} />
+          <TransactionForm/>
         ))}
       </div>
     );
