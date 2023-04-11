@@ -187,6 +187,17 @@ export const LandingPage = () => {
       {/* <Container>
 
 
+<<<<<<< Updated upstream
+=======
+      <Container>
+        <Row>
+          <Col>
+            <p> Contact info</p>
+            <p><strong>Name:</strong>DoughBack</p>
+            <p><strong>Email:</strong>DoughBack@gmail.com</p>
+            <p><strong>Phone:</strong> 123.456.789</p>
+            <p><strong>Address:</strong>6425 Boaz Lane Dallas TX 75205</p>
+>>>>>>> Stashed changes
 
 <Carousel>
   <Carousel.Item>
