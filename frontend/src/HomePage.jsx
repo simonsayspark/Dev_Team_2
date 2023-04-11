@@ -44,6 +44,7 @@ export const HomePage = ({ setCurrentUser }) => {
                                  onClick={() => {
                                     setCurrentUser(undefined);
                                  }}>
+
                         Log out
                         </NavLink>
                     </Navbar.Text>
@@ -51,6 +52,7 @@ export const HomePage = ({ setCurrentUser }) => {
             </Navbar>
 
             Hello {currentUser.ename}!
+            <NavLink to={"/addTransaction"}><button> Submit Transaction</button></NavLink>
         </>
     }
 }

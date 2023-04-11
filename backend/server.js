@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const employeesRoutes = require('./routes/employees');
 const companiesRoutes = require('./routes/companies');
 const ceoRoutes = require('./routes/ceo');
+const claimsRoutes = require('./routes/claims');
 
 const createModelsMiddleware = require('./middleware/model-middleware');
 
@@ -33,6 +34,7 @@ connection.connect()
 app.use('/employees', employeesRoutes);
 app.use('/companies', companiesRoutes);
 app.use('/ceo', ceoRoutes);
+app.use('/claims', claimsRoutes);
 
 // Start server
 app.listen(port, () => {
