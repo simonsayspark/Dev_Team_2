@@ -42,8 +42,9 @@ export const TransactionForm = () => {
             {console.log(amount_requested)}
             {console.log(category)}
             {console.log(claim_description)}
+        
             <Form>
-                <Form.Group controlId="order_date">
+                <Form.Group className="col-3 inline" controlId="order_date">
                     <Form.Label>Date</Form.Label>
                     <Form.Control type="date"
                                   value={order_date}
@@ -55,14 +56,15 @@ export const TransactionForm = () => {
             </Form>
 
 
-
             <Form>
-                <Form.Group controlId="amount_requested">
+        
+                <Form.Group className = "col-3" controlId="amount_requested">
                     <Form.Label>Amount Requested</Form.Label>
                     <Form.Control type="money"
                                   placeholder="Enter amount spent"
                                   value={amount_requested}
                                   onChange={(delta) => {
+                                    
                                     setAmount_requested(delta.target.value);
                                   }} />
 
