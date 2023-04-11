@@ -18,12 +18,24 @@ const TransactionList = () => {
     }, [currentUser.company_id]);
   
     return (
-      <div>
-        {transactions.map((transaction) => (
-          <TransactionForm/>
-        ))}
-      </div>
-    );
+        <div>
+          {transactions.map((transaction) => {
+            const { id, employee_id, company_id, order_date, amount_requested, category, claim_description } = transaction;
+            return (
+              <TransactionForm 
+                key={id}
+                id={id}
+                employee_id={employee_id}
+                company_id={company_id}
+                order_date={order_date}
+                amount_requested={amount_requested}
+                category={category}
+                claim_description={claim_description}
+              />
+            );
+          })}
+        </div>
+      );
   };
   
   export default TransactionList;
