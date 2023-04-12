@@ -1,41 +1,77 @@
+
+import { useContext } from "react";
+import { UserContext } from "../../App";
 import { TransactionForm } from "./transactionForm";
 import { useState, useEffect } from "react";
 import { getTransaction } from "../../api/transactionApi";
+import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
 
+// order_date date,
+// amount_requested int,
+// category VARCHAR(50),
+// claim_description VARCHAR(200),
+// amount_reimbursed int DEFAULT NULL, 
+// claim_status VARCHAR(50) DEFAULT 'Pending',
+// ceo_comment VARCHAR(200) DEFAULT '',
 
-
-
-const TransactionList = () => {
+export const TransactionList = () => {
     const currentUser = useContext(UserContext);
-    const [transactions, setTransactions] = useState([]);
-  
+
+
+    const [transactions, setTransactions] = useState(undefined);
     useEffect(() => {
-      const fetchTransactions = async () => {
-        const fetchedTransactions = await getTransaction(currentUser.company_id);
-        setTransactions(fetchedTransactions);
-      };
-      fetchTransactions();
-    }, [currentUser.company_id]);
-  
+        getTransaction(currentUser.employee_id).then((x) => setTransactions(x));
+    }, [])
+
+
+    { console.log("here") }
+
     return (
-        <div>
-          {transactions.map((transaction) => {
-            const { id, employee_id, company_id, order_date, amount_requested, category, claim_description } = transaction;
-            return (
-              <TransactionForm 
-                key={id}
-                id={id}
-                employee_id={employee_id}
-                company_id={company_id}
-                order_date={order_date}
-                amount_requested={amount_requested}
-                category={category}
-                claim_description={claim_description}
-              />
-            );
-          })}
-        </div>
-      );
-  };
-  
-  export default TransactionList;
+        <>
+            {/* {reviews.length === 0 && <div className="row bg-light"><p className="col-12"><span className="mt-3 mr-5 ">Be the first to review!</span></p></div>} */}
+            {console.log('Transactions')}
+            {console.log(transactions)}
+            {transactions ? transactions.map((transaction, index) => {
+              return(
+              <ListGroup key={index}>
+
+                    <ListGroup.Item>
+                        {transaction.order_date}
+                    </ListGroup.Item>
+
+                    <ListGroup.Item>
+                        {transaction.amount_requested}
+                    </ListGroup.Item>
+
+                    <ListGroup.Item>
+                        {transaction.amount_reimbursed}
+                    </ListGroup.Item>
+
+                    <ListGroup.Item>
+                        {transaction.claim_description}
+                    </ListGroup.Item>
+
+                    <ListGroup.Item>
+                        {transaction.claim_status}
+                    </ListGroup.Item>
+
+                    <ListGroup.Item>
+                        {transaction.ceo_comment}
+                    </ListGroup.Item>
+
+                </ListGroup>
+              );
+
+            }
+
+
+            ) : (
+                <p>No available transaction</p>
+            )
+
+
+            }
+        </>);
+}
+

@@ -6,6 +6,8 @@ import { LoginPage } from './LoginPage';
 import { HomePage } from './HomePage';
 import { SignupPage } from './SignupPage';
 import { AddTransaction } from './components/transaction/addTransaction';
+import { ViewListTransaction } from './components/transaction/viewListTransaction';
+
 
 export const UserContext = createContext();
 
@@ -43,6 +45,8 @@ export const App = () => {
                     <Route path='/home' element={ <HomePage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/signup' element={ <SignupPage/> }/>
                     <Route path='/addTransaction' element={ <AddTransaction/> }/>
+                    <Route path='/viewTransactions' element= {<ViewListTransaction/>}/>
+              
                 </Routes>
             </Router>
         </UserContext.Provider>

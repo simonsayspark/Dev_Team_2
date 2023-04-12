@@ -22,6 +22,8 @@ export const TransactionForm = () => {
     const [category, setCategory] = useState('');
     const [claim_description, setClaim_description] = useState('');
 
+  
+
     const submitTransaction = () =>{
         const n_transaction = {
             employee_id : employee_id,
@@ -32,7 +34,8 @@ export const TransactionForm = () => {
             claim_description : claim_description
         }
         addTransaction(n_transaction);
-    }
+        // onAddTransaction(n_transaction);
+    }   
 
 
 
