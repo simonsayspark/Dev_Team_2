@@ -53,6 +53,7 @@ export const HomePage = ({ setCurrentUser }) => {
 
             Hello {currentUser.ename}!
             <NavLink to={"/addTransaction"}><button> Submit Transaction</button></NavLink>
+            <NavLink to={"/viewTransactions"}><button> View Transactions</button></NavLink>
         </>
     }
 }

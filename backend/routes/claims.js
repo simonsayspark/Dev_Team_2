@@ -11,11 +11,20 @@ router.post('/', async (req, res, next) => {
 })
 
 router.get('/', async (req, res, next) => {
-    if (req.query.id) {
-        const claimByNumber = await req.models.claims.getClaimByNumber(req.query.id);
+    if (req.query.claim_number) { //Getting claims by claim_number
+        const claimByNumber = await req.models.claims.getClaimByNumber(req.query.claim_number);
         res.json(claimByNumber);
         next();
-    } else {
+    } else if (req.query.employee_id) {
+        if (req.query.claim_status) { //Getting claims by employee_id and claim_status
+            const claimByStatus = await req.models.claims.getClaimsByStatus(req.query.employee_id, req.query.claim_status);
+            res.json(claimByStatus);
+        } else { //Getting claims only by employee_id
+            const claimByEmployee = await req.models.claims.getClaimsByEmployee(req.query.employee_id);
+            res.json(claimByEmployee);    
+        }
+        next();
+    } else { //Getting all claims in the database
         const allClaims = await req.models.claims.getAllClaims();
         res.json(allClaims);
         next();

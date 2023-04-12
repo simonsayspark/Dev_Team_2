@@ -22,6 +22,8 @@ export const TransactionForm = () => {
     const [category, setCategory] = useState('');
     const [claim_description, setClaim_description] = useState('');
 
+  
+
     const submitTransaction = () =>{
         const n_transaction = {
             employee_id : employee_id,
@@ -32,7 +34,8 @@ export const TransactionForm = () => {
             claim_description : claim_description
         }
         addTransaction(n_transaction);
-    }
+        // onAddTransaction(n_transaction);
+    }   
 
 
 
@@ -42,8 +45,12 @@ export const TransactionForm = () => {
             {console.log(amount_requested)}
             {console.log(category)}
             {console.log(claim_description)}
-            <Form>
-                <Form.Group controlId="order_date">
+
+
+            <div className="row"> 
+        
+            <Form >
+                <Form.Group className="col-3 inline" controlId="order_date">
                     <Form.Label>Date</Form.Label>
                     <Form.Control type="date"
                                   value={order_date}
@@ -55,19 +62,22 @@ export const TransactionForm = () => {
             </Form>
 
 
-
             <Form>
-                <Form.Group controlId="amount_requested">
+        
+                <Form.Group className = "col-3" controlId="amount_requested">
                     <Form.Label>Amount Requested</Form.Label>
                     <Form.Control type="money"
                                   placeholder="Enter amount spent"
                                   value={amount_requested}
                                   onChange={(delta) => {
+                                    
                                     setAmount_requested(delta.target.value);
                                   }} />
 
                 </Form.Group>
             </Form>
+
+            </div>
 
 
             <Form>
