@@ -31,10 +31,17 @@ const getClaimsByEmployee = async (employee_id) => {
     return results;
 }
 
+const getClaimsByStatus = async (employee_id, claim_status) => {
+    const query = knex(CLAIMS_TABLE).where({ employee_id, claim_status });
+    const results = await query;
+    return results;
+}
+
 module.exports = {
     createClaim,
     updateClaim,
     getAllClaims,
     getClaimByNumber,
-    getClaimsByEmployee
+    getClaimsByEmployee,
+    getClaimsByStatus
 }
