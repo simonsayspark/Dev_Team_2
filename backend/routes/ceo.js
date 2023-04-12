@@ -15,6 +15,10 @@ router.get('/', async (req, res, next) => {
         const ceoById = await req.models.ceo.getCeoById(req.query.id);
         res.json(ceoById);
         next();
+    } else if (req.query.email) {
+        const ceoByEmail = await req.models.ceo.getCeoByEmail(req.query.email);
+        res.json(ceoByEmail);
+        next();
     } else {
         const allCeo = await req.models.ceo.getAllCeo();
         res.json(allCeo);

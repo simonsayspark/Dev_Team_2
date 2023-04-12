@@ -1,12 +1,12 @@
 const knex = require('../database/knex');
 const CEO_TABLE = 'ceo';
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const createCeo = async (cname, cemail, cpassword) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(cpassword, salt);
 
-    const query = knex(EMPLOYEES_TABLE).insert({cname, cemail, cpassword: hashedPassword});
+    const query = knex(CEO_TABLE).insert({cname, cemail, cpassword: hashedPassword});
     const results = await query;
     return results;
 }
@@ -23,8 +23,15 @@ const getCeoById = async (id) => {
     return results;
 }
 
+const getCeoByEmail = async (cemail) => {
+    const query = knex(CEO_TABLE).where({ cemail });
+    const results = await query;
+    return results;
+}
+
 module.exports = {
     createCeo,
     getAllCeo,
-    getCeoById
+    getCeoById,
+    getCeoByEmail
 }

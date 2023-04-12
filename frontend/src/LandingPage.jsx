@@ -5,24 +5,93 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import { Link, NavLink } from "react-router-dom";
+import Carousel from 'react-bootstrap/Carousel';
+import Image from 'react-bootstrap/Image'
+import React, { useState, useEffect, useRef } from 'react';
 
 export const LandingPage = () => {
+  const homeRef = useRef(0);
+  const aboutUsRef = useRef(0);
+  const howItWorksRef1 = useRef(0);
+  const howItWorksRef2 = useRef(0);
+  const howItWorksRef3 = useRef(0);
+  const howItWorksRef4 = useRef(0);
+  const contactUsRef = useRef(0);
+
+  const [homeLoaded, setHomeLoaded] = useState(false);
+  const [aboutLoaded, setAboutLoaded] = useState(false);
+  const [worksLoaded1, setWorksLoaded1] = useState(false);
+  const [worksLoaded2, setWorksLoaded2] = useState(false);
+  const [worksLoaded3, setWorksLoaded3] = useState(false);
+  const [worksLoaded4, setWorksLoaded4] = useState(false);
+  const [contactLoaded, setContactLoaded] = useState(false);
+ 
+  //inspired by code found at: https://stackoverflow.com/questions/53158796/get-scroll-position-with-reactjs
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+    // console.log('Window:')
+    // console.log(window)
+    const position = window.pageYOffset + (0.75 * window.innerHeight);
+    setScrollPosition(position);
+
+    if (position >= homeRef.current.offsetTop) {
+      setHomeLoaded(true);
+    }
+    if (position >= aboutUsRef.current.offsetTop) {
+      setAboutLoaded(true);
+    }
+    if (position >= howItWorksRef1.current.offsetTop) {
+      setWorksLoaded1(true);
+    }
+    if (position >= howItWorksRef2.current.offsetTop) {
+      setWorksLoaded2(true);
+    }
+    if (position >= howItWorksRef3.current.offsetTop) {
+      setWorksLoaded3(true);
+    }
+    if (position >= howItWorksRef4.current.offsetTop) {
+      setWorksLoaded4(true);
+    }
+    if (position >= contactUsRef.current.offsetTop) {
+      setContactLoaded(true);
+    }
+
+    console.log(position);
+    console.log(homeRef.current.offsetTop);
+    console.log(aboutUsRef.current.offsetTop);
+    console.log(howItWorksRef1.current.offsetTop);
+    console.log(contactUsRef.current.offsetTop);
+  };
+
+
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
   return (
     <>
       <Navbar sticky="top" bg="light" expand="lg">
         <Container fluid className="m-0">
-          <Navbar.Brand><NavLink to={"/"} className="nav-link">Website Name</NavLink></Navbar.Brand>
+          <Navbar.Brand><NavLink to={"/"} className="nav-link">DoughBack</NavLink></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse>
             <Nav className="me-auto ">
-              <NavLink href="#home" className="nav-link">
+              <NavLink href="#home" className="nav-link"> 
                 Home
               </NavLink>
-              <NavLink href="#aboutus" className="nav-link">
+              <NavLink href="#aboutUs" className="nav-link">
                 About us
+
               </NavLink>
+
+              
               <NavLink href="#service" className="nav-link">
-                Our Service
+                How it Works
               </NavLink>
               <NavLink href="#contact" className="nav-link">Contact</NavLink>
             </Nav>
@@ -36,15 +105,34 @@ export const LandingPage = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Container fluid>
+
+      <Container fluid ref={homeRef} className={`${homeLoaded ? "unhideIt" : "hideIt"}`}>
         <Row className="text-center mt-5 ">
           <Col className="display-2">
             Expense reimbursements made simple - for every business lunch and
             beyond.
           </Col>
         </Row>
-        <Row className="">About us</Row>
+
       </Container>
+
+      <br />
+
+      <Container ref={aboutUsRef}  className={`${aboutLoaded ? "unhideIt" : "hideIt"}`}>
+        <Row className="text-center mt-5 mb-2">
+          <div id = "aboutUs">
+          <Col className="display-4" > About Us</Col>
+
+          </div>
+        </Row>
+        <Row className="text-center mb-5">
+          <Col className="fs-4">
+            Welcome to our platform, where employees can easily request reimbursement for any legitimate business expenses, ranging from lunches to other expenses. Our user-friendly platform empowers employees to focus on their work instead of complicated reimbursement procedures, while providing the financial team with a streamlined process to approve or deny requests. With the CEO having the final say, our platform ensures top-level oversight to keep the company's finances in order.
+          </Col>
+        </Row>
+      </Container>
+
+
       {/* 
         Add more content down here, such as an about section, a mission
         statement, etc.
@@ -53,6 +141,123 @@ export const LandingPage = () => {
         https://evrone.com/
         https://nomadictribe.com/
         */}
+
+      <Container fluid>
+
+        <Row ref={howItWorksRef1} className={`text-center mt-5 mb-4 ${worksLoaded1 ? "unhideIt" : "hideIt"}`}>
+          <Col className="display-4 "> How it Works</Col>
+        </Row>
+
+        <br />
+
+        <Row ref={howItWorksRef2} className={`${worksLoaded2 ? "unhideIt" : "hideIt"}`}>
+          <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
+            <Image src="/tyler-franta-iusJ25iYu1c-unsplash.jpg" className="img-fluid mx-auto" ></Image>
+          </Col>
+          <Col className="p-0 my-auto text-center">
+         
+          <div className="display-6">Employee</div>
+          <br/>            
+            <p className= "fs-4">  The employee is any member of a company who has gone on a business lunch and wishes to request reimbursement for their expenses. They can submit claims through the website, which will then be reviewed by the financial manager.</p>
+
+          </Col>
+        </Row>
+        <Row ref={howItWorksRef3} className={`${worksLoaded3 ? "unhideIt" : "hideIt"}`}>
+          <Col className="p-0 my-auto text-center" xs={{order:'last'}} sm md lg={{order: 'first'}} xl xxl> 
+       
+            
+            <div className="display-6">Financial Manager</div>
+            <br/>            
+            <p className= "fs-4"> The financial manager is responsible for overseeing the financial team, which includes treasurers and other financial professionals. They are in charge of approving or denying reimbursement requests for business lunches made by employees on the website.</p>
+
+          </Col>
+          <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
+            <Image src="/employee.png" className="img-fluid mx-auto"></Image>
+          </Col>
+        </Row>
+        <Row ref={howItWorksRef4} className={`${worksLoaded4 ? "unhideIt" : "hideIt"}`}>
+          <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
+            <Image src="/boss.png" className="img-fluid mx-auto" ></Image>
+          </Col>
+          <Col className="p-0 my-auto text-center ">
+        
+           <div className = "display-6">CEO</div> 
+           <br/>
+           <p className = "fs-4">The CEO is the highest-ranking executive in a company and has ultimate authority over all business decisions, including the reimbursement process for business lunches. They have the final say in any disputes or issues that arise from the reimbursement process.</p>
+          </Col>
+        </Row>
+
+
+
+      </Container>
+
+      {/* <Container>
+
+
+
+<Carousel>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="/Ceo-img.png"
+      alt="Shrek slide"
+    />
+    <Carousel.Caption>
+      <h3>CEO</h3>
+      <p>Create and manage your company with ease.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="/tyler-franta-iusJ25iYu1c-unsplash.jpg"
+      alt="Second slide"
+    />
+
+    <Carousel.Caption>
+      <h3>Financial Manager</h3>
+      <p>Approve and deny transactions.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="/expense-reimbursements.png"
+      alt="Third slide"
+    />
+
+    <Carousel.Caption>
+      <h3>Employee</h3>
+      <p>
+        Submit transaction forms.
+      </p>
+    </Carousel.Caption>
+  </Carousel.Item>
+</Carousel>
+
+</Container> */}
+
+
+
+      <Container ref={contactUsRef} className={`mt-5 p-5 ${aboutLoaded ? "unhideIt" : "hideIt"}`}>
+
+        <Row className="bg-light" >
+
+          <Col className="display-5 text-center mb-3">Contact Us</Col>
+
+          <div className="ms-3">
+            <p><strong>Name:</strong> DoughBack</p>
+            <p><strong>Number:</strong> 123-456-789</p>
+            <p><strong>Email:</strong> DoughBack@gmail.com</p>
+            <p><strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205</p>
+          </div>
+
+        </Row>
+      </Container>
+
     </>
   );
 };
+
+
+
