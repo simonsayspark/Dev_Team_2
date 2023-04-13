@@ -75,7 +75,7 @@ export const LandingPage = () => {
   return (
     <>
       <div id="home"></div>
-      <Navbar sticky="top" bg="light" expand="lg">
+      <Navbar sticky="top" className="color-nav" expand="lg">
         <Container fluid className="m-0">
           <Navbar.Brand>
             <NavLink to={"/"} className="nav-link">
