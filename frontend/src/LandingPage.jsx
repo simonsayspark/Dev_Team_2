@@ -82,7 +82,7 @@ export const LandingPage = () => {
               DoughBack
             </NavLink>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
           <Navbar.Collapse className="mx-3">
             <Nav className="me-auto ">
               <AnchorLink href="#home" className="nav-link">
