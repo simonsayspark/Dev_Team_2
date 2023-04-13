@@ -8,6 +8,7 @@ import { Link, NavLink } from "react-router-dom";
 import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image'
 import React, { useState, useEffect, useRef } from 'react';
+import './index.css';
 
 export const LandingPage = () => {
   const homeRef = useRef(0);
@@ -75,29 +76,30 @@ export const LandingPage = () => {
 
   return (
     <>
-      <Navbar sticky="top" bg="light" expand="lg">
+      <Navbar className="color-nav" sticky="top" expand="lg">
         <Container fluid className="m-0">
-          <Navbar.Brand><NavLink to={"/"} className="nav-link">DoughBack</NavLink></Navbar.Brand>
+          <NavLink to={"/"} className="nav-link imageLink">
+            <img className="logo" src="/logo_text.png"/>
+          </NavLink>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse>
             <Nav className="me-auto ">
-              <NavLink href="#home" className="nav-link"> 
+              <NavLink href="#home" className="nav-link text-light"> 
                 Home
               </NavLink>
-              <NavLink href="#aboutUs" className="nav-link">
+              <NavLink href="#aboutUs" className="nav-link text-light">
                 About us
-
               </NavLink>
 
               
-              <NavLink href="#service" className="nav-link">
+              <NavLink href="#service" className="nav-link text-light">
                 How it Works
               </NavLink>
-              <NavLink href="#contact" className="nav-link">Contact</NavLink>
+              <NavLink href="#contact" className="nav-link text-light">Contact</NavLink>
             </Nav>
             <Nav>
               <Navbar.Text>
-                <NavLink to={"/login"} className="nav-link">
+                <NavLink to={"/login"} className="nav-link text-light">
                   Log in
                 </NavLink>
               </Navbar.Text>
