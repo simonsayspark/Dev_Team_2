@@ -75,25 +75,25 @@ export const LandingPage = () => {
 
   return (
     <>
-      <div id="home"></div>
-      <Navbar sticky="top" className="color-nav" expand="lg">
-        <Container fluid className="m-0">
-          <img className="logo" src="/logo_text.png" alt="logo" />
+    <div id="home"></div>
+      <Navbar sticky="top" expand="lg" className="p-0">
+        <Container fluid className="color-nav m-0">
+          <img className="logo img-fluid" src="/logo-transparent-png.png" alt="logo" />
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse className="mx-3">
             <Nav className="me-auto ">
               <AnchorLink href="#home" className="nav-link text-light navText">
-                Home
+                HOME
               </AnchorLink>
               <AnchorLink href="#aboutUs" className="nav-link text-light navText">
-                About us
+                ABOUT US
               </AnchorLink>
 
               <AnchorLink href="#service" className="nav-link text-light navText">
-                How it Works
+                HOW IT WORKS
               </AnchorLink>
               <AnchorLink href="#contact" className="nav-link text-light navText">
-                Contact
+                CONTACT
               </AnchorLink>
               
             </Nav>
@@ -108,19 +108,24 @@ export const LandingPage = () => {
         </Container>
       </Navbar>
 
+
       <Container
         fluid
         ref={homeRef}
-        className={`${homeLoaded ? "unhideIt" : "hideIt"}`}
+        className={`main-bg ${homeLoaded ? "unhideIt" : "hideIt"}`}
       >
-        <Row className="text-center mt-5">
-          <Col className="display-2">
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <Row className="text-center">
+          <Col className="display-2 text-white">
             Expense reimbursements made simple - for every business lunch and
             beyond.
           </Col>
         </Row>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       </Container>
-
+      
+    
+      
       <div id="aboutUs"></div>
       <br />
 

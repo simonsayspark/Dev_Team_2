@@ -13,11 +13,13 @@ code {
 }
 
 .color-nav {
-  background-color: #284B63;
+  /*background-color: #284B63;*/
+  background: rgb(217,217,217);
+  background: linear-gradient(90deg, rgba(217,217,217,1) 0%, rgba(60,110,113,1) 35%, rgba(40,75,99,1) 100%);
 }
 
 .logo {
-  width: 20%;
+  width: 25%;
   height: auto;
 }
 
@@ -25,4 +27,13 @@ code {
   font-size: 1.5rem;
   margin-right: 3.5rem;
   margin-left: 3.5rem;
+}
+
+#main {
+  background-color: #3C6E71;
+}
+
+.main-bg {
+  background: rgb(217,217,217);
+  background: linear-gradient(90deg, rgba(217,217,217,1) 0%, rgba(60,110,113,1) 35%, rgba(40,75,99,1) 100%);
 }
