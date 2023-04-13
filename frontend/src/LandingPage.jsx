@@ -9,6 +9,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 export const LandingPage = () => {
   const homeRef = useRef(0);
@@ -74,25 +75,27 @@ export const LandingPage = () => {
 
   return (
     <>
-      <Navbar className="color-nav" sticky="top" expand="lg">
+      <div id="home"></div>
+      <Navbar sticky="top" className="color-nav" expand="lg">
         <Container fluid className="m-0">
           <img className="logo" src="/logo_text.png" alt="logo" />
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse className="mx-3">
             <Nav className="me-auto ">
-              <NavLink href="#home" className="nav-link text-light navText">
+              <AnchorLink href="#home" className="nav-link text-light navText">
                 Home
-              </NavLink>
-              <NavLink href="#aboutUs" className="nav-link text-light navText">
+              </AnchorLink>
+              <AnchorLink href="#aboutUs" className="nav-link text-light navText">
                 About us
-              </NavLink>
+              </AnchorLink>
 
-              <NavLink href="#service" className="nav-link text-light navText">
+              <AnchorLink href="#service" className="nav-link text-light navText">
                 How it Works
-              </NavLink>
-              <NavLink href="#contact" className="nav-link text-light navText">
-                Contact us
-              </NavLink>
+              </AnchorLink>
+              <AnchorLink href="#contact" className="nav-link text-light navText">
+                Contact
+              </AnchorLink>
+              
             </Nav>
             <Nav>
               <Navbar.Text>
@@ -110,7 +113,7 @@ export const LandingPage = () => {
         ref={homeRef}
         className={`${homeLoaded ? "unhideIt" : "hideIt"}`}
       >
-        <Row className="text-center mt-5 ">
+        <Row className="text-center mt-5">
           <Col className="display-2">
             Expense reimbursements made simple - for every business lunch and
             beyond.
@@ -118,6 +121,7 @@ export const LandingPage = () => {
         </Row>
       </Container>
 
+      <div id="aboutUs"></div>
       <br />
 
       <Container
@@ -125,9 +129,7 @@ export const LandingPage = () => {
         className={`${aboutLoaded ? "unhideIt" : "hideIt"}`}
       >
         <Row className="text-center mt-5 mb-2">
-          <div id="aboutUs">
-            <Col className="display-4"> About Us</Col>
-          </div>
+          <Col className="display-4"> About Us</Col>
         </Row>
         <Row className="text-center mb-5">
           <Col className="fs-4">
@@ -150,8 +152,8 @@ export const LandingPage = () => {
         https://www.etecc.com/
         https://evrone.com/
         https://nomadictribe.com/
-        */}
-
+      */}
+      <div id="service"></div>
       <Container fluid>
         <Row
           ref={howItWorksRef1}
@@ -177,7 +179,7 @@ export const LandingPage = () => {
           <Col className="p-0 my-auto text-center">
             <div className="display-6">Employee</div>
             <br />
-            <p className="fs-4">
+            <p className="fs-4 p-3">
               {" "}
               The employee is any member of a company who has gone on a business
               lunch and wishes to request reimbursement for their expenses. They
@@ -201,7 +203,7 @@ export const LandingPage = () => {
           >
             <div className="display-6">Financial Manager</div>
             <br />
-            <p className="fs-4">
+            <p className="fs-4 p-3">
               {" "}
               The financial manager is responsible for overseeing the financial
               team, which includes treasurers and other financial professionals.
@@ -223,7 +225,7 @@ export const LandingPage = () => {
           <Col className="p-0 my-auto text-center ">
             <div className="display-6">CEO</div>
             <br />
-            <p className="fs-4">
+            <p className="fs-4 p-3">
               The CEO is the highest-ranking executive in a company and has
               ultimate authority over all business decisions, including the
               reimbursement process for business lunches. They have the final
@@ -280,6 +282,7 @@ export const LandingPage = () => {
 
 </Container> */}
 
+      <div id="contact"></div>
       <Container
         ref={contactUsRef}
         className={`mt-5 p-5 ${aboutLoaded ? "unhideIt" : "hideIt"}`}
