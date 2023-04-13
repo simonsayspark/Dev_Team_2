@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
+import "./index.css";
 
 export const HomePage = ({ setCurrentUser }) => {
   const currentUser = useContext(UserContext);
@@ -12,15 +13,17 @@ export const HomePage = ({ setCurrentUser }) => {
     setCurrentUser(undefined);
   }
 
+
   if (currentUser.ceo_id) {
     //CEO homepage
     return (
       <>
-        <Navbar sticky="top" bg="light" expand="lg">
+        <Navbar sticky="top" className="color-nav" expand="lg">
           <Container fluid className="m-0">
+          <img className="logo" src="/logo_text.png" alt="logo" />
             <Navbar.Brand>
               <NavLink to={"/home"} className="nav-link">
-                DoughBack
+
               </NavLink>
             </Navbar.Brand>
             <Navbar.Text>
@@ -43,11 +46,12 @@ export const HomePage = ({ setCurrentUser }) => {
     //Employee or Financial Manager homepage
     return (
       <>
-        <Navbar sticky="top" bg="light" expand="lg">
+        <Navbar sticky="top" className="color-nav" expand="lg">
+        <img className="logo" src="/logo_text.png" alt="logo" />
           <Container fluid className="m-0">
+
             <Navbar.Brand>
               <NavLink to={"/home"} className="nav-link">
-                DoughBack
               </NavLink>
             </Navbar.Brand>
             <Navbar.Text>

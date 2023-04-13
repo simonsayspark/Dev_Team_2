@@ -8,6 +8,7 @@ import Alert from "react-bootstrap/Alert";
 import { NavLink, useNavigate } from "react-router-dom";
 import React, {useState, useEffect} from "react";
 import { getEmployeeByEmail } from "./api/employeeApi";
+import "./index.css";
 
 import bcrypt from 'bcryptjs'
 
@@ -59,9 +60,11 @@ export const LoginPage = ({ setCurrentUser }) => {
 
   return (
     <>
-      <Navbar sticky="top" bg="light" expand="lg">
+      <Navbar sticky="top" className="color-nav" expand="lg">
+        
         <Container fluid className="m-0">
-          <Navbar.Brand><NavLink to={"/"} className="nav-link">DoughBack</NavLink></Navbar.Brand>
+        <img className="logo" src="/logo_text.png" alt="logo" />
+          <Navbar.Brand><NavLink to={"/"} className="nav-link"></NavLink></Navbar.Brand>
         </Container>
       </Navbar>
 
