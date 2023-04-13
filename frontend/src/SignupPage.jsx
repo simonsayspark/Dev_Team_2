@@ -134,7 +134,12 @@ export const SignupPage = () => {
                 onChange={(delta) =>
                   setValues({ ...values, password: delta.target.value })
                 }
+                pattern=".{8,}" 
+                title="Password must be at least 8 characters"
               />
+               <Form.Control.Feedback type ="invalid">
+                Password must be at least 8 characters. 
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Dropdown

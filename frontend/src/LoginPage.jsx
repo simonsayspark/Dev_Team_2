@@ -58,6 +58,8 @@ export const LoginPage = ({ setCurrentUser }) => {
     }
   }
 
+ 
+
   return (
     <>
       <Navbar sticky="top" className="color-nav" expand="lg">
@@ -101,7 +103,9 @@ export const LoginPage = ({ setCurrentUser }) => {
                             onChange={(delta) => {
                               setValues({ ...values, password: delta.target.value });
                             }} 
+                           
               />
+             
             </Form.Group>
 
             <Button className="col-12 mt-2"

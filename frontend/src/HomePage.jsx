@@ -23,7 +23,6 @@ export const HomePage = ({ setCurrentUser }) => {
           <img className="logo" src="/logo_text.png" alt="logo" />
             <Navbar.Brand>
               <NavLink to={"/home"} className="nav-link">
-
               </NavLink>
             </Navbar.Brand>
             <Navbar.Text>
