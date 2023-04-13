@@ -8,7 +8,8 @@ import { Link, NavLink } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import React, { useState, useEffect, useRef } from "react";
-import AnchorLink from "react-anchor-link-smooth-scroll";
+import "./index.css";
+import AnchorLink from "react-anchor-link-smooth-scroll"; // npm install react-anchor-link-smooth-scroll
 
 export const LandingPage = () => {
   const homeRef = useRef(0);
@@ -75,27 +76,23 @@ export const LandingPage = () => {
   return (
     <>
       <div id="home"></div>
-      <Navbar sticky="top" bg="light" expand="lg">
+      <Navbar sticky="top" className="color-nav" expand="lg">
         <Container fluid className="m-0">
-          <Navbar.Brand>
-            <NavLink to={"/"} className="nav-link">
-              DoughBack
-            </NavLink>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+          <img className="logo" src="/logo_text.png" alt="logo" />
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse className="mx-3">
             <Nav className="me-auto ">
-              <AnchorLink href="#home" className="nav-link">
+              <AnchorLink href="#home" className="nav-link text-light navText">
                 Home
               </AnchorLink>
-              <AnchorLink href="#aboutUs" className="nav-link">
+              <AnchorLink href="#aboutUs" className="nav-link text-light navText">
                 About us
               </AnchorLink>
 
-              <AnchorLink href="#service" className="nav-link">
+              <AnchorLink href="#service" className="nav-link text-light navText">
                 How it Works
               </AnchorLink>
-              <AnchorLink href="#contact" className="nav-link">
+              <AnchorLink href="#contact" className="nav-link text-light navText">
                 Contact
               </AnchorLink>
               
