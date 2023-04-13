@@ -98,6 +98,7 @@ export const LandingPage = () => {
               <AnchorLink href="#contact" className="nav-link">
                 Contact
               </AnchorLink>
+              
             </Nav>
             <Nav>
               <Navbar.Text>
