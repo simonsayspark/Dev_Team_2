@@ -34,8 +34,8 @@ export const TransactionList = () => {
 
     return (
         <>
-            {console.log('A Transactions')}
-            {console.log(aTransactions)}
+            {console.log('D Transactions')}
+            {console.log(dTransactions)}
             <Tabs
                 defaultActiveKey="profile"
                 id="uncontrolled-tab-example"
@@ -45,7 +45,7 @@ export const TransactionList = () => {
 
                 <Tab eventKey="pending" title="Pending">
 
-                    {pTransactions ?
+                    {pTransactions.length !== 0 ?
                         <ListGroup>
                             {
                                 pTransactions.map((transaction, index) => {
@@ -88,7 +88,7 @@ export const TransactionList = () => {
                 </Tab>
 
                 <Tab eventKey="accepted" title="Accepted">
-                    {aTransactions ?
+                    {aTransactions.length !== 0 ?
                         <ListGroup>
                             {
                                 aTransactions.map((transaction, index) => {
@@ -145,7 +145,7 @@ export const TransactionList = () => {
                 </Tab>
 
                 <Tab eventKey="denied" title="Denied">
-                    {dTransactions ?
+                    {dTransactions.length !== 0 ?
                         <ListGroup>
                             {
                                 dTransactions.map((transaction, index) => {

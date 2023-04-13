@@ -32,7 +32,7 @@ const getClaimsByEmployee = async (employee_id) => {
 }
 
 const getClaimsByStatus = async (employee_id, claim_status) => {
-    const query = knex(CLAIMS_TABLE).where({ employee_id }).where({ claim_status });
+    const query = knex(CLAIMS_TABLE).where({employee_id}).where({claim_status});
     const results = await query;
     return results;
 }

@@ -17,6 +17,7 @@ router.get('/', async (req, res, next) => {
         next();
     } else if (req.query.employee_id) {
         if (req.query.claim_status) { //Getting claims by employee_id and claim_status
+            console.log('WORKING')
             const claimByStatus = await req.models.claims.getClaimsByStatus(req.query.employee_id, req.query.claim_status);
             res.json(claimByStatus);
         } else { //Getting claims only by employee_id
@@ -25,6 +26,8 @@ router.get('/', async (req, res, next) => {
         }
         next();
     } else { //Getting all claims in the database
+        console.log('NOT WORKING')
+        console.log(req.query)
         const allClaims = await req.models.claims.getAllClaims();
         res.json(allClaims);
         next();
