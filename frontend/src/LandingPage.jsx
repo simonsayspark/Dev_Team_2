@@ -191,11 +191,11 @@ export const LandingPage = () => {
 
       </Container>
 
-      {/* <Container>
+      <Container>
 
 
-
-<Carousel>
+<p className="display-4 text-center mt-4">Our Partners</p>
+<Carousel className = "mt-4">
   <Carousel.Item>
     <img
       className="d-block w-100"
@@ -210,7 +210,7 @@ export const LandingPage = () => {
   <Carousel.Item>
     <img
       className="d-block w-100"
-      src="/tyler-franta-iusJ25iYu1c-unsplash.jpg"
+      src="/walmort.png"
       alt="Second slide"
     />
 
@@ -235,7 +235,7 @@ export const LandingPage = () => {
   </Carousel.Item>
 </Carousel>
 
-</Container> */}
+</Container>
 
 
 

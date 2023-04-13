@@ -9,7 +9,7 @@ export const addTransaction = (transaction) => new Promise ((resolve, reject) =>
         alert(x);
         reject(x);
     });
-});
+}); 
 
 
 export const getTransactionById =(employee_id) => new Promise ((resolve, reject) =>{
