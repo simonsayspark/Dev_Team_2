@@ -46,7 +46,6 @@ export const App = () => {
                     <Route path='/signup' element={ <SignupPage/> }/>
                     <Route path='/addTransaction' element={ <AddTransaction/> }/>
                     <Route path='/viewTransactions' element= {<ViewListTransaction/>}/>
-              
                 </Routes>
             </Router>
         </UserContext.Provider>
