@@ -9,7 +9,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
-import AnchorLink from "react-anchor-link-smooth-scroll";
+import AnchorLink from "react-anchor-link-smooth-scroll"; // npm install react-anchor-link-smooth-scroll
 
 export const LandingPage = () => {
   const homeRef = useRef(0);
