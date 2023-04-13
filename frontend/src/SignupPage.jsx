@@ -30,7 +30,7 @@ export const SignupPage = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    getCompanies().then(x => setCompanies(x));
+    getCompanies().then((x) => setCompanies(x));
   }, []);
 
   useEffect(() => {
@@ -51,9 +51,9 @@ export const SignupPage = () => {
   }
 
   const handleCompanySelect = (e) => {
-    setCompanyValue(e)
+    setCompanyValue(e);
 
-    let id = ""
+    let id = "";
     companies.forEach((company) => {
       if (company.company_name == e) {
         id = company.company_id;
@@ -63,13 +63,13 @@ export const SignupPage = () => {
   }
 
   const createAccount = () => {
-    if (roleValue === 'CEO') {
-      console.log('Adding CEO');
+    if (roleValue === "CEO") {
+      console.log("Adding CEO");
       const ceoValues = {
         name: values.name,
         email: values.email,
-        password: values.password
-      }
+        password: values.password,
+      };
 
       addCeo(ceoValues).then(navigate("/"));
     } else { //Employee or Financial Manager
@@ -82,7 +82,7 @@ export const SignupPage = () => {
         }
       });
     }
-  }
+  };
 
   return (
     <>
