@@ -23,16 +23,18 @@ export const getTransactionById =(employee_id) => new Promise ((resolve, reject)
     });
 
 });
+
 export const getTransactionByStatus =(employee_id, status) => new Promise ((resolve, reject) =>{
 
-    axios.get(`${apiEndpoint}/claims`,employee_id, status)
+    axios.get(`${apiEndpoint}/claims?employee_id=${employee_id}&claim_status=${status}`)
     .then(x => resolve(x.data))
     .catch(x=>{
 
         alert(x);
         reject(x);
     });
-
 });
+
+
 
 
