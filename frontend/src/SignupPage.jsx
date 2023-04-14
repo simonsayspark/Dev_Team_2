@@ -86,9 +86,11 @@ export const SignupPage = () => {
 
   return (
     <>
-      <Navbar sticky="top" bg="light" expand="lg">
+      <Navbar sticky="top" className="color-nav" expand="lg">
         <Container fluid className="m-0">
-          <Navbar.Brand><NavLink to={"/"} className="nav-link">DoughBack</NavLink></Navbar.Brand>
+          <Navbar.Brand><NavLink to={"/"} className="nav-link">
+            <img width="300px" height="auto" src="/logo_text.png" alt="logo" />  
+          </NavLink></Navbar.Brand>
         </Container>
       </Navbar>
 
