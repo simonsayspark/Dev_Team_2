@@ -37,4 +37,12 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+router.delete('/', async (req, res, next) => {
+    if (req.query.id) {
+        const DelEmployeeById = await req.models.ceo.DeleteEmployeeById(req.query.id);
+        res.json(DelEmployeeById);
+        next();
+    }
+})
+
 module.exports = router;

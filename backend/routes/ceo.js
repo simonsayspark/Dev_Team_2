@@ -11,17 +11,25 @@ router.post('/', async (req, res, next) => {
 })
 
 router.get('/', async (req, res, next) => {
-    if (req.query.id) {
-        const ceoById = await req.models.ceo.getCeoById(req.query.id);
+    if (req.query.cid) {
+        const ceoById = await req.models.ceo.getCeoById(req.query.cid);
         res.json(ceoById);
         next();
-    } else if (req.query.email) {
-        const ceoByEmail = await req.models.ceo.getCeoByEmail(req.query.email);
+    } else if (req.query.cemail) {
+        const ceoByEmail = await req.models.ceo.getCeoByEmail(req.query.cemail);
         res.json(ceoByEmail);
         next();
     } else {
         const allCeo = await req.models.ceo.getAllCeo();
         res.json(allCeo);
+        next();
+    }
+})
+
+router.delete('/', async (req, res, next) => {
+    if (req.query.cid) {
+        const DeleteCeoById = await req.models.ceo.DeleteCEOById(req.query.cid);
+        res.json(DeleteCeoById);
         next();
     }
 })

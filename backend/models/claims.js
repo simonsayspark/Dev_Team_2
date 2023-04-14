@@ -37,11 +37,18 @@ const getClaimsByStatus = async (employee_id, claim_status) => {
     return results;
 }
 
+const DeleteClaimByNum = async (claim_number) => {
+    const query = knex(CLAIMS_TABLE).where({ claim_number }).del();
+    const results = await query;
+    return results;
+}
+
 module.exports = {
     createClaim,
     updateClaim,
     getAllClaims,
     getClaimByNumber,
     getClaimsByEmployee,
-    getClaimsByStatus
+    getClaimsByStatus,
+    DeleteClaimByNum
 }

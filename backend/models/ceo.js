@@ -29,9 +29,17 @@ const getCeoByEmail = async (cemail) => {
     return results;
 }
 
+const DeleteCEOById = async (cid) => {
+    const query = knex(CEO_TABLE).where({ cid }).del();
+    const results = await query;
+    return results;
+}
+
+
 module.exports = {
     createCeo,
     getAllCeo,
     getCeoById,
-    getCeoByEmail
+    getCeoByEmail,
+    DeleteCEOById
 }

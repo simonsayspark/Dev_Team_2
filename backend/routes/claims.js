@@ -34,4 +34,12 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+router.delete('/', async (req, res, next) => {
+    if (req.query.claim_number) {
+        const DelClaimByNum = await req.models.ceo.DeleteClaimByNum(req.query.claim_number);
+        res.json(DelClaimByNum);
+        next();
+    }
+})
+
 module.exports = router;
