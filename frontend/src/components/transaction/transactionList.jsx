@@ -134,7 +134,7 @@ export const TransactionList = () => {
               })}
             </ListGroup>
           ) : (
-            <p>No available transaction</p>
+            <p className="ms-3">No available transaction</p>
           )}
         </Tab>
 
@@ -179,7 +179,7 @@ export const TransactionList = () => {
               })}
             </ListGroup>
           ) : (
-            <p>No available transaction</p>
+            <p className="ms-3">No available transaction</p>
           )}
         </Tab>
       </Tabs>

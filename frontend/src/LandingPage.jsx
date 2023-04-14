@@ -92,7 +92,7 @@ export const LandingPage = () => {
                 Home
               </Nav.Link>
               <Nav.Link href="#aboutUs" className="text-light fs-4 mx-5  text-nowrap">
-                About us
+                About Us
               </Nav.Link>
 
               <Nav.Link href="#service" className="text-light fs-4 mx-5  text-nowrap">
