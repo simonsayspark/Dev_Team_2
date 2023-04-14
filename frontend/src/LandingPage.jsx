@@ -10,6 +10,9 @@ import Image from "react-bootstrap/Image";
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
 import AnchorLink from "react-anchor-link-smooth-scroll"; // npm install react-anchor-link-smooth-scroll
+import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
+import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
+import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 
 export const LandingPage = () => {
   const homeRef = useRef(0);
@@ -76,45 +79,45 @@ export const LandingPage = () => {
   return (
     <>
       <div id="home"></div>
-      <Navbar sticky="top" className="color-nav" expand="lg">
+      <Navbar sticky="top" className="color-nav" expand="lg" collapseOnSelect>
         <Container fluid className="m-0">
-          <img className="logo" src="/logo_text.png" alt="logo" />
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse className="mx-3">
-            <Nav className="me-auto ">
-              <AnchorLink href="#home" className="nav-link text-light navText">
-                Home
-              </AnchorLink>
-              <AnchorLink href="#aboutUs" className="nav-link text-light navText">
-                About us
-              </AnchorLink>
+          <Navbar.Brand className="d-flex mr-auto">
+            <img width="300px" height="auto" src="/logo_text.png" alt="logo" />
+          </Navbar.Brand>
 
-              <AnchorLink href="#service" className="nav-link text-light navText">
+          <NavbarToggle />
+          <NavbarCollapse>
+            <Nav className="me-auto">
+              <Nav.Link href="#home" className="text-light fs-4 mx-5 text-nowrap">
+                Home
+              </Nav.Link>
+              <Nav.Link href="#aboutUs" className="text-light fs-4 mx-5  text-nowrap">
+                About us
+              </Nav.Link>
+
+              <Nav.Link href="#service" className="text-light fs-4 mx-5  text-nowrap">
                 How it Works
-              </AnchorLink>
-              <AnchorLink href="#contact" className="nav-link text-light navText">
+              </Nav.Link>
+              <Nav.Link href="#contact" className="text-light fs-4 mx-5  text-nowrap">
                 Contact
-              </AnchorLink>
-              
+              </Nav.Link>
             </Nav>
-            <Nav>
-              <Navbar.Text>
-                <NavLink to={"/login"} className="nav-link text-light">
+              <div className="">
+                <Link to={"/login"} className="nav-link text-light fs-4 mx-5">
                   Log in
-                </NavLink>
-              </Navbar.Text>
-            </Nav>
-          </Navbar.Collapse>
+                </Link>
+              </div>
+          </NavbarCollapse>
         </Container>
       </Navbar>
 
       <Container
         fluid
         ref={homeRef}
-        className={`${homeLoaded ? "unhideIt" : "hideIt"}`}
+        className={`${homeLoaded ? "unhideIt" : "hideIt"} main-bg`}
       >
-        <Row className="text-center mt-5">
-          <Col className="display-2">
+        <Row className="text-center addPadding px-2">
+          <Col className="display-2 text-white">
             Expense reimbursements made simple - for every business lunch and
             beyond.
           </Col>
