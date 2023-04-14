@@ -4,16 +4,21 @@ A website for employees who go on business lunches to be able to request reimbur
 
 # TO DO LIST
 
-  1. Account creation and login working(connected to back end)
-  2. Create server for us to have shared date to use 
-  3. Create home page
-        
-        *^^Targets goals for Sprint 3^^*
-        
-  4. Create requests page for claims
-  5. Set up and connect all tables
-  6. Be able to approve and reject claims
-  7. Select amount to reimburse for claims
+  Priorities (FOCUS ON THESE TASK FIRST):
+ Sort claims by date, price, name
+  Creat account for Ceo
+  Filtering Transactions (employees and ceos) 
+  Approve and deny ( if denied then you can appeal it) 
+ Ceo can remove employees 
+ Delete and edit transactions 
+ Choose how much you will be reimburse 
+
+ 
+  
+  Side Tasks:
+  1. Work on styling
+  2. Fix scrolling effect on website landing page
+  3. Fix styling of home page
   
         *^^Targets goals for Sprint 4^^*
 
