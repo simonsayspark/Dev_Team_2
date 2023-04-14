@@ -38,8 +38,8 @@ router.get('/', async (req, res, next) => {
 })
 
 router.delete('/', async (req, res, next) => {
-    if (req.query.id) {
-        const DelEmployeeById = await req.models.ceo.DeleteEmployeeById(req.query.id);
+    if (req.query.employee_id) {
+        const DelEmployeeById = await req.models.employees.DeleteEmployeeById(req.query.employee_id);
         res.json(DelEmployeeById);
         next();
     }

@@ -29,8 +29,8 @@ const getEmployeeByEmail = async (eemail) => {
     return results;
 }
 
-const DeleteEmployeeById = async (id) => {
-    const query = knex(EMPLOYEES_TABLE).where({ id }).del();
+const DeleteEmployeeById = async (employee_id) => {
+    const query = knex(EMPLOYEES_TABLE).where({ employee_id }).del();
     const results = await query;
     return results;
 }

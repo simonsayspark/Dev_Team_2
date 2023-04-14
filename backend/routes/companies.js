@@ -22,4 +22,12 @@ router.get('/', async (req, res, next) => {
     }
 })
 
+router.delete('/', async (req, res, next) => {
+    if (req.query.company_id) {
+        const DelCompanyById = await req.models.companies.DeleteCompanyById(req.query.company_id);
+        res.json(DelCompanyById);
+        next();
+    }
+})
+
 module.exports = router;

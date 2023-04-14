@@ -19,8 +19,15 @@ const getCompanyById = async (id) => {
     return results;
 }
 
+const DeleteCompanyById = async (company_id) => {
+    const query = knex(COMPANIES_TABLE).where({ company_id }).del();
+    const results = await query;
+    return results;
+}
+
 module.exports = {
     createCompany,
     getAllCompanies,
-    getCompanyById
+    getCompanyById,
+    DeleteCompanyById
 }
