@@ -38,5 +38,11 @@ create table claims (
     foreign key(company_id) references companies(company_id)
 
 );
+create table favoriteClaims (
+                     employee_id int ,
+                     claim_number int,
+                     foreign key(employee_id) references employees(employee_id),
+                     foreign key(claim_number) references claims(claim_number)
+);
 
 --possibly will add financial table in future
