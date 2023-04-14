@@ -12,6 +12,8 @@ import Badge from 'react-bootstrap/Badge';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/esm/Button";
+
 
 
 //ONlY for pending, allow for edits of the transaction details
@@ -69,6 +71,14 @@ export const TransactionList = () => {
                                                     {transaction.claim_description}
 
                                                 </Row>
+
+                                                <Button type="button">
+                                                    Accept
+                                                </Button>
+
+                                                <Button>
+                                                    Decline
+                                                </Button>
 
 
                                             </Container>
