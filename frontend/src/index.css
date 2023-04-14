@@ -19,7 +19,7 @@ code {
 }
 
 .logo {
-  width: 25%;
+  width: 22%;
   height: auto;
 }
 
@@ -36,4 +36,9 @@ code {
 .main-bg {
   background: rgb(217,217,217);
   background: linear-gradient(90deg, rgba(217,217,217,1) 0%, rgba(60,110,113,1) 35%, rgba(40,75,99,1) 100%);
+}
+
+.addPadding {
+  padding-top: 10rem;
+  padding-bottom: 19rem;
 }
