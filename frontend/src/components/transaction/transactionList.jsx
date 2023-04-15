@@ -41,6 +41,14 @@ export const TransactionList = () => {
     console.log("here");
   }
 
+  if (!aTransactions || !dTransactions || !pTransactions) {
+    return (
+      <>
+        <p>Loading...</p>
+      </>
+    )
+  }
+
   return (
     <>
       {console.log("D Transactions")}
