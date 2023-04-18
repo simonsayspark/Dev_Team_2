@@ -20,9 +20,9 @@ export const HomePage = ({ setCurrentUser }) => {
       <>
         <Navbar sticky="top" className="color-nav" expand="lg">
           <Container fluid className="m-0">
-          <img className="logo" src="/logo_text.png" alt="logo" />
             <Navbar.Brand>
               <NavLink to={"/home"} className="nav-link">
+                <img width="300px" height="auto" src="/logo_text.png" alt="logo" />
               </NavLink>
             </Navbar.Brand>
             <Navbar.Text>
@@ -46,17 +46,17 @@ export const HomePage = ({ setCurrentUser }) => {
     return (
       <>
         <Navbar sticky="top" className="color-nav" expand="lg">
-        <img className="logo" src="/logo_text.png" alt="logo" />
           <Container fluid className="m-0">
 
             <Navbar.Brand>
               <NavLink to={"/home"} className="nav-link">
+                <img width="300px" height="auto" src="/logo_text.png" alt="logo" />
               </NavLink>
             </Navbar.Brand>
             <Navbar.Text>
               <NavLink
                 to={"/"}
-                className="nav-link"
+                className="nav-link nav-font text-white mx-5"
                 onClick={() => {
                   setCurrentUser(undefined);
                 }}
@@ -66,7 +66,7 @@ export const HomePage = ({ setCurrentUser }) => {
             </Navbar.Text>
           </Container>
         </Navbar>
-
+        
         <Container className="mt-3">
           <h1 className="display-4">Hello {currentUser.ename}!</h1>
           <NavLink to={"/addTransaction"} className="d-flex mb-3">

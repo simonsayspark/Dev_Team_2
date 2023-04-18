@@ -87,26 +87,26 @@ export const LandingPage = () => {
 
           <NavbarToggle />
           <NavbarCollapse>
-            <Nav className="me-auto">
-              <Nav.Link href="#home" className="text-light fs-4 mx-5 text-nowrap">
+            <Nav className="me-auto nav-font">
+              <Nav.Link href="#home" className="text-light mx-5 text-nowrap">
                 Home
               </Nav.Link>
-              <Nav.Link href="#aboutUs" className="text-light fs-4 mx-5  text-nowrap">
-                About us
+              <Nav.Link href="#aboutUs" className="text-light mx-5 text-nowrap">
+                About Us
               </Nav.Link>
 
-              <Nav.Link href="#service" className="text-light fs-4 mx-5  text-nowrap">
+              <Nav.Link href="#service" className="text-light mx-5  text-nowrap">
                 How it Works
               </Nav.Link>
-              <Nav.Link href="#contact" className="text-light fs-4 mx-5  text-nowrap">
+              <Nav.Link href="#contact" className="text-light mx-5  text-nowrap">
                 Contact
               </Nav.Link>
             </Nav>
-            <div className="">
-              <Link to={"/login"} className="nav-link text-light fs-4 mx-5">
-                Log in
-              </Link>
-            </div>
+              <div className="nav-font">
+                <Link to={"/login"} className="nav-link text-light mx-5">
+                  Log in
+                </Link>
+              </div>
           </NavbarCollapse>
         </Container>
       </Navbar>
@@ -116,11 +116,13 @@ export const LandingPage = () => {
         ref={homeRef}
         className={`${homeLoaded ? "unhideIt" : "hideIt"} main-bg`}
       >
-        <Row className="text-center addPadding px-2">
-          <Col className="display-2 text-white">
-            Expense reimbursements made simple - for every business lunch and
-            beyond.
-          </Col>
+        <Row className="text-left addPadding px-5">
+          <Row className="display-2 text-white" id="header">
+            Expense reimbursements<br></br>made simple
+          </Row>
+          <Row className="text-white px-3" id="small-header">
+            for every business lunch and beyond
+          </Row>
         </Row>
       </Container>
 

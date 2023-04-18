@@ -63,10 +63,10 @@ export const LoginPage = ({ setCurrentUser }) => {
   return (
     <>
       <Navbar sticky="top" className="color-nav" expand="lg">
-        
         <Container fluid className="m-0">
-        <img className="logo" src="/logo_text.png" alt="logo" />
-          <Navbar.Brand><NavLink to={"/"} className="nav-link"></NavLink></Navbar.Brand>
+          <Navbar.Brand><NavLink to={"/"} className="nav-link">
+            <img width="300px" height="auto" src="/logo_text.png" alt="logo" />  
+          </NavLink></Navbar.Brand>
         </Container>
       </Navbar>
 
@@ -120,7 +120,7 @@ export const LoginPage = ({ setCurrentUser }) => {
             <Container fluid>
               <Row className="text-center mt-4">
                 <Col>
-                  Don't have an account?
+                  <p className="text-muted mb-0">Don't have an account?</p>
                   <NavLink to={"/signup"} className="nav-link">
                     Sign up
                   </NavLink>
