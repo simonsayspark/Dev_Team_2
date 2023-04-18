@@ -266,7 +266,7 @@ export const LandingPage = () => {
   </Carousel.Item>
   <Carousel.Item>
     <img
-      className="d-block w-100 mb-5 pb-3 pt-0"
+      className="d-block w-100 mb-5 pb-   3 pt-0 "
       src="/target.png"
       alt="Third slide"
     />

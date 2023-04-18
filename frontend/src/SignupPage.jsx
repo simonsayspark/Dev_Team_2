@@ -6,7 +6,8 @@ import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { addEmployee } from "./api/employeeApi";
-import { addCeo } from "./api/ceoApi";
+import { addCeo, getCeoByEmail } from "./api/ceoApi";
+import { addCompany } from "./api/companiesApi";
 import { getCompanies } from "./api/companiesApi";
 import { useNavigate } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -80,7 +81,21 @@ export const SignupPage = () => {
         password: values.password,
       };
 
-      addCeo(ceoValues).then(navigate("/"));
+      console.log('Adding CEO');
+      addCeo(ceoValues).then(() => {
+        console.log('Getting new CEO');
+        getCeoByEmail(values.email).then((ceo) => {
+          console.log('The new CEO:');
+          console.log(ceo);
+          const companyValues = {
+            company_name: ceoCompany,
+            ceo_id: ceo[0].ceo_id
+          }
+          console.log('Adding Company');
+          addCompany(companyValues).then(navigate('/'));
+        })
+      }
+      );
     } else { //Employee or Financial Manager
       console.log('Adding Employee/Financial Manager');
       addEmployee(values).then((e) => {
