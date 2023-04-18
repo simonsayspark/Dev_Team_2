@@ -11,12 +11,12 @@ router.post('/', async (req, res, next) => {
 })
 
 router.get('/', async (req, res, next) => {
-    if (req.query.id) {
-        const ceoById = await req.models.ceo.getCeoById(req.query.id);
+    if (req.query.ceo_id) {
+        const ceoById = await req.models.ceo.getCeoById(req.query.ceo_id);
         res.json(ceoById);
         next();
-    } else if (req.query.email) {
-        const ceoByEmail = await req.models.ceo.getCeoByEmail(req.query.email);
+    } else if (req.query.cemail) {
+        const ceoByEmail = await req.models.ceo.getCeoByEmail(req.query.cemail);
         res.json(ceoByEmail);
         next();
     } else {

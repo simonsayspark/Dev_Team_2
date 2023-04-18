@@ -17,8 +17,8 @@ const getAllCeo = async () => {
     return results;
 }
 
-const getCeoById = async (id) => {
-    const query = knex(CEO_TABLE).where({ id });
+const getCeoById = async (ceo_id) => {
+    const query = knex(CEO_TABLE).where({ ceo_id });
     const results = await query;
     return results;
 }
