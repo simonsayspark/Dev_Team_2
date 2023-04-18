@@ -20,6 +20,7 @@ const employeeValues = {
   password: "",
   role: "",
   company_id: 0
+
 };
 export const SignupPage = () => {
   const [values, setValues] = useState(employeeValues);
@@ -28,6 +29,7 @@ export const SignupPage = () => {
   const [disableButton, setDisableButton] = useState(true);
   const [companies, setCompanies] = useState(undefined);
   const [error, setError] = useState("");
+  const [ceoCompany, setCeoCompany] = useState("");
 
   useEffect(() => {
     getCompanies().then((x) => setCompanies(x));
@@ -35,12 +37,19 @@ export const SignupPage = () => {
 
   useEffect(() => {
     if (values.name && values.email
-       && values.password && values.role && values.company_id) {
+      && values.password && values.role && values.company_id) {
       setDisableButton(false);
-    } else {
+    } 
+    else if(values.role == "CEO" && values.name && values.email && values.password && ceoCompany){
+
+      setDisableButton(false);
+
+    }
+
+    else {
       setDisableButton(true);
     }
-  }, [values])  
+  }, [values, ceoCompany ])
 
 
   const navigate = useNavigate();
@@ -94,12 +103,12 @@ export const SignupPage = () => {
 
       <Container className="pt-5">
         <div className="bg-light p-3 mx-auto p-md-5 pb-md-3 col-xl-6 mb-4">
-          {error !== "" && 
+          {error !== "" &&
             <Alert key={'danger'} variant={'danger'}>
               {error}
             </Alert>
           }
-          
+
           <Form>
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Name</Form.Label>
@@ -134,12 +143,18 @@ export const SignupPage = () => {
                 onChange={(delta) =>
                   setValues({ ...values, password: delta.target.value })
                 }
-                pattern=".{8,}" 
+                pattern=".{8,}"
                 title="Password must be at least 8 characters"
+                regex="[]"
               />
-               <Form.Control.Feedback type ="invalid">
-                Password must be at least 8 characters. 
+              <Form.Control.Feedback type="invalid">
+                Password must be at least 8 characters.
               </Form.Control.Feedback>
+
+              <Form.Control.Feedback>
+                Password must be at least 8 characters.
+              </Form.Control.Feedback>
+
             </Form.Group>
 
             <Dropdown
@@ -158,27 +173,50 @@ export const SignupPage = () => {
 
             </Dropdown>
 
-            <Dropdown
-              className="mt-3"
-              onSelect={handleCompanySelect}>
 
-              <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
-                {companyValue}
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="col-12">
-                { companies !== undefined &&
-                  companies.map((company) => {
-                    return (
-                      <Dropdown.Item eventKey={company.company_name}>
-                        {company.company_name}
-                      </Dropdown.Item>
-                    )}
-                  )
-                }
-              </Dropdown.Menu>
+            
+            {values.role && values.role!=="CEO" && 
+              <Dropdown
+                className="mt-3"
+                onSelect={handleCompanySelect}>
 
-            </Dropdown>
+                <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
+                  {companyValue}
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="col-12">
+                  {companies !== undefined &&
+                    companies.map((company) => {
+                      return (
+                        <Dropdown.Item eventKey={company.company_name}>
+                          {company.company_name}
+                        </Dropdown.Item>
+                      )
+                    }
+                    )
+                  }
+                </Dropdown.Menu>
 
+              </Dropdown>
+            }
+
+
+            {values.role =="CEO" && 
+             <Form.Group>
+              <Form.Label>
+
+              Company Name
+
+              </Form.Label>
+              <Form.Control 
+                          placeholder="Enter company name"
+                          value={ceoCompany}
+                          onChange={(delta) => {
+                            setCeoCompany(delta.target.value );
+                          }}> 
+                          
+              </Form.Control>
+             </Form.Group>
+            }
             <Button
               className="col-12 mt-3"
               disabled={disableButton}
