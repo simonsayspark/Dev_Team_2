@@ -247,12 +247,10 @@ export const LandingPage = () => {
   <Carousel.Item>
     <img
       className="d-block w-100"
-      src="/Ceo-img.png"
+      src="/google.png"
       alt="Shrek slide"
     />
     <Carousel.Caption>
-      <h3>CEO</h3>
-      <p>Create and manage your company with ease.</p>
     </Carousel.Caption>
   </Carousel.Item>
   <Carousel.Item>
@@ -263,22 +261,18 @@ export const LandingPage = () => {
     />
 
     <Carousel.Caption>
-      <h3>Financial Manager</h3>
-      <p>Approve and deny transactions.</p>
+     
     </Carousel.Caption>
   </Carousel.Item>
   <Carousel.Item>
     <img
-      className="d-block w-100"
-      src="/expense-reimbursements.png"
+      className="d-block w-100 mb-5 pb-3 pt-0"
+      src="/target.png"
       alt="Third slide"
     />
 
     <Carousel.Caption>
-      <h3>Employee</h3>
-      <p>
-        Submit transaction forms.
-      </p>
+
     </Carousel.Caption>
   </Carousel.Item>
 </Carousel>

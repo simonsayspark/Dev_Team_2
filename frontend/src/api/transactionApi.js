@@ -12,9 +12,9 @@ export const addTransaction = (transaction) => new Promise ((resolve, reject) =>
 }); 
 
 
-export const getTransactionById =(employee_id) => new Promise ((resolve, reject) =>{
+export const getTransactionById =() => new Promise ((resolve, reject) =>{
 
-    axios.get(`${apiEndpoint}/claims`,employee_id)
+    axios.get(`${apiEndpoint}/claims`)
     .then(x => resolve(x.data))
     .catch(x=>{
 
