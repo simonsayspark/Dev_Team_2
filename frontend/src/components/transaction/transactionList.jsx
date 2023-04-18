@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import {
   getTransactionById,
   getTransactionByStatus,
+  getSortTransactionByStatus,
 } from "../../api/transactionApi";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -24,6 +25,8 @@ export const TransactionList = () => {
   const [aTransactions, setaTransactions] = useState(undefined);
   const [dTransactions, setdTransactions] = useState(undefined);
   const [pTransactions, setpTransactions] = useState(undefined);
+  const [sortValue, setSortValue] = useState("Sort By");
+
   useEffect(() => {
     getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
       setaTransactions(x)
@@ -35,6 +38,22 @@ export const TransactionList = () => {
       setpTransactions(x)
     );
   }, []);
+
+  useEffect(() => {
+    getSortTransactionByStatus(currentUser.employee_id, "Accepted", sortValue).then((x) =>
+      setaTransactions(x)
+    );
+    getSortTransactionByStatus(currentUser.employee_id, "Denied", sortValue).then((x) =>
+      setdTransactions(x)
+    );
+    getSortTransactionByStatus(currentUser.employee_id, "Pending", sortValue).then((x) =>
+      setpTransactions(x)
+    );
+  }, [sortValue]);
+
+  const sortBy = (e) => {
+    setSortValue(e)
+  }
 
   //create 3 different api requests
 
@@ -54,25 +73,31 @@ export const TransactionList = () => {
     <>
       {console.log("D Transactions")}
       {console.log(dTransactions)}
+
+      <Dropdown
+            className="mt-2"
+            onSelect={(e)=>{
+              setSortValue(e);
+              }}>
+
+            <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
+              {sortValue}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="col-12">
+              <Dropdown.Item eventKey='Date'>Date</Dropdown.Item>
+              <Dropdown.Item eventKey='Amount'>Amount</Dropdown.Item>
+              <Dropdown.Item eventKey='Category'>Category</Dropdown.Item>
+            </Dropdown.Menu>
+
+          </Dropdown>  
+
       <Tabs
         defaultActiveKey="profile"
         id="uncontrolled-tab-example"
         className="mb-3"
       >
         <Tab eventKey="pending" title="Pending">
-          <Dropdown
-            className="mt-2"
-            onSelect={handleRoleSelect}>
-
-            <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
-              Sort By
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="col-12">
-              <Dropdown.Item eventKey='Date'>CEO</Dropdown.Item>
-              <Dropdown.Item eventKey='Amount'>Financial Manager</Dropdown.Item>
-            </Dropdown.Menu>
-
-          </Dropdown>  
+          
           {pTransactions.length !== 0 ? (
             <ListGroup>
               {pTransactions.map((transaction, index) => {
