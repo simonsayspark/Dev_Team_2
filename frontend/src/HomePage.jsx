@@ -53,7 +53,7 @@ export const HomePage = ({ setCurrentUser }) => {
             <Navbar.Text>
               <NavLink
                 to={"/"}
-                className="nav-link"
+                className="nav-link nav-font text-white fs-3 mx-5"
                 onClick={() => {
                   setCurrentUser(undefined);
                 }}

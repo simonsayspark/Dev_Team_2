@@ -12,10 +12,27 @@ code {
     monospace;
 }
 
+#header {
+  font-family: 'Overpass', sans-serif;
+  font-weight: 700;
+  font-size: 6rem;
+}
+
+#small-header {
+  font-family: 'Overpass', sans-serif;
+  font-weight: 100;
+  font-size: 2.5rem;
+}
+
+.nav-font {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.45rem;
+}
+
 .color-nav {
   /*background-color: #284B63;*/
-  background: rgb(40,75,99);
-  background: linear-gradient(90deg, rgba(40,75,99,1) 0%, rgba(56,103,110,1) 27%, rgba(104,136,139,1) 45%, rgba(98,132,135,1) 54%, rgba(56,103,110,1) 73%, rgba(40,75,99,1) 100%);
+  background: rgb(32,55,70);
+  background: linear-gradient(90deg, rgba(32,55,70,1) 0%, rgba(63,95,103,1) 42%, rgba(60,110,113,1) 87%, rgba(104,125,126,1) 100%);
 }
 
 .logo {
@@ -34,8 +51,8 @@ code {
 }
 
 .main-bg {
-  background: rgb(40,75,99);
-  background: linear-gradient(90deg, rgba(40,75,99,1) 0%, rgba(56,103,110,1) 27%, rgba(104,136,139,1) 45%, rgba(98,132,135,1) 54%, rgba(56,103,110,1) 73%, rgba(40,75,99,1) 100%);
+  background: rgb(32,55,70);
+  background: linear-gradient(90deg, rgba(32,55,70,1) 0%, rgba(63,95,103,1) 42%, rgba(60,110,113,1) 87%, rgba(104,125,126,1) 100%);
 }
 
 .addPadding {
