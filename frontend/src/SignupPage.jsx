@@ -188,7 +188,9 @@ export const SignupPage = () => {
             <Container fluid>
               <Row className="text-center mt-4">
                 <Col>
-                  Already have an account?
+                  <span className="text-muted">
+                    Already have an account?
+                  </span>
                   <NavLink to={"/login"} className="nav-link">
                     Sign in
                   </NavLink>

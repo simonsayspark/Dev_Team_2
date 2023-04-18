@@ -11,6 +11,7 @@ import Tabs from "react-bootstrap/Tabs";
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
 import Badge from "react-bootstrap/Badge";
+import Dropdown from 'react-bootstrap/Dropdown'
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -59,6 +60,19 @@ export const TransactionList = () => {
         className="mb-3"
       >
         <Tab eventKey="pending" title="Pending">
+          <Dropdown
+            className="mt-2"
+            onSelect={handleRoleSelect}>
+
+            <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
+              Sort By
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="col-12">
+              <Dropdown.Item eventKey='Date'>CEO</Dropdown.Item>
+              <Dropdown.Item eventKey='Amount'>Financial Manager</Dropdown.Item>
+            </Dropdown.Menu>
+
+          </Dropdown>  
           {pTransactions.length !== 0 ? (
             <ListGroup>
               {pTransactions.map((transaction, index) => {
