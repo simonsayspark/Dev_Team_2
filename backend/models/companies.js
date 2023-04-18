@@ -1,8 +1,8 @@
 const knex = require('../database/knex');
 const COMPANIES_TABLE = 'companies';
 
-const createCompany = async (name, ceoId) => {
-    const query = knex(COMPANIES_TABLE).insert({name, ceoId});
+const createCompany = async (company_name, ceo_id) => {
+    const query = knex(COMPANIES_TABLE).insert({company_name, ceo_id});
     const results = await query;
     return results;
 }
