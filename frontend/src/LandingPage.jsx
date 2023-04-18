@@ -102,11 +102,11 @@ export const LandingPage = () => {
                 Contact
               </Nav.Link>
             </Nav>
-              <div className="">
-                <Link to={"/login"} className="nav-link text-light fs-4 mx-5">
-                  Log in
-                </Link>
-              </div>
+            <div className="">
+              <Link to={"/login"} className="nav-link text-light fs-4 mx-5">
+                Log in
+              </Link>
+            </div>
           </NavbarCollapse>
         </Container>
       </Navbar>
@@ -160,9 +160,8 @@ export const LandingPage = () => {
       <Container fluid>
         <Row
           ref={howItWorksRef1}
-          className={`text-center mt-5 mb-4 ${
-            worksLoaded1 ? "unhideIt" : "hideIt"
-          }`}
+          className={`text-center mt-5 mb-4 ${worksLoaded1 ? "unhideIt" : "hideIt"
+            }`}
         >
           <Col className="display-4 "> How it Works</Col>
         </Row>
@@ -239,11 +238,6 @@ export const LandingPage = () => {
         </Row>
       </Container>
 
-      {/* <Container>
-
-
-<<<<<<< Updated upstream
-=======
       <Container>
         <Row>
           <Col>
@@ -252,74 +246,68 @@ export const LandingPage = () => {
             <p><strong>Email:</strong>DoughBack@gmail.com</p>
             <p><strong>Phone:</strong> 123.456.789</p>
             <p><strong>Address:</strong>6425 Boaz Lane Dallas TX 75205</p>
->>>>>>> Stashed changes
+            <p className="display-4 text-center mt-4">Our Partners</p>
+            <Carousel className="mt-4">
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="/google.png"
+                  alt="Shrek slide"
+                />
+                <Carousel.Caption>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="/walmort.png"
+                  alt="Second slide"
+                />
 
-<Carousel>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src="/Ceo-img.png"
-      alt="Shrek slide"
-    />
-    <Carousel.Caption>
-      <h3>CEO</h3>
-      <p>Create and manage your company with ease.</p>
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src="/tyler-franta-iusJ25iYu1c-unsplash.jpg"
-      alt="Second slide"
-    />
+                <Carousel.Caption>
 
-    <Carousel.Caption>
-      <h3>Financial Manager</h3>
-      <p>Approve and deny transactions.</p>
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src="/expense-reimbursements.png"
-      alt="Third slide"
-    />
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 mb-5 pb-   3 pt-0 "
+                  src="/target.png"
+                  alt="Third slide"
+                />
 
-    <Carousel.Caption>
-      <h3>Employee</h3>
-      <p>
-        Submit transaction forms.
-      </p>
-    </Carousel.Caption>
-  </Carousel.Item>
-</Carousel>
+                <Carousel.Caption>
 
-</Container> */}
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+            </Col>
+            </Row>
+          </Container>
 
-      <div id="contact"></div>
-      <Container
-        ref={contactUsRef}
-        className={`mt-5 p-5 ${aboutLoaded ? "unhideIt" : "hideIt"}`}
-      >
-        <Row className="bg-light">
-          <Col className="display-5 text-center mb-3">Contact Us</Col>
+          <div id="contact"></div>
+          <Container
+            ref={contactUsRef}
+            className={`mt-5 p-5 ${aboutLoaded ? "unhideIt" : "hideIt"}`}
+          >
+            <Row className="bg-light">
+              <Col className="display-5 text-center mb-3">Contact Us</Col>
 
-          <div className="ms-3">
-            <p>
-              <strong>Name:</strong> DoughBack
-            </p>
-            <p>
-              <strong>Number:</strong> 123-456-789
-            </p>
-            <p>
-              <strong>Email:</strong> DoughBack@gmail.com
-            </p>
-            <p>
-              <strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205
-            </p>
-          </div>
-        </Row>
-      </Container>
-    </>
-  );
+              <div className="ms-3">
+                <p>
+                  <strong>Name:</strong> DoughBack
+                </p>
+                <p>
+                  <strong>Number:</strong> 123-456-789
+                </p>
+                <p>
+                  <strong>Email:</strong> DoughBack@gmail.com
+                </p>
+                <p>
+                  <strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205
+                </p>
+              </div>
+            </Row>
+          </Container>
+        </>
+        );
 };

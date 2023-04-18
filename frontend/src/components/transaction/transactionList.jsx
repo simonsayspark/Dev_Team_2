@@ -13,7 +13,7 @@ import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
 import Badge from "react-bootstrap/Badge";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
+import Container from "react-bootstrap/Container" ;
 
 //ONLY for pending, allow for edits of the transaction details
 

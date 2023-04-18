@@ -4,8 +4,8 @@ router = express.Router();
 router.use(bodyParser.json());
 
 router.post('/', async (req, res, next) => {
-    const { name, ceoId } = req.body;
-    const registerCompany = await req.models.companies.createCompany(name, ceoId);
+    const { company_name, ceo_id } = req.body;
+    const registerCompany = await req.models.companies.createCompany(company_name, ceo_id);
     res.status(201).json(registerCompany);
     next();
 })

@@ -11,8 +11,8 @@ router.post('/', async (req, res, next) => {
 })
 
 router.get('/', async (req, res, next) => {
-    if (req.query.cid) {
-        const ceoById = await req.models.ceo.getCeoById(req.query.cid);
+    if (req.query.ceo_id) {
+        const ceoById = await req.models.ceo.getCeoById(req.query.ceo_id);
         res.json(ceoById);
         next();
     } else if (req.query.cemail) {
