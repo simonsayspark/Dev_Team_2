@@ -250,24 +250,26 @@ export const TransactionList = () => {
                         <Row>
                           <Col className="p-0">{transaction.order_date}</Col>
                           <Col>
-                            <Badge bg="secondary" className="">
+                            <Badge bg="secondary" className="block mb-1">
                               {transaction.claim_status}
                             </Badge>{" "}
+
                           </Col>
                         </Row>
 
                         <Row>
-                          Amount Requested: ${transaction.amount_requested}
+                          <Col className="p-0">Amount Requested: ${transaction.amount_requested}</Col>
+                          <Col>
+                            <Button className="btn-success btn-sm mb-1">Approve</Button>
+                          </Col>
                         </Row>
 
                         <Row>
-                          Amount Reimbursed: ${transaction.amount_reimbursed}
-                        </Row>
-
-                        <Row>
-                          Claim Description:
-                          <br />
-                          {transaction.claim_description}
+                          <Col className="p-0">Claim Description:<br />{transaction.claim_description}
+                          </Col>
+                          <Col>
+                            <Button className="btn-danger btn-sm">Deny</Button>
+                          </Col>
                         </Row>
                       </Container>
                     </ListGroup.Item>
