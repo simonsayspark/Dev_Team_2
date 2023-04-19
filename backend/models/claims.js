@@ -49,6 +49,12 @@ const getClaimsByCompanyId = async (company_id) => {
     return results;
 }
 
+const getSortedClaimsByStatus = async (employee_id, claim_status, sortBy) => {
+    const query = knex(CLAIMS_TABLE).where({employee_id}).where({claim_status}).orderBy(sortBy);
+    const results = await query;
+    return results;
+}
+
 module.exports = {
     createClaim,
     updateClaim,
@@ -57,5 +63,6 @@ module.exports = {
     getClaimsByEmployee,
     getClaimsByStatus,
     DeleteClaimByNum,
-    getClaimsByCompanyId
+    getClaimsByCompanyId,
+    getSortedClaimsByStatus
 }

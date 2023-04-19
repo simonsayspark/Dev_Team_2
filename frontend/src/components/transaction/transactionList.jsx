@@ -40,15 +40,27 @@ export const TransactionList = () => {
   }, []);
 
   useEffect(() => {
-    getSortTransactionByStatus(currentUser.employee_id, "Accepted", sortValue).then((x) =>
-      setaTransactions(x)
-    );
-    getSortTransactionByStatus(currentUser.employee_id, "Denied", sortValue).then((x) =>
-      setdTransactions(x)
-    );
-    getSortTransactionByStatus(currentUser.employee_id, "Pending", sortValue).then((x) =>
-      setpTransactions(x)
-    );
+    if (sortValue != "Sort By") {
+      getSortTransactionByStatus(currentUser.employee_id, "Accepted", sortValue).then((x) =>
+        setaTransactions(x)
+      );
+      getSortTransactionByStatus(currentUser.employee_id, "Denied", sortValue).then((x) =>
+        setdTransactions(x)
+      );
+      getSortTransactionByStatus(currentUser.employee_id, "Pending", sortValue).then((x) =>
+        setpTransactions(x)
+      );
+    } else {
+      getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
+        setaTransactions(x)
+      );
+      getTransactionByStatus(currentUser.employee_id, "Denied").then((x) =>
+        setdTransactions(x)
+      );
+      getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
+        setpTransactions(x)
+      );
+    }
   }, [sortValue]);
 
   const sortBy = (e) => {
@@ -56,11 +68,6 @@ export const TransactionList = () => {
   }
 
   //create 3 different api requests
-
-  {
-    console.log("here");
-  }
-
   if (!aTransactions || !dTransactions || !pTransactions) {
     return (
       <>
@@ -71,9 +78,6 @@ export const TransactionList = () => {
 
   return (
     <>
-      {console.log("D Transactions")}
-      {console.log(dTransactions)}
-
       <Dropdown
             className="mt-2"
             onSelect={(e)=>{
