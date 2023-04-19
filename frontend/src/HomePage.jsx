@@ -38,7 +38,16 @@ export const HomePage = ({ setCurrentUser }) => {
             </Navbar.Text>
           </Container>
         </Navbar>
-        Hello {currentUser.cname}!
+
+        <Container className="mt-3">
+          <h1 className="display-4">Hello {currentUser.cname}!</h1>
+          <NavLink to={"/addTransaction"} className="d-flex mb-3">
+            <button className="btn btn-primary"> Submit Transaction</button>
+          </NavLink>
+          <NavLink to={"/viewTransactions"} className="d-flex mb-3">
+            <button className="btn btn-primary"> View Transactions</button>
+          </NavLink>
+        </Container>
       </>
     );
   } else if (currentUser.employee_id) {

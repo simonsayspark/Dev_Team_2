@@ -5,6 +5,7 @@ import { LandingPage } from './LandingPage';
 import { LoginPage } from './LoginPage';
 import { HomePage } from './HomePage';
 import { SignupPage } from './SignupPage';
+import { Batcave } from './Batcave';
 import { AddTransaction } from './components/transaction/addTransaction';
 import { ViewListTransaction } from './components/transaction/viewListTransaction';
 
@@ -43,6 +44,7 @@ export const App = () => {
                     <Route path='/' element={ <LandingPage/> }/>
                     <Route path='/login' element={ <LoginPage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/home' element={ <HomePage setCurrentUser={ _setCurrentUser }/> }/>
+                    <Route path='/batcave' element={ <Batcave setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/signup' element={ <SignupPage/> }/>
                     <Route path='/addTransaction' element={ <AddTransaction/> }/>
                     <Route path='/viewTransactions' element= {<ViewListTransaction/>}/>
