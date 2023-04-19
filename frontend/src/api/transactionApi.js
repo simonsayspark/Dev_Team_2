@@ -13,7 +13,7 @@ export const addTransaction = (transaction) =>
       });
   });
 
-export const getTransactionById = () =>
+export const getTransactions = () =>
   new Promise((resolve, reject) => {
     axios
       .get(`${apiEndpoint}/claims`)
