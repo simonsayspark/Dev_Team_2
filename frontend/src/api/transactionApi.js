@@ -34,5 +34,16 @@ export const getTransactionByStatus = (employee_id, status) =>
       .catch((x) => {
         alert(x);
         reject(x);
-      });
-  });
+    });
+});
+
+export const getSortTransactionByStatus =(employee_id, status, sortBy) => new Promise ((resolve, reject) =>{
+
+    axios.get(`${apiEndpoint}/claims?employee_id=${employee_id}&claim_status=${status}&sortBy=${sortBy}`)
+    .then(x => resolve(x.data))
+    .catch(x=>{
+
+        alert(x);
+        reject(x);
+    });
+});

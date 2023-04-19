@@ -147,7 +147,7 @@ export const LoginPage = ({ setCurrentUser }) => {
             <Container fluid>
               <Row className="text-center mt-4">
                 <Col>
-                  Don't have an account?
+                  <p className="text-muted mb-0">Don't have an account?</p>
                   <NavLink to={"/signup"} className="nav-link">
                     Sign up
                   </NavLink>

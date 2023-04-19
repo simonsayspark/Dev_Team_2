@@ -17,17 +17,39 @@ router.get('/', async (req, res, next) => {
         next();
     } else if (req.query.employee_id) {
         if (req.query.claim_status) { //Getting claims by employee_id and claim_status
-            console.log('WORKING')
-            const claimByStatus = await req.models.claims.getClaimsByStatus(req.query.employee_id, req.query.claim_status);
-            res.json(claimByStatus);
+            if (req.query.sortBy) { //If sorting by something
+                const sortBy = req.query.sortBy;
+                if (sortBy == 'Date') {
+                    const sortedClaimsByStatus = await req.models.claims.getSortedClaimsByStatus(req.query.employee_id, req.query.claim_status, 'order_date');
+                    res.json(sortedClaimsByStatus);
+                } else if (sortBy == 'Amount') {
+                    const sortedClaimsByStatus = await req.models.claims.getSortedClaimsByStatus(req.query.employee_id, req.query.claim_status, 'amount_requested');
+                    res.json(sortedClaimsByStatus);
+                } else if (sortBy == 'Category') {
+                    const sortedClaimsByStatus = await req.models.claims.getSortedClaimsByStatus(req.query.employee_id, req.query.claim_status, 'category');
+                    res.json(sortedClaimsByStatus);
+                } else if (sortBy == 'Name') {
+                    const sortedClaimsByStatus = await req.models.claims.getClaimsByEmployeeName(req.query.employee_id, req.query.claim_status, 'ename');
+                    res.json(sortedClaimsByStatus);
+                }
+            } else {
+                const claimByStatus = await req.models.claims.getClaimsByStatus(req.query.employee_id, req.query.claim_status);
+                res.json(claimByStatus);    
+            }
         } else { //Getting claims only by employee_id
             const claimByEmployee = await req.models.claims.getClaimsByEmployee(req.query.employee_id);
-            res.json(claimByEmployee);    
+            res.json(claimByEmployee);
         }
         next();
+    } else if (req.query.company_id) {
+        const claimsByCompany = await req.models.claims.getClaimsByCompanyId(req.query.company_id);
+        res.json(claimsByCompany);
+        next();
+    } else if (req.query.order_date) {
+        const claimsOnDate = await req.models.claims.getClaimsOnDate(req.query.order_date);
+        res.json(claimsOnDate);
+        next();
     } else { //Getting all claims in the database
-        console.log('NOT WORKING')
-        console.log(req.query)
         const allClaims = await req.models.claims.getAllClaims();
         res.json(allClaims);
         next();
