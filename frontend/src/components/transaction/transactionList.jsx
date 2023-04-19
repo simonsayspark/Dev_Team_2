@@ -78,154 +78,163 @@ export const TransactionList = () => {
 
   return (
     <>
-      <Dropdown
-            className="mt-2"
-            onSelect={(e)=>{
-              setSortValue(e);
-              }}>
+      
 
-            <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
-              {sortValue}
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="col-12">
-              <Dropdown.Item eventKey='Date'>Date</Dropdown.Item>
-              <Dropdown.Item eventKey='Amount'>Amount</Dropdown.Item>
-              <Dropdown.Item eventKey='Category'>Category</Dropdown.Item>
-            </Dropdown.Menu>
+      <div className="pos-relative">
+        <Tabs
+          defaultActiveKey="profile"
+          id="uncontrolled-tab-example"
+          className="mb-3"
+        >
 
-          </Dropdown>  
+          <Tab eventKey="pending" title="Pending">
 
-      <Tabs
-        defaultActiveKey="profile"
-        id="uncontrolled-tab-example"
-        className="mb-3"
-      >
-        <Tab eventKey="pending" title="Pending">
-          
-          {pTransactions.length !== 0 ? (
-            <ListGroup>
-              {pTransactions.map((transaction, index) => {
-                return (
-                  <ListGroup.Item>
-                    <Container>
-                      <Row>
-                        <Col className="p-0">{transaction.order_date}</Col>
-                        <Col>
-                          <Badge bg="secondary" className="">
-                            {transaction.claim_status}
-                          </Badge>{" "}
-                        </Col>
-                      </Row>
+            {pTransactions.length !== 0 ? (
+              <ListGroup>
+                {pTransactions.map((transaction, index) => {
+                  return (
+                    <ListGroup.Item>
+                      <Container>
+                        <Row>
+                          <Col className="p-0">{transaction.order_date}</Col>
+                          <Col>
+                            <Badge bg="secondary" className="">
+                              {transaction.claim_status}
+                            </Badge>{" "}
+                          </Col>
+                        </Row>
 
-                      <Row>
-                        Amount Requested: ${transaction.amount_requested}
-                      </Row>
+                        <Row>
+                          Amount Requested: ${transaction.amount_requested}
+                        </Row>
+                        <Row>
+                          Category: {transaction.category}
+                        </Row>
+                        <Row>
+                          <p className="px-0">Claim Description: {transaction.claim_description}</p>
+                        </Row>
 
-                      <Row>
-                        Claim Description:
-                        <br />
-                        {transaction.claim_description}
-                      </Row>
-                    </Container>
-                  </ListGroup.Item>
-                );
-              })}
-            </ListGroup>
-          ) : (
-            <p>No available transaction</p>
-          )}
-        </Tab>
+                      </Container>
+                    </ListGroup.Item>
+                  );
+                })}
+              </ListGroup>
+            ) : (
+              <p>No available transaction</p>
+            )}
+          </Tab>
 
-        <Tab eventKey="accepted" title="Accepted">
-          {aTransactions.length !== 0 ? (
-            <ListGroup>
-              {aTransactions.map((transaction, index) => {
-                return (
-                  <ListGroup.Item>
-                    <Container>
-                      <Row>
-                        <Col className="p-0">{transaction.order_date}</Col>
-                        <Col>
-                          <Badge bg="secondary" className="">
-                            {transaction.claim_status}
-                          </Badge>{" "}
-                        </Col>
-                      </Row>
+          <Tab eventKey="accepted" title="Accepted">
+            {aTransactions.length !== 0 ? (
+              <ListGroup>
+                {aTransactions.map((transaction, index) => {
+                  return (
+                    <ListGroup.Item>
+                      <Container>
+                        <Row>
+                          <Col className="p-0">{transaction.order_date}</Col>
+                          <Col>
+                            <Badge bg="secondary" className="">
+                              {transaction.claim_status}
+                            </Badge>{" "}
+                          </Col>
+                        </Row>
 
-                      <Row>
-                        Amount Requested: ${transaction.amount_requested}
-                      </Row>
+                        <Row>
+                          Amount Requested: ${transaction.amount_requested}
+                        </Row>
 
-                      <Row>
-                        Amount Reimbursed: ${transaction.amount_reimbursed}
-                      </Row>
+                        <Row>
+                          Amount Reimbursed: ${transaction.amount_reimbursed}
+                        </Row>
 
-                      <Row>
-                        Claim Description:
-                        <br />
-                        {transaction.claim_description}
-                      </Row>
+                        <Row>
+                          Claim Description:
+                          <br />
+                          {transaction.claim_description}
+                        </Row>
 
-                      <Row>
-                        Ceo Comment:
-                        <br />
-                        {transaction.ceo_comment}
-                      </Row>
-                    </Container>
-                  </ListGroup.Item>
-                );
-              })}
-            </ListGroup>
-          ) : (
-            <p className="ms-3">No available transaction</p>
-          )}
-        </Tab>
+                        <Row>
+                          Ceo Comment:
+                          <br />
+                          {transaction.ceo_comment}
+                        </Row>
+                      </Container>
+                    </ListGroup.Item>
+                  );
+                })}
+              </ListGroup>
+            ) : (
+              <p className="ms-3">No available transaction</p>
+            )}
+          </Tab>
 
-        <Tab eventKey="denied" title="Denied">
-          {dTransactions.length !== 0 ? (
-            <ListGroup>
-              {dTransactions.map((transaction, index) => {
-                return (
-                  <ListGroup.Item>
-                    <Container>
-                      <Row>
-                        <Col className="p-0">{transaction.order_date}</Col>
-                        <Col>
-                          <Badge bg="secondary" className="">
-                            {transaction.claim_status}
-                          </Badge>{" "}
-                        </Col>
-                      </Row>
+          <Tab eventKey="denied" title="Denied">
+            {dTransactions.length !== 0 ? (
+              <ListGroup>
+                {dTransactions.map((transaction, index) => {
+                  return (
+                    <ListGroup.Item>
+                      <Container>
+                        <Row>
+                          <Col className="p-0">{transaction.order_date}</Col>
+                          <Col>
+                            <Badge bg="secondary" className="">
+                              {transaction.claim_status}
+                            </Badge>{" "}
+                          </Col>
+                        </Row>
 
-                      <Row>
-                        Amount Requested: ${transaction.amount_requested}
-                      </Row>
+                        <Row>
+                          Amount Requested: ${transaction.amount_requested}
+                        </Row>
 
-                      <Row>
-                        Amount Reimbursed: ${transaction.amount_reimbursed}
-                      </Row>
+                        <Row>
+                          Amount Reimbursed: ${transaction.amount_reimbursed}
+                        </Row>
 
-                      <Row>
-                        Claim Description:
-                        <br />
-                        {transaction.claim_description}
-                      </Row>
+                        <Row>
+                          Claim Description:
+                          <br />
+                          {transaction.claim_description}
+                        </Row>
 
-                      <Row>
-                        Ceo Comment:
-                        <br />
-                        {transaction.ceo_comment}
-                      </Row>
-                    </Container>
-                  </ListGroup.Item>
-                );
-              })}
-            </ListGroup>
-          ) : (
-            <p className="ms-3">No available transaction</p>
-          )}
-        </Tab>
-      </Tabs>
+                        <Row>
+                          Ceo Comment:
+                          <br />
+                          {transaction.ceo_comment}
+                        </Row>
+                      </Container>
+                    </ListGroup.Item>
+                  );
+                })}
+              </ListGroup>
+            ) : (
+              <p className="ms-3">No available transaction</p>
+            )}
+          </Tab>
+        </Tabs>
+
+      </div>
+
+      <div className="pos-absolute">
+        <Dropdown
+          className=""
+          onSelect={(e) => {
+            setSortValue(e);
+          }}>
+
+          <Dropdown.Toggle className="col-1" variant="info" id="dropdown-menu">
+            {sortValue}
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="col-1">
+            <Dropdown.Item eventKey='Date'>Date</Dropdown.Item>
+            <Dropdown.Item eventKey='Amount'>Amount</Dropdown.Item>
+            <Dropdown.Item eventKey='Category'>Category</Dropdown.Item>
+          </Dropdown.Menu>
+
+        </Dropdown>
+      </div>
 
       {/* {transactions ? transactions.map((transaction, index) => {
                 return (
