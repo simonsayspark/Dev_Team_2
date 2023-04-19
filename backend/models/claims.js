@@ -31,6 +31,15 @@ const getClaimsByEmployee = async (employee_id) => {
     return results;
 }
 
+const getClaimsByEmployeeName = async (employee_id, claim_status, sortBy) => {
+    const query = knex(CLAIMS_TABLE).union([
+        knex(CLAIMS_TABLE).select(employee_id).where(claim_status).groupBy(employee_id),
+        knex(EMPLOYEE_TABLE).select(employee_id).orderBy(sortBy)
+      ]);
+    const results = await query;
+    return results;
+}
+
 const getClaimsByStatus = async (employee_id, claim_status) => {
     const query = knex(CLAIMS_TABLE).where({employee_id}).where({claim_status});
     const results = await query;
@@ -49,6 +58,12 @@ const getClaimsByCompanyId = async (company_id) => {
     return results;
 }
 
+const getClaimsOnDate = async (order_date) => {
+    const query = knex(CLAIMS_TABLE).where({order_date});
+    const results = await query;
+    return results;
+}
+
 const getSortedClaimsByStatus = async (employee_id, claim_status, sortBy) => {
     const query = knex(CLAIMS_TABLE).where({employee_id}).where({claim_status}).orderBy(sortBy);
     const results = await query;
@@ -61,8 +76,10 @@ module.exports = {
     getAllClaims,
     getClaimByNumber,
     getClaimsByEmployee,
+    getClaimsByEmployeeName,
     getClaimsByStatus,
     DeleteClaimByNum,
     getClaimsByCompanyId,
+    getClaimsOnDate,
     getSortedClaimsByStatus
 }
