@@ -22,9 +22,12 @@ export const Batcave = ({ setCurrentUser }) => {
           <Container fluid className="m-0">
             <Navbar.Brand>
               <NavLink to={"/home"} className="nav-link">
-                <img width="300px" height="auto" src="/logo_text.png" alt="logo" />
+                <img width="200px" height="auto" src="/batman-5-logo-png-transparent.png" alt="logo" />
               </NavLink>
             </Navbar.Brand>
+            <Navbar.Text>
+              Welcome back Batman
+            </Navbar.Text>
             <Navbar.Text>
               <NavLink
                 to={"/"}

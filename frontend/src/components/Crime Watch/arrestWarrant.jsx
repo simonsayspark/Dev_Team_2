@@ -3,7 +3,7 @@ import { UserContext } from "../../App";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
-import { addCriminal } from "../../api/transactionApi";
+import { addCrime } from "../../api/crimeApi";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,7 @@ export const WarrantRequest = () => {
 
   const navigate = useNavigate();
 
-  const submitTransaction = () => {
+  const submitWarrant = () => {
     const n_transaction = {
       employee_id: employee_id,
       company_id: company_id,
@@ -31,7 +31,7 @@ export const WarrantRequest = () => {
       category: category,
       claim_description: claim_description,
     };
-    addTransaction(n_transaction);
+    addCrime(n_transaction);
     navigate('/batcave');
     // onAddTransaction(n_transaction);
   };
@@ -46,7 +46,7 @@ export const WarrantRequest = () => {
       <Container className="mt-3">
         <div className="card">
           <div className="card-header py-3">
-            <h1 className="display-5">Submit a Transaction</h1>
+            <h1 className="display-5">Submit a Warrant</h1>
           </div>
           <div className="card-body">
             <Form>

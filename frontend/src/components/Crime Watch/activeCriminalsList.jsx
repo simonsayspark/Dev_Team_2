@@ -19,7 +19,7 @@ import Container from "react-bootstrap/Container" ;
 
 //ONLY for pending, allow for edits of the transaction details
 
-export const TransactionList = () => {
+export const ActiveCrimeList = () => {
   const currentUser = useContext(UserContext);
 
   const [aTransactions, setaTransactions] = useState(undefined);

@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const apiEndpoint = '//localhost:8000';
 
-export const addCriminal = (criminal) => new Promise ((resolve, reject) => {
-    axios.post(`${apiEndpoint}/criminals`, criminal)
+export const addCrime = (crime) => new Promise ((resolve, reject) => {
+    axios.post(`${apiEndpoint}/crimes`, criminal)
     .then(x => resolve(x.data))
     .catch(x => {
         alert(x);
@@ -12,9 +12,9 @@ export const addCriminal = (criminal) => new Promise ((resolve, reject) => {
 }); 
 
 
-export const getCriminalById =() => new Promise ((resolve, reject) =>{
+export const getCrimeById =() => new Promise ((resolve, reject) =>{
 
-    axios.get(`${apiEndpoint}/criminals`)
+    axios.get(`${apiEndpoint}/crimes`)
     .then(x => resolve(x.data))
     .catch(x=>{
 
@@ -24,9 +24,9 @@ export const getCriminalById =() => new Promise ((resolve, reject) =>{
 
 });
 
-export const getCriminalByStatus =(criminal_id, status) => new Promise ((resolve, reject) =>{
+export const getCrimeByStatus =(crime_id, status) => new Promise ((resolve, reject) =>{
 
-    axios.get(`${apiEndpoint}/criminals?criminal_id=${criminal_id}&criminal_status=${status}`)
+    axios.get(`${apiEndpoint}/crimes?crime_id=${crime_id}&criminal_status=${status}`)
     .then(x => resolve(x.data))
     .catch(x=>{
 
@@ -35,9 +35,9 @@ export const getCriminalByStatus =(criminal_id, status) => new Promise ((resolve
     });
 });
 
-export const getSortCriminalByStatus =(criminal_id, status, sortBy) => new Promise ((resolve, reject) =>{
+export const getSortCrimeByStatus =(crime_id, status, sortBy) => new Promise ((resolve, reject) =>{
 
-    axios.get(`${apiEndpoint}/criminals?criminal_id=${criminal_id}&criminal_status=${status}&sortBy=${sortBy}`)
+    axios.get(`${apiEndpoint}/crimes?crime_id=${crime_id}&criminal_status=${status}&sortBy=${sortBy}`)
     .then(x => resolve(x.data))
     .catch(x=>{
 
