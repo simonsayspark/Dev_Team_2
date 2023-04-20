@@ -29,12 +29,7 @@ code {
   font-size: 1.42rem;
 }
 
-.batman-nav {
   /*background-color: #284B63;*/
-  background: rgb(0,0,0);
-  background: linear-gradient(90deg, rgb(36, 37, 37) 0%, rgb(37, 37, 37) 42%, rgb(52, 52, 52) 87%, rgb(81, 81, 81) 100%);
-}
-
 .color-nav {
   background: rgb(32,55,70);
   background: linear-gradient(90deg, rgba(32,55,70,1) 0%, rgba(63,95,103,1) 42%, rgba(60,110,113,1) 87%, rgba(104,125,126,1) 100%);
