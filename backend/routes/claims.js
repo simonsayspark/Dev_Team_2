@@ -11,11 +11,19 @@ router.post('/', async (req, res, next) => {
 })
 
 router.put('/', async (req, res, next) => {
-    const { employee_id, company_id, order_date, amount_requested, category, claim_description} = req.body;
-    const updateClaim = await req.models.claims.updateClaim(employee_id, company_id, order_date, amount_requested, category, claim_description);
-    res.status(201).json(updateClaim);    
+    if(req.query.claim_number) {
+        if(req.query.claim_status) {
+            const updateClaimStat = await req.models.claims.updateClaimStatus(claim_number, claim_status);
+            res.json(updateClaimStat)
+        }
+    } else {
+        const { employee_id, company_id, order_date, amount_requested, category, claim_description} = req.body;
+        const updateClaim = await req.models.claims.updateClaim(employee_id, company_id, order_date, amount_requested, category, claim_description);
+        res.json(updateClaim); 
+    }   
     next();
 })
+
 
 router.get('/', async (req, res, next) => {
     if (req.query.claim_number) { //Getting claims by claim_number
