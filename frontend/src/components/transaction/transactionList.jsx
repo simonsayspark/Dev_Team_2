@@ -7,7 +7,8 @@ import {
   getTransactionByStatus,
   getSortTransactionByStatus,
   getTransactions,
-  deleteTransaction
+  deleteTransaction,
+  updateTransaction
 } from "../../api/transactionApi";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -19,10 +20,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/esm/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { EditTransaction } from "./editTransaction";
 
 //ONLY for pending, allow for edits of the transaction details
 
 export const TransactionList = () => {
+
+
   const currentUser = useContext(UserContext);
 
   const [transactions, setTransactions] = useState(undefined)
@@ -30,6 +35,8 @@ export const TransactionList = () => {
   const [dTransactions, setdTransactions] = useState(undefined);
   const [pTransactions, setpTransactions] = useState(undefined);
   const [sortValue, setSortValue] = useState("Sort By");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
@@ -84,7 +91,7 @@ export const TransactionList = () => {
   if (!aTransactions || !dTransactions || !pTransactions) {
     return (
       <>
-        <p>Loading...</p>     
+        <p>Loading...</p>
       </>
     );
   }
@@ -139,12 +146,15 @@ export const TransactionList = () => {
                           {transaction.claim_description}
                         </Row>
                       </Container>
-                      <Button type ="button" onClick={()=>{}}>Edit</Button>
+                      
+                      <Button type="button" onClick={() => {
+                        navigate('/editTransaction', {state: {transaction}});
+                      }}>Edit</Button>        
 
-                      <Button type ="button" onClick={() => {
+                      <Button type="button" onClick={() => {
                         deleteTransaction(transaction.claim_number);
                       }}>Delete</Button>
-                    
+
                     </ListGroup.Item>
                   );
                 })}
@@ -251,36 +261,36 @@ export const TransactionList = () => {
     return (
       <>
         <ListGroup>
-        {transactions.map((transaction, index) => {
-                  return (
-                    <ListGroup.Item>
-                      <Container>
-                        <Row>
-                          <Col className="p-0">{transaction.order_date}</Col>
-                          <Col>
-                            <Badge bg="secondary" className="">
-                              {transaction.claim_status}
-                            </Badge>{" "}
-                          </Col>
-                        </Row>
+          {transactions.map((transaction, index) => {
+            return (
+              <ListGroup.Item>
+                <Container>
+                  <Row>
+                    <Col className="p-0">{transaction.order_date}</Col>
+                    <Col>
+                      <Badge bg="secondary" className="">
+                        {transaction.claim_status}
+                      </Badge>{" "}
+                    </Col>
+                  </Row>
 
-                        <Row>
-                          Amount Requested: ${transaction.amount_requested}
-                        </Row>
+                  <Row>
+                    Amount Requested: ${transaction.amount_requested}
+                  </Row>
 
-                        <Row>
-                          Amount Reimbursed: ${transaction.amount_reimbursed}
-                        </Row>
+                  <Row>
+                    Amount Reimbursed: ${transaction.amount_reimbursed}
+                  </Row>
 
-                        <Row>
-                          Claim Description:
-                          <br />
-                          {transaction.claim_description}
-                        </Row>
-                      </Container>
-                    </ListGroup.Item>
-                  );
-                })}
+                  <Row>
+                    Claim Description:
+                    <br />
+                    {transaction.claim_description}
+                  </Row>
+                </Container>
+              </ListGroup.Item>
+            );
+          })}
         </ListGroup>
 
       </>

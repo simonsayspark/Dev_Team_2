@@ -13,6 +13,7 @@ export const addTransaction = (transaction) =>
       });
   });
 
+
 export const getTransactions = () =>
   new Promise((resolve, reject) => {
     axios
@@ -60,4 +61,14 @@ export const deleteTransaction =(claim_number) => new Promise ((resolve, reject)
     });
 });
 
- 
+
+export const updateTransaction = (transaction) =>
+new Promise((resolve, reject) => {
+  axios
+    .put(`${apiEndpoint}/claims`, transaction)
+    .then((x) => resolve(x.data))
+    .catch((x) => {
+      alert(x);
+      reject(x);
+    });
+});
