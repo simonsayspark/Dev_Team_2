@@ -14,7 +14,7 @@ const updateClaim = async (employee_id, company_id, order_date, amount_requested
 }
 
 const updateClaimStatus = async (claim_number, claim_status) => {
-    const query = knex(CLAIMS_TABLE).where(claim_number).update({claim_status});
+    const query = knex(CLAIMS_TABLE).where({claim_number}).update({claim_status});
     const results = await query;
     return results;
 }

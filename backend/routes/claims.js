@@ -11,9 +11,13 @@ router.post('/', async (req, res, next) => {
 })
 
 router.put('/', async (req, res, next) => {
+    console.log("THE QUERY")
+    console.log(req.query)
     if(req.query.claim_number) {
         if(req.query.claim_status) {
-            const updateClaimStat = await req.models.claims.updateClaimStatus(claim_number, claim_status);
+            console.log("THE status")
+            console.log(req.query)
+            const updateClaimStat = await req.models.claims.updateClaimStatus(req.query.claim_number, req.query.claim_status);
             res.json(updateClaimStat)
         }
     } else {
