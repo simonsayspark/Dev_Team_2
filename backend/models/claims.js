@@ -70,6 +70,12 @@ const getSortedClaimsByStatus = async (employee_id, claim_status, sortBy) => {
     return results;
 }
 
+const getSortedClaimsByExpenseRange = async (company_id, claim_status, minrange, maxrange, sortBy) => {
+    const query = knex(CLAIMS_TABLE).where({company_id}).where({claim_status}).where(minrange < {amount_requested} < maxrange).orderBy(sortBy);
+    const results = await query;
+    return results;
+}
+
 module.exports = {
     createClaim,
     updateClaim,
@@ -81,5 +87,6 @@ module.exports = {
     DeleteClaimByNum,
     getClaimsByCompanyId,
     getClaimsOnDate,
-    getSortedClaimsByStatus
+    getSortedClaimsByStatus,
+    getSortedClaimsByExpenseRange
 }
