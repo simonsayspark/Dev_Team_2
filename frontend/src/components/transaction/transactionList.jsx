@@ -7,6 +7,7 @@ import {
   getTransactionByStatus,
   getSortTransactionByStatus,
   getTransactions,
+  updateTransactionStatus,
 } from "../../api/transactionApi";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -24,11 +25,12 @@ import Button from "react-bootstrap/esm/Button";
 export const TransactionList = () => {
   const currentUser = useContext(UserContext);
 
-  const [transactions, setTransactions] = useState(undefined)
+  const [transactions, setTransactions] = useState(undefined);
   const [aTransactions, setaTransactions] = useState(undefined);
   const [dTransactions, setdTransactions] = useState(undefined);
   const [pTransactions, setpTransactions] = useState(undefined);
   const [sortValue, setSortValue] = useState("Sort By");
+  const [status, setStatus] = useState(undefined);
 
   useEffect(() => {
     getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
@@ -42,7 +44,7 @@ export const TransactionList = () => {
     );
     getTransactions().then((x) => {
       setTransactions(x);
-    })
+    });
   }, []);
 
   useEffect(() => {
@@ -77,6 +79,18 @@ export const TransactionList = () => {
 
   const sortBy = (e) => {
     setSortValue(e);
+  };
+
+  const approve = (transactionNumber) => {
+    updateTransactionStatus(transactionNumber, "Accepted").then((x) =>
+      setStatus("Accepted")
+    );
+  };
+
+  const deny = (transactionNumber) => {
+    updateTransactionStatus(transactionNumber, "Denied").then((x) =>
+    setStatus("Denied")
+  );
   };
 
   //create 3 different api requests
@@ -243,40 +257,53 @@ export const TransactionList = () => {
     return (
       <>
         <ListGroup>
-        {transactions.map((transaction, index) => {
-                  return (
-                    <ListGroup.Item>
-                      <Container>
-                        <Row>
-                          <Col className="p-0">{transaction.order_date}</Col>
-                          <Col>
-                            <Badge bg="secondary" className="block mb-1">
-                              {transaction.claim_status}
-                            </Badge>{" "}
+          {transactions.map((transaction, index) => {
+            return (
+              <ListGroup.Item>
+                <Container>
+                  <Row>
+                    <Col className="p-0">{transaction.order_date}</Col>
+                    <Col>
+                      <Badge bg="secondary" className="block mb-1">
+                        {transaction.claim_status}
+                      </Badge>{" "}
+                    </Col>
+                  </Row>
 
-                          </Col>
-                        </Row>
+                  <Row>
+                    <Col className="p-0">
+                      Amount Requested: ${transaction.amount_requested}
+                    </Col>
+                    <Col>
+                      <Button
+                        className="btn-success btn-sm mb-1"
+                        onClick={() => {
+                          approve(transaction.claim_number);
+                        }}
+                      >
+                        Approve
+                      </Button>
+                    </Col>
+                  </Row>
 
-                        <Row>
-                          <Col className="p-0">Amount Requested: ${transaction.amount_requested}</Col>
-                          <Col>
-                            <Button className="btn-success btn-sm mb-1">Approve</Button>
-                          </Col>
-                        </Row>
-
-                        <Row>
-                          <Col className="p-0">Claim Description:<br />{transaction.claim_description}
-                          </Col>
-                          <Col>
-                            <Button className="btn-danger btn-sm">Deny</Button>
-                          </Col>
-                        </Row>
-                      </Container>
-                    </ListGroup.Item>
-                  );
-                })}
+                  <Row>
+                    <Col className="p-0">
+                      Claim Description:
+                      <br />
+                      {transaction.claim_description}
+                    </Col>
+                    <Col>
+                      <Button className="btn-danger btn-sm"
+                      onClick={() => {
+                        deny(transaction.claim_number)
+                      }}>Deny</Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </ListGroup.Item>
+            );
+          })}
         </ListGroup>
-
       </>
     );
   }
