@@ -19,9 +19,9 @@ const employeeValues = {
   name: "",
   email: "",
   password: "",
+  confirmPassword: "",
   role: "",
   company_id: 0
-
 };
 export const SignupPage = () => {
   const [values, setValues] = useState(employeeValues);
@@ -32,16 +32,90 @@ export const SignupPage = () => {
   const [error, setError] = useState("");
   const [ceoCompany, setCeoCompany] = useState("");
 
+  const [passwordValid, setpasswordValid] = useState(false);
+  const [checkLength, setcheckLength] = useState(false);
+  const [checkCapital, setcheckCaptial] = useState(false);
+  const [checkSymbol, setcheckSymbol] = useState(false);
+  const [checkLowerCase, setCheckLowerCase] = useState(false);
+  const [checkDigit, setcheckDigit] =useState(false);
+  const [passwordsMatch, setPasswordsMatch] = useState(false);
+
+  
+
   useEffect(() => {
     getCompanies().then((x) => setCompanies(x));
   }, []);
 
+  // useEffect(() => {
+    
+  // }, [values.password, checkPassword]);
+
   useEffect(() => {
+    let valid = true
+
+    if (values.password.length >= 8) {
+      setcheckLength(true);
+    } else {
+      setcheckLength(false);
+      valid = false;
+    }
+
+    if (/[A-Z]/.test(values.password) ) {
+      setcheckCaptial(true);
+    } else {
+      setcheckCaptial(false);
+      valid = false;
+    }
+
+    if (/[a-z]/.test(values.password)) {
+      setCheckLowerCase(true);
+    } else {
+      setCheckLowerCase(false);
+      valid = false;
+    }
+
+    if (/[0-9]/.test(values.password)) {
+      setcheckDigit(true);
+    } else {
+      setcheckDigit(false);
+      valid = false;
+    }
+
+    if (/[!@#$%^&]/.test(values.password)) {
+      setcheckSymbol(true);
+    } else {
+      setcheckSymbol(false);
+      valid = false;
+    }
+
+    if (values.password == values.confirmPassword) {
+      console.log('Passwords Match!')
+      setPasswordsMatch(true);
+    } else {
+      console.log('Passwords Do Not Match!')
+      setPasswordsMatch(false);
+      valid = false;
+    }
+
+    if (valid) {
+      setpasswordValid(true);
+    } else {
+      setpasswordValid(false);
+    }
+
+    console.log('Values:')
+    console.log(values)
+    console.log('Passwords Match:')
+    console.log(passwordsMatch)
+    console.log('Password Valid:')
+    console.log(passwordValid)
+
+
     if (values.name && values.email
-      && values.password && values.role && values.company_id) {
+      && values.password && values.role && values.company_id && (values.password == values.confirmPassword) && valid) {
       setDisableButton(false);
-    } 
-    else if(values.role == "CEO" && values.name && values.email && values.password && ceoCompany){
+    }
+    else if (values.role == "CEO" && values.name && values.email && values.password && ceoCompany && values.confirmPassword && (values.password == values.confirmPassword) && valid) {
 
       setDisableButton(false);
 
@@ -50,7 +124,7 @@ export const SignupPage = () => {
     else {
       setDisableButton(true);
     }
-  }, [values, ceoCompany ])
+  }, [values, ceoCompany])
 
 
   const navigate = useNavigate();
@@ -62,7 +136,7 @@ export const SignupPage = () => {
 
   const handleCompanySelect = (e) => {
     setCompanyValue(e);
-
+ 
     let id = "";
     companies.forEach((company) => {
       if (company.company_name == e) {
@@ -79,6 +153,7 @@ export const SignupPage = () => {
         name: values.name,
         email: values.email,
         password: values.password,
+
       };
 
       console.log('Adding CEO');
@@ -98,7 +173,14 @@ export const SignupPage = () => {
       );
     } else { //Employee or Financial Manager
       console.log('Adding Employee/Financial Manager');
-      addEmployee(values).then((e) => {
+      const databaseValues = {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        role: values.role,
+        company_id: values.company_id     
+      }
+      addEmployee(databaseValues).then((e) => {
         if (!e['message']) {
           navigate("/");
         } else {
@@ -160,17 +242,105 @@ export const SignupPage = () => {
                 onChange={(delta) =>
                   setValues({ ...values, password: delta.target.value })
                 }
-                pattern=".{8,}"
-                title="Password must be at least 8 characters"
-                regex="[]"
-              />
-              <Form.Control.Feedback type="invalid">
-                Password must be at least 8 characters.
-              </Form.Control.Feedback>
 
-              <Form.Control.Feedback>
-                Password must be at least 8 characters.
-              </Form.Control.Feedback>
+              />
+
+
+
+            </Form.Group>
+
+            <Form.Group controlId="confirmPassword">
+
+              <Form.Label>Check password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Re-enter password"
+                value={values.confirmPassword}
+                onChange={(delta) =>
+                  setValues({ ...values, confirmPassword: delta.target.value })
+                }
+              />
+
+    
+
+              {values.password &&
+
+                <Container className=" text-muted" >
+
+
+                  <Row className="text-center">
+                    {checkLength === true ? 
+                    <span className="text-center text-success">
+                      &#x2713; At least 8 characters
+                    </span>
+                    : 
+                    <span className="text-center text-danger">
+                      &#x2715; At least 8 characters
+                    </span>}
+                    
+                  </Row>
+                  <Row>
+                  {checkCapital === true ? 
+                    <span className="text-center text-success">
+                      &#x2713; Have a uppercase letter
+                    </span>
+                    : 
+                    <span className="text-center text-danger">
+                      &#x2715; Have a uppercase letter
+                    </span>}
+                  </Row>
+                  <Row>
+                  {checkLowerCase === true ? 
+                    <span className="text-center text-success">
+                      &#x2713; Have a lower letter
+                    </span>
+                    : 
+                    <span className="text-center text-danger">
+                      &#x2715; Have a lower letter
+                    </span>}
+                  </Row>
+                  <Row>
+                  {checkSymbol === true ? 
+                    <span className="text-center text-success">
+                      &#x2713; Have a symbol
+                    </span>
+                    : 
+                    <span className="text-center text-danger">
+                      &#x2715; Have a symbol
+                    </span>}
+
+                  </Row>
+                  <Row>
+                  {checkDigit === true ? 
+                    <span className="text-center text-success">
+                      &#x2713; Have a digit
+                    </span>
+                    : 
+                    <span className="text-center text-danger">
+                      &#x2715; Have a digit
+                    </span>}
+                  </Row>
+                  <Row>
+                  <Row>
+                  {passwordsMatch ? 
+                    <span className="text-center text-success">
+                      &#x2713; Passwords must match
+                    </span>
+                    : 
+                    <span className="text-center text-danger">
+                      &#x2715; Passwords must match
+                    </span>}
+                  </Row>
+                 
+
+                  </Row>
+
+                  
+                </Container>
+
+              }
+
+
 
             </Form.Group>
 
@@ -191,8 +361,8 @@ export const SignupPage = () => {
             </Dropdown>
 
 
-            
-            {values.role && values.role!=="CEO" && 
+
+            {values.role && values.role !== "CEO" &&
               <Dropdown
                 className="mt-3"
                 onSelect={handleCompanySelect}>
@@ -217,22 +387,22 @@ export const SignupPage = () => {
             }
 
 
-            {values.role =="CEO" && 
-             <Form.Group>
-              <Form.Label>
+            {values.role == "CEO" &&
+              <Form.Group>
+                <Form.Label>
 
-              Company Name
+                  Company Name
 
-              </Form.Label>
-              <Form.Control 
-                          placeholder="Enter company name"
-                          value={ceoCompany}
-                          onChange={(delta) => {
-                            setCeoCompany(delta.target.value );
-                          }}> 
-                          
-              </Form.Control>
-             </Form.Group>
+                </Form.Label>
+                <Form.Control
+                  placeholder="Enter company name"
+                  value={ceoCompany}
+                  onChange={(delta) => {
+                    setCeoCompany(delta.target.value);
+                  }}>
+
+                </Form.Control>
+              </Form.Group>
             }
             <Button
               className="col-12 mt-3"
@@ -258,7 +428,7 @@ export const SignupPage = () => {
             </Container>
           </Form>
         </div>
-      </Container>
+      </Container >
     </>
   );
 };

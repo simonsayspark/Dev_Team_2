@@ -282,34 +282,34 @@ export const LandingPage = () => {
                 </Carousel.Caption>
               </Carousel.Item>
             </Carousel>
-            </Col>
-            </Row>
-          </Container>
+          </Col>
+        </Row>
+      </Container>
 
-          <div id="contact"></div>
-          <Container
-            ref={contactUsRef}
-            className={`mt-5 p-5 ${aboutLoaded ? "unhideIt" : "hideIt"}`}
-          >
-            <Row className="bg-light">
-              <Col className="display-5 text-center mb-3">Contact Us</Col>
+      <div id="contact"></div>
+      <Container
+        ref={contactUsRef}
+        className={`mt-5 p-5 ${aboutLoaded ? "unhideIt" : "hideIt"}`}
+      >
+        <Row className="bg-light">
+          <Col className="display-5 text-center mb-3">Contact Us</Col>
 
-              <div className="ms-3">
-                <p>
-                  <strong>Name:</strong> DoughBack
-                </p>
-                <p>
-                  <strong>Number:</strong> 123-456-789
-                </p>
-                <p>
-                  <strong>Email:</strong> DoughBack@gmail.com
-                </p>
-                <p>
-                  <strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205
-                </p>
-              </div>
-            </Row>
-          </Container>
-        </>
-        );
+          <div className="ms-3">
+            <p>
+              <strong>Name:</strong> DoughBack
+            </p>
+            <p>
+              <strong>Number:</strong> 123-456-789
+            </p>
+            <p>
+              <strong>Email:</strong> DoughBack@gmail.com
+            </p>
+            <p>
+              <strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205
+            </p>
+          </div>
+        </Row>
+      </Container>
+    </>
+  );
 };
