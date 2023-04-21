@@ -6,6 +6,7 @@ import { LoginPage } from './LoginPage';
 import { HomePage } from './HomePage';
 import { SignupPage } from './SignupPage';
 import { AddTransaction } from './components/transaction/addTransaction';
+import { EditTransaction } from './components/transaction/editTransaction';
 import { ViewListTransaction } from './components/transaction/viewListTransaction';
 
 
@@ -45,11 +46,12 @@ export const App = () => {
                     <Route path='/home' element={ <HomePage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/signup' element={ <SignupPage/> }/>
                     <Route path='/addTransaction' element={ <AddTransaction/> }/>
+                    <Route path='/editTransaction' element={ <EditTransaction/>}/>
                     <Route path='/viewTransactions' element= {<ViewListTransaction/>}/>
                 </Routes>
             </Router>
         </UserContext.Provider>
     )
-};
+}
 
 export default App;

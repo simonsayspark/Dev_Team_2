@@ -8,6 +8,8 @@ import {
   getSortTransactionByStatus,
   getTransactions,
   updateTransactionStatus,
+  deleteTransaction,
+  updateTransaction
 } from "../../api/transactionApi";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -19,10 +21,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/esm/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { EditTransaction } from "./editTransaction";
 
 //ONLY for pending, allow for edits of the transaction details
 
 export const TransactionList = () => {
+
+
   const currentUser = useContext(UserContext);
 
   const [transactions, setTransactions] = useState(undefined);
@@ -31,6 +37,8 @@ export const TransactionList = () => {
   const [pTransactions, setpTransactions] = useState(undefined);
   const [sortValue, setSortValue] = useState("Sort By");
   const [status, setStatus] = useState(undefined);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
@@ -75,7 +83,7 @@ export const TransactionList = () => {
         setpTransactions(x)
       );
     }
-  }, [sortValue]);
+  }, [sortValue, pTransactions]);
 
   const sortBy = (e) => {
     setSortValue(e);
@@ -152,6 +160,15 @@ export const TransactionList = () => {
                           {transaction.claim_description}
                         </Row>
                       </Container>
+                      
+                      <Button type="button" onClick={() => {
+                        navigate('/editTransaction', {state: {transaction}});
+                      }}>Edit</Button>        
+
+                      <Button type="button" onClick={() => {
+                        deleteTransaction(transaction.claim_number);
+                      }}>Delete</Button>
+
                     </ListGroup.Item>
                   );
                 })}
@@ -241,6 +258,7 @@ export const TransactionList = () => {
                           <br />
                           {transaction.ceo_comment}
                         </Row>
+
                       </Container>
                     </ListGroup.Item>
                   );
