@@ -47,3 +47,17 @@ export const getSortTransactionByStatus =(employee_id, status, sortBy) => new Pr
         reject(x);
     });
 });
+
+ 
+export const deleteTransaction =(claim_number) => new Promise ((resolve, reject) =>{
+
+    axios.delete(`${apiEndpoint}/claims?claim_number=${claim_number}`)
+    .then(x => resolve(x.data))
+    .catch(x=>{
+
+        alert(x);
+        reject(x);
+    });
+});
+
+ 

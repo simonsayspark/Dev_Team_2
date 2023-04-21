@@ -7,6 +7,7 @@ import {
   getTransactionByStatus,
   getSortTransactionByStatus,
   getTransactions,
+  deleteTransaction
 } from "../../api/transactionApi";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -73,7 +74,7 @@ export const TransactionList = () => {
         setpTransactions(x)
       );
     }
-  }, [sortValue]);
+  }, [sortValue, pTransactions]);
 
   const sortBy = (e) => {
     setSortValue(e);
@@ -83,7 +84,7 @@ export const TransactionList = () => {
   if (!aTransactions || !dTransactions || !pTransactions) {
     return (
       <>
-        <p>Loading...</p>
+        <p>Loading...</p>     
       </>
     );
   }
@@ -138,6 +139,12 @@ export const TransactionList = () => {
                           {transaction.claim_description}
                         </Row>
                       </Container>
+                      <Button type ="button" onClick={()=>{}}>Edit</Button>
+
+                      <Button type ="button" onClick={() => {
+                        deleteTransaction(transaction.claim_number);
+                      }}>Delete</Button>
+                    
                     </ListGroup.Item>
                   );
                 })}
@@ -227,6 +234,7 @@ export const TransactionList = () => {
                           <br />
                           {transaction.ceo_comment}
                         </Row>
+
                       </Container>
                     </ListGroup.Item>
                   );
