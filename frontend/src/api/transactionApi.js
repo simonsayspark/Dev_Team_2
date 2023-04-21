@@ -54,9 +54,7 @@ export const getSortTransactionByStatus = (employee_id, status, sortBy) =>
 export const updateTransactionStatus = (transactionNumber,status) =>
   new Promise((resolve, reject) => {
     axios
-      .put(`${apiEndpoint}/claims?claim_number=${transactionNumber}`,{
-        claim_status: `${status}`
-      })
+      .put(`${apiEndpoint}/claims?claim_number=${transactionNumber}&claim_status=${status}`)
       .then((x) => resolve(x.data))
       .catch((x) => {
         alert(x);
