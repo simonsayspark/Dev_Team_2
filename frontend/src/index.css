@@ -59,3 +59,15 @@ code {
   padding-top: 10rem;
   padding-bottom: 19rem;
 }
+
+.pos-relative {
+  position: relative;
+}
+
+.pos-absolute {
+  position: absolute;
+  top: 0;
+  margin-left: 20rem;
+  width: 100%;
+  
+}

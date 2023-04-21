@@ -93,15 +93,17 @@ export const HomePage = ({ setCurrentUser }) => {
               </NavLink>
             </Navbar.Brand>
             <Navbar.Text>
-              <Link
-                to={"/"}
-                className="nav-link nav-font text-white mx-5"
-                onClick={() => {
-                  setCurrentUser(undefined);
-                }}
-              >
-                Log out
-              </Link>
+              <div className="nav-font">
+                <NavLink
+                  to={"/"}
+                  className="nav-link text-white mx-5"
+                  onClick={() => {
+                    setCurrentUser(undefined);
+                  }}
+                >
+                  Log out
+                </NavLink>
+              </div>
             </Navbar.Text>
           </Container>
         </Navbar>

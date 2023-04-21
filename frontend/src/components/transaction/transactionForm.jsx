@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import { addTransaction } from "../../api/transactionApi";
 import Container from "react-bootstrap/esm/Container";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 //Dont allow for empty submits (change required)
@@ -124,6 +125,12 @@ export const TransactionForm = () => {
           </div>
         </div>
       </Container>
+
+      <Container className="mt-3">
+          <NavLink to={"/home"} className="d-flex mb-3">
+            <button className="btn btn-secondary">Back to Home</button>
+          </NavLink>
+        </Container>
     </>
   );
 };

@@ -88,31 +88,17 @@ export const TransactionList = () => {
     );
   }
 
-  if (currentUser.role === "Employee")
-    return (
-      <>
-        <Dropdown
-          className="mt-2"
-          onSelect={(e) => {
-            setSortValue(e);
-          }}
-        >
-          <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
-            {sortValue}
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="col-12">
-            <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
-            <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
-            <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-
+  return (
+    <>
+      <div className="pos-relative">
         <Tabs
           defaultActiveKey="profile"
           id="uncontrolled-tab-example"
           className="mb-3"
         >
+
           <Tab eventKey="pending" title="Pending">
+
             {pTransactions.length !== 0 ? (
               <ListGroup>
                 {pTransactions.map((transaction, index) => {
@@ -131,12 +117,13 @@ export const TransactionList = () => {
                         <Row>
                           Amount Requested: ${transaction.amount_requested}
                         </Row>
-
                         <Row>
-                          Claim Description:
-                          <br />
-                          {transaction.claim_description}
+                          Category: {transaction.category}
                         </Row>
+                        <Row>
+                          <p className="px-0">Claim Description: {transaction.claim_description}</p>
+                        </Row>
+
                       </Container>
                     </ListGroup.Item>
                   );
@@ -237,45 +224,29 @@ export const TransactionList = () => {
             )}
           </Tab>
         </Tabs>
-      </>
-    );
-  if (currentUser.ceo_id) {
-    return (
-      <>
-        <ListGroup>
-        {transactions.map((transaction, index) => {
-                  return (
-                    <ListGroup.Item>
-                      <Container>
-                        <Row>
-                          <Col className="p-0">{transaction.order_date}</Col>
-                          <Col>
-                            <Badge bg="secondary" className="">
-                              {transaction.claim_status}
-                            </Badge>{" "}
-                          </Col>
-                        </Row>
 
-                        <Row>
-                          Amount Requested: ${transaction.amount_requested}
-                        </Row>
+      </div>
 
-                        <Row>
-                          Amount Reimbursed: ${transaction.amount_reimbursed}
-                        </Row>
+      <div className="pos-absolute">
+        <Dropdown
+          className=""
+          onSelect={(e) => {
+            setSortValue(e);
+          }}>
 
-                        <Row>
-                          Claim Description:
-                          <br />
-                          {transaction.claim_description}
-                        </Row>
-                      </Container>
-                    </ListGroup.Item>
-                  );
-                })}
-        </ListGroup>
+          <Dropdown.Toggle className="col-1" variant="info" id="dropdown-menu">
+            {sortValue}
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="col-1">
+            <Dropdown.Item eventKey='Date'>Date</Dropdown.Item>
+            <Dropdown.Item eventKey='Amount'>Amount</Dropdown.Item>
+            <Dropdown.Item eventKey='Category'>Category</Dropdown.Item>
+          </Dropdown.Menu>
 
-      </>
-    );
-  }
+        </Dropdown>
+      </div>
+
+    
+    </>
+  );
 };
