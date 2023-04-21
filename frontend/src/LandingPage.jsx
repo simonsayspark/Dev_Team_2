@@ -82,7 +82,7 @@ export const LandingPage = () => {
       <Navbar sticky="top" className="color-nav" expand="lg" collapseOnSelect>
         <Container fluid className="m-0">
           <Navbar.Brand className="d-flex mr-auto">
-            <img width="300px" height="auto" src="/logo_text.png" alt="logo" />
+            <a href="/"><img width="300px" height="auto" src="/logo_text.png" alt="logo" /></a>
           </Navbar.Brand>
 
           <NavbarToggle />

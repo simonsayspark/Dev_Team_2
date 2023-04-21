@@ -41,6 +41,7 @@ create table claims ( --look for this --
     foreign key(company_id) references companies(company_id)
 
 );
+
 create table favoriteClaims (
                      employee_id int ,
                      claim_number int,

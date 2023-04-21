@@ -251,6 +251,25 @@ export const TransactionList = () => {
             )}
           </Tab>
         </Tabs>
+
+        <div className="pos-absolute">
+        <Dropdown
+          className=""
+          onSelect={(e) => {
+            setSortValue(e);
+          }}>
+
+          <Dropdown.Toggle className="col-1" variant="info" id="dropdown-menu">
+            {sortValue}
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="col-1">
+            <Dropdown.Item eventKey='Date'>Date</Dropdown.Item>
+            <Dropdown.Item eventKey='Amount'>Amount</Dropdown.Item>
+            <Dropdown.Item eventKey='Category'>Category</Dropdown.Item>
+          </Dropdown.Menu>
+
+        </Dropdown>
+      </div>
       </>
     );
   if (currentUser.ceo_id) {
