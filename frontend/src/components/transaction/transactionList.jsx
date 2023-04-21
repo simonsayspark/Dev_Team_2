@@ -7,6 +7,7 @@ import {
   getTransactionByStatus,
   getSortTransactionByStatus,
   getTransactions,
+  updateTransactionStatus,
 } from "../../api/transactionApi";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -24,11 +25,12 @@ import Button from "react-bootstrap/esm/Button";
 export const TransactionList = () => {
   const currentUser = useContext(UserContext);
 
-  const [transactions, setTransactions] = useState(undefined)
+  const [transactions, setTransactions] = useState(undefined);
   const [aTransactions, setaTransactions] = useState(undefined);
   const [dTransactions, setdTransactions] = useState(undefined);
   const [pTransactions, setpTransactions] = useState(undefined);
   const [sortValue, setSortValue] = useState("Sort By");
+  const [status, setStatus] = useState(undefined);
 
   useEffect(() => {
     getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
@@ -42,7 +44,7 @@ export const TransactionList = () => {
     );
     getTransactions().then((x) => {
       setTransactions(x);
-    })
+    });
   }, []);
 
   useEffect(() => {
@@ -79,6 +81,18 @@ export const TransactionList = () => {
     setSortValue(e);
   };
 
+  const approve = (transactionNumber) => {
+    updateTransactionStatus(transactionNumber, "Accepted").then((x) =>
+      setStatus("Accepted")
+    );
+  };
+
+  const deny = (transactionNumber) => {
+    updateTransactionStatus(transactionNumber, "Denied").then((x) =>
+    setStatus("Denied")
+  );
+  };
+
   //create 3 different api requests
   if (!aTransactions || !dTransactions || !pTransactions) {
     return (
@@ -88,17 +102,31 @@ export const TransactionList = () => {
     );
   }
 
-  return (
-    <>
-      <div className="pos-relative">
+  if (currentUser.role === "Employee")
+    return (
+      <>
+        <Dropdown
+          className="mt-2"
+          onSelect={(e) => {
+            setSortValue(e);
+          }}
+        >
+          <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
+            {sortValue}
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="col-12">
+            <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
+            <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
+            <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+
         <Tabs
           defaultActiveKey="profile"
           id="uncontrolled-tab-example"
           className="mb-3"
         >
-
           <Tab eventKey="pending" title="Pending">
-
             {pTransactions.length !== 0 ? (
               <ListGroup>
                 {pTransactions.map((transaction, index) => {
@@ -117,13 +145,12 @@ export const TransactionList = () => {
                         <Row>
                           Amount Requested: ${transaction.amount_requested}
                         </Row>
-                        <Row>
-                          Category: {transaction.category}
-                        </Row>
-                        <Row>
-                          <p className="px-0">Claim Description: {transaction.claim_description}</p>
-                        </Row>
 
+                        <Row>
+                          Claim Description:
+                          <br />
+                          {transaction.claim_description}
+                        </Row>
                       </Container>
                     </ListGroup.Item>
                   );
@@ -225,9 +252,7 @@ export const TransactionList = () => {
           </Tab>
         </Tabs>
 
-      </div>
-
-      <div className="pos-absolute">
+        <div className="pos-absolute">
         <Dropdown
           className=""
           onSelect={(e) => {
@@ -245,8 +270,60 @@ export const TransactionList = () => {
 
         </Dropdown>
       </div>
+      </>
+    );
+  if (currentUser.ceo_id) {
+    return (
+      <>
+        <ListGroup>
+          {transactions.map((transaction, index) => {
+            return (
+              <ListGroup.Item>
+                <Container>
+                  <Row>
+                    <Col className="p-0">{transaction.order_date}</Col>
+                    <Col>
+                      <Badge bg="secondary" className="block mb-1">
+                        {transaction.claim_status}
+                      </Badge>{" "}
+                    </Col>
+                  </Row>
 
-    
-    </>
-  );
+                  <Row>
+                    <Col className="p-0">
+                      Amount Requested: ${transaction.amount_requested}
+                    </Col>
+                    <Col>
+                      <Button
+                        className="btn-success btn-sm mb-1"
+                        onClick={() => {
+                          approve(transaction.claim_number);
+                        }}
+                      >
+                        Approve
+                      </Button>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col className="p-0">
+                      Claim Description:
+                      <br />
+                      {transaction.claim_description}
+                    </Col>
+                    <Col>
+                      <Button className="btn-danger btn-sm"
+                      onClick={() => {
+                        deny(transaction.claim_number)
+                      }}>Deny</Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </ListGroup.Item>
+            );
+          })}
+        </ListGroup>
+      </>
+    );
+  }
 };
