@@ -56,11 +56,7 @@ export const LoginPage = ({ setCurrentUser }) => {
               );
             } else if (bcrypt.compareSync(values.password, y[0].cpassword)) {
               setCurrentUser(y[0]);
-              if(values.email == 'brucewayne@gmail.com') {
-                navigate("/batcave");
-              } else {
-                navigate("/home");
-              }
+              navigate("/home");
             } else {
               //if account with given email exists, but password is incorrect
               setError(

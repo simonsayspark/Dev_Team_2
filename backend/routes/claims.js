@@ -10,6 +10,13 @@ router.post('/', async (req, res, next) => {
     next();
 })
 
+router.put('/', async (req, res, next) => {
+    const { employee_id, company_id, order_date, amount_requested, category, claim_description} = req.body;
+    const updateClaim = await req.models.claims.updateClaim(employee_id, company_id, order_date, amount_requested, category, claim_description);
+    res.status(201).json(updateClaim);    
+    next();
+})
+
 router.get('/', async (req, res, next) => {
     if (req.query.claim_number) { //Getting claims by claim_number
         const claimByNumber = await req.models.claims.getClaimByNumber(req.query.claim_number);
@@ -41,9 +48,19 @@ router.get('/', async (req, res, next) => {
             res.json(claimByEmployee);
         }
         next();
-    } else if (req.query.company_id) {
-        const claimsByCompany = await req.models.claims.getClaimsByCompanyId(req.query.company_id);
-        res.json(claimsByCompany);
+    } else if (req.query.company_id) { //Getting claims by company_id
+        if (req.query.claim_status) { //Getting claims by company_id and claim_status
+            if (req.query.sortBy) { //If sorting by something
+                const sortBy = req.query.sortBy;
+                if (sortBy == 'Amount') {
+                    const sortedClaimsByRange = await req.models.claims.getSortedClaimsByExpenseRange(req.query.company_id, req.query.claim_status, min_range, max_range, 'amount_requested');
+                    res.json(sortedClaimsByRange);
+                }
+            }
+        } else { //Getting claims only by company_id
+            const claimsByCompany = await req.models.claims.getClaimsByCompanyId(req.query.company_id);
+            res.json(claimsByCompany);
+        }
         next();
     } else if (req.query.order_date) {
         const claimsOnDate = await req.models.claims.getClaimsOnDate(req.query.order_date);
