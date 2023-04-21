@@ -78,8 +78,6 @@ export const TransactionList = () => {
 
   return (
     <>
-      
-
       <div className="pos-relative">
         <Tabs
           defaultActiveKey="profile"
@@ -236,46 +234,7 @@ export const TransactionList = () => {
         </Dropdown>
       </div>
 
-      {/* {transactions ? transactions.map((transaction, index) => {
-                return (
-                    <ListGroup key={index}>
-
-                        <ListGroup.Item>
-                            {transaction.order_date}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            {transaction.amount_requested}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            {transaction.amount_reimbursed}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            {transaction.claim_description}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            {transaction.claim_status}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            {transaction.ceo_comment}
-                        </ListGroup.Item>
-
-                    </ListGroup>
-                );
-
-            }
-
-
-            ) : (
-                <p>No available transaction</p>
-            )
-
-
-            } */}
+    
     </>
   );
 };
