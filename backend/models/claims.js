@@ -13,6 +13,12 @@ const updateClaim = async (employee_id, company_id, order_date, amount_requested
     return results;
 }
 
+const updateClaimStatus = async (claim_number, claim_status) => {
+    const query = knex(CLAIMS_TABLE).where(claim_number).update({claim_status});
+    const results = await query;
+    return results;
+}
+
 const getAllClaims = async () => {
     const query = knex(CLAIMS_TABLE);
     const results = await query;
@@ -79,6 +85,7 @@ const getSortedClaimsByExpenseRange = async (company_id, claim_status, minrange,
 module.exports = {
     createClaim,
     updateClaim,
+    updateClaimStatus,
     getAllClaims,
     getClaimByNumber,
     getClaimsByEmployee,
