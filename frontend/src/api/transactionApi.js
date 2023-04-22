@@ -13,6 +13,7 @@ export const addTransaction = (transaction) =>
       });
   });
 
+
 export const getTransactionsByCompany = (company_id) =>
   new Promise((resolve, reject) => {
     axios
@@ -75,3 +76,15 @@ new Promise((resolve, reject) => {
       reject(x);
     });
 });
+ 
+export const deleteTransaction =(claim_number) => new Promise ((resolve, reject) =>{
+
+    axios.delete(`${apiEndpoint}/claims?claim_number=${claim_number}`)
+    .then(x => resolve(x.data))
+    .catch(x=>{
+
+        alert(x);
+        reject(x);
+    });
+});
+
