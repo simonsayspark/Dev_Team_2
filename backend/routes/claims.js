@@ -24,6 +24,11 @@ router.put('/', async (req, res, next) => {
             console.log(req.query)
             const updateClaimCom = await req.models.claims.updateClaimComment(req.query.claim_number, req.query.ceo_comment);
             res.json(updateClaimCom);
+        } else if(req.query.amount_reimbursed){
+            console.log("THE amount")
+            console.log(req.query)
+            const updateClaimReim = await req.models.claims.updateClaimAmount(req.query.claim_number, req.query.amount_reimbursed);
+            res.json(updateClaimReim);
         }
     else {
         const { employee_id, company_id, order_date, amount_requested, category, claim_description} = req.body;

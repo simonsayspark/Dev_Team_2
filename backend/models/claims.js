@@ -25,6 +25,12 @@ const updateClaimStatus = async (claim_number, claim_status) => {
     return results;
 }
 
+const updateClaimAmount = async (claim_number, amount_reimbursed) => {
+    const query = knex(CLAIMS_TABLE).where({claim_number}).update({amount_reimbursed});
+    const results = await query;
+    return results;
+}
+
 const getAllClaims = async () => {
     const query = knex(CLAIMS_TABLE);
     const results = await query;
@@ -102,5 +108,6 @@ module.exports = {
     getClaimsByCompanyId,
     getClaimsOnDate,
     getSortedClaimsByStatus,
-    getSortedClaimsByExpenseRange
+    getSortedClaimsByExpenseRange,
+    updateClaimAmount
 }

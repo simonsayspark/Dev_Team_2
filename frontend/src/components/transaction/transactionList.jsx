@@ -8,6 +8,7 @@ import {
   updateTransactionComment,
   getTransactionsByCompany,
   deleteTransaction,
+  updateTransactionReimbursed,
 } from "../../api/transactionApi";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -26,8 +27,6 @@ import { EditTransaction } from "./editTransaction";
 //ONLY for pending, allow for edits of the transaction details
 
 export const TransactionList = () => {
-
-
   const currentUser = useContext(UserContext);
 
   const [transactions, setTransactions] = useState(undefined);
@@ -36,6 +35,8 @@ export const TransactionList = () => {
   const [pTransactions, setpTransactions] = useState(undefined);
   const [sortValue, setSortValue] = useState("Sort By");
   const [comment, setComment] = useState("");
+  const [status, setStatus] = useState();
+  const [reimburseAmount, setReimburseAmount] = useState();
 
   const navigate = useNavigate();
 
@@ -52,7 +53,7 @@ export const TransactionList = () => {
     getTransactionsByCompany(currentUser.company_id).then((x) => {
       setTransactions(x);
     });
-  }, []);
+  }, [status]);
 
   useEffect(() => {
     if (sortValue != "Sort By") {
@@ -82,14 +83,20 @@ export const TransactionList = () => {
         setpTransactions(x)
       );
     }
-  }, [sortValue, pTransactions]);
+  }, [sortValue]);
 
   const sortBy = (e) => {
     setSortValue(e);
   };
 
+  const reimburse = (transactionNumber) => {
+    console.log(reimburse);
+    updateTransactionReimbursed(transactionNumber, reimburseAmount).then((x) =>
+      console.log("Success")
+    );
+  };
+
   const addComment = (transactionNumber) => {
-    console.log(comment);
     updateTransactionComment(transactionNumber, comment).then((x) =>
       setComment(comment)
     );
@@ -97,26 +104,24 @@ export const TransactionList = () => {
 
   const approve = (transactionNumber) => {
     updateTransactionStatus(transactionNumber, "Accepted").then((x) =>
-      console.log("Success")
+      setStatus("Accepted")
     );
   };
 
   const deny = (transactionNumber) => {
     updateTransactionStatus(transactionNumber, "Denied").then((x) =>
-      console.log("Success")
+      setStatus("Denied")
     );
   };
 
   //create 3 different api requests
-  if (!aTransactions || !dTransactions || !pTransactions) {
+  if (!aTransactions || !dTransactions || !pTransactions || !transactions) {
     return (
       <>
         <p>Loading...</p>
       </>
     );
   }
-
-
 
   if (currentUser.role === "Employee")
     return (
@@ -174,15 +179,26 @@ export const TransactionList = () => {
                           {transaction.claim_description}
                         </Row>
                       </Container>
-                      
-                      <Button type="button" onClick={() => {
-                        navigate('/editTransaction', {state: {transaction}});
-                      }}>Edit</Button>        
 
-                      <Button type="button" onClick={() => {
-                        deleteTransaction(transaction.claim_number);
-                      }}>Delete</Button>
+                      <Button
+                        type="button"
+                        onClick={() => {
+                          navigate("/editTransaction", {
+                            state: { transaction },
+                          });
+                        }}
+                      >
+                        Edit
+                      </Button>
 
+                      <Button
+                        type="button"
+                        onClick={() => {
+                          deleteTransaction(transaction.claim_number);
+                        }}
+                      >
+                        Delete
+                      </Button>
                     </ListGroup.Item>
                   );
                 })}
@@ -272,7 +288,6 @@ export const TransactionList = () => {
                           <br />
                           {transaction.ceo_comment}
                         </Row>
-
                       </Container>
                     </ListGroup.Item>
                   );
@@ -283,11 +298,10 @@ export const TransactionList = () => {
             )}
           </Tab>
         </Tabs>
-
-
       </>
     );
   if (currentUser.ceo_id || currentUser.role === "Financial Manager") {
+    console.log(status);
     return (
       <>
         <ListGroup>
@@ -298,9 +312,21 @@ export const TransactionList = () => {
                   <Row>
                     <Col className="p-0">{transaction.order_date}</Col>
                     <Col>
-                      <Badge bg="secondary" className="block mb-1">
-                        {transaction.claim_status}
-                      </Badge>{" "}
+                      {transaction.claim_status === "Pending" && (
+                        <Badge bg="secondary" className="block mb-1">
+                          {transaction.claim_status}
+                        </Badge>
+                      )}
+                      {transaction.claim_status === "Accepted" && (
+                        <Badge bg="success" className="block mb-1">
+                          {transaction.claim_status}
+                        </Badge>
+                      )}
+                      {transaction.claim_status === "Denied" && (
+                        <Badge bg="danger" className="block mb-1">
+                          {transaction.claim_status}
+                        </Badge>
+                      )}
                     </Col>
                     <Col>
                       <Form.Group controlId="comment">
@@ -339,6 +365,33 @@ export const TransactionList = () => {
                       >
                         Approve
                       </Button>
+                      {transaction.claim_status === "Accepted" && (
+                        <div>
+                          <Form.Group
+                            className="col-3"
+                            controlId="amount_requested"
+                          >
+                            <Form.Label>How much to Reimburse</Form.Label>
+                            <Form.Control
+                              type="number"
+                              min="0.00"
+                              step="0.01"
+                              placeholder="Amount"
+                              onChange={(delta) => {
+                                setReimburseAmount(delta.target.value)
+                              }}
+                            />
+                            <Button
+                              className="btn-primary btn-sm mb-1 button"
+                              onClick={() =>
+                                reimburse(transaction.claim_number)
+                              }
+                            >
+                              Reimburse
+                            </Button>
+                          </Form.Group>
+                        </div>
+                      )}
                     </Col>
                   </Row>
 

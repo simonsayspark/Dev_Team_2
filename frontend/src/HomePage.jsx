@@ -21,7 +21,12 @@ export const HomePage = ({ setCurrentUser }) => {
           <Container fluid className="m-0">
             <Navbar.Brand>
               <NavLink to={"/home"} className="nav-link">
-                <img width="300px" height="auto" src="/logo_text.png" alt="logo" />
+                <img
+                  width="300px"
+                  height="auto"
+                  src="/logo_text.png"
+                  alt="logo"
+                />
               </NavLink>
             </Navbar.Brand>
             <Navbar.Text>
@@ -55,32 +60,36 @@ export const HomePage = ({ setCurrentUser }) => {
       </>
     );
   } else if (currentUser.role === "Financial Manager") {
-    <Navbar sticky="top" className="color-nav" expand="lg">
-      <Container fluid className="m-0">
-        <img className="logo" src="/logo_text.png" alt="logo" />
-        <Navbar.Brand>
-          <NavLink to={"/home"} className="nav-link"></NavLink>
-        </Navbar.Brand>
-        <Navbar.Text>
-          <Link
-            to={"/"}
-            className="nav-link text-light fs-4 mx-5 text-nowrap"
-            onClick={() => {
-              setCurrentUser(undefined);
-            }}
-          >
-            Log out
-          </Link>
-        </Navbar.Text>
-      </Container>
-    </Navbar>;
-
-    <Container className="mt-3">
-      <h1 className="display-4">Hello {currentUser.ename}!</h1>
-      <NavLink to={"/addTransaction"} className="d-flex mb-3">
-        <button className="btn btn-primary"> View Claims</button>
-      </NavLink>
-    </Container>;
+    return (
+      <>
+        <Navbar sticky="top" className="color-nav" expand="lg">
+          <Container fluid className="m-0">
+            <img className="logo" src="/logo_text.png" alt="logo" />
+            <Navbar.Brand>
+              <NavLink to={"/home"} className="nav-link"></NavLink>
+            </Navbar.Brand>
+            <Navbar.Text>
+              <Link
+                to={"/"}
+                className="nav-link text-light fs-4 mx-5 text-nowrap"
+                onClick={() => {
+                  setCurrentUser(undefined);
+                }}
+              >
+                Log out
+              </Link>
+            </Navbar.Text>
+          </Container>
+        </Navbar>
+        <Container className="mt-3">
+          <h1 className="display-4">Hello {currentUser.ename}!</h1>
+          <NavLink to={"/viewTransactions"} className="d-flex mb-3">
+            <button className="btn btn-primary"> View Transactions</button>
+          </NavLink>
+        </Container>
+        ;
+      </>
+    );
   } else if (currentUser.role === "Employee") {
     //Employee or Financial Manager homepage
     return (
@@ -89,7 +98,12 @@ export const HomePage = ({ setCurrentUser }) => {
           <Container fluid className="m-0">
             <Navbar.Brand>
               <NavLink to={"/home"} className="nav-link">
-                <img width="300px" height="auto" src="/logo_text.png" alt="logo" />
+                <img
+                  width="300px"
+                  height="auto"
+                  src="/logo_text.png"
+                  alt="logo"
+                />
               </NavLink>
             </Navbar.Brand>
             <Navbar.Text>
@@ -107,7 +121,7 @@ export const HomePage = ({ setCurrentUser }) => {
             </Navbar.Text>
           </Container>
         </Navbar>
-        
+
         <Container className="mt-3">
           <h1 className="display-4">Hello {currentUser.ename}!</h1>
           <NavLink to={"/addTransaction"} className="d-flex mb-3">
