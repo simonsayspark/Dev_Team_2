@@ -78,36 +78,37 @@ export const LandingPage = () => {
 
   return (
     <>
-      <div id="home"></div>
-      <Navbar sticky="top" className="color-nav" expand="lg" collapseOnSelect>
+      <Navbar sticky="top" className="color-nav" expand="xxl" collapseOnSelect>
         <Container fluid className="m-0">
-          <Navbar.Brand className="d-flex mr-auto">
-            <a href="/"><img width="300px" height="auto" src="/logo_text.png" alt="logo" /></a>
-          </Navbar.Brand>
+            <Navbar.Brand className="theBrand">
+              <a href="/">
+                <Image src="/logo_text.png" className="nav-image" alt="logo"></Image>
+              </a>
+            </Navbar.Brand>
+            <Navbar.Toggle/>
+            <NavbarCollapse className="fs-4">
+              <hr/>
+              <Nav className="me-auto nav-font">
+                <Nav.Link href="#home" className="text-light mx-5 text-nowrap">
+                  Home
+                </Nav.Link>
+                <Nav.Link href="#aboutUs" className="text-light mx-5 text-nowrap">
+                  About Us
+                </Nav.Link>
 
-          <NavbarToggle />
-          <NavbarCollapse>
-            <Nav className="me-auto nav-font">
-              <Nav.Link href="#home" className="text-light mx-5 text-nowrap">
-                Home
-              </Nav.Link>
-              <Nav.Link href="#aboutUs" className="text-light mx-5 text-nowrap">
-                About Us
-              </Nav.Link>
-
-              <Nav.Link href="#service" className="text-light mx-5  text-nowrap">
-                How it Works
-              </Nav.Link>
-              <Nav.Link href="#contact" className="text-light mx-5  text-nowrap">
-                Contact
-              </Nav.Link>
-            </Nav>
-              <div className="nav-font">
-                <Link to={"/login"} className="nav-link text-light mx-5">
-                  Log in
-                </Link>
-              </div>
-          </NavbarCollapse>
+                <Nav.Link href="#service" className="text-light mx-5  text-nowrap">
+                  How it Works
+                </Nav.Link>
+                <Nav.Link href="#contact" className="text-light mx-5  text-nowrap">
+                  Contact
+                </Nav.Link>
+              </Nav>
+                <div className="nav-font">
+                  <Link to={"/login"} className="nav-link text-light mx-5">
+                    Log in
+                  </Link>
+                </div>
+            </NavbarCollapse>
         </Container>
       </Navbar>
 
@@ -117,10 +118,10 @@ export const LandingPage = () => {
         className={`${homeLoaded ? "unhideIt" : "hideIt"} main-bg`}
       >
         <Row className="text-left addPadding px-5">
-          <Row className="display-2 text-white" id="header">
+          <Row className="display-1 text-white" id="header">
             Expense reimbursements<br></br>made simple
           </Row>
-          <Row className="text-white px-3" id="small-header">
+          <Row className="display-4 text-white px-3" id="small-header">
             for every business lunch and beyond
           </Row>
         </Row>

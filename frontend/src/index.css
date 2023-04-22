@@ -15,18 +15,27 @@ code {
 #header {
   font-family: 'Overpass', sans-serif;
   font-weight: 700;
-  font-size: 6rem;
 }
 
 #small-header {
   font-family: 'Overpass', sans-serif;
   font-weight: 100;
-  font-size: 2.5rem;
 }
 
 .nav-font {
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.42rem;
+}
+
+.nav-image {
+  position: relative;
+  height: 1.5rem;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+}
+
+.theBrand {
+  max-width: 75%;
 }
 
   /*background-color: #284B63;*/
