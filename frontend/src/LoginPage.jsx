@@ -88,8 +88,8 @@ export const LoginPage = ({ setCurrentUser }) => {
         </Container>
       </Navbar>
 
-      <Container className="pt-5">
-        <div className="bg-light p-3 mx-auto p-md-5 pb-md-3 col-xl-6 mb-4">
+      <div className="pt-5 light-bg">
+        <div className="bg-light rounded p-3 mx-auto p-md-5 pb-md-3 col-lg-5 col-sm-8">
           {error !== "" && (
             <Alert key={"danger"} variant={"danger"}>
               {error}
@@ -134,8 +134,7 @@ export const LoginPage = ({ setCurrentUser }) => {
             </Form.Group>
 
             <Button
-              className="col-12 mt-2"
-              variant="primary"
+              className="col-12 mt-2 loginButton"
               disabled={disableButton}
               onClick={() => {
                 login();
@@ -148,7 +147,7 @@ export const LoginPage = ({ setCurrentUser }) => {
               <Row className="text-center mt-4">
                 <Col>
                   <p className="text-muted mb-0">Don't have an account?</p>
-                  <NavLink to={"/signup"} className="nav-link">
+                  <NavLink to={"/signup"} className="sign-up text-decoration-none">
                     Sign up
                   </NavLink>
                 </Col>
@@ -156,7 +155,7 @@ export const LoginPage = ({ setCurrentUser }) => {
             </Container>
           </Form>
         </div>
-      </Container>
+      </div>
     </>
   );
 };

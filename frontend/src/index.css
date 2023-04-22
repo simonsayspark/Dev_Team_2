@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
@@ -15,13 +16,13 @@ code {
 #header {
   font-family: 'Overpass', sans-serif;
   font-weight: 700;
-  font-size: 6rem;
+  font-size: 6.5vw;
 }
 
 #small-header {
   font-family: 'Overpass', sans-serif;
   font-weight: 100;
-  font-size: 2.5rem;
+  font-size: 2.5vw;
 }
 
 .nav-font {
@@ -56,9 +57,15 @@ code {
 }
 
 .addPadding {
-  padding-top: 10rem;
-  padding-bottom: 19rem;
+  padding-top: 8rem;
+  padding-bottom: 16rem;
 }
+
+.fade-in {
+  opacity: 0;
+  transition: opacity .25s;
+  opacity: 1;
+  }
 
 .pos-relative {
   position: relative;
@@ -70,4 +77,29 @@ code {
   margin-left: 20rem;
   width: 100%;
   
+}
+
+.sign-up {
+  color: #275f6d;
+  font-weight: bold;
+}
+.sign-up:hover {
+  color: #98a0a2;
+}
+
+
+.loginButton {
+  background-color: #3f5f67 !important;
+  outline: none !important;  
+  border: none !important;
+}
+
+.btn {
+  border: none;
+  outline: none;
+}
+
+.light-bg {
+  background-color: #D9D9D9;
+  height: 88.3vh;
 }
