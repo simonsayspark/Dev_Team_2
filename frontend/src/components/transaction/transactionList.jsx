@@ -136,206 +136,208 @@ export const TransactionList = () => {
               }}
             >
               <Dropdown.Toggle
-                className="col-1"
+                className="mt-2"
                 variant="info"
                 id="dropdown-menu"
               >
                 {sortValue}
               </Dropdown.Toggle>
-              <Dropdown.Menu className="col-1">
+              <Dropdown.Menu className="">
                 <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
                 <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
                 <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
+          
+          <div className="col-10 p-0 ms-5">
+            <Tabs
+              defaultActiveKey="profile"
+              id="uncontrolled-tab-example"
+              className="mb-3"
+            >
+              <Tab eventKey="pending" title="Pending">
+                {pTransactions.length !== 0 ? (
+                  <ListGroup>
+                    {pTransactions?.map((transaction, index) => {
+                      return (
+                        <ListGroup.Item>
+                          <Container>
+                            <Row>
+                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col>
+                                <Badge bg="secondary" className="">
+                                  {transaction.claim_status}
+                                </Badge>{" "}
+                              </Col>
+                            </Row>
 
-          <Tabs
-            defaultActiveKey="profile"
-            id="uncontrolled-tab-example"
-            className="mb-3"
-          >
-            <Tab eventKey="pending" title="Pending">
-              {pTransactions.length !== 0 ? (
-                <ListGroup>
-                  {pTransactions?.map((transaction, index) => {
-                    return (
-                      <ListGroup.Item>
-                        <Container>
-                          <Row>
-                            <Col className="p-0">{transaction.order_date}</Col>
-                            <Col>
-                              <Badge bg="secondary" className="">
-                                {transaction.claim_status}
-                              </Badge>{" "}
-                            </Col>
-                          </Row>
+                            <Row>
+                              Amount Requested: ${transaction.amount_requested}
+                            </Row>
 
-                          <Row>
-                            Amount Requested: ${transaction.amount_requested}
-                          </Row>
+                            <Row>
+                              Claim Description:
+                              <br />
+                              {transaction.claim_description}
+                            </Row>
+                          </Container>
 
-                          <Row>
-                            Claim Description:
-                            <br />
-                            {transaction.claim_description}
-                          </Row>
-                        </Container>
+                          <Button type="button" onClick={() => {
+                            navigate('/editTransaction', { state: { transaction } });
+                          }}>Edit</Button>
 
-                        <Button type="button" onClick={() => {
-                          navigate('/editTransaction', { state: { transaction } });
-                        }}>Edit</Button>
+                          <Button type="button" onClick={() => {
+                            deleteTransaction(transaction.claim_number);
+                          }}>Delete</Button>
 
-                        <Button type="button" onClick={() => {
-                          deleteTransaction(transaction.claim_number);
-                        }}>Delete</Button>
+                        </ListGroup.Item>
+                      );
+                    })}
+                  </ListGroup>
+                ) : (
+                  <p>No available transaction</p>
+                )}
+              </Tab>
 
-                      </ListGroup.Item>
-                    );
-                  })}
-                </ListGroup>
-              ) : (
-                <p>No available transaction</p>
-              )}
-            </Tab>
+              <Tab eventKey="accepted" title="Accepted">
+                {aTransactions.length !== 0 ? (
+                  <ListGroup>
+                    {aTransactions?.map((transaction, index) => {
+                      return (
+                        <ListGroup.Item>
+                          <Container>
+                            <Row>
+                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col>
+                                <Badge bg="secondary" className="">
+                                  {transaction.claim_status}
+                                </Badge>{" "}
+                              </Col>
+                            </Row>
 
-            <Tab eventKey="accepted" title="Accepted">
-              {aTransactions.length !== 0 ? (
-                <ListGroup>
-                  {aTransactions?.map((transaction, index) => {
-                    return (
-                      <ListGroup.Item>
-                        <Container>
-                          <Row>
-                            <Col className="p-0">{transaction.order_date}</Col>
-                            <Col>
-                              <Badge bg="secondary" className="">
-                                {transaction.claim_status}
-                              </Badge>{" "}
-                            </Col>
-                          </Row>
+                            <Row>
+                              Amount Requested: ${transaction.amount_requested}
+                            </Row>
+                            <Row>
+                              Category: {transaction.category}
+                            </Row>
+                            <Row>
+                              <p className="px-0">Claim Description: {transaction.claim_description}</p>
+                            </Row>
 
-                          <Row>
-                            Amount Requested: ${transaction.amount_requested}
-                          </Row>
-                          <Row>
-                            Category: {transaction.category}
-                          </Row>
-                          <Row>
-                            <p className="px-0">Claim Description: {transaction.claim_description}</p>
-                          </Row>
+                          </Container>
+                        </ListGroup.Item>
+                      );
+                    })}
+                  </ListGroup>
+                ) : (
+                  <p>No available transaction</p>
+                )}
+              </Tab>
 
-                        </Container>
-                      </ListGroup.Item>
-                    );
-                  })}
-                </ListGroup>
-              ) : (
-                <p>No available transaction</p>
-              )}
-            </Tab>
+              <Tab eventKey="accepted" title="Accepted">
+                {aTransactions.length !== 0 ? (
+                  <ListGroup>
+                    {aTransactions.map((transaction, index) => {
+                      return (
+                        <ListGroup.Item>
+                          <Container>
+                            <Row>
+                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col>
+                                <Badge bg="secondary" className="">
+                                  {transaction.claim_status}
+                                </Badge>{" "}
+                              </Col>
+                            </Row>
 
-            <Tab eventKey="accepted" title="Accepted">
-              {aTransactions.length !== 0 ? (
-                <ListGroup>
-                  {aTransactions.map((transaction, index) => {
-                    return (
-                      <ListGroup.Item>
-                        <Container>
-                          <Row>
-                            <Col className="p-0">{transaction.order_date}</Col>
-                            <Col>
-                              <Badge bg="secondary" className="">
-                                {transaction.claim_status}
-                              </Badge>{" "}
-                            </Col>
-                          </Row>
+                            <Row>
+                              Comment:
+                              <br />
+                              {transaction.ceo_comment}
+                            </Row>
+                          </Container>
+                        </ListGroup.Item>
+                      );
+                    })}
+                  </ListGroup>
+                ) : (
+                  <p className="ms-3">No available transaction</p>
+                )}
+              </Tab>
 
-                          <Row>
-                            Comment:
-                            <br />
-                            {transaction.ceo_comment}
-                          </Row>
-                        </Container>
-                      </ListGroup.Item>
-                    );
-                  })}
-                </ListGroup>
-              ) : (
-                <p className="ms-3">No available transaction</p>
-              )}
-            </Tab>
+              <Tab eventKey="denied" title="Denied">
+                {dTransactions.length !== 0 ? (
+                  <ListGroup>
+                    {dTransactions?.map((transaction, index) => {
+                      return (
+                        <ListGroup.Item>
+                          <Container>
+                            <Row>
+                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col>
+                                <Badge bg="secondary" className="">
+                                  {transaction.claim_status}
+                                </Badge>{" "}
+                              </Col>
+                            </Row>
 
-            <Tab eventKey="denied" title="Denied">
-              {dTransactions.length !== 0 ? (
-                <ListGroup>
-                  {dTransactions?.map((transaction, index) => {
-                    return (
-                      <ListGroup.Item>
-                        <Container>
-                          <Row>
-                            <Col className="p-0">{transaction.order_date}</Col>
-                            <Col>
-                              <Badge bg="secondary" className="">
-                                {transaction.claim_status}
-                              </Badge>{" "}
-                            </Col>
-                          </Row>
+                            <Row>
+                              Claim Description:
+                              <br />
+                              {transaction.claim_description}
+                            </Row>
 
-                          <Row>
-                            Claim Description:
-                            <br />
-                            {transaction.claim_description}
-                          </Row>
+                            <Row>
+                              Ceo Comment:
+                              <br />
+                              {transaction.ceo_comment}
+                            </Row>
+                          </Container>
+                        </ListGroup.Item>
+                      );
+                    })}
+                  </ListGroup>
+                ) : (
+                  <p className="ms-3">No available transaction</p>
+                )}
+              </Tab>
 
-                          <Row>
-                            Ceo Comment:
-                            <br />
-                            {transaction.ceo_comment}
-                          </Row>
-                        </Container>
-                      </ListGroup.Item>
-                    );
-                  })}
-                </ListGroup>
-              ) : (
-                <p className="ms-3">No available transaction</p>
-              )}
-            </Tab>
+              <Tab eventKey="denied" title="Denied">
+                {dTransactions.length !== 0 ? (
+                  <ListGroup>
+                    {dTransactions.map((transaction, index) => {
+                      return (
+                        <ListGroup.Item>
+                          <Container>
+                            <Row>
+                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col>
+                                <Badge bg="secondary" className="">
+                                  {transaction.claim_status}
+                                </Badge>{" "}
+                              </Col>
+                            </Row>
 
-            <Tab eventKey="denied" title="Denied">
-              {dTransactions.length !== 0 ? (
-                <ListGroup>
-                  {dTransactions.map((transaction, index) => {
-                    return (
-                      <ListGroup.Item>
-                        <Container>
-                          <Row>
-                            <Col className="p-0">{transaction.order_date}</Col>
-                            <Col>
-                              <Badge bg="secondary" className="">
-                                {transaction.claim_status}
-                              </Badge>{" "}
-                            </Col>
-                          </Row>
+                            <Row>
+                              Ceo Comment:
+                              <br />
+                              {transaction.ceo_comment}
+                            </Row>
 
-                          <Row>
-                            Ceo Comment:
-                            <br />
-                            {transaction.ceo_comment}
-                          </Row>
+                          </Container>
+                        </ListGroup.Item>
+                      );
+                    })}
+                  </ListGroup>
+                ) : (
+                  <p className="ms-3">No available transaction</p>
+                )}
+              </Tab>
+            </Tabs>
 
-                        </Container>
-                      </ListGroup.Item>
-                    );
-                  })}
-                </ListGroup>
-              ) : (
-                <p className="ms-3">No available transaction</p>
-              )}
-            </Tab>
-          </Tabs>
-
+          </div>
         </div>
       </>
     );
@@ -416,7 +418,10 @@ export const TransactionList = () => {
             );
           })}
         </ListGroup>
+
       </>
+
     );
+
   }
 };
