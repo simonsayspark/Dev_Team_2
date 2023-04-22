@@ -70,6 +70,7 @@ export const LandingPage = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
+    setHomeLoaded(true); //automatically loads the home section when the page loads
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -127,7 +128,6 @@ export const LandingPage = () => {
         </Row>
       </Container>
 
-      <div id="aboutUs"></div>
       <br />
 
       <Container
@@ -159,7 +159,6 @@ export const LandingPage = () => {
         https://evrone.com/
         https://nomadictribe.com/
       */}
-      <div id="service"></div>
       <Container fluid>
         <Row
           ref={howItWorksRef1}
@@ -183,13 +182,10 @@ export const LandingPage = () => {
           </Col>
           <Col className="p-0 my-auto text-center">
             <div className="display-6">Employee</div>
-            <br />
             <p className="fs-4 p-3">
               {" "}
-              The employee is any member of a company who has gone on a business
-              lunch and wishes to request reimbursement for their expenses. They
-              can submit claims through the website, which will then be reviewed
-              by the financial manager.
+              As an employee, you can submit claims for reimbursement, 
+              which will then be reviewed by a financial manager or the CEO.
             </p>
           </Col>
         </Row>
@@ -207,13 +203,10 @@ export const LandingPage = () => {
             xxl
           >
             <div className="display-6">Financial Manager</div>
-            <br />
             <p className="fs-4 p-3">
               {" "}
-              The financial manager is responsible for overseeing the financial
-              team, which includes treasurers and other financial professionals.
-              They are in charge of approving or denying reimbursement requests
-              for business lunches made by employees on the website.
+              As a financial manager, you can approve or deny 
+              reimbursement requests made by employees.
             </p>
           </Col>
           <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
@@ -225,30 +218,22 @@ export const LandingPage = () => {
           className={`${worksLoaded4 ? "unhideIt" : "hideIt"}`}
         >
           <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
-            <Image src="/boss.png" className="img-fluid mx-auto"></Image>
+            <Image src="/boss.jpg" className="img-fluid mx-auto"></Image>
           </Col>
           <Col className="p-0 my-auto text-center ">
             <div className="display-6">CEO</div>
-            <br />
             <p className="fs-4 p-3">
-              The CEO is the highest-ranking executive in a company and has
-              ultimate authority over all business decisions, including the
-              reimbursement process for business lunches. They have the final
-              say in any disputes or issues that arise from the reimbursement
-              process.
+              As a CEO, you can add your company and approve or deny
+              reimbursement requests. You can also add or remove
+              employees from the company.
             </p>
           </Col>
         </Row>
       </Container>
 
-      <Container>
+      {/* <Container> Commenting out for now
         <Row>
           <Col>
-            <p> Contact info</p>
-            <p><strong>Name:</strong>DoughBack</p>
-            <p><strong>Email:</strong>DoughBack@gmail.com</p>
-            <p><strong>Phone:</strong> 123.456.789</p>
-            <p><strong>Address:</strong>6425 Boaz Lane Dallas TX 75205</p>
             <p className="display-4 text-center mt-4">Our Partners</p>
             <Carousel className="mt-4">
               <Carousel.Item>
@@ -285,17 +270,15 @@ export const LandingPage = () => {
             </Carousel>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
 
-      <div id="contact"></div>
       <Container
+        fluid
         ref={contactUsRef}
-        className={`mt-5 p-5 ${aboutLoaded ? "unhideIt" : "hideIt"}`}
+        className={`m-0 p-0 ${aboutLoaded ? "unhideIt" : "hideIt"}`}
       >
-        <Row className="bg-light">
+        <Row className="bg-light m-0">
           <Col className="display-5 text-center mb-3">Contact Us</Col>
-
-          <div className="ms-3">
             <p>
               <strong>Name:</strong> DoughBack
             </p>
@@ -308,7 +291,6 @@ export const LandingPage = () => {
             <p>
               <strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205
             </p>
-          </div>
         </Row>
       </Container>
     </>
