@@ -1,15 +1,13 @@
 import { useContext } from "react";
 import { UserContext } from "../../App";
-import { TransactionForm } from "./transactionForm";
 import { useState, useEffect } from "react";
 import {
-  getTransactionById,
   getTransactionByStatus,
   getSortTransactionByStatus,
-  getTransactions,
   updateTransactionStatus,
+  updateTransactionComment,
+  getTransactionsByCompany,
   deleteTransaction,
-  updateTransaction
 } from "../../api/transactionApi";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -21,6 +19,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/esm/Button";
+import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import { EditTransaction } from "./editTransaction";
 
@@ -36,7 +35,7 @@ export const TransactionList = () => {
   const [dTransactions, setdTransactions] = useState(undefined);
   const [pTransactions, setpTransactions] = useState(undefined);
   const [sortValue, setSortValue] = useState("Sort By");
-  const [status, setStatus] = useState(undefined);
+  const [comment, setComment] = useState("");
 
   const navigate = useNavigate();
 
@@ -50,7 +49,7 @@ export const TransactionList = () => {
     getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
       setpTransactions(x)
     );
-    getTransactions().then((x) => {
+    getTransactionsByCompany(currentUser.company_id).then((x) => {
       setTransactions(x);
     });
   }, []);
@@ -89,16 +88,23 @@ export const TransactionList = () => {
     setSortValue(e);
   };
 
+  const addComment = (transactionNumber) => {
+    console.log(comment);
+    updateTransactionComment(transactionNumber, comment).then((x) =>
+      setComment(comment)
+    );
+  };
+
   const approve = (transactionNumber) => {
     updateTransactionStatus(transactionNumber, "Accepted").then((x) =>
-      setStatus("Accepted")
+      console.log("Success")
     );
   };
 
   const deny = (transactionNumber) => {
     updateTransactionStatus(transactionNumber, "Denied").then((x) =>
-    setStatus("Denied")
-  );
+      console.log("Success")
+    );
   };
 
   //create 3 different api requests
@@ -110,24 +116,32 @@ export const TransactionList = () => {
     );
   }
 
+
+
   if (currentUser.role === "Employee")
     return (
       <>
-        <Dropdown
-          className="mt-2"
-          onSelect={(e) => {
-            setSortValue(e);
-          }}
-        >
-          <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
-            {sortValue}
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="col-12">
-            <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
-            <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
-            <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <div className="pos-absolute">
+          <Dropdown
+            className=""
+            onSelect={(e) => {
+              setSortValue(e);
+            }}
+          >
+            <Dropdown.Toggle
+              className="col-1"
+              variant="info"
+              id="dropdown-menu"
+            >
+              {sortValue}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="col-1">
+              <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
+              <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
+              <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
 
         <Tabs
           defaultActiveKey="profile"
@@ -137,7 +151,7 @@ export const TransactionList = () => {
           <Tab eventKey="pending" title="Pending">
             {pTransactions.length !== 0 ? (
               <ListGroup>
-                {pTransactions.map((transaction, index) => {
+                {pTransactions?.map((transaction, index) => {
                   return (
                     <ListGroup.Item>
                       <Container>
@@ -181,7 +195,7 @@ export const TransactionList = () => {
           <Tab eventKey="accepted" title="Accepted">
             {aTransactions.length !== 0 ? (
               <ListGroup>
-                {aTransactions.map((transaction, index) => {
+                {aTransactions?.map((transaction, index) => {
                   return (
                     <ListGroup.Item>
                       <Container>
@@ -209,7 +223,7 @@ export const TransactionList = () => {
                         </Row>
 
                         <Row>
-                          Ceo Comment:
+                          Comment:
                           <br />
                           {transaction.ceo_comment}
                         </Row>
@@ -226,7 +240,7 @@ export const TransactionList = () => {
           <Tab eventKey="denied" title="Denied">
             {dTransactions.length !== 0 ? (
               <ListGroup>
-                {dTransactions.map((transaction, index) => {
+                {dTransactions?.map((transaction, index) => {
                   return (
                     <ListGroup.Item>
                       <Container>
@@ -270,27 +284,10 @@ export const TransactionList = () => {
           </Tab>
         </Tabs>
 
-        <div className="pos-absolute">
-        <Dropdown
-          className=""
-          onSelect={(e) => {
-            setSortValue(e);
-          }}>
 
-          <Dropdown.Toggle className="col-1" variant="info" id="dropdown-menu">
-            {sortValue}
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="col-1">
-            <Dropdown.Item eventKey='Date'>Date</Dropdown.Item>
-            <Dropdown.Item eventKey='Amount'>Amount</Dropdown.Item>
-            <Dropdown.Item eventKey='Category'>Category</Dropdown.Item>
-          </Dropdown.Menu>
-
-        </Dropdown>
-      </div>
       </>
     );
-  if (currentUser.ceo_id) {
+  if (currentUser.ceo_id || currentUser.role === "Financial Manager") {
     return (
       <>
         <ListGroup>
@@ -304,6 +301,28 @@ export const TransactionList = () => {
                       <Badge bg="secondary" className="block mb-1">
                         {transaction.claim_status}
                       </Badge>{" "}
+                    </Col>
+                    <Col>
+                      <Form.Group controlId="comment">
+                        <Form.Label>Add Comment</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          placeholder="Add comment"
+                          //value={comment}
+                          onChange={(delta) => {
+                            setComment(delta.target.value);
+                          }}
+                        />
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            addComment(transaction.claim_number);
+                          }}
+                          className="mt-3"
+                        >
+                          Add Comment
+                        </Button>
+                      </Form.Group>
                     </Col>
                   </Row>
 
@@ -330,10 +349,14 @@ export const TransactionList = () => {
                       {transaction.claim_description}
                     </Col>
                     <Col>
-                      <Button className="btn-danger btn-sm"
-                      onClick={() => {
-                        deny(transaction.claim_number)
-                      }}>Deny</Button>
+                      <Button
+                        className="btn-danger btn-sm"
+                        onClick={() => {
+                          deny(transaction.claim_number);
+                        }}
+                      >
+                        Deny
+                      </Button>
                     </Col>
                   </Row>
                 </Container>
