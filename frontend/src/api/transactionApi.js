@@ -13,10 +13,10 @@ export const addTransaction = (transaction) =>
       });
   });
 
-export const getTransactions = () =>
+export const getTransactionsByCompany = (company_id) =>
   new Promise((resolve, reject) => {
     axios
-      .get(`${apiEndpoint}/claims`)
+      .get(`${apiEndpoint}/claims?company_id=${company_id}`)
       .then((x) => resolve(x.data))
       .catch((x) => {
         alert(x);
@@ -50,13 +50,28 @@ export const getSortTransactionByStatus = (employee_id, status, sortBy) =>
       });
   });
 
-export const updateTransactionStatus = (transactionNumber,status) =>
+export const updateTransactionStatus = (transactionNumber, status) =>
   new Promise((resolve, reject) => {
     axios
-      .put(`${apiEndpoint}/claims?claim_number=${transactionNumber}&claim_status=${status}`)
+      .put(
+        `${apiEndpoint}/claims?claim_number=${transactionNumber}&claim_status=${status}`
+      )
       .then((x) => resolve(x.data))
       .catch((x) => {
         alert(x);
         reject(x);
       });
   });
+
+export const updateTransactionComment = (transactionNumber, comment) =>
+new Promise((resolve, reject) => {
+  axios
+    .put(
+      `${apiEndpoint}/claims?claim_number=${transactionNumber}&ceo_comment=${comment}`
+    )
+    .then((x) => resolve(x.data))
+    .catch((x) => {
+      alert(x);
+      reject(x);
+    });
+});
