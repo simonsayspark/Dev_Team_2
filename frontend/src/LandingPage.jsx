@@ -127,7 +127,7 @@ export const LandingPage = () => {
           <Row className="display-1 text-white" id="header">
             Expense reimbursements<br></br>made simple
           </Row>
-          <Row className="display-4 text-white px-3" id="small-header">
+          <Row className="display-6 text-white px-3" id="small-header">
             for every business lunch and beyond
           </Row>
         </Row>
@@ -137,12 +137,12 @@ export const LandingPage = () => {
 
       <Container
         ref={aboutUsRef}
-        className={`${aboutLoaded ? "unhideIt" : "hideIt"} addPadding px-3`}
+        className={`${aboutLoaded ? "unhideIt" : "hideIt"} addPadding1 px-3`}
       >
         <Row className="text-left mt-5 mb-3">
           <Col className="display-4"> About Us</Col>
         </Row>
-        <Row className="text-left mb-5">
+        <Row className="text-left pt-3 mb-5">
           <Col className="fs-4">
             Welcome to our platform, where employees can easily request
             reimbursement for any legitimate business expenses, ranging from
@@ -170,7 +170,7 @@ export const LandingPage = () => {
           className={`text-center mt-5 mb-4 ${worksLoaded1 ? "unhideIt" : "hideIt"
             }`}
         >
-          <Col className="display-4 "> How it Works</Col>
+          <Col className="display-4 pt-2"> How it Works</Col>
         </Row>
 
         <br />
@@ -283,7 +283,7 @@ export const LandingPage = () => {
         className={`m-0 p-0 ${contactLoaded ? "unhideIt" : "hideIt"}`}
       >
         <Row className="bg-light m-0">
-          <Col className="display-5 text-center mb-3">Contact Us</Col>
+          <Col className="display-5 text-center mb-3 pt-3">Contact Us</Col>
             <p>
               <strong>Name:</strong> DoughBack
             </p>

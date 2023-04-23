@@ -16,6 +16,7 @@ code {
 #header {
   font-family: 'Overpass', sans-serif;
   font-weight: 700;
+  padding-bottom: .75rem;
 }
 
 #small-header {
@@ -66,8 +67,13 @@ code {
 }
 
 .addPadding {
-  padding-top: 28vh;
-  padding-bottom: 40vh;
+  padding-top: 19vh;
+  padding-bottom: 30vh;
+}
+
+.addPadding1 {
+  padding-top: 15vh;
+  padding-bottom: 15vh;
 }
 
 .fade-in {
@@ -96,9 +102,20 @@ code {
   color: #98a0a2;
 }
 
-
-.loginButton {
+.submitButton {
   background-color: #3f5f67 !important;
+  outline: none !important;  
+  border: none !important;
+}
+
+.dropdown-bg {
+  background-color: #3c6e71 !important;
+  outline-color: none !important;  
+  border: none !important;
+}
+
+.dropdown-bg-1 {
+  background-color: #697d7e !important;
   outline: none !important;  
   border: none !important;
 }
@@ -111,4 +128,9 @@ code {
 .light-bg {
   background-color: #D9D9D9;
   height: 88.3vh;
+}
+
+.light-bg-signup {
+  background-color: #D9D9D9;
+  height: 100vh;
 }

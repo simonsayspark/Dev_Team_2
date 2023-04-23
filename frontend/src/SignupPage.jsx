@@ -213,8 +213,8 @@ export const SignupPage = () => {
         </Container>
       </Navbar>
 
-      <Container className="pt-5">
-        <div className="bg-light p-3 mx-auto p-md-5 pb-md-3 col-xl-6 mb-4">
+      <div className="pt-4 light-bg-signup mx-0 px-0">
+        <div className="bg-light rounded p-3 mx-auto p-md-5 pb-md-3 col-lg-6 col-sm-8">
           {error !== "" && (
             <Alert key={"danger"} variant={"danger"}>
               {error}
@@ -222,7 +222,7 @@ export const SignupPage = () => {
           )}
 
           <Form>
-            <Form.Group className="mb-3" controlId="name">
+            <Form.Group className="" controlId="name">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="name"
@@ -259,7 +259,7 @@ export const SignupPage = () => {
             </Form.Group>
 
             <Form.Group controlId="confirmPassword">
-              <Form.Label>Check password</Form.Label>
+              <Form.Label>Confirm password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Re-enter password"
@@ -343,16 +343,16 @@ export const SignupPage = () => {
               )}
             </Form.Group>
 
-            <Dropdown className="mt-2" onSelect={handleRoleSelect}>
+            <Dropdown className="mt-4" onSelect={handleRoleSelect}>
               <Dropdown.Toggle
-                className="col-12"
+                className="col-12 dropdown-bg text-white"
                 variant="info"
                 id="dropdown-menu"
               >
                 {roleValue}
               </Dropdown.Toggle>
-              <Dropdown.Menu className="col-12">
-                <Dropdown.Item eventKey="CEO">CEO</Dropdown.Item>
+              <Dropdown.Menu className="col-12 ">
+                <Dropdown.Item className="dropBg" eventKey="CEO">CEO</Dropdown.Item>
                 <Dropdown.Item eventKey="Financial Manager">
                   Financial Manager
                 </Dropdown.Item>
@@ -363,7 +363,7 @@ export const SignupPage = () => {
             {values.role && values.role !== "CEO" && (
               <Dropdown className="mt-3" onSelect={handleCompanySelect}>
                 <Dropdown.Toggle
-                  className="col-12"
+                  className="col-12 dropdown-bg-1 text-white"
                   variant="info"
                   id="dropdown-menu"
                 >
@@ -384,7 +384,7 @@ export const SignupPage = () => {
 
             {values.role == "CEO" && (
               <Form.Group>
-                <Form.Label>Company Name</Form.Label>
+                <Form.Label className="pt-2">Company Name</Form.Label>
                 <Form.Control
                   placeholder="Enter company name"
                   value={ceoCompany}
@@ -395,7 +395,7 @@ export const SignupPage = () => {
               </Form.Group>
             )}
             <Button
-              className="col-12 mt-3"
+              className="col-12 mt-3 submitButton"
               disabled={disableButton}
               onClick={() => {
                 createAccount();
@@ -407,8 +407,8 @@ export const SignupPage = () => {
             <Container fluid>
               <Row className="text-center mt-4">
                 <Col>
-                  <span className="text-muted">Already have an account?</span>
-                  <NavLink to={"/login"} className="nav-link">
+                  <p className="text-muted mb-0">Already have an account?</p>
+                  <NavLink to={"/login"} className="sign-up text-decoration-none">
                     Sign in
                   </NavLink>
                 </Col>
@@ -416,7 +416,7 @@ export const SignupPage = () => {
             </Container>
           </Form>
         </div>
-      </Container>
+      </div>
     </>
   );
 };
