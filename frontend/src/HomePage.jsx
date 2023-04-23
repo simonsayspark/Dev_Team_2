@@ -1,9 +1,13 @@
 import { useContext } from "react";
 import { UserContext } from "./App";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Image from "react-bootstrap/Image";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./index.css";
@@ -120,22 +124,40 @@ export const HomePage = ({ setCurrentUser }) => {
 
         <Container className="mt-3">
         
-          <div className="container">
-                <div className="row bg-light mb-2 w-100 ">
-                    <nav aria-label="breadcrumb" className="p-3 rounded">
-                        <div className="breadcrumb mb-0 ">
-
-                            <header className="breadcrumb-item text-muted fs-5">{currentUser.ename}'s Dashboard</header>
-                        </div>
-                    </nav>
-                </div>
-                </div>
-          
-            <button className="btn btn-primary" onClick={()=>handleClick()}>Submit Transaction</button>
-         
-       
-            <button className="btn btn-primary" onClick={()=>handleClick2()}>View Transactions</button>
-       
+            <Row className="display-1 text-center">
+              <p>{currentUser.ename}'s Dashboard</p>
+            </Row>
+            
+            <Row className="w-100 homePagePadding">
+              <Col className="bg-light text-center me-1 homePageCards">
+                <Card>
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title>
+                      Submit Transactions
+                    </Card.Title>
+                    <Card.Text>
+                      Here, you can submit a reimbursement request for a business
+                      expense that you made on behalf of your company.
+                    </Card.Text>
+                    <Button className="mt-auto" onClick={()=>handleClick()}>Submit a transaction</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col className="bg-light text-center ms-1 homePageCards">
+                <Card>
+                  <Card.Body className="d-flex flex-column">
+                    <Card.Title>
+                      View Transactions
+                    </Card.Title>
+                    <Card.Text>
+                      Here, you can view all of your previous reimbursement requests,
+                      as well as edit, delete, or appeal your submitted transactions.
+                    </Card.Text>
+                    <Button className="mt-auto" onClick={()=>handleClick2()}>View your transactions</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
         </Container>
       </>
     );

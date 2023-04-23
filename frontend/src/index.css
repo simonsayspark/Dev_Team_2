@@ -39,6 +39,12 @@ code {
   max-width: 75%;
 }
 
+.homePageCards {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
   /*background-color: #284B63;*/
 .color-nav {
   background: rgb(32,55,70);
