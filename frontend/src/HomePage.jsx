@@ -3,6 +3,8 @@ import { UserContext } from "./App";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Image from "react-bootstrap/Image";
+import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./index.css";
 
@@ -62,7 +64,7 @@ export const HomePage = ({ setCurrentUser }) => {
       </Container>
     </>
     );
-  } else if (currentUser.role === "Financial Manager") {
+  } else if (currentUser.role === "Financial Manager") { //Financial Manager homepage
     <Navbar sticky="top" className="color-nav" expand="lg">
       <Container fluid className="m-0">
         <img className="logo" src="/logo_text.png" alt="logo" />
@@ -89,34 +91,34 @@ export const HomePage = ({ setCurrentUser }) => {
         <button className="btn btn-primary"> View Claims</button>
       </NavLink>
     </Container>;
-  } else if (currentUser.role === "Employee") {
-    //Employee or Financial Manager homepage
+  } else if (currentUser.role === "Employee") { //Employee Homepage
     return (
       <>
-        <Navbar sticky="top" className="color-nav" expand="lg">
+        <Navbar sticky="top" className="color-nav" expand="md" collapseOnSelect>
           <Container fluid className="m-0">
-            <Navbar.Brand>
+            <Navbar.Brand className="theBrand">
               <NavLink to={"/home"} className="nav-link">
-                <img width="300px" height="auto" src="/logo_text.png" alt="logo" />
+                <Image src="/logo_text.png" className="nav-image" alt="logo"></Image>
               </NavLink>
             </Navbar.Brand>
-            <Navbar.Text>
-              <div className="nav-font">
-                <NavLink
-                  to={"/"}
-                  className="nav-link text-white mx-5"
-                  onClick={() => {
-                    setCurrentUser(undefined);
-                  }}
-                >
-                  Log out
-                </NavLink>
-              </div>
-            </Navbar.Text>
+            <Navbar.Toggle/>
+            <NavbarCollapse>
+              <Nav className="justify-content-end" style={{ width: "100%" }}>
+                  <NavLink
+                        to={"/"}
+                        className="fs-4 nav-link text-light mx-5"
+                        onClick={() => {
+                          setCurrentUser(undefined);
+                        }}
+                      >
+                        Log out
+                  </NavLink>
+              </Nav>
+            </NavbarCollapse>
           </Container>
         </Navbar>
 
-        <Container className="mt-3 mx-5">
+        <Container className="mt-3">
         
           <div className="container">
                 <div className="row bg-light mb-2 w-100 ">
