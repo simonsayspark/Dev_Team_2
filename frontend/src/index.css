@@ -90,22 +90,8 @@ code {
   width: 100%;
 }
 
-.form-inline {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-}
-
-.form-inline input {
-  vertical-align: middle !important;
-  margin: 5px 10px 5px 0 !important;
-  padding: 10px !important;
-  background-color: #fff !important;
-  border: 1px solid #ddd !important;
-}
-
-.form-inline label {
-  margin: 5px 10px 5px 0 !important;
+.reimburse{
+  top: 4rem;
 }
 
 .sign-up {
