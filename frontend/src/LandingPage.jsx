@@ -84,7 +84,7 @@ export const LandingPage = () => {
 
   return (
     <>
-      <Navbar sticky="top" className="color-nav fade-in" expand="xxl" collapseOnSelect>
+      <Navbar sticky="top" className="color-nav" expand="xxl" collapseOnSelect>
         <Container fluid className="m-0">
             <Navbar.Brand className="theBrand">
               <a href="/">
@@ -121,7 +121,7 @@ export const LandingPage = () => {
       <Container
         fluid
         ref={homeRef}
-        className={`main-bg fade-in`}
+        className={`${homeLoaded ? "unhideIt" : "hideIt"} main-bg`}
       >
         <Row className="text-left addPadding px-5">
           <Row className="display-1 text-white" id="header">
@@ -280,7 +280,7 @@ export const LandingPage = () => {
       <Container
         fluid
         ref={contactUsRef}
-        className={`m-0 p-0 ${aboutLoaded ? "unhideIt" : "hideIt"}`}
+        className={`m-0 p-0 ${contactLoaded ? "unhideIt" : "hideIt"}`}
       >
         <Row className="bg-light m-0">
           <Col className="display-5 text-center mb-3">Contact Us</Col>
