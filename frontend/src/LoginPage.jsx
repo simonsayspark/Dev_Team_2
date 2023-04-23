@@ -134,7 +134,7 @@ export const LoginPage = ({ setCurrentUser }) => {
             </Form.Group>
 
             <Button
-              className="col-12 mt-2 loginButton"
+              className="col-12 mt-2 submitButton"
               disabled={disableButton}
               onClick={() => {
                 login();
