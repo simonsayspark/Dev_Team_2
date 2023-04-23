@@ -29,8 +29,8 @@ const getCeoByEmail = async (cemail) => {
     return results;
 }
 
-const DeleteCEOById = async (cid) => {
-    const query = knex(CEO_TABLE).where({ cid }).del();
+const DeleteCEOById = async (ceo_id) => {
+    const query = knex(CEO_TABLE).where({ ceo_id }).del();
     const results = await query;
     return results;
 }

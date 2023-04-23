@@ -21,3 +21,11 @@ export const getCeoByEmail = (email) => new Promise ((resolve, reject) => {
     });
 });
 
+export const deleteCeoById = (id) => new Promise ((resolve, reject) => {
+    axios.delete(`${apiEndpoint}/ceo?ceo_id=${id}`)
+    .then(x => resolve(x.data))
+    .catch(x => {
+        alert(x);
+        reject(x);
+    });
+});

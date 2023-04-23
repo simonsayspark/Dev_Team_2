@@ -35,8 +35,8 @@ router.get('/', async (req, res, next) => {
 })
 
 router.delete('/', async (req, res, next) => {
-    if (req.query.cid) {
-        const DeleteCeoById = await req.models.ceo.DeleteCEOById(req.query.cid);
+    if (req.query.ceo_id) {
+        const DeleteCeoById = await req.models.ceo.DeleteCEOById(req.query.ceo_id);
         res.json(DeleteCeoById);
         next();
     }

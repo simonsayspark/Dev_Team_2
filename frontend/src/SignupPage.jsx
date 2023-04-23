@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { addEmployee, getEmployeeByEmail } from "./api/employeeApi";
-import { addCeo, getCeoByEmail } from "./api/ceoApi";
+import { addCeo, deleteCeoById, getCeoByEmail } from "./api/ceoApi";
 import { addCompany } from "./api/companiesApi";
 import { getCompanies } from "./api/companiesApi";
 import { useNavigate } from "react-router-dom";
@@ -168,9 +168,13 @@ export const SignupPage = ({ setCurrentUser }) => {
               company_name: ceoCompany,
               ceo_id: ceo[0].ceo_id,
             };
-            addCompany(companyValues).then(() => {
-              setCurrentUser(ceo[0]);
-              navigate("/home");
+            addCompany(companyValues).then((creationError) => {
+              if (!creationError["message"]) {
+                setCurrentUser(ceo[0]);
+                navigate("/home");  
+              } else {
+                deleteCeoById(ceo[0].ceo_id).then(setError(creationError["message"]));
+              }
             });
           });
         } else {

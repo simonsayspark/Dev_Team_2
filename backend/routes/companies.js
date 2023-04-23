@@ -4,9 +4,18 @@ router = express.Router();
 router.use(bodyParser.json());
 
 router.post('/', async (req, res, next) => {
-    const { company_name, ceo_id } = req.body;
-    const registerCompany = await req.models.companies.createCompany(company_name, ceo_id);
-    res.status(201).json(registerCompany);
+    try {
+        const { company_name, ceo_id } = req.body;
+        const registerCompany = await req.models.companies.createCompany(company_name, ceo_id);
+        res.status(201).json(registerCompany);
+    } catch (err) {
+        if (err.code === 'ER_DUP_ENTRY') {
+            res.status(201).json({
+                message: 'Company name already in use. Please use a different company name.'
+            });
+        }
+    }
+
     next();
 })
 
