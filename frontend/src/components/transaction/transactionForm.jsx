@@ -127,10 +127,10 @@ export const TransactionForm = () => {
       </Container>
 
       <Container className="mt-3">
-          <NavLink to={"/home"} className="d-flex mb-3">
-            <button className="btn btn-secondary">Back to Home</button>
-          </NavLink>
-        </Container>
+        <NavLink to={"/home"} className="d-flex mb-3">
+          <button className="btn btn-secondary">Back to Home</button>
+        </NavLink>
+      </Container>
     </>
   );
 };

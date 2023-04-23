@@ -121,14 +121,16 @@ export const HomePage = ({ setCurrentUser }) => {
             </Navbar.Text>
           </Container>
         </Navbar>
-
-        <Container className="mt-3">
-          <h1 className="display-4">Hello {currentUser.ename}!</h1>
+        
+        <Container className="mt-3 mx-5">
+          <div className="mb-4">
+            <h1 className="display-4">Hello {currentUser.ename}!</h1>
+          </div>
           <NavLink to={"/addTransaction"} className="d-flex mb-3">
-            <button className="btn btn-primary"> Submit Transaction</button>
+            <button className="btn btn-primary">Submit Transaction</button>
           </NavLink>
           <NavLink to={"/viewTransactions"} className="d-flex mb-3">
-            <button className="btn btn-primary"> View Transactions</button>
+            <button className="btn btn-primary">View Transactions</button>
           </NavLink>
         </Container>
       </>
