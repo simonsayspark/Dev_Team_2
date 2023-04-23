@@ -7,6 +7,7 @@ import { addTransaction } from "../../api/transactionApi";
 import Container from "react-bootstrap/esm/Container";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "../../index.css";
 
 //Dont allow for empty submits (change required)
 //Find a way to default to empty, for category
@@ -115,6 +116,7 @@ export const TransactionForm = () => {
             </Form>
 
             <Button
+              className="submitButton"
               type="button"
               onClick={() => {
                 submitTransaction();
@@ -127,9 +129,12 @@ export const TransactionForm = () => {
       </Container>
 
       <Container className="mt-3">
-        <NavLink to={"/home"} className="d-flex mb-3">
-          <button className="btn btn-secondary">Back to Home</button>
-        </NavLink>
+          <Button className="btn btn-secondary"
+                  onClick={() => {
+                    navigate("/home");
+                  }}>
+                    Back to Home
+          </Button>
       </Container>
     </>
   );

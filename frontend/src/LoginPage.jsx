@@ -111,11 +111,6 @@ export const LoginPage = ({ setCurrentUser }) => {
                 value={values.email}
                 onChange={(delta) => {
                   setValues({ ...values, email: delta.target.value });
-                  // if (values.email && values.password) {
-                  //   setDisableButton(false);
-                  // } else {
-                  //   setDisableButton(true);
-                  // }
                 }}
               />
             </Form.Group>

@@ -88,7 +88,7 @@ export const HomePage = ({ setCurrentUser }) => {
       </Container>
     </>
     );
-  } else if (currentUser.role === "Financial Manager") {
+  } else if (currentUser.role === "Financial Manager") { //Financial Manager homepage
     return (
       <>
         <Navbar sticky="top" className="color-nav" expand="lg">
@@ -119,8 +119,7 @@ export const HomePage = ({ setCurrentUser }) => {
         ;
       </>
     );
-  } else if (currentUser.role === "Employee") {
-    //Employee or Financial Manager homepage
+  } else if (currentUser.role === "Employee") { //Employee homepage
     return (
       <>
         <Navbar sticky="top" className="color-nav" expand="md" collapseOnSelect>
@@ -169,7 +168,7 @@ export const HomePage = ({ setCurrentUser }) => {
                       Here, you can submit a reimbursement request for a business
                       expense that you made on behalf of your company.
                     </Card.Text>
-                    <Button className="mt-auto" onClick={()=>handleClick()}>Submit a transaction</Button>
+                    <Button className="mt-auto submitButton" onClick={()=>handleClick()}>Submit a transaction</Button>
                   </Card.Body>
                 </Card>
               </Col>
@@ -183,7 +182,7 @@ export const HomePage = ({ setCurrentUser }) => {
                       Here, you can view all of your previous reimbursement requests,
                       as well as edit, delete, or appeal your submitted transactions.
                     </Card.Text>
-                    <Button className="mt-auto" onClick={()=>handleClick2()}>View your transactions</Button>
+                    <Button className="mt-auto submitButton" onClick={()=>handleClick2()}>View your transactions</Button>
                   </Card.Body>
                 </Card>
               </Col>
