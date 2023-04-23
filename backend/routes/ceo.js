@@ -4,9 +4,17 @@ router = express.Router();
 router.use(bodyParser.json());
 
 router.post('/', async (req, res, next) => {
-    const { name, email, password} = req.body;
-    const registerCeo = await req.models.ceo.createCeo(name, email, password);
-    res.status(201).json(registerCeo);
+    try {
+        const { name, email, password} = req.body;
+        const registerCeo = await req.models.ceo.createCeo(name, email, password);
+        res.status(201).json(registerCeo);    
+    } catch (err) {
+        if (err.code === 'ER_DUP_ENTRY') {
+            res.status(201).json({
+                message: 'Email already in use. Please use another email or log in to your existing account.'
+            });
+        }
+    }
     next();
 })
 

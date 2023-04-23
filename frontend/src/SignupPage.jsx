@@ -161,17 +161,21 @@ export const SignupPage = ({ setCurrentUser }) => {
         password: values.password,
       };
 
-      addCeo(ceoValues).then(() => {
-        getCeoByEmail(values.email).then((ceo) => {
-          const companyValues = {
-            company_name: ceoCompany,
-            ceo_id: ceo[0].ceo_id,
-          };
-          addCompany(companyValues).then(() => {
-            setCurrentUser(ceo[0]);
-            navigate("/home");
+      addCeo(ceoValues).then((e) => {
+        if (!e["message"]) {
+          getCeoByEmail(values.email).then((ceo) => {
+            const companyValues = {
+              company_name: ceoCompany,
+              ceo_id: ceo[0].ceo_id,
+            };
+            addCompany(companyValues).then(() => {
+              setCurrentUser(ceo[0]);
+              navigate("/home");
+            });
           });
-        });
+        } else {
+          setError(e["message"]);
+        }
       });
     } else {
       //Employee or Financial Manager
