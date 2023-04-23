@@ -34,8 +34,6 @@ export const LandingPage = () => {
   //inspired by code found at: https://stackoverflow.com/questions/53158796/get-scroll-position-with-reactjs
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
-    // console.log('Window:')
-    // console.log(window)
     const position = window.pageYOffset + 0.75 * window.innerHeight;
     setScrollPosition(position);
 
@@ -61,12 +59,19 @@ export const LandingPage = () => {
       setContactLoaded(true);
     }
 
-    console.log(position);
-    console.log(homeRef.current.offsetTop);
-    console.log(aboutUsRef.current.offsetTop);
-    console.log(howItWorksRef1.current.offsetTop);
-    console.log(contactUsRef.current.offsetTop);
   };
+
+  const scrollTo = (location) => {
+    if (location == 1) {
+      window.scrollTo({top: 0, behavior: "smooth"});
+    } else if (location == 2) {
+      window.scrollTo({top: (aboutUsRef.current.offsetTop  - homeRef.current.offsetTop), behavior: "smooth"});
+    } else if (location == 3) {
+      window.scrollTo({top: (howItWorksRef1.current.offsetTop - homeRef.current.offsetTop), behavior: "smooth"});
+    } else if (location == 4) {
+      window.scrollTo({top: (contactUsRef.current.offsetTop  - homeRef.current.offsetTop), behavior: "smooth"});
+    }
+  }
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -90,17 +95,17 @@ export const LandingPage = () => {
             <NavbarCollapse className="fs-4">
               <hr/>
               <Nav className="me-auto nav-font">
-                <Nav.Link href="#home" className="text-light mx-5 text-nowrap">
-                  Home
+                <Nav.Link eventKey="1" onClick={() => {scrollTo(1)}} className="text-light mx-5 text-nowrap">
+                    Home
                 </Nav.Link>
-                <Nav.Link href="#aboutUs" className="text-light mx-5 text-nowrap">
+                <Nav.Link eventKey="2" onClick={() => {scrollTo(2)}} className="text-light mx-5 text-nowrap">
                   About Us
                 </Nav.Link>
 
-                <Nav.Link href="#service" className="text-light mx-5  text-nowrap">
+                <Nav.Link eventKey="3" onClick={() => {scrollTo(3)}} className="text-light mx-5  text-nowrap">
                   How it Works
                 </Nav.Link>
-                <Nav.Link href="#contact" className="text-light mx-5  text-nowrap">
+                <Nav.Link eventKey="4" onClick={() => {scrollTo(4)}} className="text-light mx-5  text-nowrap">
                   Contact
                 </Nav.Link>
               </Nav>
