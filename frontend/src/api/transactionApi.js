@@ -61,7 +61,6 @@ export const deleteTransaction = (claim_number) => new Promise((resolve, reject)
     });
 });
 
-
 export const updateTransaction = (transaction) =>
   new Promise((resolve, reject) => {
     axios
@@ -85,3 +84,16 @@ export const addAppeal = (transaction) => new Promise((resolve, reject) => {
 
   }
 )
+
+export const updateTransactionReimbursed = (transactionNumber, amount) =>
+new Promise((resolve, reject) => {
+  axios
+    .put(
+      `${apiEndpoint}/claims?claim_number=${transactionNumber}&amount_reimbursed=${amount}`
+    )
+    .then((x) => resolve(x.data))
+    .catch((x) => {
+      alert(x);
+      reject(x);
+    });
+});

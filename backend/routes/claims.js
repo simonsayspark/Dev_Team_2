@@ -20,6 +20,11 @@ router.put('/', async (req, res, next) => {
         } else if(req.query.ceo_comment){
             const updateClaimCom = await req.models.claims.updateClaimComment(req.query.claim_number, req.query.ceo_comment);
             res.json(updateClaimCom);
+        } else if(req.query.amount_reimbursed){
+            console.log("THE amount")
+            console.log(req.query)
+            const updateClaimReim = await req.models.claims.updateClaimAmount(req.query.claim_number, req.query.amount_reimbursed);
+            res.json(updateClaimReim);
         }
     else {
         console.log('IN THE RIGHT PLACE')
