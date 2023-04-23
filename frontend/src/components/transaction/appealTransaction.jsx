@@ -36,6 +36,8 @@ export const AppealTransaction = () => {
       appeal_description: appeal_description
 
     };
+    console.log('ADDING THE APPEAL')
+    console.log(n_transaction)
     addAppeal(n_transaction);
     navigate('/viewTransactions');
     // onAddTransaction(n_transaction);

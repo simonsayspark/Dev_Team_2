@@ -95,7 +95,7 @@ useEffect(() => {
       setapTransactions(x)
     );
   }
-}, [sortValue, pTransactions]);
+}, [sortValue]);
 
 const sortBy = (e) => {
   setSortValue(e);

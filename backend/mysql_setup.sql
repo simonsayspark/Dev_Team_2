@@ -37,16 +37,18 @@ create table claims ( --look for this --
     amount_reimbursed int DEFAULT NULL, 
     claim_status VARCHAR(50) DEFAULT 'Pending',
     ceo_comment VARCHAR(200) DEFAULT '',
+    appeal_comment VARCHAR(200) DEFAULT '',
     foreign key(employee_id) references employees(employee_id),
     foreign key(company_id) references companies(company_id)
 
 );
 
 create table favoriteClaims (
-                     employee_id int ,
-                     claim_number int,
-                     foreign key(employee_id) references employees(employee_id),
-                     foreign key(claim_number) references claims(claim_number)
+    fclaim_number int auto_increment primary key,
+    employee_id int ,
+    claim_number int,
+    foreign key(employee_id) references employees(employee_id),
+    foreign key(claim_number) references claims(claim_number)
 );
 
 --possibly will add financial table in future
