@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../App";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
@@ -9,20 +9,26 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../../index.css";
 
-//Dont allow for empty submits (change required)
-//Find a way to default to empty, for category
-
 export const TransactionForm = () => {
   const currentUser = useContext(UserContext);
 
   const [employee_id] = useState(currentUser.employee_id);
   const [company_id] = useState(currentUser.company_id);
   const [order_date, setOrder_date] = useState(null);
-  const [amount_requested, setAmount_requested] = useState(0);
+  const [amount_requested, setAmount_requested] = useState("");
   const [category, setCategory] = useState("");
   const [claim_description, setClaim_description] = useState("");
+  const [disableButton, setDisableButton] = useState(true);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (order_date && amount_requested && category && claim_description) {
+      setDisableButton(false);
+    } else {
+      setDisableButton(true);
+    }
+  }, [order_date, amount_requested, category, claim_description]);
 
   const submitTransaction = () => {
     const n_transaction = {
@@ -35,16 +41,10 @@ export const TransactionForm = () => {
     };
     addTransaction(n_transaction);
     navigate('/home');
-    // onAddTransaction(n_transaction);
   };
 
   return (
     <>
-      {console.log(order_date)}
-      {console.log(amount_requested)}
-      {console.log(category)}
-      {console.log(claim_description)}
-
       <Container className="mt-3">
         <div className="card">
           <div className="card-header py-3">
@@ -91,6 +91,7 @@ export const TransactionForm = () => {
                         setCategory(delta.target.value);
                       }}
                     >
+                      <option> </option>
                       <option>Food</option>
                       <option>Travel</option>
                       <option>Hotel</option>
@@ -117,6 +118,7 @@ export const TransactionForm = () => {
 
             <Button
               className="submitButton"
+              disabled={disableButton}
               type="button"
               onClick={() => {
                 submitTransaction();
@@ -129,12 +131,12 @@ export const TransactionForm = () => {
       </Container>
 
       <Container className="mt-3">
-          <Button className="btn btn-secondary"
-                  onClick={() => {
-                    navigate("/home");
-                  }}>
-                    Back to Home
-          </Button>
+        <Button className="btn btn-secondary"
+          onClick={() => {
+            navigate("/home");
+          }}>
+          Back to Home
+        </Button>
       </Container>
     </>
   );
