@@ -154,54 +154,67 @@ export const SignupPage = ({ setCurrentUser }) => {
   };
 
   const createAccount = () => {
-    if (roleValue === "CEO") {
-      const ceoValues = {
-        name: values.name,
-        email: values.email,
-        password: values.password,
-      };
+    let shouldContinue = true;
 
-      addCeo(ceoValues).then((e) => {
-        if (!e["message"]) {
-          getCeoByEmail(values.email).then((ceo) => {
-            const companyValues = {
-              company_name: ceoCompany,
-              ceo_id: ceo[0].ceo_id,
-            };
-            addCompany(companyValues).then((creationError) => {
-              if (!creationError["message"]) {
-                setCurrentUser(ceo[0]);
-                navigate("/home");  
-              } else {
-                deleteCeoById(ceo[0].ceo_id).then(setError(creationError["message"]));
-              }
-            });
+    getEmployeeByEmail(values.email).then((x) => {
+      getCeoByEmail(values.email).then((y) => {
+        if (x.length !== 0 || y.length !== 0) {
+          setError('Email already in use. Please use another email or log in to your existing account.');
+          shouldContinue = false;
+        }
+
+        if (roleValue === "CEO" && shouldContinue) {
+          const ceoValues = {
+            name: values.name,
+            email: values.email,
+            password: values.password,
+          };
+
+          addCeo(ceoValues).then((e) => {
+            if (!e["message"]) {
+              getCeoByEmail(values.email).then((ceo) => {
+                const companyValues = {
+                  company_name: ceoCompany,
+                  ceo_id: ceo[0].ceo_id,
+                };
+                addCompany(companyValues).then((creationError) => {
+                  if (!creationError["message"]) {
+                    setCurrentUser(ceo[0]);
+                    navigate("/home");
+                  } else {
+                    deleteCeoById(ceo[0].ceo_id).then(setError(creationError["message"]));
+                  }
+                });
+              });
+            } else {
+              setError(e["message"]);
+            }
           });
-        } else {
-          setError(e["message"]);
+        } else if (shouldContinue) {
+          //Employee or Financial Manager
+          console.log('ShouldContinue:')
+          console.log(shouldContinue)
+          console.log("Adding Employee/Financial Manager");
+          const databaseValues = {
+            name: values.name,
+            email: values.email,
+            password: values.password,
+            role: values.role,
+            company_id: values.company_id,
+          };
+          addEmployee(databaseValues).then((e) => {
+            if (!e["message"]) {
+              getEmployeeByEmail(values.email).then((x) => {
+                setCurrentUser(x[0]); //logs user into newly created account
+                navigate("/home"); //navigates to home page
+              })
+            } else {
+              setError(e["message"]);
+            }
+          });
         }
-      });
-    } else {
-      //Employee or Financial Manager
-      console.log("Adding Employee/Financial Manager");
-      const databaseValues = {
-        name: values.name,
-        email: values.email,
-        password: values.password,
-        role: values.role,
-        company_id: values.company_id,
-      };
-      addEmployee(databaseValues).then((e) => {
-        if (!e["message"]) {
-          getEmployeeByEmail(values.email).then((x) => {
-            setCurrentUser(x[0]); //logs user into newly created account
-            navigate("/home"); //navigates to home page
-          })
-        } else {
-          setError(e["message"]);
-        }
-      });
-    }
+      })
+    })
   };
 
   return (
