@@ -84,7 +84,7 @@ export const LandingPage = () => {
 
   return (
     <>
-      <Navbar sticky="top" className="color-nav" expand="xxl" collapseOnSelect>
+      <Navbar sticky="top" className="color-nav fade-in" expand="xxl" collapseOnSelect>
         <Container fluid className="m-0">
             <Navbar.Brand className="theBrand">
               <a href="/">
@@ -121,7 +121,7 @@ export const LandingPage = () => {
       <Container
         fluid
         ref={homeRef}
-        className={`${homeLoaded ? "unhideIt" : "hideIt"} main-bg`}
+        className={`main-bg fade-in`}
       >
         <Row className="text-left addPadding px-5">
           <Row className="display-1 text-white" id="header">
@@ -137,12 +137,12 @@ export const LandingPage = () => {
 
       <Container
         ref={aboutUsRef}
-        className={`${aboutLoaded ? "unhideIt" : "hideIt"}`}
+        className={`${aboutLoaded ? "unhideIt" : "hideIt"} addPadding px-3`}
       >
-        <Row className="text-center mt-5 mb-2">
+        <Row className="text-left mt-5 mb-3">
           <Col className="display-4"> About Us</Col>
         </Row>
-        <Row className="text-center mb-5">
+        <Row className="text-left mb-5">
           <Col className="fs-4">
             Welcome to our platform, where employees can easily request
             reimbursement for any legitimate business expenses, ranging from
