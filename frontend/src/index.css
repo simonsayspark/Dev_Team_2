@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
@@ -15,22 +16,31 @@ code {
 #header {
   font-family: 'Overpass', sans-serif;
   font-weight: 700;
-  font-size: 6rem;
 }
 
 #small-header {
   font-family: 'Overpass', sans-serif;
   font-weight: 100;
-  font-size: 2.5rem;
 }
 
 .nav-font {
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.42rem;
 }
 
-.color-nav {
+.nav-image {
+  position: relative;
+  height: 1.5rem;
+  overflow: hidden;
+  max-width: 100%;
+  height: auto;
+}
+
+.theBrand {
+  max-width: 75%;
+}
+
   /*background-color: #284B63;*/
+.color-nav {
   background: rgb(32,55,70);
   background: linear-gradient(90deg, rgba(32,55,70,1) 0%, rgba(63,95,103,1) 42%, rgba(60,110,113,1) 87%, rgba(104,125,126,1) 100%);
 }
@@ -56,6 +66,49 @@ code {
 }
 
 .addPadding {
-  padding-top: 10rem;
-  padding-bottom: 19rem;
+  padding-top: 28vh;
+  padding-bottom: 40vh;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity .25s;
+  opacity: 1;
+  }
+
+.pos-relative {
+  position: relative;
+}
+
+.pos-absolute {
+  position: absolute;
+  top: 0;
+  margin-left: 20rem;
+  width: 100%;
+  
+}
+
+.sign-up {
+  color: #275f6d;
+  font-weight: bold;
+}
+.sign-up:hover {
+  color: #98a0a2;
+}
+
+
+.loginButton {
+  background-color: #3f5f67 !important;
+  outline: none !important;  
+  border: none !important;
+}
+
+.btn {
+  border: none;
+  outline: none;
+}
+
+.light-bg {
+  background-color: #D9D9D9;
+  height: 88.3vh;
 }

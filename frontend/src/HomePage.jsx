@@ -93,26 +93,30 @@ export const HomePage = ({ setCurrentUser }) => {
               </NavLink>
             </Navbar.Brand>
             <Navbar.Text>
-              <Link
-                to={"/"}
-                className="nav-link nav-font text-white mx-5"
-                onClick={() => {
-                  setCurrentUser(undefined);
-                }}
-              >
-                Log out
-              </Link>
+              <div className="nav-font">
+                <NavLink
+                  to={"/"}
+                  className="nav-link text-white mx-5"
+                  onClick={() => {
+                    setCurrentUser(undefined);
+                  }}
+                >
+                  Log out
+                </NavLink>
+              </div>
             </Navbar.Text>
           </Container>
         </Navbar>
         
-        <Container className="mt-3">
-          <h1 className="display-4">Hello {currentUser.ename}!</h1>
+        <Container className="mt-3 mx-5">
+          <div className="mb-4">
+            <h1 className="display-4">Hello {currentUser.ename}!</h1>
+          </div>
           <NavLink to={"/addTransaction"} className="d-flex mb-3">
-            <button className="btn btn-primary"> Submit Transaction</button>
+            <button className="btn btn-primary">Submit Transaction</button>
           </NavLink>
           <NavLink to={"/viewTransactions"} className="d-flex mb-3">
-            <button className="btn btn-primary"> View Transactions</button>
+            <button className="btn btn-primary">View Transactions</button>
           </NavLink>
         </Container>
       </>

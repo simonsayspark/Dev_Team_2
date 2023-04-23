@@ -14,10 +14,10 @@ export const addTransaction = (transaction) =>
   });
 
 
-export const getTransactions = () =>
+export const getTransactionsByCompany = (company_id) =>
   new Promise((resolve, reject) => {
     axios
-      .get(`${apiEndpoint}/claims`)
+      .get(`${apiEndpoint}/claims?company_id=${company_id}`)
       .then((x) => resolve(x.data))
       .catch((x) => {
         alert(x);

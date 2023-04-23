@@ -34,8 +34,6 @@ export const LandingPage = () => {
   //inspired by code found at: https://stackoverflow.com/questions/53158796/get-scroll-position-with-reactjs
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
-    // console.log('Window:')
-    // console.log(window)
     const position = window.pageYOffset + 0.75 * window.innerHeight;
     setScrollPosition(position);
 
@@ -61,15 +59,23 @@ export const LandingPage = () => {
       setContactLoaded(true);
     }
 
-    console.log(position);
-    console.log(homeRef.current.offsetTop);
-    console.log(aboutUsRef.current.offsetTop);
-    console.log(howItWorksRef1.current.offsetTop);
-    console.log(contactUsRef.current.offsetTop);
   };
+
+  const scrollTo = (location) => {
+    if (location == 1) {
+      window.scrollTo({top: 0, behavior: "smooth"});
+    } else if (location == 2) {
+      window.scrollTo({top: (aboutUsRef.current.offsetTop  - homeRef.current.offsetTop), behavior: "smooth"});
+    } else if (location == 3) {
+      window.scrollTo({top: (howItWorksRef1.current.offsetTop - homeRef.current.offsetTop), behavior: "smooth"});
+    } else if (location == 4) {
+      window.scrollTo({top: (contactUsRef.current.offsetTop  - homeRef.current.offsetTop), behavior: "smooth"});
+    }
+  }
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
+    setHomeLoaded(true); //automatically loads the home section when the page loads
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -78,36 +84,37 @@ export const LandingPage = () => {
 
   return (
     <>
-      <div id="home"></div>
-      <Navbar sticky="top" className="color-nav" expand="lg" collapseOnSelect>
+      <Navbar sticky="top" className="color-nav" expand="xxl" collapseOnSelect>
         <Container fluid className="m-0">
-          <Navbar.Brand className="d-flex mr-auto">
-            <img width="300px" height="auto" src="/logo_text.png" alt="logo" />
-          </Navbar.Brand>
+            <Navbar.Brand className="theBrand">
+              <a href="/">
+                <Image src="/logo_text.png" className="nav-image" alt="logo"></Image>
+              </a>
+            </Navbar.Brand>
+            <Navbar.Toggle/>
+            <NavbarCollapse className="fs-4">
+              <hr/>
+              <Nav className="me-auto nav-font">
+                <Nav.Link eventKey="1" onClick={() => {scrollTo(1)}} className="text-light mx-5 text-nowrap">
+                    Home
+                </Nav.Link>
+                <Nav.Link eventKey="2" onClick={() => {scrollTo(2)}} className="text-light mx-5 text-nowrap">
+                  About Us
+                </Nav.Link>
 
-          <NavbarToggle />
-          <NavbarCollapse>
-            <Nav className="me-auto nav-font">
-              <Nav.Link href="#home" className="text-light mx-5 text-nowrap">
-                Home
-              </Nav.Link>
-              <Nav.Link href="#aboutUs" className="text-light mx-5 text-nowrap">
-                About Us
-              </Nav.Link>
-
-              <Nav.Link href="#service" className="text-light mx-5  text-nowrap">
-                How it Works
-              </Nav.Link>
-              <Nav.Link href="#contact" className="text-light mx-5  text-nowrap">
-                Contact
-              </Nav.Link>
-            </Nav>
-              <div className="nav-font">
-                <Link to={"/login"} className="nav-link text-light mx-5">
-                  Log in
-                </Link>
-              </div>
-          </NavbarCollapse>
+                <Nav.Link eventKey="3" onClick={() => {scrollTo(3)}} className="text-light mx-5  text-nowrap">
+                  How it Works
+                </Nav.Link>
+                <Nav.Link eventKey="4" onClick={() => {scrollTo(4)}} className="text-light mx-5  text-nowrap">
+                  Contact
+                </Nav.Link>
+              </Nav>
+                <div className="nav-font">
+                  <Link to={"/login"} className="nav-link text-light mx-5">
+                    Log in
+                  </Link>
+                </div>
+            </NavbarCollapse>
         </Container>
       </Navbar>
 
@@ -117,26 +124,25 @@ export const LandingPage = () => {
         className={`${homeLoaded ? "unhideIt" : "hideIt"} main-bg`}
       >
         <Row className="text-left addPadding px-5">
-          <Row className="display-2 text-white" id="header">
+          <Row className="display-1 text-white" id="header">
             Expense reimbursements<br></br>made simple
           </Row>
-          <Row className="text-white px-3" id="small-header">
+          <Row className="display-4 text-white px-3" id="small-header">
             for every business lunch and beyond
           </Row>
         </Row>
       </Container>
 
-      <div id="aboutUs"></div>
       <br />
 
       <Container
         ref={aboutUsRef}
-        className={`${aboutLoaded ? "unhideIt" : "hideIt"}`}
+        className={`${aboutLoaded ? "unhideIt" : "hideIt"} addPadding px-3`}
       >
-        <Row className="text-center mt-5 mb-2">
+        <Row className="text-left mt-5 mb-3">
           <Col className="display-4"> About Us</Col>
         </Row>
-        <Row className="text-center mb-5">
+        <Row className="text-left mb-5">
           <Col className="fs-4">
             Welcome to our platform, where employees can easily request
             reimbursement for any legitimate business expenses, ranging from
@@ -158,7 +164,6 @@ export const LandingPage = () => {
         https://evrone.com/
         https://nomadictribe.com/
       */}
-      <div id="service"></div>
       <Container fluid>
         <Row
           ref={howItWorksRef1}
@@ -182,13 +187,10 @@ export const LandingPage = () => {
           </Col>
           <Col className="p-0 my-auto text-center">
             <div className="display-6">Employee</div>
-            <br />
             <p className="fs-4 p-3">
               {" "}
-              The employee is any member of a company who has gone on a business
-              lunch and wishes to request reimbursement for their expenses. They
-              can submit claims through the website, which will then be reviewed
-              by the financial manager.
+              As an employee, you can submit claims for reimbursement, 
+              which will then be reviewed by a financial manager or the CEO.
             </p>
           </Col>
         </Row>
@@ -206,13 +208,10 @@ export const LandingPage = () => {
             xxl
           >
             <div className="display-6">Financial Manager</div>
-            <br />
             <p className="fs-4 p-3">
               {" "}
-              The financial manager is responsible for overseeing the financial
-              team, which includes treasurers and other financial professionals.
-              They are in charge of approving or denying reimbursement requests
-              for business lunches made by employees on the website.
+              As a financial manager, you can approve or deny 
+              reimbursement requests made by employees.
             </p>
           </Col>
           <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
@@ -224,30 +223,22 @@ export const LandingPage = () => {
           className={`${worksLoaded4 ? "unhideIt" : "hideIt"}`}
         >
           <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
-            <Image src="/boss.png" className="img-fluid mx-auto"></Image>
+            <Image src="/boss.jpg" className="img-fluid mx-auto"></Image>
           </Col>
           <Col className="p-0 my-auto text-center ">
             <div className="display-6">CEO</div>
-            <br />
             <p className="fs-4 p-3">
-              The CEO is the highest-ranking executive in a company and has
-              ultimate authority over all business decisions, including the
-              reimbursement process for business lunches. They have the final
-              say in any disputes or issues that arise from the reimbursement
-              process.
+              As a CEO, you can add your company and approve or deny
+              reimbursement requests. You can also add or remove
+              employees from the company.
             </p>
           </Col>
         </Row>
       </Container>
 
-      <Container>
+      {/* <Container> Commenting out for now
         <Row>
           <Col>
-            <p> Contact info</p>
-            <p><strong>Name:</strong>DoughBack</p>
-            <p><strong>Email:</strong>DoughBack@gmail.com</p>
-            <p><strong>Phone:</strong> 123.456.789</p>
-            <p><strong>Address:</strong>6425 Boaz Lane Dallas TX 75205</p>
             <p className="display-4 text-center mt-4">Our Partners</p>
             <Carousel className="mt-4">
               <Carousel.Item>
@@ -284,17 +275,15 @@ export const LandingPage = () => {
             </Carousel>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
 
-      <div id="contact"></div>
       <Container
+        fluid
         ref={contactUsRef}
-        className={`mt-5 p-5 ${aboutLoaded ? "unhideIt" : "hideIt"}`}
+        className={`m-0 p-0 ${contactLoaded ? "unhideIt" : "hideIt"}`}
       >
-        <Row className="bg-light">
+        <Row className="bg-light m-0">
           <Col className="display-5 text-center mb-3">Contact Us</Col>
-
-          <div className="ms-3">
             <p>
               <strong>Name:</strong> DoughBack
             </p>
@@ -307,7 +296,6 @@ export const LandingPage = () => {
             <p>
               <strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205
             </p>
-          </div>
         </Row>
       </Container>
     </>

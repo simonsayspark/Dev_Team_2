@@ -1,14 +1,15 @@
 import { useContext } from "react";
 import { UserContext } from "../../App";
 import { TransactionForm } from "./transactionForm";
+import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
-  getTransactionById,
   getTransactionByStatus,
   getSortTransactionByStatus,
-  getTransactions,
+  updateTransactionStatus,
+  updateTransactionComment,
+  getTransactionsByCompany,
   deleteTransaction,
-  updateTransaction
 } from "../../api/transactionApi";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
@@ -20,6 +21,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/esm/Button";
+import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import { EditTransaction } from "./editTransaction";
 import { AppealTransaction } from "./appealTransaction";
@@ -31,12 +33,13 @@ export const TransactionList = () => {
 
   const currentUser = useContext(UserContext);
 
-  const [transactions, setTransactions] = useState(undefined)
+  const [transactions, setTransactions] = useState(undefined);
   const [aTransactions, setaTransactions] = useState(undefined);
   const [dTransactions, setdTransactions] = useState(undefined);
   const [pTransactions, setpTransactions] = useState(undefined);
   const [apTransactions, setapTransactions] = useState(undefined);
   const [sortValue, setSortValue] = useState("Sort By");
+  const [comment, setComment] = useState("");
 
   const navigate = useNavigate();
 
@@ -99,7 +102,7 @@ const sortBy = (e) => {
 };
 
 //create 3 different api requests
-if (!aTransactions || !dTransactions || !pTransactions) {
+if (!aTransactions || !dTransactions || !pTransactions ||!apTransactions) {
   return (
     <>
       <p>Loading...</p>

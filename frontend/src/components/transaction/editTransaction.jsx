@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
-import { updateTransaction } from "../../api/transactionApi";
+// import { updateTransaction } from "../../api/transactionApi";
 import { useLocation } from "react-router-dom";
 //Dont allow for empty submits (change required)
 //Find a way to default to empty, for category
@@ -33,7 +33,7 @@ export const EditTransaction = () => {
       category: category,
       claim_description: claim_description,
     };
-    updateTransaction(n_transaction);
+    // updateTransaction(n_transaction);
     navigate('/viewTransactions');
     // onAddTransaction(n_transaction);
   };

@@ -10,10 +10,10 @@ import { addCeo, getCeoByEmail } from "./api/ceoApi";
 import { addCompany } from "./api/companiesApi";
 import { getCompanies } from "./api/companiesApi";
 import { useNavigate } from "react-router-dom";
-import Dropdown from 'react-bootstrap/Dropdown'
-import Navbar from 'react-bootstrap/Navbar';
+import Dropdown from "react-bootstrap/Dropdown";
+import Navbar from "react-bootstrap/Navbar";
 import Alert from "react-bootstrap/Alert";
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import DropdownButton from "react-bootstrap/DropdownButton";
 //CEO, Finacial Manager, Employee
 const employeeValues = {
   name: "",
@@ -21,7 +21,7 @@ const employeeValues = {
   password: "",
   confirmPassword: "",
   role: "",
-  company_id: 0
+  company_id: 0,
 };
 export const SignupPage = () => {
   const [values, setValues] = useState(employeeValues);
@@ -37,21 +37,19 @@ export const SignupPage = () => {
   const [checkCapital, setcheckCaptial] = useState(false);
   const [checkSymbol, setcheckSymbol] = useState(false);
   const [checkLowerCase, setCheckLowerCase] = useState(false);
-  const [checkDigit, setcheckDigit] =useState(false);
+  const [checkDigit, setcheckDigit] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(false);
-
-  
 
   useEffect(() => {
     getCompanies().then((x) => setCompanies(x));
   }, []);
 
   // useEffect(() => {
-    
+
   // }, [values.password, checkPassword]);
 
   useEffect(() => {
-    let valid = true
+    let valid = true;
 
     if (values.password.length >= 8) {
       setcheckLength(true);
@@ -60,7 +58,7 @@ export const SignupPage = () => {
       valid = false;
     }
 
-    if (/[A-Z]/.test(values.password) ) {
+    if (/[A-Z]/.test(values.password)) {
       setcheckCaptial(true);
     } else {
       setcheckCaptial(false);
@@ -89,10 +87,10 @@ export const SignupPage = () => {
     }
 
     if (values.password == values.confirmPassword) {
-      console.log('Passwords Match!')
+      console.log("Passwords Match!");
       setPasswordsMatch(true);
     } else {
-      console.log('Passwords Do Not Match!')
+      console.log("Passwords Do Not Match!");
       setPasswordsMatch(false);
       valid = false;
     }
@@ -103,48 +101,57 @@ export const SignupPage = () => {
       setpasswordValid(false);
     }
 
-    console.log('Values:')
-    console.log(values)
-    console.log('Passwords Match:')
-    console.log(passwordsMatch)
-    console.log('Password Valid:')
-    console.log(passwordValid)
+    console.log("Values:");
+    console.log(values);
+    console.log("Passwords Match:");
+    console.log(passwordsMatch);
+    console.log("Password Valid:");
+    console.log(passwordValid);
 
-
-    if (values.name && values.email
-      && values.password && values.role && values.company_id && (values.password == values.confirmPassword) && valid) {
+    if (
+      values.name &&
+      values.email &&
+      values.password &&
+      values.role &&
+      values.company_id &&
+      values.password == values.confirmPassword &&
+      valid
+    ) {
       setDisableButton(false);
-    }
-    else if (values.role == "CEO" && values.name && values.email && values.password && ceoCompany && values.confirmPassword && (values.password == values.confirmPassword) && valid) {
-
+    } else if (
+      values.role == "CEO" &&
+      values.name &&
+      values.email &&
+      values.password &&
+      ceoCompany &&
+      values.confirmPassword &&
+      values.password == values.confirmPassword &&
+      valid
+    ) {
       setDisableButton(false);
-
-    }
-
-    else {
+    } else {
       setDisableButton(true);
     }
-  }, [values, ceoCompany])
-
+  }, [values, ceoCompany]);
 
   const navigate = useNavigate();
 
   const handleRoleSelect = (e) => {
-    setRoleValue(e)
-    setValues({ ...values, role: e })
-  }
+    setRoleValue(e);
+    setValues({ ...values, role: e });
+  };
 
   const handleCompanySelect = (e) => {
     setCompanyValue(e);
- 
+
     let id = "";
     companies.forEach((company) => {
       if (company.company_name == e) {
         id = company.company_id;
       }
     });
-    setValues({ ...values, company_id: id })
-  }
+    setValues({ ...values, company_id: id });
+  };
 
   const createAccount = () => {
     if (roleValue === "CEO") {
@@ -153,38 +160,37 @@ export const SignupPage = () => {
         name: values.name,
         email: values.email,
         password: values.password,
-
       };
 
-      console.log('Adding CEO');
+      console.log("Adding CEO");
       addCeo(ceoValues).then(() => {
-        console.log('Getting new CEO');
+        console.log("Getting new CEO");
         getCeoByEmail(values.email).then((ceo) => {
-          console.log('The new CEO:');
+          console.log("The new CEO:");
           console.log(ceo);
           const companyValues = {
             company_name: ceoCompany,
-            ceo_id: ceo[0].ceo_id
-          }
-          console.log('Adding Company');
-          addCompany(companyValues).then(navigate('/'));
-        })
-      }
-      );
-    } else { //Employee or Financial Manager
-      console.log('Adding Employee/Financial Manager');
+            ceo_id: ceo[0].ceo_id,
+          };
+          console.log("Adding Company");
+          addCompany(companyValues).then(navigate("/home"));
+        });
+      });
+    } else {
+      //Employee or Financial Manager
+      console.log("Adding Employee/Financial Manager");
       const databaseValues = {
         name: values.name,
         email: values.email,
         password: values.password,
         role: values.role,
-        company_id: values.company_id     
-      }
+        company_id: values.company_id,
+      };
       addEmployee(databaseValues).then((e) => {
-        if (!e['message']) {
-          navigate("/");
+        if (!e["message"]) {
+          navigate("/home");
         } else {
-          setError(e['message']);
+          setError(e["message"]);
         }
       });
     }
@@ -194,19 +200,26 @@ export const SignupPage = () => {
     <>
       <Navbar sticky="top" className="color-nav" expand="lg">
         <Container fluid className="m-0">
-          <Navbar.Brand><NavLink to={"/"} className="nav-link">
-            <img width="300px" height="auto" src="/logo_text.png" alt="logo" />  
-          </NavLink></Navbar.Brand>
+          <Navbar.Brand>
+            <NavLink to={"/"} className="nav-link">
+              <img
+                width="300px"
+                height="auto"
+                src="/logo_text.png"
+                alt="logo"
+              />
+            </NavLink>
+          </Navbar.Brand>
         </Container>
       </Navbar>
 
       <Container className="pt-5">
         <div className="bg-light p-3 mx-auto p-md-5 pb-md-3 col-xl-6 mb-4">
-          {error !== "" &&
-            <Alert key={'danger'} variant={'danger'}>
+          {error !== "" && (
+            <Alert key={"danger"} variant={"danger"}>
               {error}
             </Alert>
-          }
+          )}
 
           <Form>
             <Form.Group className="mb-3" controlId="name">
@@ -242,15 +255,10 @@ export const SignupPage = () => {
                 onChange={(delta) =>
                   setValues({ ...values, password: delta.target.value })
                 }
-
               />
-
-
-
             </Form.Group>
 
             <Form.Group controlId="confirmPassword">
-
               <Form.Label>Check password</Form.Label>
               <Form.Control
                 type="password"
@@ -261,113 +269,104 @@ export const SignupPage = () => {
                 }
               />
 
-    
-
-              {values.password &&
-
-                <Container className=" text-muted" >
-
-
+              {values.password && (
+                <Container className=" text-muted">
                   <Row className="text-center">
-                    {checkLength === true ? 
-                    <span className="text-center text-success">
-                      &#x2713; At least 8 characters
-                    </span>
-                    : 
-                    <span className="text-center text-danger">
-                      &#x2715; At least 8 characters
-                    </span>}
-                    
+                    {checkLength === true ? (
+                      <span className="text-center text-success">
+                        &#x2713; At least 8 characters
+                      </span>
+                    ) : (
+                      <span className="text-center text-danger">
+                        &#x2715; At least 8 characters
+                      </span>
+                    )}
                   </Row>
                   <Row>
-                  {checkCapital === true ? 
-                    <span className="text-center text-success">
-                      &#x2713; Have a uppercase letter
-                    </span>
-                    : 
-                    <span className="text-center text-danger">
-                      &#x2715; Have a uppercase letter
-                    </span>}
+                    {checkCapital === true ? (
+                      <span className="text-center text-success">
+                        &#x2713; Have a uppercase letter
+                      </span>
+                    ) : (
+                      <span className="text-center text-danger">
+                        &#x2715; Have a uppercase letter
+                      </span>
+                    )}
                   </Row>
                   <Row>
-                  {checkLowerCase === true ? 
-                    <span className="text-center text-success">
-                      &#x2713; Have a lower letter
-                    </span>
-                    : 
-                    <span className="text-center text-danger">
-                      &#x2715; Have a lower letter
-                    </span>}
+                    {checkLowerCase === true ? (
+                      <span className="text-center text-success">
+                        &#x2713; Have a lower letter
+                      </span>
+                    ) : (
+                      <span className="text-center text-danger">
+                        &#x2715; Have a lower letter
+                      </span>
+                    )}
                   </Row>
                   <Row>
-                  {checkSymbol === true ? 
-                    <span className="text-center text-success">
-                      &#x2713; Have a symbol
-                    </span>
-                    : 
-                    <span className="text-center text-danger">
-                      &#x2715; Have a symbol
-                    </span>}
-
+                    {checkSymbol === true ? (
+                      <span className="text-center text-success">
+                        &#x2713; Have a symbol
+                      </span>
+                    ) : (
+                      <span className="text-center text-danger">
+                        &#x2715; Have a symbol
+                      </span>
+                    )}
                   </Row>
                   <Row>
-                  {checkDigit === true ? 
-                    <span className="text-center text-success">
-                      &#x2713; Have a digit
-                    </span>
-                    : 
-                    <span className="text-center text-danger">
-                      &#x2715; Have a digit
-                    </span>}
+                    {checkDigit === true ? (
+                      <span className="text-center text-success">
+                        &#x2713; Have a digit
+                      </span>
+                    ) : (
+                      <span className="text-center text-danger">
+                        &#x2715; Have a digit
+                      </span>
+                    )}
                   </Row>
                   <Row>
-                  <Row>
-                  {passwordsMatch ? 
-                    <span className="text-center text-success">
-                      &#x2713; Passwords must match
-                    </span>
-                    : 
-                    <span className="text-center text-danger">
-                      &#x2715; Passwords must match
-                    </span>}
+                    <Row>
+                      {passwordsMatch ? (
+                        <span className="text-center text-success">
+                          &#x2713; Passwords must match
+                        </span>
+                      ) : (
+                        <span className="text-center text-danger">
+                          &#x2715; Passwords must match
+                        </span>
+                      )}
+                    </Row>
                   </Row>
-                 
-
-                  </Row>
-
-                  
                 </Container>
-
-              }
-
-
-
+              )}
             </Form.Group>
 
-            <Dropdown
-              className="mt-2"
-              onSelect={handleRoleSelect}>
-
-              <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
+            <Dropdown className="mt-2" onSelect={handleRoleSelect}>
+              <Dropdown.Toggle
+                className="col-12"
+                variant="info"
+                id="dropdown-menu"
+              >
                 {roleValue}
               </Dropdown.Toggle>
               <Dropdown.Menu className="col-12">
-                <Dropdown.Item eventKey='CEO'>CEO</Dropdown.Item>
-                <Dropdown.Item eventKey='Financial Manager'>Financial Manager</Dropdown.Item>
-                <Dropdown.Item eventKey='Employee'>Employee</Dropdown.Item>
+                <Dropdown.Item eventKey="CEO">CEO</Dropdown.Item>
+                <Dropdown.Item eventKey="Financial Manager">
+                  Financial Manager
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="Employee">Employee</Dropdown.Item>
               </Dropdown.Menu>
-
-
             </Dropdown>
 
-
-
-            {values.role && values.role !== "CEO" &&
-              <Dropdown
-                className="mt-3"
-                onSelect={handleCompanySelect}>
-
-                <Dropdown.Toggle className="col-12" variant="info" id="dropdown-menu">
+            {values.role && values.role !== "CEO" && (
+              <Dropdown className="mt-3" onSelect={handleCompanySelect}>
+                <Dropdown.Toggle
+                  className="col-12"
+                  variant="info"
+                  id="dropdown-menu"
+                >
                   {companyValue}
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="col-12">
@@ -377,33 +376,24 @@ export const SignupPage = () => {
                         <Dropdown.Item eventKey={company.company_name}>
                           {company.company_name}
                         </Dropdown.Item>
-                      )
-                    }
-                    )
-                  }
+                      );
+                    })}
                 </Dropdown.Menu>
-
               </Dropdown>
-            }
+            )}
 
-
-            {values.role == "CEO" &&
+            {values.role == "CEO" && (
               <Form.Group>
-                <Form.Label>
-
-                  Company Name
-
-                </Form.Label>
+                <Form.Label>Company Name</Form.Label>
                 <Form.Control
                   placeholder="Enter company name"
                   value={ceoCompany}
                   onChange={(delta) => {
                     setCeoCompany(delta.target.value);
-                  }}>
-
-                </Form.Control>
+                  }}
+                ></Form.Control>
               </Form.Group>
-            }
+            )}
             <Button
               className="col-12 mt-3"
               disabled={disableButton}
@@ -417,9 +407,7 @@ export const SignupPage = () => {
             <Container fluid>
               <Row className="text-center mt-4">
                 <Col>
-                  <span className="text-muted">
-                    Already have an account?
-                  </span>
+                  <span className="text-muted">Already have an account?</span>
                   <NavLink to={"/login"} className="nav-link">
                     Sign in
                   </NavLink>
@@ -428,7 +416,7 @@ export const SignupPage = () => {
             </Container>
           </Form>
         </div>
-      </Container >
+      </Container>
     </>
   );
 };

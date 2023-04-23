@@ -7,8 +7,20 @@ const createClaim = async (employee_id, company_id, order_date, amount_requested
     return results;
 }
 
-const updateClaim = async (employee_id, company_id, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status) => {
-    const query = knex(CLAIMS_TABLE).update({employee_id, company_id, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status});
+const updateClaim = async (employee_id, company_id, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status, ceo_comment) => {
+    const query = knex(CLAIMS_TABLE).update({employee_id, company_id, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status, ceo_comment});
+    const results = await query;
+    return results;
+}
+
+const updateClaimComment = async (claim_number, ceo_comment) => {
+    const query = knex(CLAIMS_TABLE).where({claim_number}).update({ceo_comment});
+    const results = await query;
+    return results;
+}
+
+const updateClaimStatus = async (claim_number, claim_status) => {
+    const query = knex(CLAIMS_TABLE).where({claim_number}).update({claim_status});
     const results = await query;
     return results;
 }
@@ -70,9 +82,17 @@ const getSortedClaimsByStatus = async (employee_id, claim_status, sortBy) => {
     return results;
 }
 
+const getSortedClaimsByExpenseRange = async (company_id, claim_status, minrange, maxrange, sortBy) => {
+    const query = knex(CLAIMS_TABLE).where({company_id}).where({claim_status}).where(minrange < {amount_requested} < maxrange).orderBy(sortBy);
+    const results = await query;
+    return results;
+}
+
 module.exports = {
     createClaim,
     updateClaim,
+    updateClaimStatus,
+    updateClaimComment,
     getAllClaims,
     getClaimByNumber,
     getClaimsByEmployee,
@@ -81,5 +101,6 @@ module.exports = {
     DeleteClaimByNum,
     getClaimsByCompanyId,
     getClaimsOnDate,
-    getSortedClaimsByStatus
+    getSortedClaimsByStatus,
+    getSortedClaimsByExpenseRange
 }
