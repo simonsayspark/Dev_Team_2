@@ -49,6 +49,31 @@ export const getSortTransactionByStatus = (employee_id, status, sortBy) => new P
     });
 });
 
+export const updateTransactionStatus = (transactionNumber, status) =>
+  new Promise((resolve, reject) => {
+    axios
+      .put(
+        `${apiEndpoint}/claims?claim_number=${transactionNumber}&claim_status=${status}`
+      )
+      .then((x) => resolve(x.data))
+      .catch((x) => {
+        alert(x);
+        reject(x);
+      });
+  });
+
+export const updateTransactionComment = (transactionNumber, comment) =>
+new Promise((resolve, reject) => {
+  axios
+    .put(
+      `${apiEndpoint}/claims?claim_number=${transactionNumber}&ceo_comment=${comment}`
+    )
+    .then((x) => resolve(x.data))
+    .catch((x) => {
+      alert(x);
+      reject(x);
+    });
+});
 
 export const deleteTransaction = (claim_number) => new Promise((resolve, reject) => {
 
