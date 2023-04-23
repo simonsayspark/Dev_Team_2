@@ -343,7 +343,7 @@ export const SignupPage = () => {
               )}
             </Form.Group>
 
-            <Dropdown className="mt-4" onSelect={handleRoleSelect}>
+            <Dropdown className="mt-4 dropdown1" onSelect={handleRoleSelect}>
               <Dropdown.Toggle
                 className="col-12 dropdown-bg text-white"
                 variant="info"
@@ -361,7 +361,7 @@ export const SignupPage = () => {
             </Dropdown>
 
             {values.role && values.role !== "CEO" && (
-              <Dropdown className="mt-3" onSelect={handleCompanySelect}>
+              <Dropdown className="mt-3 dropdown2" onSelect={handleCompanySelect}>
                 <Dropdown.Toggle
                   className="col-12 dropdown-bg-1 text-white"
                   variant="info"

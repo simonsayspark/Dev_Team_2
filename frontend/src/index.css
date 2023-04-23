@@ -120,6 +120,10 @@ code {
   border: none !important;
 }
 
+.dropdown1 .dropdown-menu .dropdown-item:active {background-color: #3c6e71 !important;}
+
+.dropdown2 .dropdown-menu .dropdown-item:active {background-color: #697d7e !important;}
+
 .dropdown-bg-1 {
   background-color: #697d7e !important;
   outline: none !important;  
