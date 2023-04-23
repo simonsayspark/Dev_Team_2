@@ -8,6 +8,7 @@ import { SignupPage } from './SignupPage';
 import { AddTransaction } from './components/transaction/addTransaction';
 import { EditTransaction } from './components/transaction/editTransaction';
 import { ViewListTransaction } from './components/transaction/viewListTransaction';
+import { AppealTransaction } from './components/transaction/appealTransaction';
 
 
 export const UserContext = createContext();
@@ -48,10 +49,11 @@ export const App = () => {
                     <Route path='/addTransaction' element={ <AddTransaction/> }/>
                     <Route path='/editTransaction' element={ <EditTransaction/>}/>
                     <Route path='/viewTransactions' element= {<ViewListTransaction/>}/>
+                    <Route path='/appealTransaction' element= {<AppealTransaction/>}/>
                 </Routes>
             </Router>
         </UserContext.Provider>
     )
 }
 
-export default App;
+export default App; 

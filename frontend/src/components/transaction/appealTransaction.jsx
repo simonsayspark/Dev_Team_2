@@ -5,12 +5,12 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
-import { updateTransaction } from "../../api/transactionApi";
+import { addAppeal } from "../../api/transactionApi";
 import { useLocation } from "react-router-dom";
 //Dont allow for empty submits (change required)
 //Find a way to default to empty, for category
 
-export const EditTransaction = () => {
+export const AppealTransaction = () => {
   const currentUser = useContext(UserContext);
   const location = useLocation();
   const [currentTransaction] = useState(location.state.transaction);
@@ -21,19 +21,22 @@ export const EditTransaction = () => {
   const [amount_requested, setAmount_requested] = useState(currentTransaction.amount_requested);
   const [category, setCategory] = useState(currentTransaction.category);
   const [claim_description, setClaim_description] = useState(currentTransaction.claim_description);
+  const [appeal_description, setAppeal_description] = useState("");
 
   const navigate = useNavigate();
 
-  const editTransaction = () => {
+  const AppealTransaction = () => {
     const n_transaction = {
       employee_id: employee_id,
-      company_id: company_id,
+      company_id: company_id, 
       order_date: order_date,
       amount_requested: amount_requested,
       category: category,
       claim_description: claim_description,
+      appeal_description: appeal_description
+
     };
-    updateTransaction(n_transaction);
+    addAppeal(n_transaction);
     navigate('/viewTransactions');
     // onAddTransaction(n_transaction);
   };
@@ -48,67 +51,29 @@ export const EditTransaction = () => {
       <Container className="mt-3">
         <div className="card">
           <div className="card-header py-3">
-            <h1 className="display-5">Edit Tansaction</h1>
+            <h1 className="display-5">Appeal Transaction</h1>
           </div>
           <div className="card-body">
             <Form>
               <div className="row mb-3">
-                <Form.Group className="col-3 inline" controlId="order_date">
-                  <Form.Label>Date</Form.Label>
-                  <Form.Control
-                    type="date"
-                    value={order_date}
-                    onChange={(delta) => {
-                      setOrder_date(delta.target.value);
-                    }}
-                  />
-                </Form.Group>
+            
               </div>
               <div className="row mb-3">
-                <Form.Group className="col-3" controlId="amount_requested">
-                  <Form.Label>Amount Requested</Form.Label>
-                  <Form.Control
-                    type="number"
-                    min="0.00"
-                    step="0.01"
-                    placeholder="Enter amount spent"
-                    value={amount_requested}
-                    onChange={(delta) => {
-                      setAmount_requested(delta.target.value);
-                    }}
-                  />
-                </Form.Group>
+               
               </div>
               <div className="row mb-3">
-                <div className="col-md-2">
-                  <Form.Group controlId="category">
-                    <Form.Label>Category</Form.Label>
-                    <Form.Select
-                      type="category"
-                      placeholder="Select category"
-                      value={category}
-                      onChange={(delta) => {
-                        setCategory(delta.target.value);
-                      }}
-                    >
-                      <option>Food</option>
-                      <option>Travel</option>
-                      <option>Hotel</option>
-                      <option>Events</option>
-                    </Form.Select>
-                  </Form.Group>
-                </div>
+               
               </div>
               <div className="row mb-3">
                 <Form.Group controlId="claim_description">
-                  <Form.Label>Claim Description</Form.Label>
+                  <Form.Label>Reason for appeal</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={5}
-                    placeholder="Describe reasoning for reimbursement"
-                    value={claim_description}
+                    placeholder="Describe reasoning for appeal"
+                    
                     onChange={(delta) => {
-                      setClaim_description(delta.target.value);
+                      setAppeal_description(delta.target.value);
                     }}
                   />
                 </Form.Group>
@@ -118,10 +83,10 @@ export const EditTransaction = () => {
             <Button
               type="button"
               onClick={() => {
-                editTransaction();
+               AppealTransaction();
               }}
             >
-              Save Changes
+              Submit
             </Button>
           </div>
         </div>
