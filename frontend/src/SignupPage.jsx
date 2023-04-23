@@ -156,6 +156,11 @@ export const SignupPage = ({ setCurrentUser }) => {
   const createAccount = () => {
     let shouldContinue = true;
 
+    if (!validEmail(values.email)) {
+      setError('Invalid email address. Please enter a valid email address.');
+      return;
+    }
+
     getEmployeeByEmail(values.email).then((x) => {
       getCeoByEmail(values.email).then((y) => {
         if (x.length !== 0 || y.length !== 0) {
@@ -216,6 +221,11 @@ export const SignupPage = ({ setCurrentUser }) => {
       })
     })
   };
+
+  //the following function was inspired by code found at https://mailtrap.io/blog/validate-emails-in-react/
+  const validEmail = (email) => {
+    return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
+  }
 
   return (
     <>
