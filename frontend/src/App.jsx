@@ -46,7 +46,7 @@ export const App = () => {
                     <Route path='/home' element={ <HomePage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/signup' element={ <SignupPage/> }/>
                     <Route path='/addTransaction' element={ <AddTransaction/> }/>
-                    {/* <Route path='/editTransaction' element={ <EditTransaction/>}/> */}
+                    <Route path='/editTransaction' element={ <EditTransaction/>}/>
                     <Route path='/viewTransactions' element= {<ViewListTransaction/>}/>
                 </Routes>
             </Router>
