@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { addEmployee } from "./api/employeeApi";
+import { addEmployee, getEmployeeByEmail } from "./api/employeeApi";
 import { addCeo, getCeoByEmail } from "./api/ceoApi";
 import { addCompany } from "./api/companiesApi";
 import { getCompanies } from "./api/companiesApi";
@@ -23,7 +23,7 @@ const employeeValues = {
   role: "",
   company_id: 0,
 };
-export const SignupPage = () => {
+export const SignupPage = ({ setCurrentUser }) => {
   const [values, setValues] = useState(employeeValues);
   const [roleValue, setRoleValue] = useState("Select-Role");
   const [companyValue, setCompanyValue] = useState("Select-Company");
@@ -155,25 +155,22 @@ export const SignupPage = () => {
 
   const createAccount = () => {
     if (roleValue === "CEO") {
-      console.log("Adding CEO");
       const ceoValues = {
         name: values.name,
         email: values.email,
         password: values.password,
       };
 
-      console.log("Adding CEO");
       addCeo(ceoValues).then(() => {
-        console.log("Getting new CEO");
         getCeoByEmail(values.email).then((ceo) => {
-          console.log("The new CEO:");
-          console.log(ceo);
           const companyValues = {
             company_name: ceoCompany,
             ceo_id: ceo[0].ceo_id,
           };
-          console.log("Adding Company");
-          addCompany(companyValues).then(navigate("/home"));
+          addCompany(companyValues).then(() => {
+            setCurrentUser(ceo[0]);
+            navigate("/home");
+          });
         });
       });
     } else {
@@ -188,7 +185,10 @@ export const SignupPage = () => {
       };
       addEmployee(databaseValues).then((e) => {
         if (!e["message"]) {
-          navigate("/home");
+          getEmployeeByEmail(values.email).then((x) => {
+            setCurrentUser(x[0]); //logs user into newly created account
+            navigate("/home"); //navigates to home page
+          })
         } else {
           setError(e["message"]);
         }

@@ -32,7 +32,7 @@ export const App = () => {
                 <Routes>
                     <Route path='/' element={ <LandingPage/> }/>
                     <Route path='/login' element={ <LoginPage setCurrentUser={ _setCurrentUser }/> }/>
-                    <Route path='/signup' element={ <SignupPage/> }/>
+                    <Route path='/signup' element={ <SignupPage setCurrentUser={ _setCurrentUser }/> }/>
                 </Routes>
             </Router>
         )    
@@ -45,7 +45,7 @@ export const App = () => {
                     <Route path='/' element={ <LandingPage/> }/>
                     <Route path='/login' element={ <LoginPage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/home' element={ <HomePage setCurrentUser={ _setCurrentUser }/> }/>
-                    <Route path='/signup' element={ <SignupPage/> }/>
+                    <Route path='/signup' element={ <SignupPage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/addTransaction' element={ <AddTransaction/> }/>
                     <Route path='/editTransaction' element={ <EditTransaction/>}/>
                     <Route path='/viewTransactions' element= {<ViewListTransaction/>}/>
