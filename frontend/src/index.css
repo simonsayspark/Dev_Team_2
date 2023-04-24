@@ -77,6 +77,17 @@ code {
   background-color: #3c6e71;
 }
 
+/* this is for the puzzle block style */
+
+.puzzle_block{  
+  background-color: #284B63;
+}
+
+.contact_us{
+  background-color: #353535;
+
+}
+
 .main-bg {
   background: rgb(32, 55, 70);
   background: linear-gradient(
