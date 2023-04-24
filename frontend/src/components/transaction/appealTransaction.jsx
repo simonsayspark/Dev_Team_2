@@ -14,40 +14,16 @@ import { ViewListTransaction } from "./viewListTransaction";
 export const AppealTransaction = () => {
   const currentUser = useContext(UserContext);
   const location = useLocation();
-  const [currentTransaction] = useState(location.state.transaction);
-
-  const [employee_id] = useState(currentTransaction.employee_id);
-  const [company_id] = useState(currentTransaction.company_id);
-  const [order_date, setOrder_date] = useState(currentTransaction.order_date);
-  const [amount_requested, setAmount_requested] = useState(currentTransaction.amount_requested);
-  const [category, setCategory] = useState(currentTransaction.category);
-  const [claim_description, setClaim_description] = useState(currentTransaction.claim_description);
+  
   const [appeal_description, setAppeal_description] = useState("");
 
-useEffect(()=>{
-  
 
-})
 
   const navigate = useNavigate();
 
-  const AppealTransaction = () => {
-    const n_transaction = {
-      employee_id: employee_id,
-      company_id: company_id, 
-      order_date: order_date,
-      amount_requested: amount_requested,
-      category: category,
-      claim_description: claim_description,
-      appeal_description: appeal_description
-
-    };
-    // console.log('ADDING THE APPEAL')
-    // console.log(n_transaction)
-    // addAppeal(n_transaction);
+  const ApTransaction = () => {
+    addAppeal(appeal_description, location.state.transaction.claim_number, "Appeal");
     navigate('/viewTransactions');
-    // onAddTransaction(n_transaction);
-
   };
 
   return (
@@ -89,7 +65,7 @@ useEffect(()=>{
             <Button
               type="button"
               onClick={() => {
-               AppealTransaction();
+               ApTransaction();
               }}
             >
               Submit

@@ -55,6 +55,9 @@ export const TransactionList = () => {
     getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
       setpTransactions(x)
     );
+    getTransactionByStatus(currentUser.employee_id, "Appealed").then((x)=>
+      setapTransactions(x)
+    );
     getTransactionsByCompany(currentUser.company_id).then((x) => {
       setTransactions(x);
     });
@@ -77,6 +80,13 @@ export const TransactionList = () => {
         "Pending",
         sortValue
       ).then((x) => setpTransactions(x));
+
+      getSortTransactionByStatus(
+        currentUser.employee_id,
+        "Appeal",
+        sortValue
+      ).then((x)=>setapTransactions(x));
+
     } else {
       getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
         setaTransactions(x)
@@ -87,7 +97,7 @@ export const TransactionList = () => {
       getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
         setpTransactions(x)
       );
-      getTransactionByStatus(currentUser.employee_id, "Appeal").then((x) => 
+      getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) => 
         setapTransactions(x)
       );
 
@@ -138,8 +148,8 @@ export const TransactionList = () => {
     );
 
     const appeal = (transactionNumber) =>{
-      updateTransactionStatus(transactionNumber, "Appeal").then((x)=>
-      setStatus("Appeal"))
+      updateTransactionStatus(transactionNumber, "Appealed").then((x)=>
+      setStatus("Appealed"))
 
     }
   };
@@ -294,7 +304,7 @@ export const TransactionList = () => {
                 )}
               </Tab>
 
-              <Tab eventKey="appealed" title="Appeal">
+              <Tab eventKey="appealed" title="Appealed">
                 {apTransactions.length !== 0 ? (
                   <ListGroup>
                     {apTransactions.map((transaction, index) => {
