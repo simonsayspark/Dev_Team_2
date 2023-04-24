@@ -44,10 +44,6 @@ export const SignupPage = ({ setCurrentUser }) => {
     getCompanies().then((x) => setCompanies(x));
   }, []);
 
-  // useEffect(() => {
-
-  // }, [values.password, checkPassword]);
-
   useEffect(() => {
     let valid = true;
 
@@ -87,10 +83,8 @@ export const SignupPage = ({ setCurrentUser }) => {
     }
 
     if (values.password == values.confirmPassword) {
-      console.log("Passwords Match!");
       setPasswordsMatch(true);
     } else {
-      console.log("Passwords Do Not Match!");
       setPasswordsMatch(false);
       valid = false;
     }
@@ -100,13 +94,6 @@ export const SignupPage = ({ setCurrentUser }) => {
     } else {
       setpasswordValid(false);
     }
-
-    console.log("Values:");
-    console.log(values);
-    console.log("Passwords Match:");
-    console.log(passwordsMatch);
-    console.log("Password Valid:");
-    console.log(passwordValid);
 
     if (
       values.name &&
@@ -197,9 +184,6 @@ export const SignupPage = ({ setCurrentUser }) => {
           });
         } else if (shouldContinue) {
           //Employee or Financial Manager
-          console.log('ShouldContinue:')
-          console.log(shouldContinue)
-          console.log("Adding Employee/Financial Manager");
           const databaseValues = {
             name: values.name,
             email: values.email,
@@ -300,10 +284,13 @@ export const SignupPage = ({ setCurrentUser }) => {
                     setValues({ ...values, confirmPassword: delta.target.value })
                   }
                 />
-
-                {values.password && (
+                
+                {values.password && !passwordValid && (
                   <Container className=" text-muted">
                     <Row className="text-center">
+                      <span className="text-center">
+                        Password Requirements:
+                      </span>
                       {checkLength === true ? (
                         <span className="text-center text-success">
                           &#x2713; At least 8 characters
