@@ -55,6 +55,9 @@ export const TransactionList = () => {
     getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
       setpTransactions(x)
     );
+    getTransactionByStatus(currentUser.employee_id, "Appealed").then((x)=>
+      setapTransactions(x)
+    );
     getTransactionsByCompany(currentUser.company_id).then((x) => {
       setTransactions(x);
     });
@@ -77,6 +80,13 @@ export const TransactionList = () => {
         "Pending",
         sortValue
       ).then((x) => setpTransactions(x));
+
+      getSortTransactionByStatus(
+        currentUser.employee_id,
+        "Appeal",
+        sortValue
+      ).then((x)=>setapTransactions(x));
+
     } else {
       getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
         setaTransactions(x)
@@ -87,6 +97,11 @@ export const TransactionList = () => {
       getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
         setpTransactions(x)
       );
+      getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) => 
+        setapTransactions(x)
+      );
+
+
     }
   }, [sortValue]);
 
@@ -131,10 +146,16 @@ export const TransactionList = () => {
     updateTransactionStatus(transactionNumber, "Denied").then((x) =>
       setStatus("Denied")
     );
+
+    const appeal = (transactionNumber) =>{
+      updateTransactionStatus(transactionNumber, "Appealed").then((x)=>
+      setStatus("Appealed"))
+
+    }
   };
 
   //create 3 different api requests
-  if (!aTransactions || !dTransactions || !pTransactions || !transactions) {
+  if (!aTransactions || !dTransactions || !pTransactions || !transactions ||!apTransactions) {
     return (
       <>
         <p>Loading...</p>
@@ -200,6 +221,11 @@ export const TransactionList = () => {
                                 setDeleteClicked(!deleteClicked);
                               }}>Delete</Button>
 
+                              <Button className="" type="button" onClick={() => {
+                                navigate('/appealTransaction',  { state: { transaction } });
+                              
+                              }}>Appeal</Button>
+
                             </div>
                           </Col>
                         </ListGroup.Item>
@@ -250,6 +276,38 @@ export const TransactionList = () => {
                 {dTransactions.length !== 0 ? (
                   <ListGroup>
                     {dTransactions.map((transaction, index) => {
+                      return (
+                        <ListGroup.Item>
+                          <Container>
+                            <Row>
+                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col>
+                                <Badge bg="secondary" className="">
+                                  {transaction.claim_status}
+                                </Badge>{" "}
+                              </Col>
+                            </Row>
+
+                            <Row>
+                              Ceo Comment:
+                              <br />
+                              {transaction.ceo_comment}
+                            </Row>
+
+                          </Container>
+                        </ListGroup.Item>
+                      );
+                    })}
+                  </ListGroup>
+                ) : (
+                  <p className="ms-3">No available transaction</p>
+                )}
+              </Tab>
+
+              <Tab eventKey="appealed" title="Appealed">
+                {apTransactions.length !== 0 ? (
+                  <ListGroup>
+                    {apTransactions.map((transaction, index) => {
                       return (
                         <ListGroup.Item>
                           <Container>
