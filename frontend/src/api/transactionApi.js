@@ -98,9 +98,9 @@ export const updateTransaction = (transaction) =>
   });
 
 
-export const addAppeal = (transaction) => new Promise((resolve, reject) => {
+export const addAppeal = ( appeal_comment, claim_number, claim_status) => new Promise((resolve, reject) => {
     axios
-      .put(`${apiEndpoint}/claims`, transaction)
+      .put(`${apiEndpoint}/claims?claim_number=${claim_number} &claim_status=${claim_status} &appeal_comment=${appeal_comment}`)
       .then((x) => resolve(x.data))
       .catch((x) => {
         alert(x);

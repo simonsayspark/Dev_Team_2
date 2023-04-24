@@ -18,9 +18,15 @@ const getClaimByEmployeeId = async (employee_id) => {
     const results = await query;
     return results;
 }
+const unfavClaimByClaimID = async (claim_number) => {
+    const query = knex(FAVORITECLAIMS_TABLE).where({ claim_number }).del();
+    const results = await query;
+    return results;
+}
 
 module.exports = {
     createFavoriteClaim,
     getFavoriteClaims,
-    getClaimByEmployeeId
+    getClaimByEmployeeId,
+    unfavClaimByClaimID
 }

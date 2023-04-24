@@ -94,6 +94,12 @@ const getSortedClaimsByExpenseRange = async (company_id, claim_status, minrange,
     return results;
 }
 
+const addAppealComment = async (claim_number, claim_status, appeal_comment) => {
+    const query = knex(CLAIMS_TABLE).where({claim_number}).update({claim_status, appeal_comment});
+    const results = await query;
+    return results;
+}
+
 module.exports = {
     createClaim,
     updateClaim,
@@ -109,5 +115,6 @@ module.exports = {
     getClaimsOnDate,
     getSortedClaimsByStatus,
     getSortedClaimsByExpenseRange,
-    updateClaimAmount
+    updateClaimAmount,
+    addAppealComment
 }
