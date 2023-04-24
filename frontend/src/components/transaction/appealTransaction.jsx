@@ -22,7 +22,7 @@ export const AppealTransaction = () => {
   const navigate = useNavigate();
 
   const ApTransaction = () => {
-    addAppeal(appeal_description, location.state.transaction.claim_number, "Appeal");
+    addAppeal(appeal_description, location.state.transaction.claim_number, "Appealed");
     navigate('/viewTransactions');
   };
 
