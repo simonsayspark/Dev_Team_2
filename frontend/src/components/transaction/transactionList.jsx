@@ -89,6 +89,8 @@ export const TransactionList = () => {
     }
   }, [sortValue]);
 
+
+
   const sortBy = (e) => {
     setSortValue(e);
   };
@@ -131,12 +133,12 @@ export const TransactionList = () => {
       <>
         <div className="row">
           <div className="col-1 mt-2 ps-4 me-2">
-            <NavLink to={"/home"} className="">
-              <button className="btn btn-primary">Back</button>
-            </NavLink>
+            
+              <Button className="button btn submitButton text-decoration-none" onClick={()=>navigate("/Home")}>Back</Button>
+    
 
             <Dropdown
-              className=""
+              className="dropdown1"
               onSelect={(e) => {
                 setSortValue(e);
               }}
@@ -158,9 +160,10 @@ export const TransactionList = () => {
 
           <div className="col-10 p-0 ms-5">
             <Tabs
-              defaultActiveKey="profile"
+              defaultActiveKey="pending"
               id="uncontrolled-tab-example"
               className="mb-3"
+             
             >
               <Tab eventKey="pending" title="Pending">
                 {pTransactions.length !== 0 ? (
@@ -206,41 +209,7 @@ export const TransactionList = () => {
                 )}
               </Tab>
 
-              <Tab eventKey="accepted" title="Accepted">
-                {aTransactions.length !== 0 ? (
-                  <ListGroup>
-                    {aTransactions?.map((transaction, index) => {
-                      return (
-                        <ListGroup.Item>
-                          <Container>
-                            <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
-                              <Col>
-                                <Badge bg="secondary" className="">
-                                  {transaction.claim_status}
-                                </Badge>{" "}
-                              </Col>
-                            </Row>
-
-                            <Row>
-                              Amount Requested: ${transaction.amount_requested}
-                            </Row>
-                            <Row>
-                              Category: {transaction.category}
-                            </Row>
-                            <Row>
-                              <p className="px-0">Claim Description: {transaction.claim_description}</p>
-                            </Row>
-
-                          </Container>
-                        </ListGroup.Item>
-                      );
-                    })}
-                  </ListGroup>
-                ) : (
-                  <p>No available transaction</p>
-                )}
-              </Tab>
+             
 
               <Tab eventKey="accepted" title="Accepted">
                 {aTransactions.length !== 0 ? (
@@ -273,42 +242,7 @@ export const TransactionList = () => {
                 )}
               </Tab>
 
-              <Tab eventKey="denied" title="Denied">
-                {dTransactions.length !== 0 ? (
-                  <ListGroup>
-                    {dTransactions?.map((transaction, index) => {
-                      return (
-                        <ListGroup.Item>
-                          <Container>
-                            <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
-                              <Col>
-                                <Badge bg="secondary" className="">
-                                  {transaction.claim_status}
-                                </Badge>{" "}
-                              </Col>
-                            </Row>
-
-                            <Row>
-                              Claim Description:
-                              <br />
-                              {transaction.claim_description}
-                            </Row>
-
-                            <Row>
-                              Ceo Comment:
-                              <br />
-                              {transaction.ceo_comment}
-                            </Row>
-                          </Container>
-                        </ListGroup.Item>
-                      );
-                    })}
-                  </ListGroup>
-                ) : (
-                  <p className="ms-3">No available transaction</p>
-                )}
-              </Tab>
+              
 
               <Tab eventKey="denied" title="Denied">
                 {dTransactions.length !== 0 ? (
