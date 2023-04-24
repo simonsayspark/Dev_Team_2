@@ -21,7 +21,7 @@ export const EditTransaction = ({ setCurrentUser }) => {
 
   const [employee_id] = useState(currentTransaction.employee_id);
   const [company_id] = useState(currentTransaction.company_id);
-  const [order_date, setOrder_date] = useState(currentTransaction.order_date);
+  const [order_date, setOrder_date] = useState(currentTransaction.order_date.substring(0, currentTransaction.order_date.indexOf("T")));
   const [amount_requested, setAmount_requested] = useState(currentTransaction.amount_requested);
   const [category, setCategory] = useState(currentTransaction.category);
   const [claim_description, setClaim_description] = useState(currentTransaction.claim_description);
@@ -76,7 +76,7 @@ export const EditTransaction = ({ setCurrentUser }) => {
       <Container className="mt-3">
         <div className="card">
           <div className="card-header py-3">
-            <h1 className="display-5">Edit Tansaction</h1>
+            <h1 className="display-5">Edit Transaction</h1>
           </div>
           <div className="card-body">
             <Form>
