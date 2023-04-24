@@ -45,18 +45,19 @@ export const TransactionForm = () => {
   return (
     <>
       <Container className="mt-3">
-        <div className="card">
-          <div className="card-header py-3">
-            <h1 className="display-5">Submit a Transaction</h1>
+        <div className="card ">
+          <div className="card-header py-3 submitButton">
+            <h1 className="fs-2 text-white" id="header">Submit a Transaction</h1>
           </div>
           <div className="card-body">
             <Form>
               <div className="row mb-3">
                 <Form.Group className="col-3 inline" controlId="order_date">
-                  <Form.Label>Date</Form.Label>
+                  <Form.Label id="header">Date</Form.Label>
                   <Form.Control
                     type="date"
                     value={order_date}
+                    className="w-100 col-4"
                     onChange={(delta) => {
                       setOrder_date(delta.target.value);
                     }}
@@ -65,7 +66,7 @@ export const TransactionForm = () => {
               </div>
               <div className="row mb-3">
                 <Form.Group className="col-3" controlId="amount_requested">
-                  <Form.Label>Amount Requested</Form.Label>
+                  <Form.Label id="header">Amount Requested</Form.Label>
                   <Form.Control
                     type="number"
                     min="0.00"
@@ -81,7 +82,7 @@ export const TransactionForm = () => {
               <div className="row mb-3">
                 <div className="col-md-2">
                   <Form.Group controlId="category">
-                    <Form.Label>Category</Form.Label>
+                    <Form.Label id="header">Category</Form.Label>
                     <Form.Select
                       type="category"
                       placeholder="Select category"
@@ -101,7 +102,7 @@ export const TransactionForm = () => {
               </div>
               <div className="row mb-3">
                 <Form.Group controlId="claim_description">
-                  <Form.Label>Claim Description</Form.Label>
+                  <Form.Label id="header">Claim Description</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={5}
@@ -116,9 +117,10 @@ export const TransactionForm = () => {
             </Form>
 
             <Button
-              className="submitButton"
+              className="submitButton fs-5"
               disabled={disableButton}
               type="button"
+              id="small-header"
               onClick={() => {
                 submitTransaction();
               }}
@@ -130,7 +132,7 @@ export const TransactionForm = () => {
       </Container>
 
       <Container className="mt-3">
-        <Button className="btn btn-secondary"
+        <Button id="small-header" className="fs-5 btn btn-secondary"
           onClick={() => {
             navigate("/home");
           }}>

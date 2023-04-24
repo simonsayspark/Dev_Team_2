@@ -8,6 +8,10 @@ body {
 
 }
 
+.title-font{
+  font-family: "";
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -71,6 +75,17 @@ code {
 
 #main {
   background-color: #3c6e71;
+}
+
+/* this is for the puzzle block style */
+
+.puzzle_block{  
+  background-color: #284B63;
+}
+
+.contact_us{
+  background-color: #353535;
+
 }
 
 .main-bg {

@@ -63,13 +63,13 @@ export const LandingPage = () => {
 
   const scrollTo = (location) => {
     if (location == 1) {
-      window.scrollTo({top: 0, behavior: "smooth"});
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else if (location == 2) {
-      window.scrollTo({top: (aboutUsRef.current.offsetTop  - homeRef.current.offsetTop), behavior: "smooth"});
+      window.scrollTo({ top: (aboutUsRef.current.offsetTop - homeRef.current.offsetTop), behavior: "smooth" });
     } else if (location == 3) {
-      window.scrollTo({top: (howItWorksRef1.current.offsetTop - homeRef.current.offsetTop), behavior: "smooth"});
+      window.scrollTo({ top: (howItWorksRef2.current.offsetTop - homeRef.current.offsetTop), behavior: "smooth" });
     } else if (location == 4) {
-      window.scrollTo({top: (contactUsRef.current.offsetTop  - homeRef.current.offsetTop), behavior: "smooth"});
+      window.scrollTo({ top: (contactUsRef.current.offsetTop - homeRef.current.offsetTop), behavior: "smooth" });
     }
   }
 
@@ -86,35 +86,35 @@ export const LandingPage = () => {
     <>
       <Navbar sticky="top" className="color-nav" expand="xxl" collapseOnSelect>
         <Container fluid className="m-0">
-            <Navbar.Brand className="theBrand">
-              <a href="/">
-                <Image src="/logo_text.png" className="nav-image" alt="logo"></Image>
-              </a>
-            </Navbar.Brand>
-            <Navbar.Toggle/>
-            <NavbarCollapse className="fs-4">
-              <hr/>
-              <Nav className="me-auto nav-font">
-                <Nav.Link eventKey="1" onClick={() => {scrollTo(1)}} className="text-light mx-5 text-nowrap">
-                    Home
-                </Nav.Link>
-                <Nav.Link eventKey="2" onClick={() => {scrollTo(2)}} className="text-light mx-5 text-nowrap">
-                  About Us
-                </Nav.Link>
+          <Navbar.Brand className="theBrand">
+            <a href="/">
+              <Image src="/logo_text.png" className="nav-image" alt="logo"></Image>
+            </a>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <NavbarCollapse className="fs-4">
+            <hr />
+            <Nav className="me-auto nav-font">
+              <Nav.Link eventKey="1" onClick={() => { scrollTo(1) }} className="text-light mx-5 text-nowrap">
+                Home
+              </Nav.Link>
+              <Nav.Link eventKey="2" onClick={() => { scrollTo(2) }} className="text-light mx-5 text-nowrap">
+                About Us
+              </Nav.Link>
 
-                <Nav.Link eventKey="3" onClick={() => {scrollTo(3)}} className="text-light mx-5  text-nowrap">
-                  How it Works
-                </Nav.Link>
-                <Nav.Link eventKey="4" onClick={() => {scrollTo(4)}} className="text-light mx-5  text-nowrap">
-                  Contact
-                </Nav.Link>
-              </Nav>
-                <div className="nav-font">
-                  <Link to={"/login"} className="nav-link text-light mx-5">
-                    Log in
-                  </Link>
-                </div>
-            </NavbarCollapse>
+              <Nav.Link eventKey="3" onClick={() => { scrollTo(3) }} className="text-light mx-5  text-nowrap">
+                How it Works
+              </Nav.Link>
+              <Nav.Link eventKey="4" onClick={() => { scrollTo(4) }} className="text-light mx-5  text-nowrap">
+                Contact
+              </Nav.Link>
+            </Nav>
+            <div className="nav-font">
+              <Link to={"/login"} className="nav-link text-light mx-5">
+                Log in
+              </Link>
+            </div>
+          </NavbarCollapse>
         </Container>
       </Navbar>
 
@@ -139,11 +139,11 @@ export const LandingPage = () => {
         ref={aboutUsRef}
         className={`${aboutLoaded ? "unhideIt" : "hideIt"} addPadding1 px-3`}
       >
-        <Row className="text-left mt-5 mb-3">
-          <Col className="display-4"> About Us</Col>
+        <Row className="text-left mt-5 mb-3 ">
+          <Col className="display-4" id="header"> About Us</Col>
         </Row>
         <Row className="text-left pt-3 mb-5">
-          <Col className="fs-4">
+          <Col className="fs-2" id="small-header">
             Welcome to our platform, where employees can easily request
             reimbursement for any legitimate business expenses, ranging from
             lunches to other expenses. Our user-friendly platform empowers
@@ -164,20 +164,20 @@ export const LandingPage = () => {
         https://evrone.com/
         https://nomadictribe.com/
       */}
-      <Container fluid>
-        <Row
+      <Container fluid className="main-bg">
+        {/* <Row
           ref={howItWorksRef1}
           className={`text-center mt-5 mb-4 ${worksLoaded1 ? "unhideIt" : "hideIt"
             }`}
         >
-          <Col className="display-4 pt-2"> How it Works</Col>
+          <Col className="pt-2 display-4" id="header"> How it Works</Col>
         </Row>
 
-        <br />
+        <br /> */}
 
         <Row
           ref={howItWorksRef2}
-          className={`${worksLoaded2 ? "unhideIt" : "hideIt"}`}
+          className={` main-bg ${worksLoaded2 ? "unhideIt" : "hideIt"}`}
         >
           <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
             <Image
@@ -186,20 +186,21 @@ export const LandingPage = () => {
             ></Image>
           </Col>
           <Col className="p-0 my-auto text-center">
-            <div className="display-6">Employee</div>
-            <p className="fs-4 p-3">
+            <div className="display-6 text-white" id="header">Employee</div>
+            <p className="fs-3 p-3 text-white" id="small-header">
               {" "}
-              As an employee, you can submit claims for reimbursement, 
+              As an employee, you can submit claims for reimbursement,
               which will then be reviewed by a financial manager or the CEO.
             </p>
           </Col>
         </Row>
         <Row
           ref={howItWorksRef3}
-          className={`${worksLoaded3 ? "unhideIt" : "hideIt"}`}
+          className={`main-bg ${worksLoaded3 ? "unhideIt" : "hideIt"}`}
         >
           <Col
             className="p-0 my-auto text-center"
+
             xs={{ order: "last" }}
             sm
             md
@@ -207,10 +208,11 @@ export const LandingPage = () => {
             xl
             xxl
           >
-            <div className="display-6">Financial Manager</div>
-            <p className="fs-4 p-3">
+
+            <div className="display-6 text-white" id="header" >Financial Manager</div>
+            <p className="fs-3 p-3 text-white" id="small-header">
               {" "}
-              As a financial manager, you can approve or deny 
+              As a financial manager, you can approve or deny
               reimbursement requests made by employees.
             </p>
           </Col>
@@ -220,19 +222,23 @@ export const LandingPage = () => {
         </Row>
         <Row
           ref={howItWorksRef4}
-          className={`${worksLoaded4 ? "unhideIt" : "hideIt"}`}
+          className={`main-bg ${worksLoaded4 ? "unhideIt" : "hideIt"}`}
         >
-          <Col className="p-0" xs={12} sm={12} md={12} lg xl xxl>
+          <Col className="p-0 " xs={12} sm={12} md={12} lg xl xxl>
             <Image src="/boss.jpg" className="img-fluid mx-auto"></Image>
           </Col>
-          <Col className="p-0 my-auto text-center ">
-            <div className="display-6">CEO</div>
-            <p className="fs-4 p-3">
-              As a CEO, you can add your company and approve or deny
-              reimbursement requests. You can also add or remove
-              employees from the company.
-            </p>
+
+          <Col className="p-0 my-auto text-center">
+            <div className="">
+              <div className="display-6 text-white" id="header">CEO</div>
+              <p className="fs-3 p-3 text-white" id="small-header">
+                As a CEO, you can add your company and approve or deny
+                reimbursement requests. You can also add or remove
+                employees from the company.
+              </p>
+            </div>
           </Col>
+
         </Row>
       </Container>
 
@@ -282,22 +288,46 @@ export const LandingPage = () => {
         ref={contactUsRef}
         className={`m-0 p-0 ${contactLoaded ? "unhideIt" : "hideIt"}`}
       >
-        <Row className="bg-light m-0">
-          <Col className="display-5 text-center mb-3 pt-3">Contact Us</Col>
-            <p>
-              <strong>Name:</strong> DoughBack
-            </p>
-            <p>
-              <strong>Number:</strong> 123-456-789
-            </p>
-            <p>
-              <strong>Email:</strong> DoughBack@gmail.com
-            </p>
-            <p>
-              <strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205
-            </p>
+        <Row className="contact_us m-0">
+          <div className="display-6 text-center mb-3 pt-3 text-light" id="header">Contact Us
+
+          </div>
+
+          <Col>
+
+            <div id="small-header" className="fs-4 text-light">
+
+              <p className="text-center">
+                <strong id="header">Email:</strong> DoughBack@gmail.com
+              </p>
+
+            </div>
+          </Col>
+          <Col>
+
+            <div id="small-header" className="fs-4 text-light">
+
+
+              <p className="text-center">
+                <strong id="header">Address:</strong> 6425 Boaz Lane Dallas TX 75205
+              </p>
+
+            </div>
+          </Col>
+          <Col>
+
+            <div id="small-header" >
+
+
+              <p className="text-center">
+                <strong className="fs-4 text-light" id="header">Number:</strong>
+                <span className="fs-4 text-light"> 123-456-789</span>
+              </p>
+
+            </div>
+          </Col>
         </Row>
-      </Container>
+      </Container >
     </>
   );
 };
