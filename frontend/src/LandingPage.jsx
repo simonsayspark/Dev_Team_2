@@ -135,7 +135,7 @@ export const LandingPage = () => {
 
       <br />
 
-      <Container
+      <Contain`e`r
         ref={aboutUsRef}
         className={`${aboutLoaded ? "unhideIt" : "hideIt"} addPadding1 px-3`}
       >
