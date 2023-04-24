@@ -105,20 +105,6 @@ export const TransactionList = () => {
     }
   }, [sortValue]);
 
-  useEffect(() => {
-    if (sortValue != "Sort By") {
-      getSortTransactionByStatus(
-        currentUser.employee_id,
-        "Pending",
-        sortValue
-      ).then((x) => setpTransactions(x));
-    } else {
-      getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
-        setpTransactions(x)
-      );
-    }
-  })
-
   const sortBy = (e) => {
     setSortValue(e);
   };
