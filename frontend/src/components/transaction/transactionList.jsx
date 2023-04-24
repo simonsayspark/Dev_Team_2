@@ -41,6 +41,7 @@ export const TransactionList = () => {
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState();
   const [reimburseAmount, setReimburseAmount] = useState();
+  const [deleteClicked, setDeleteClicked] = useState(true);
 
   const navigate = useNavigate();
 
@@ -89,7 +90,19 @@ export const TransactionList = () => {
     }
   }, [sortValue]);
 
-
+  useEffect(() => {
+    if (sortValue != "Sort By") {
+      getSortTransactionByStatus(
+        currentUser.employee_id,
+        "Pending",
+        sortValue
+      ).then((x) => setpTransactions(x));
+    } else {
+      getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
+        setpTransactions(x)
+      );
+    }
+  })
 
   const sortBy = (e) => {
     setSortValue(e);
@@ -132,38 +145,15 @@ export const TransactionList = () => {
     return (
       <>
         <div className="row">
-          <div className="col-1 mt-2 ps-4 me-2">
-            
-              <Button className="button btn submitButton text-decoration-none" onClick={()=>navigate("/Home")}>Back</Button>
-    
 
-            <Dropdown
-              className="dropdown1"
-              onSelect={(e) => {
-                setSortValue(e);
-              }}
-            >
-              <Dropdown.Toggle
-                className="mt-2"
-                variant="info"
-                id="dropdown-menu"
-              >
-                {sortValue}
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="">
-                <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
-                <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
-                <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
 
           <div className="col-10 p-0 ms-5">
             <Tabs
               defaultActiveKey="pending"
               id="uncontrolled-tab-example"
               className="mb-3"
-             
+              fill
+
             >
               <Tab eventKey="pending" title="Pending">
                 {pTransactions.length !== 0 ? (
@@ -171,35 +161,47 @@ export const TransactionList = () => {
                     {pTransactions?.map((transaction, index) => {
                       return (
                         <ListGroup.Item>
-                          <Container>
+                          <Container className="d-flex ">
                             <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
+                              <strong>Order Date:</strong>
+                              <Col className="">{transaction.order_date}</Col>
+
+                            </Row>
+
+                            <Row>
+                              <strong>Amount Requested:</strong>
+                              <p> ${transaction.amount_requested}</p>
+                            </Row>
+
+                            <Row>
                               <Col>
-                                <Badge bg="secondary" className="">
-                                  {transaction.claim_status}
-                                </Badge>{" "}
+                                <strong>Claim Description:</strong>
+
+                                <p> {transaction.claim_description}</p>
                               </Col>
-                            </Row>
 
-                            <Row>
-                              Amount Requested: ${transaction.amount_requested}
-                            </Row>
-
-                            <Row>
-                              Claim Description:
-                              <br />
-                              {transaction.claim_description}
                             </Row>
                           </Container>
 
-                          <Button type="button" onClick={() => {
-                            navigate('/editTransaction', { state: { transaction } });
-                          }}>Edit</Button>
+                          <Col>
 
-                          <Button type="button" onClick={() => {
-                            deleteTransaction(transaction.claim_number);
-                          }}>Delete</Button>
+                            <div className="d-flex justify-content-end">
+                              <Badge bg="secondary" className="">
+                                {transaction.claim_status}
+                              </Badge>{" "}
 
+
+                              <Button className="px-3 me-1" type="button" onClick={() => {
+                                navigate('/editTransaction', { state: { transaction } });
+                              }}>Edit</Button>
+
+                              <Button className="" type="button" onClick={() => {
+                                deleteTransaction(transaction.claim_number);
+                                setDeleteClicked(!deleteClicked);
+                              }}>Delete</Button>
+
+                            </div>
+                          </Col>
                         </ListGroup.Item>
                       );
                     })}
@@ -209,7 +211,7 @@ export const TransactionList = () => {
                 )}
               </Tab>
 
-             
+
 
               <Tab eventKey="accepted" title="Accepted">
                 {aTransactions.length !== 0 ? (
@@ -242,7 +244,7 @@ export const TransactionList = () => {
                 )}
               </Tab>
 
-              
+
 
               <Tab eventKey="denied" title="Denied">
                 {dTransactions.length !== 0 ? (
@@ -277,6 +279,35 @@ export const TransactionList = () => {
               </Tab>
             </Tabs>
 
+          </div>
+        </div>
+
+        <div className="col-1 mt-2 ps-4 ms-3">
+
+
+
+          <Dropdown
+            className="dropdown1"
+            onSelect={(e) => {
+              setSortValue(e);
+            }}
+          >
+            <Dropdown.Toggle
+              className="mt-2"
+              variant="info"
+              id="dropdown-menu"
+            >
+              {sortValue}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="">
+              <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
+              <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
+              <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
+          <div className="mt-1">
+            <Button className="button btn submitButton text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
           </div>
         </div>
       </>
@@ -405,10 +436,37 @@ export const TransactionList = () => {
               </div>
             );
           })}
+
         </div>
-        <br />
-        <br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+        <div className="col-1 mt-2 ps-4 me-2">
+
+
+
+          <Dropdown
+            className="dropdown1"
+            onSelect={(e) => {
+              setSortValue(e);
+            }}
+          >
+            <Dropdown.Toggle
+              className="mt-2"
+              variant="info"
+              id="dropdown-menu"
+            >
+              {sortValue}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="">
+              <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
+              <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
+              <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
+          <div className="mt-2">
+            <Button size="" className="button btn submitButton text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
+          </div>
+        </div>
 
       </>
 
