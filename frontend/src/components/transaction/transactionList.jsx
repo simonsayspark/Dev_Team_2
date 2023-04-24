@@ -187,6 +187,7 @@ export const TransactionList = () => {
     }
   }, [sortValue, status]);
 
+
   const sortBy = (e) => {
     setSortValue(e);
   };

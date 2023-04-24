@@ -189,35 +189,35 @@ export const HomePage = ({ setCurrentUser }) => {
 
         <Container className="mt-3">
           <Row className="display-1 text-center">
-            <p>{currentUser.ename}'s Dashboard</p>
+            <p id="header" className="">{currentUser.ename}'s Dashboard</p>
           </Row>
 
           <Row className="w-100">
             <Col className="bg-light text-center me-1 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
-                  <Card.Title>
+                  <Card.Title className="fs-3" id="header">
                     Submit Transactions
                   </Card.Title>
-                  <Card.Text>
+                  <Card.Text className="fs-4" id="small-header" >
                     Here, you can submit a reimbursement request for a business
                     expense that you made on behalf of your company.
                   </Card.Text>
-                  <Button className="mt-auto submitButton" onClick={() => navigate("/addTransaction")}>Submit a transaction</Button>
+                  <Button className=" fs-5 mt-auto submitButton" id="small-header" onClick={() => navigate("/addTransaction")}>Submit a transaction</Button>
                 </Card.Body>
               </Card>
             </Col>
             <Col className="bg-light text-center ms-1 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
-                  <Card.Title>
+                  <Card.Title className="fs-3" id="header">
                     View Transactions
                   </Card.Title>
-                  <Card.Text>
+                  <Card.Text className="fs-4" id="small-header">
                     Here, you can view all of your previous reimbursement requests,
                     as well as edit, delete, or appeal your submitted transactions.
                   </Card.Text>
-                  <Button className="mt-auto submitButton" onClick={() => navigate("/viewTransactions")}>View your transactions</Button>
+                  <Button className="mt-auto submitButton fs-5" id="small-header" onClick={() => navigate("/viewTransactions")}>View your transactions</Button>
                 </Card.Body>
               </Card>
             </Col>
