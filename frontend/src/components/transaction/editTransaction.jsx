@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../App";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
@@ -25,8 +25,18 @@ export const EditTransaction = ({ setCurrentUser }) => {
   const [amount_requested, setAmount_requested] = useState(currentTransaction.amount_requested);
   const [category, setCategory] = useState(currentTransaction.category);
   const [claim_description, setClaim_description] = useState(currentTransaction.claim_description);
+  const [disableButton, setDisableButton] = useState(true);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (order_date && amount_requested && category && claim_description) {
+      setDisableButton(false);
+    } else {
+      setDisableButton(true);
+    }
+  }, [order_date, amount_requested, category, claim_description]);
+
 
   const editTransaction = () => {
     const n_transaction = {
@@ -144,6 +154,8 @@ export const EditTransaction = ({ setCurrentUser }) => {
             </Form>
 
             <Button
+              className="submitButton"
+              disabled={disableButton}              
               type="button"
               onClick={() => {
                 editTransaction();
