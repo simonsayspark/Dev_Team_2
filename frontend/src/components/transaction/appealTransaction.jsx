@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../App";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
@@ -7,6 +7,7 @@ import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
 import { addAppeal } from "../../api/transactionApi";
 import { useLocation } from "react-router-dom";
+import { ViewListTransaction } from "./viewListTransaction";
 //Dont allow for empty submits (change required)
 //Find a way to default to empty, for category
 
@@ -23,6 +24,11 @@ export const AppealTransaction = () => {
   const [claim_description, setClaim_description] = useState(currentTransaction.claim_description);
   const [appeal_description, setAppeal_description] = useState("");
 
+useEffect(()=>{
+  
+
+})
+
   const navigate = useNavigate();
 
   const AppealTransaction = () => {
@@ -36,19 +42,17 @@ export const AppealTransaction = () => {
       appeal_description: appeal_description
 
     };
-    console.log('ADDING THE APPEAL')
-    console.log(n_transaction)
-    addAppeal(n_transaction);
+    // console.log('ADDING THE APPEAL')
+    // console.log(n_transaction)
+    // addAppeal(n_transaction);
     navigate('/viewTransactions');
     // onAddTransaction(n_transaction);
+
   };
 
   return (
     <>
-      {console.log(order_date)}
-      {console.log(amount_requested)}
-      {console.log(category)}
-      {console.log(claim_description)}
+   
 
       <Container className="mt-3">
         <div className="card">
