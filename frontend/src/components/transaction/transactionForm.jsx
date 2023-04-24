@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import { addTransaction } from "../../api/transactionApi";
 import Container from "react-bootstrap/esm/Container";
-import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../../index.css";
 

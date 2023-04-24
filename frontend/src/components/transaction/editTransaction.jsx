@@ -1,54 +1,89 @@
 import { useContext } from "react";
 import { UserContext } from "../../App";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
-import { useNavigate } from "react-router-dom";
-// import { updateTransaction } from "../../api/transactionApi";
-import { useLocation } from "react-router-dom";
-//Dont allow for empty submits (change required)
-//Find a way to default to empty, for category
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
+import { updateTransaction } from "../../api/transactionApi";
 
-export const EditTransaction = () => {
+export const EditTransaction = ({ setCurrentUser }) => {
   const currentUser = useContext(UserContext);
   const location = useLocation();
   const [currentTransaction] = useState(location.state.transaction);
 
   const [employee_id] = useState(currentTransaction.employee_id);
   const [company_id] = useState(currentTransaction.company_id);
-  const [order_date, setOrder_date] = useState(currentTransaction.order_date);
+  const [order_date, setOrder_date] = useState(currentTransaction.order_date.substring(0, currentTransaction.order_date.indexOf("T")));
   const [amount_requested, setAmount_requested] = useState(currentTransaction.amount_requested);
   const [category, setCategory] = useState(currentTransaction.category);
   const [claim_description, setClaim_description] = useState(currentTransaction.claim_description);
+  const [disableButton, setDisableButton] = useState(true);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (order_date && amount_requested && category && claim_description) {
+      setDisableButton(false);
+    } else {
+      setDisableButton(true);
+    }
+  }, [order_date, amount_requested, category, claim_description]);
+
+
   const editTransaction = () => {
-    const n_transaction = {
-      employee_id: employee_id,
-      company_id: company_id,
+    const u_transaction = {
+      claim_number: currentTransaction.claim_number,
       order_date: order_date,
       amount_requested: amount_requested,
       category: category,
       claim_description: claim_description,
+      amount_reimbursed: currentTransaction.amount_reimbursed,
+      claim_status: currentTransaction.claim_status,
+      ceo_comment: currentTransaction.ceo_comment
     };
-    // updateTransaction(n_transaction);
+    updateTransaction(u_transaction);
     navigate('/viewTransactions');
-    // onAddTransaction(n_transaction);
   };
 
   return (
     <>
-      {console.log(order_date)}
-      {console.log(amount_requested)}
-      {console.log(category)}
-      {console.log(claim_description)}
+      <Navbar sticky="top" className="color-nav" expand="md" collapseOnSelect>
+        <Container fluid className="m-0">
+          <Navbar.Brand className="theBrand">
+            <NavLink to={"/home"} className="nav-link">
+              <img
+                width="300px"
+                height="auto"
+                src="/logo_text.png"
+                alt="logo"
+              />
+            </NavLink>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <NavbarCollapse>
+            <Nav className="justify-content-end" style={{ width: "100%" }}>
+              <NavLink
+                to={"/"}
+                className="fs-4 nav-link text-light mx-5"
+                onClick={() => {
+                  setCurrentUser(undefined);
+                }}
+              >
+                Log out
+              </NavLink>
+            </Nav>
+          </NavbarCollapse>
+        </Container>
+      </Navbar>
 
       <Container className="mt-3">
         <div className="card">
           <div className="card-header py-3">
-            <h1 className="display-5">Edit Tansaction</h1>
+            <h1 className="display-5">Edit Transaction</h1>
           </div>
           <div className="card-body">
             <Form>
@@ -116,6 +151,8 @@ export const EditTransaction = () => {
             </Form>
 
             <Button
+              className="submitButton"
+              disabled={disableButton}              
               type="button"
               onClick={() => {
                 editTransaction();

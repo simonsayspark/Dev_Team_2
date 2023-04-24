@@ -7,8 +7,8 @@ const createClaim = async (employee_id, company_id, order_date, amount_requested
     return results;
 }
 
-const updateClaim = async (employee_id, company_id, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status, ceo_comment) => {
-    const query = knex(CLAIMS_TABLE).update({employee_id, company_id, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status, ceo_comment});
+const updateClaim = async (claim_number, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status, ceo_comment) => {
+    const query = knex(CLAIMS_TABLE).update({order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status, ceo_comment}).where({claim_number});
     const results = await query;
     return results;
 }
@@ -94,6 +94,12 @@ const getSortedClaimsByExpenseRange = async (company_id, claim_status, minrange,
     return results;
 }
 
+const addAppealComment = async (claim_number, claim_status, appeal_comment) => {
+    const query = knex(CLAIMS_TABLE).where({claim_number}).update({claim_status, appeal_comment});
+    const results = await query;
+    return results;
+}
+
 module.exports = {
     createClaim,
     updateClaim,
@@ -109,5 +115,6 @@ module.exports = {
     getClaimsOnDate,
     getSortedClaimsByStatus,
     getSortedClaimsByExpenseRange,
-    updateClaimAmount
+    updateClaimAmount,
+    addAppealComment
 }
