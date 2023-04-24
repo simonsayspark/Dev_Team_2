@@ -298,7 +298,7 @@ export const LandingPage = () => {
             <div id="small-header" className="fs-4 text-light">
 
               <p className="text-center">
-                <strong>Email:</strong> DoughBack@gmail.com
+                <strong id="header">Email:</strong> DoughBack@gmail.com
               </p>
 
             </div>
@@ -309,7 +309,7 @@ export const LandingPage = () => {
 
 
               <p className="text-center">
-                <strong>Address:</strong> 6425 Boaz Lane Dallas TX 75205
+                <strong id="header">Address:</strong> 6425 Boaz Lane Dallas TX 75205
               </p>
 
             </div>
@@ -320,7 +320,7 @@ export const LandingPage = () => {
 
 
               <p className="text-center">
-                <strong className="fs-4 text-light">Number:</strong>
+                <strong className="fs-4 text-light" id="header">Number:</strong>
                 <span className="fs-4 text-light"> 123-456-789</span>
               </p>
 
