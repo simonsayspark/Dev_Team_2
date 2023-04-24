@@ -4,15 +4,11 @@ import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
-
-// import { updateTransaction } from "../../api/transactionApi";
-import { useLocation } from "react-router-dom";
-//Dont allow for empty submits (change required)
-//Find a way to default to empty, for category
+import { updateTransaction } from "../../api/transactionApi";
 
 export const EditTransaction = ({ setCurrentUser }) => {
   const currentUser = useContext(UserContext);
@@ -39,17 +35,18 @@ export const EditTransaction = ({ setCurrentUser }) => {
 
 
   const editTransaction = () => {
-    const n_transaction = {
-      employee_id: employee_id,
-      company_id: company_id,
+    const u_transaction = {
+      claim_number: currentTransaction.claim_number,
       order_date: order_date,
       amount_requested: amount_requested,
       category: category,
       claim_description: claim_description,
+      amount_reimbursed: currentTransaction.amount_reimbursed,
+      claim_status: currentTransaction.claim_status,
+      ceo_comment: currentTransaction.ceo_comment
     };
-    // updateTransaction(n_transaction);
+    updateTransaction(u_transaction);
     navigate('/viewTransactions');
-    // onAddTransaction(n_transaction);
   };
 
   return (

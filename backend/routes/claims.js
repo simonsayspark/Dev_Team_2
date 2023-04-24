@@ -11,8 +11,6 @@ router.post('/', async (req, res, next) => {
 })
 
 router.put('/', async (req, res, next) => {
-    console.log("Updating!")
-    console.log(req.query)
     if(req.query.claim_number) {
         if(req.query.claim_status) {
             const updateClaimStat = await req.models.claims.updateClaimStatus(req.query.claim_number, req.query.claim_status);
@@ -21,20 +19,16 @@ router.put('/', async (req, res, next) => {
             const updateClaimCom = await req.models.claims.updateClaimComment(req.query.claim_number, req.query.ceo_comment);
             res.json(updateClaimCom);
         } else if(req.query.amount_reimbursed){
-            console.log("THE amount")
-            console.log(req.query)
             const updateClaimReim = await req.models.claims.updateClaimAmount(req.query.claim_number, req.query.amount_reimbursed);
             res.json(updateClaimReim);
         }
-    else {
-        console.log('IN THE RIGHT PLACE')
-        console.log(req.body)
-        const { employee_id, company_id, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status, ceo_comment} = req.body;
-        const updateClaim = await req.models.claims.updateClaim(employee_id, company_id, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status, ceo_comment);
+    } else {
+        const { claim_number, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status, ceo_comment} = req.body;
+        const updateClaim = await req.models.claims.updateClaim(claim_number, order_date, amount_requested, category, claim_description, amount_reimbursed, claim_status, ceo_comment);
         res.json(updateClaim); 
     }   
     next();
-}})
+})
 
 
 router.get('/', async (req, res, next) => {
