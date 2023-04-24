@@ -4,13 +4,17 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
+
 // import { updateTransaction } from "../../api/transactionApi";
 import { useLocation } from "react-router-dom";
 //Dont allow for empty submits (change required)
 //Find a way to default to empty, for category
 
-export const EditTransaction = () => {
+export const EditTransaction = ({ setCurrentUser }) => {
   const currentUser = useContext(UserContext);
   const location = useLocation();
   const [currentTransaction] = useState(location.state.transaction);
@@ -40,10 +44,34 @@ export const EditTransaction = () => {
 
   return (
     <>
-      {console.log(order_date)}
-      {console.log(amount_requested)}
-      {console.log(category)}
-      {console.log(claim_description)}
+      <Navbar sticky="top" className="color-nav" expand="md" collapseOnSelect>
+        <Container fluid className="m-0">
+          <Navbar.Brand className="theBrand">
+            <NavLink to={"/home"} className="nav-link">
+              <img
+                width="300px"
+                height="auto"
+                src="/logo_text.png"
+                alt="logo"
+              />
+            </NavLink>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <NavbarCollapse>
+            <Nav className="justify-content-end" style={{ width: "100%" }}>
+              <NavLink
+                to={"/"}
+                className="fs-4 nav-link text-light mx-5"
+                onClick={() => {
+                  setCurrentUser(undefined);
+                }}
+              >
+                Log out
+              </NavLink>
+            </Nav>
+          </NavbarCollapse>
+        </Container>
+      </Navbar>
 
       <Container className="mt-3">
         <div className="card">

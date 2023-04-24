@@ -46,10 +46,10 @@ export const App = () => {
                     <Route path='/login' element={ <LoginPage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/home' element={ <HomePage setCurrentUser={ _setCurrentUser }/> }/>
                     <Route path='/signup' element={ <SignupPage setCurrentUser={ _setCurrentUser }/> }/>
-                    <Route path='/addTransaction' element={ <AddTransaction/> }/>
-                    <Route path='/editTransaction' element={ <EditTransaction/>}/>
-                    <Route path='/viewTransactions' element= {<ViewListTransaction/>}/>
-                    <Route path='/appealTransaction' element= {<AppealTransaction/>}/>
+                    <Route path='/addTransaction' element={ <AddTransaction setCurrentUser={ _setCurrentUser }/> }/>
+                    <Route path='/editTransaction' element={ <EditTransaction setCurrentUser={ _setCurrentUser }/>}/>
+                    <Route path='/viewTransactions' element= {<ViewListTransaction setCurrentUser={ _setCurrentUser }/>}/>
+                    <Route path='/appealTransaction' element= {<AppealTransaction setCurrentUser={ _setCurrentUser }/>}/>
                 </Routes>
             </Router>
         </UserContext.Provider>
