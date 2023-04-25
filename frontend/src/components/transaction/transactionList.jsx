@@ -55,7 +55,7 @@ export const TransactionList = () => {
     getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
       setpTransactions(x)
     );
-    getTransactionByStatus(currentUser.employee_id, "Appealed").then((x)=>
+    getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) =>
       setapTransactions(x)
     );
     getTransactionsByCompany(currentUser.company_id).then((x) => {
@@ -85,7 +85,7 @@ export const TransactionList = () => {
         currentUser.employee_id,
         "Appeal",
         sortValue
-      ).then((x)=>setapTransactions(x));
+      ).then((x) => setapTransactions(x));
 
     } else {
       getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
@@ -97,7 +97,7 @@ export const TransactionList = () => {
       getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
         setpTransactions(x)
       );
-      getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) => 
+      getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) =>
         setapTransactions(x)
       );
 
@@ -117,7 +117,7 @@ export const TransactionList = () => {
         setpTransactions(x)
       );
     }
-  },[])
+  }, [])
 
   const sortBy = (e) => {
     setSortValue(e);
@@ -147,15 +147,15 @@ export const TransactionList = () => {
       setStatus("Denied")
     );
 
-    const appeal = (transactionNumber) =>{
-      updateTransactionStatus(transactionNumber, "Appealed").then((x)=>
-      setStatus("Appealed"))
+    const appeal = (transactionNumber) => {
+      updateTransactionStatus(transactionNumber, "Appealed").then((x) =>
+        setStatus("Appealed"))
 
     }
   };
 
   //create 3 different api requests
-  if (!aTransactions || !dTransactions || !pTransactions || !transactions ||!apTransactions) {
+  if (!aTransactions || !dTransactions || !pTransactions || !transactions || !apTransactions) {
     return (
       <>
         <p>Loading...</p>
@@ -190,7 +190,7 @@ export const TransactionList = () => {
                             </Row>
 
                             <Row>
-                              <strong>Amount Requested:</strong>
+                              <strong >Amount Requested:</strong>
                               <p> ${transaction.amount_requested}</p>
                             </Row>
 
@@ -212,7 +212,7 @@ export const TransactionList = () => {
                               </Badge>{" "}
 
 
-                              <Button className="px-3 me-1" type="button" onClick={() => {
+                              <Button className="px-3 me-1 submitButton" type="button" onClick={() => {
                                 navigate('/editTransaction', { state: { transaction } });
                               }}>Edit</Button>
 
@@ -222,8 +222,8 @@ export const TransactionList = () => {
                               }}>Delete</Button>
 
                               <Button className="" type="button" onClick={() => {
-                                navigate('/appealTransaction',  { state: { transaction } });
-                              
+                                navigate('/appealTransaction', { state: { transaction } });
+
                               }}>Appeal</Button>
 
                             </div>
@@ -383,7 +383,7 @@ export const TransactionList = () => {
                     <Col className="col-8 mb-5">
                       <div className="align-items-left mb-2">
                         {transaction.claim_status === "Pending" && (
-                          <span bg="secondary" className=" block mb-1">
+                          <span bg="secondary" id="header" className=" block mb-1">
                             <Badge>{transaction.claim_status}</Badge>
                           </span>
                         )}
@@ -401,90 +401,103 @@ export const TransactionList = () => {
 
                       </div>
                       <Row className="p-1">
-                        <p className="card-text">{transaction.order_date}</p>
+                        <p className="card-text fs-4" id="header">{transaction.order_date}</p>
                       </Row>
                       <Row className="p-1">
-                        <p className="card-text">Amount Requested: ${transaction.amount_requested}</p>
+                        <p className="card-text fs-4" id="small-header"> <span className="fs-4" id="header">Amount Requested:</span> ${transaction.amount_requested}</p>
                       </Row>
                       <Row className="p-1">
-                        <p className="card-text my-0">Claim Description:</p>
-                        <p className="card-text">{transaction.claim_description}</p>
+                        <p className="card-text my-0 fs-4" id="header">Claim Description:</p>
+                        <p className="card-text fs-4" id="small-header">{transaction.claim_description}</p>
                       </Row>
-                    </Col>
 
-                    <Col className="col-4">
-                      <Row className="float-end position-relative">
-                        <div className="float-end position-relative">
-                          <Button
-                            className="btn-success mx-1"
-                            onClick={() => {
-                              approve(transaction.claim_number);
-                            }}
-                          >
-                            Approve
-                          </Button>
-                          <Button
-                            className="btn-danger"
-                            onClick={() => {
-                              deny(transaction.claim_number);
-                            }}
-                          >
-                            Deny
-                          </Button>
-                        </div>
-                        <div className="float-end position-absolute reimburse">
-                          {transaction.claim_status === "Accepted" && (
-                            <div className="my-2 col-12">
-                              <Form.Label>Amount to Reimburse</Form.Label>
-                              <Form.Group
-                                className="col-lg"
-                                controlId="amount_requested"
-                              >
-
-                                <Form.Control
-                                  className="mb-2"
-                                  onChange={(delta) => {
-                                    setReimburseAmount(delta.target.value)
-                                  }}
-                                />
-                                <Button
-                                  className="btn-primary mb-1"
-                                  onClick={() =>
-                                    reimburse(transaction.claim_number)
-                                  }
-                                >
-                                  Reimburse
-                                </Button>
-                              </Form.Group>
-                            </div>
-                          )}
-                        </div>
-                      </Row>
+                      
                     </Col>
+                   
+                  
+
+                  
+                      
                   </Row>
 
-                  <Row className="my-5 mx-1">
-                    <Form.Group controlId="comment">
-                      <Form.Label>Comment</Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        placeholder="Add comment"
-                        rows={5}
-                        //value={comment}
-                        onChange={(delta) => {
-                          setComment(delta.target.value);
-                        }}
-                      />
-                      <Button
-                        type="button"
-                        onClick={() => {
-                          addComment(transaction.claim_number);
-                        }}
-                        className="mt-3 btn-primary"
-                      >
-                        Add Comment
-                      </Button>
-                    </Form.Group>
+                  <Row className="my-5 mx-1 d-flex ">
+                    <Col>
+                      <Form.Group controlId="comment">
+                        <Form.Label id="header" className="fs-4">Comment</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          placeholder="Add comment"
+                          rows={5} 
+                          //value={comment}
+                          onChange={(delta) => {
+                            setComment(delta.target.value);
+                          }}
+                        />
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            addComment(transaction.claim_number);
+                          }}
+                          className="mt-3 btn-primary"
+                        >
+                          Add Comment
+                        </Button>
+                        
+                      </Form.Group>
+                   
+                        <div className="mt-3">
+                        <Button
+                          className="btn-success me-1"
+                          onClick={() => {
+                            approve(transaction.claim_number);
+                          }}
+                        >
+                          Approve
+                        </Button>
+                        <Button
+                          className="btn-danger"
+                          onClick={() => {
+                            deny(transaction.claim_number);
+                          }}
+                        >
+                          Deny
+                        </Button>
+                        </div>
+                    </Col>
+
+                   
+                    <Col className="">
+                    <div className="reimburse ms-5">
+                        {transaction.claim_status === "Accepted" && (
+                          <div className="my-5 col-3 text-center">
+                            <Form.Label className = "fs4" id="header">Amount to Reimburse</Form.Label>
+                            <Form.Group
+                              className="col-lg"
+                              controlId="amount_requested"
+                              
+                              
+                            >
+
+                              <Form.Control
+                                className="mb-2"
+                                onChange={(delta) => {
+                                  setReimburseAmount(delta.target.value)
+                                }}
+                              />
+                              <Button
+                                className="btn-primary mb-1"
+                                onClick={() =>
+                                  reimburse(transaction.claim_number)
+                                }
+                              >
+                                Reimburse
+                              </Button>
+                            </Form.Group>
+                          </div>
+                        )}
+                      
+                      </div>
+                    </Col>
                   </Row>
 
 
