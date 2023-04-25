@@ -420,9 +420,9 @@ export const TransactionList = () => {
             }}
           >
             <Dropdown.Toggle
-              className="mt-2"
+              className="mt-2 dropdown-bg text-white"
               variant="info"
-              id="dropdown-menu"
+              id="small-header"
             >
               {sortValue}
             </Dropdown.Toggle>
@@ -434,7 +434,7 @@ export const TransactionList = () => {
           </Dropdown>
 
           <div className="mt-1">
-            <Button className="button btn submitButton text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
+            <Button id="small-header" className="button btn btn-secondary text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
           </div>
         </div>
       </>
@@ -678,9 +678,9 @@ export const TransactionList = () => {
             }}
           >
             <Dropdown.Toggle
-              className="mt-2"
+              className="mt-2 dropdown-bg text-white"
               variant="info"
-              id="dropdown-menu"
+              id="small-header"
             >
               {sortValue}
             </Dropdown.Toggle>
@@ -692,7 +692,7 @@ export const TransactionList = () => {
           </Dropdown>
 
           <div className="mt-1">
-            <Button className="button btn submitButton text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
+            <Button id="small-header" className="button btn submitButton text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
           </div>
         </div>
 
