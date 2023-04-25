@@ -409,34 +409,32 @@ export const TransactionList = () => {
           </div>
         </div>
 
-        <div className="col-1 mt-2 ps-4 ms-3">
-
-
-
-          <Dropdown
-            className="dropdown1"
-            onSelect={(e) => {
-              setSortValue(e);
-            }}
-          >
-            <Dropdown.Toggle
-              className="mt-2 dropdown-bg text-white"
-              variant="info"
-              id="small-header"
-            >
-              {sortValue}
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="">
-              <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
-              <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
-              <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-
-          <div className="mt-1">
+        <Row className="mt-2 ps-4 ms-3">
+          <Col className="col-lg-1 col-sm-1 p-0">
             <Button id="small-header" className="button btn btn-secondary text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
-          </div>
-        </div>
+          </Col>
+          <Col className="col-lg-1 col-sm-1 p-0">
+            <Dropdown
+              className="dropdown1"
+              onSelect={(e) => {
+                setSortValue(e);
+              }}
+            >
+              <Dropdown.Toggle
+                className="dropdown-bg text-white"
+                variant="info"
+                id="small-header"
+              >
+                {sortValue}
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="">
+                <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
+                <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
+                <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Col>
+        </Row>
       </>
     );
   else if (currentUser.ceo_id || currentUser.role === "Financial Manager") {
@@ -667,32 +665,32 @@ export const TransactionList = () => {
           </div>
         </div>
 
-        <div className="col-1 mt-2 ps-4 ms-3">
-
-          <Dropdown
-            className="dropdown1"
-            onSelect={(e) => {
-              setSortValue(e);
-            }}
-          >
-            <Dropdown.Toggle
-              className="mt-2 dropdown-bg text-white"
-              variant="info"
-              id="small-header"
+        <Row className="mt-2 ps-4 ms-3">
+          <Col className="col-lg-1 col-sm-1 p-0">
+            <Dropdown
+              className="dropdown1"
+              onSelect={(e) => {
+                setSortValue(e);
+              }}
             >
-              {sortValue}
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="">
-              <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
-              <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
-              <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-
-          <div className="mt-1">
+              <Dropdown.Toggle
+                className="dropdown-bg text-white"
+                variant="info"
+                id="small-header"
+              >
+                {sortValue}
+              </Dropdown.Toggle>
+              <Dropdown.Menu className="">
+                <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
+                <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
+                <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Col>
+          <Col className="col-lg-1 col-sm-1 p-0">
             <Button id="small-header" className="button btn submitButton text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
-          </div>
-        </div>
+          </Col>
+        </Row>
 
       </>
 
