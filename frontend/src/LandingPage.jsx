@@ -189,7 +189,7 @@ export const LandingPage = () => {
             <div className="display-6 text-white" id="header">Employee</div>
             <p className="fs-3 p-3 text-white" id="small-header">
               {" "}
-              As an employee, you can submit claims for reimbursement,
+              As an employee, you can submit requests for reimbursement,
               which will then be reviewed by a financial manager or the CEO.
             </p>
           </Col>
