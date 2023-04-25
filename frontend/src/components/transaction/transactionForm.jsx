@@ -52,12 +52,29 @@ export const TransactionForm = () => {
           <div className="card-body">
             <Form>
               <div className="row mb-3">
-                <Form.Group className="col-3 inline" controlId="order_date">
+                <Form.Group className="col-5 d-md-none  inline" controlId="order_date">
                   <Form.Label id="header">Date</Form.Label>
                   <Form.Control
+                    
                     type="date"
                     value={order_date}
-                    className="w-100 col-4"
+                    className="w-100"
+                   
+
+                    onChange={(delta) => {
+                      setOrder_date(delta.target.value);
+                    }}
+                  />
+                </Form.Group>
+                <Form.Group className="col-2 d-none d-md-block inline" controlId="order_date">
+                  <Form.Label id="header">Date</Form.Label>
+                  <Form.Control
+                    
+                    type="date"
+                    value={order_date}
+                    className="w-100"
+                   
+
                     onChange={(delta) => {
                       setOrder_date(delta.target.value);
                     }}
