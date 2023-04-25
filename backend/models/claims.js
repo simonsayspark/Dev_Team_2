@@ -88,6 +88,12 @@ const getSortedClaimsByStatus = async (employee_id, claim_status, sortBy) => {
     return results;
 }
 
+const getSortedCompanyClaimsByStatus = async (company_id, claim_status, sortBy) => {
+    const query = knex(CLAIMS_TABLE).where({company_id}).where({claim_status}).orderBy(sortBy);
+    const results = await query;
+    return results;
+}
+
 const getSortedClaimsByExpenseRange = async (company_id, claim_status, minrange, maxrange, sortBy) => {
     const query = knex(CLAIMS_TABLE).where({company_id}).where({claim_status}).where(minrange < {amount_requested} < maxrange).orderBy(sortBy);
     const results = await query;
@@ -96,6 +102,12 @@ const getSortedClaimsByExpenseRange = async (company_id, claim_status, minrange,
 
 const addAppealComment = async (claim_number, claim_status, appeal_comment) => {
     const query = knex(CLAIMS_TABLE).where({claim_number}).update({claim_status, appeal_comment});
+    const results = await query;
+    return results;
+}
+
+const getCompanyClaimsByStatus = async (company_id, claim_status) => {
+    const query = knex(CLAIMS_TABLE).where({company_id}).where({claim_status});
     const results = await query;
     return results;
 }
@@ -114,7 +126,9 @@ module.exports = {
     getClaimsByCompanyId,
     getClaimsOnDate,
     getSortedClaimsByStatus,
+    getSortedCompanyClaimsByStatus,
     getSortedClaimsByExpenseRange,
     updateClaimAmount,
-    addAppealComment
+    addAppealComment,
+    getCompanyClaimsByStatus
 }
