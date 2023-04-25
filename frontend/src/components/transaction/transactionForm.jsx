@@ -66,7 +66,7 @@ export const TransactionForm = () => {
                     }}
                   />
                 </Form.Group>
-                <Form.Group className="col-2 d-none d-md-block inline" controlId="order_date">
+                <Form.Group className="col-2   d-none d-md-block inline" controlId="order_date">
                   <Form.Label id="header">Date</Form.Label>
                   <Form.Control
                     
