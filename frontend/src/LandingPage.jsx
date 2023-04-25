@@ -283,10 +283,12 @@ export const LandingPage = () => {
         </Row>
       </Container> */}
 
+      
+
       <Container
         fluid
         ref={contactUsRef}
-        className={`m-0 p-0 ${contactLoaded ? "unhideIt" : "hideIt"}`}
+        className={`m-0 p-0 `}
       >
         <Row className="contact_us m-0">
           <div className="display-6 text-center mb-3 pt-3 text-light" id="header">Contact Us

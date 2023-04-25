@@ -54,6 +54,49 @@ export const TransactionList = () => {
 
   useEffect(() => {
     if (currentUser.role === "Employee") {
+  useEffect(() => {
+    getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
+      setaTransactions(x)
+    );
+    getTransactionByStatus(currentUser.employee_id, "Denied").then((x) =>
+      setdTransactions(x)
+    );
+    getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
+      setpTransactions(x)
+    );
+    getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) =>
+      setapTransactions(x)
+    );
+    getTransactionsByCompany(currentUser.company_id).then((x) => {
+      setTransactions(x);
+    });
+  }, [status]);
+
+  useEffect(() => {
+    if (sortValue != "Sort By") {
+      getSortTransactionByStatus(
+        currentUser.employee_id,
+        "Accepted",
+        sortValue
+      ).then((x) => setaTransactions(x));
+      getSortTransactionByStatus(
+        currentUser.employee_id,
+        "Denied",
+        sortValue
+      ).then((x) => setdTransactions(x));
+      getSortTransactionByStatus(
+        currentUser.employee_id,
+        "Pending",
+        sortValue
+      ).then((x) => setpTransactions(x));
+
+      getSortTransactionByStatus(
+        currentUser.employee_id,
+        "Appeal",
+        sortValue
+      ).then((x) => setapTransactions(x));
+
+    } else {
       getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
         setaTransactions(x)
       );
@@ -185,7 +228,7 @@ export const TransactionList = () => {
         );
       }
     }
-  }, [sortValue, status]);
+  }, []);
 
 
   const sortBy = (e) => {
@@ -259,7 +302,7 @@ export const TransactionList = () => {
                             </Row>
 
                             <Row>
-                              <strong>Amount Requested:</strong>
+                              <strong >Amount Requested:</strong>
                               <p> ${transaction.amount_requested}</p>
                             </Row>
 
@@ -281,7 +324,7 @@ export const TransactionList = () => {
                               </Badge>{" "}
 
 
-                              <Button className="px-3 me-1" type="button" onClick={() => {
+                              <Button className="px-3 me-1 submitButton" type="button" onClick={() => {
                                 navigate('/editTransaction', { state: { transaction } });
                               }}>Edit</Button>
 
