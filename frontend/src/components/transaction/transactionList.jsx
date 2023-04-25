@@ -254,7 +254,7 @@ export const TransactionList = () => {
                           <Container className="d-flex ">
                             <Row>
                               <strong>Order Date:</strong>
-                              <Col className="">{transaction.order_date}</Col>
+                              <Col className="">{transaction.order_.split("T")[0]}</Col>
 
                             </Row>
 
@@ -316,7 +316,7 @@ export const TransactionList = () => {
                         <ListGroup.Item>
                           <Container>
                             <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                               <Col>
                                 <Badge bg="success" className="">
                                   {transaction.claim_status}
@@ -349,7 +349,7 @@ export const TransactionList = () => {
                         <ListGroup.Item>
                           <Container>
                             <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                               <Col>
                                 <Badge bg="danger" className="">
                                   {transaction.claim_status}
@@ -381,7 +381,7 @@ export const TransactionList = () => {
                         <ListGroup.Item>
                           <Container>
                             <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                               <Col>
                                 <Badge bg="secondary" className="">
                                   {transaction.claim_status}
@@ -460,7 +460,7 @@ export const TransactionList = () => {
                           <Container className="d-flex ">
                             <Row>
                               <strong>Order Date:</strong>
-                              <Col className="">{transaction.order_date}</Col>
+                              <Col className="">{transaction.order_date.split("T")[0]}</Col>
 
                             </Row>
 
@@ -574,7 +574,7 @@ export const TransactionList = () => {
                         <ListGroup.Item>
                           <Container>
                             <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                               <Col>
                                 <Badge bg="success" className="">
                                   {transaction.claim_status}
@@ -607,7 +607,7 @@ export const TransactionList = () => {
                         <ListGroup.Item>
                           <Container>
                             <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                               <Col>
                                 <Badge bg="danger" className="">
                                   {transaction.claim_status}
@@ -639,7 +639,7 @@ export const TransactionList = () => {
                         <ListGroup.Item>
                           <Container>
                             <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
+                              <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                               <Col>
                                 <Badge bg="secondary" className="">
                                   {transaction.claim_status}
