@@ -59,35 +59,35 @@ export const HomePage = ({ setCurrentUser }) => {
 
         <Container className="mt-3">
           <Row className="display-1 text-center">
-            <p id ="header">{currentUser.cname}'s Dashboard</p>
+            <p>{currentUser.cname}'s Dashboard</p>
           </Row>
 
           <Row className="w-100">
             <Col className="bg-light text-center me-1 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
-                  <Card.Title className = "fs-3" id="header">
+                  <Card.Title>
                     Approve and Deny Transactions
                   </Card.Title>
-                  <Card.Text className="fs-4" id ="small-header">
+                  <Card.Text>
                     Here, you can view all of the pending reimbursement requests
                     submitted by employees in your company.
                   </Card.Text>
-                  <Button className="fs-5 mt-auto submitButton" id="small-header" onClick={() => navigate("/viewTransactions")}>View Reimbursement Requests</Button>
+                  <Button className="mt-auto submitButton" onClick={() => navigate("/viewTransactions")}>View Reimbursement Requests</Button>
                 </Card.Body>
               </Card>
             </Col>
             <Col className="bg-light text-center ms-1 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
-                  <Card.Title className = "fs-3" id="header">
+                  <Card.Title>
                     Add/Remove Employees
                   </Card.Title>
-                  <Card.Text className="fs-4" id ="small-header">
+                  <Card.Text>
                     Here, you can view all of the employees in your company,
                     as well as add or remove any employees.
                   </Card.Text>
-                  <Button className="fs-5 mt-auto submitButton" id="small-header">Add or remove an employee</Button>
+                  <Button className="mt-auto submitButton">Add or remove an employee</Button>
                 </Card.Body>
               </Card>
             </Col>
@@ -129,20 +129,20 @@ export const HomePage = ({ setCurrentUser }) => {
 
         <Container className="mt-3">
           <Row className="display-1 text-center">
-            <p id ="header">{currentUser.ename}'s Dashboard</p>
+            <p>{currentUser.ename}'s Dashboard</p>
           </Row>
 
           <Row className="w-100">
             <Card className="bg-light text-center homePageCards">
               <Card.Body className="d-flex flex-column">
-                <Card.Title id="header" className="fs-3">
+                <Card.Title>
                   Approve and Deny Transactions
                 </Card.Title>
-                <Card.Text id="small-header" className="fs-4">
+                <Card.Text>
                   Here, you can view all of the pending reimbursement requests
                   submitted by employees in your company.
                 </Card.Text>
-                <Button id ="small-header" className="fs-5 mt-auto submitButton"
+                <Button className="mt-auto submitButton"
                   onClick={() => {
                     navigate("/viewTransactions")
                   }}>
