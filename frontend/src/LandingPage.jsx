@@ -289,7 +289,7 @@ export const LandingPage = () => {
         className={`m-0 p-0 ${contactLoaded ? "unhideIt" : "hideIt"}`}
       >
         <Row className="contact_us m-0">
-          <div className="display-6 text-center mb-3 pt-3 text-light" id="header">Contact Us
+          <div className="display-6 text-center mt-3 mb-3 pt-3 text-light" id="header">Contact Us
 
           </div>
 

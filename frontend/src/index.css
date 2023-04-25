@@ -105,8 +105,8 @@ code {
 }
 
 .addPadding1 {
-  padding-top: 15vh;
-  padding-bottom: 15vh;
+  padding-top: 8vh;
+  padding-bottom: 14vh;
 }
 
 .fade-in {
@@ -167,5 +167,5 @@ code {
 
 .light-bg {
   background-color: #D9D9D9;
-  height: 100vh;
+  height: 105vh;
 }
