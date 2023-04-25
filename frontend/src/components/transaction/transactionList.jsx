@@ -318,7 +318,7 @@ export const TransactionList = () => {
                             <Row>
                               <Col className="p-0">{transaction.order_date}</Col>
                               <Col>
-                                <Badge bg="secondary" className="">
+                                <Badge bg="success" className="">
                                   {transaction.claim_status}
                                 </Badge>{" "}
                               </Col>
@@ -351,7 +351,7 @@ export const TransactionList = () => {
                             <Row>
                               <Col className="p-0">{transaction.order_date}</Col>
                               <Col>
-                                <Badge bg="secondary" className="">
+                                <Badge bg="danger" className="">
                                   {transaction.claim_status}
                                 </Badge>{" "}
                               </Col>
@@ -576,7 +576,7 @@ export const TransactionList = () => {
                             <Row>
                               <Col className="p-0">{transaction.order_date}</Col>
                               <Col>
-                                <Badge bg="secondary" className="">
+                                <Badge bg="success" className="">
                                   {transaction.claim_status}
                                 </Badge>{" "}
                               </Col>
@@ -609,7 +609,7 @@ export const TransactionList = () => {
                             <Row>
                               <Col className="p-0">{transaction.order_date}</Col>
                               <Col>
-                                <Badge bg="secondary" className="">
+                                <Badge bg="danger" className="">
                                   {transaction.claim_status}
                                 </Badge>{" "}
                               </Col>
@@ -668,8 +668,6 @@ export const TransactionList = () => {
         </div>
 
         <div className="col-1 mt-2 ps-4 ms-3">
-
-
 
           <Dropdown
             className="dropdown1"
