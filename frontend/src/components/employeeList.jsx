@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { getEmployeeByCompId } from "../api/employeeApi";
+import { getEmployeeByCompId, removeEmployee } from "../api/employeeApi";
 import Container from "react-bootstrap/esm/Container";
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
@@ -11,7 +11,8 @@ import { getCompanies } from "../api/companiesApi";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
-import {NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import Button from "react-bootstrap/esm/Button";
 
 
 
@@ -20,7 +21,6 @@ export const EmployeeList = ({ setCurrentUser }) => {
     const currentUser = useContext(UserContext);
     const [ceoCompany, setCeoCompany] = useState(0);
 
-    console.log(currentUser)
 
     useEffect(() => {
         getCompanies().then((allCompanies) => {
@@ -33,6 +33,21 @@ export const EmployeeList = ({ setCurrentUser }) => {
             })
         })
     }, [])
+
+    const remove = (employee_id) => {
+        removeEmployee(employee_id).then((x) => {
+            console.log(x);
+        })
+    }
+
+    if (!employees) {
+        return (
+            <>
+                <p>Loading...</p>
+            </>
+        )
+    }
+    
 
     console.log(employees);
     return (
@@ -65,27 +80,27 @@ export const EmployeeList = ({ setCurrentUser }) => {
                     </NavbarCollapse>
                 </Container>
             </Navbar>
-            <h1>test</h1>
-            <Container>
+            <Container className="mt-3">
                 {employees.length === 0 && (
                     "No Employees"
                 )}
                 {employees.length !== 0 && (
-                    <ListGroup>
+                    <Row>
                         {employees.map((employee, index) => {
                             return (
-                                <ListGroupItem>
-                                    <Card>
+                                <Col className="col-4 d-inline-block">
+                                    <Card className="h-100">
                                         <Card.Body>
                                             <Card.Title>{employee.ename}</Card.Title>
                                             <Card.Text>Role: {employee.role}</Card.Text>
                                             <Card.Text>ID: {employee.employee_id}</Card.Text>
+                                            <Button className="btn btn-warning" onClick={remove(employee.employee_id)}>Remove Employee from Company</Button>
                                         </Card.Body>
                                     </Card>
-                                </ListGroupItem>
+                                </Col>
                             )
                         })}
-                    </ListGroup>
+                    </Row>
                 )}
             </Container>
         </>
