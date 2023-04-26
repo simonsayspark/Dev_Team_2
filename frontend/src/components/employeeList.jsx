@@ -27,16 +27,11 @@ export const EmployeeList = ({ setCurrentUser }) => {
             allCompanies.forEach((aCompany, index) => {
                 if (aCompany.ceo_id === currentUser.ceo_id) {
                     setCeoCompany(aCompany.company_id);
+                    getEmployeeByCompId(aCompany.company_id).then((x) => setEmployees(x));
                 }
 
             })
         })
-    }, [])
-
-    console.log(ceoCompany)
-
-    useEffect(() => {
-        getEmployeeByCompId(ceoCompany).then((x) => setEmployees(x));
     }, [])
 
     console.log(employees);
@@ -70,7 +65,7 @@ export const EmployeeList = ({ setCurrentUser }) => {
                     </NavbarCollapse>
                 </Container>
             </Navbar>
-            {/* <h1>test</h1>
+            <h1>test</h1>
             <Container>
                 {employees.length === 0 && (
                     "No Employees"
@@ -92,7 +87,7 @@ export const EmployeeList = ({ setCurrentUser }) => {
                         })}
                     </ListGroup>
                 )}
-            </Container> */}
+            </Container>
         </>
     )
 }
