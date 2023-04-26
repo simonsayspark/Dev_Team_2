@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
         const employeeByEmail = await req.models.employees.getEmployeeByEmail(req.query.eemail);
         res.json(employeeByEmail);
         next();
-    } else if(req.quey.company_id) {
+    } else if(req.query.company_id) {
         const employeeByCompId = await req.models.employees.getEmployeeByCompId(req.query.company_id);
         res.json(employeeByCompId);
         next();

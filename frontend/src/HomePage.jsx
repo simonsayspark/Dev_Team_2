@@ -87,7 +87,7 @@ export const HomePage = ({ setCurrentUser }) => {
                     View all of the employees in your company,
                     as well as add or remove any employees.
                   </Card.Text>
-                  <Button className="mt-auto submitButton" onClick={() => navigate("/removeEmployees")}>Add or remove an employee</Button>
+                  <Button className="mt-auto submitButton" onClick={() => navigate("/employeeList")}>Add or remove an employee</Button>
                 </Card.Body>
               </Card>
             </Col>

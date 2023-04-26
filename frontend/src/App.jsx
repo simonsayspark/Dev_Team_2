@@ -51,7 +51,7 @@ export const App = () => {
                     <Route path='/editTransaction' element={ <EditTransaction setCurrentUser={ _setCurrentUser }/>}/>
                     <Route path='/viewTransactions' element= {<ViewListTransaction setCurrentUser={ _setCurrentUser }/>}/>
                     <Route path='/appealTransaction' element= {<AppealTransaction setCurrentUser={ _setCurrentUser }/>}/>
-                    <Route path='/removeEmployees' element = {<EmployeeList setCurrentUser={_setCurrentUser}></EmployeeList>}/>
+                    <Route path='/employeeList' element = {<EmployeeList setCurrentUser={_setCurrentUser}/>}/>
                 </Routes>
             </Router>
         </UserContext.Provider>

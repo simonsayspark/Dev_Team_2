@@ -21,8 +21,10 @@ export const getEmployeeByEmail = (email) => new Promise((resolve, reject) => {
 });
 
 export const getEmployeeByCompId = (company_id) => new Promise((resolve, reject) => {
-    axios.get(`${apiEndpoint}/employees?company_id=${company_id}`).then(x => resolve(x.data)).catch(x => {
-        alert(x);
-        reject(x);
-    })
+    axios.get(`${apiEndpoint}/employees?company_id=${company_id}`)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
 })
