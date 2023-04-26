@@ -26,6 +26,7 @@ import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
 import { EditTransaction } from "./editTransaction";
 import { AppealTransaction } from "./appealTransaction";
+import Card from "react-bootstrap/Card";
 
 //ONLY for pending, allow for edits of the transaction details
 
@@ -165,24 +166,27 @@ export const TransactionList = () => {
   if (currentUser.role === "Employee")
     return (
       <>
-        <div className="row">
+        <Row>
 
 
-          <div className="col-10 p-0 ms-5">
-            <Tabs
-              defaultActiveKey="pending"
-              id="uncontrolled-tab-example"
-              className="mb-3"
-              fill
+          <Tabs
+            defaultActiveKey="pending"
+            id="uncontrolled-tab-example"
+            className="mb-3"
+            fill
+          >
+            <Tab eventKey="pending" title="Pending">
 
-            >
-              <Tab eventKey="pending" title="Pending">
-                {pTransactions.length !== 0 ? (
-                  <ListGroup>
-                    {pTransactions?.map((transaction, index) => {
-                      return (
-                        <ListGroup.Item>
-                          <Container className="d-flex ">
+              {pTransactions.length !== 0 ? (
+                <Row className="mx-3">
+                  {pTransactions?.map((transaction, index) => {
+                    return (
+                      <Col className="col-6">
+                        <Card className="h-100">
+
+                          <div className="ms-3">
+
+
                             <Row>
                               <strong>Order Date:</strong>
                               <Col className="">{transaction.order_date}</Col>
@@ -195,150 +199,155 @@ export const TransactionList = () => {
                             </Row>
 
                             <Row>
-                              <Col>
-                                <strong>Claim Description:</strong>
 
-                                <p> {transaction.claim_description}</p>
-                              </Col>
+                              <strong>Claim Description:</strong>
+
+                              <p> {transaction.claim_description}</p>
+
 
                             </Row>
-                          </Container>
 
-                          <Col>
 
-                            <div className="d-flex justify-content-end">
+                            <Col>
+
+                              <div className="">
+                                <Badge bg="secondary" className="">
+                                  {transaction.claim_status}
+                                </Badge>{" "}
+
+
+                                <Button className=" submitButton" type="button" onClick={() => {
+                                  navigate('/editTransaction', { state: { transaction } });
+                                }}>Edit</Button>
+
+                                <Button className="" type="button" onClick={() => {
+                                  deleteTransaction(transaction.claim_number);
+                                  setDeleteClicked(!deleteClicked);
+                                }}>Delete</Button>
+
+
+
+                              </div>
+                            </Col>
+                          </div>
+
+                        </Card>
+                      </Col>
+                    );
+                  })}
+                </Row>
+
+              ) : (
+                <p>No available transaction</p>
+              )}
+            </Tab>
+
+
+
+            <Tab eventKey="accepted" title="Accepted">
+              {aTransactions.length !== 0 ? (
+                <ListGroup>
+                  {aTransactions.map((transaction, index) => {
+                    return (
+                      <ListGroup.Item>
+                        <Container>
+                          <Row>
+                            <Col className="p-0">{transaction.order_date}</Col>
+                            <Col>
                               <Badge bg="secondary" className="">
                                 {transaction.claim_status}
                               </Badge>{" "}
+                            </Col>
+                          </Row>
 
-
-                              <Button className="px-3 me-1 submitButton" type="button" onClick={() => {
-                                navigate('/editTransaction', { state: { transaction } });
-                              }}>Edit</Button>
-
-                              <Button className="" type="button" onClick={() => {
-                                deleteTransaction(transaction.claim_number);
-                                setDeleteClicked(!deleteClicked);
-                              }}>Delete</Button>
-
-                              <Button className="" type="button" onClick={() => {
-                                navigate('/appealTransaction', { state: { transaction } });
-
-                              }}>Appeal</Button>
-
-                            </div>
-                          </Col>
-                        </ListGroup.Item>
-                      );
-                    })}
-                  </ListGroup>
-                ) : (
-                  <p>No available transaction</p>
-                )}
-              </Tab>
+                          <Row>
+                            Comment:
+                            <br />
+                            {transaction.ceo_comment}
+                          </Row>
+                        </Container>
+                      </ListGroup.Item>
+                    );
+                  })}
+                </ListGroup>
+              ) : (
+                <p className="ms-3">No available transaction</p>
+              )}
+            </Tab>
 
 
 
-              <Tab eventKey="accepted" title="Accepted">
-                {aTransactions.length !== 0 ? (
-                  <ListGroup>
-                    {aTransactions.map((transaction, index) => {
-                      return (
-                        <ListGroup.Item>
-                          <Container>
-                            <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
-                              <Col>
-                                <Badge bg="secondary" className="">
-                                  {transaction.claim_status}
-                                </Badge>{" "}
-                              </Col>
-                            </Row>
+            <Tab eventKey="denied" title="Denied">
+              {dTransactions.length !== 0 ? (
+                <ListGroup>
+                  {dTransactions.map((transaction, index) => {
+                    return (
+                      <ListGroup.Item>
+                        <Container>
+                          <Row>
+                            <Col className="p-0">{transaction.order_date}</Col>
+                            <Col>
+                              <Badge bg="secondary" className="">
+                                {transaction.claim_status}
+                              </Badge>{" "}
+                            </Col>
+                          </Row>
 
-                            <Row>
-                              Comment:
-                              <br />
-                              {transaction.ceo_comment}
-                            </Row>
-                          </Container>
-                        </ListGroup.Item>
-                      );
-                    })}
-                  </ListGroup>
-                ) : (
-                  <p className="ms-3">No available transaction</p>
-                )}
-              </Tab>
+                          <Row>
+                            Ceo Comment:
+                            <br />
+                            {transaction.ceo_comment}
+                          </Row>
+                          
+                          <Button className="" type="button" onClick={() => {
+                            navigate('/appealTransaction', { state: { transaction } });
+
+                          }}>Appeal</Button>
+                        </Container>
+                      </ListGroup.Item>
+                    );
+                  })}
+                </ListGroup>
+              ) : (
+                <p className="ms-3">No available transaction</p>
+              )}
+            </Tab>
+
+            <Tab eventKey="appealed" title="Appealed">
+              {apTransactions.length !== 0 ? (
+                <ListGroup>
+                  {apTransactions.map((transaction, index) => {
+                    return (
+                      <ListGroup.Item>
+                        <Container>
+                          <Row>
+                            <Col className="p-0">{transaction.order_date}</Col>
+                            <Col>
+                              <Badge bg="secondary" className="">
+                                {transaction.claim_status}
+                              </Badge>{" "}
+                            </Col>
+                          </Row>
+
+                          <Row>
+                            Ceo Comment:
+                            <br />
+                            {transaction.ceo_comment}
+                          </Row>
+
+                        </Container>
+                      </ListGroup.Item>
+                    );
+                  })}
+                </ListGroup>
+              ) : (
+                <p className="ms-3">No available transaction</p>
+              )}
+            </Tab>
+          </Tabs>
 
 
-
-              <Tab eventKey="denied" title="Denied">
-                {dTransactions.length !== 0 ? (
-                  <ListGroup>
-                    {dTransactions.map((transaction, index) => {
-                      return (
-                        <ListGroup.Item>
-                          <Container>
-                            <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
-                              <Col>
-                                <Badge bg="secondary" className="">
-                                  {transaction.claim_status}
-                                </Badge>{" "}
-                              </Col>
-                            </Row>
-
-                            <Row>
-                              Ceo Comment:
-                              <br />
-                              {transaction.ceo_comment}
-                            </Row>
-
-                          </Container>
-                        </ListGroup.Item>
-                      );
-                    })}
-                  </ListGroup>
-                ) : (
-                  <p className="ms-3">No available transaction</p>
-                )}
-              </Tab>
-
-              <Tab eventKey="appealed" title="Appealed">
-                {apTransactions.length !== 0 ? (
-                  <ListGroup>
-                    {apTransactions.map((transaction, index) => {
-                      return (
-                        <ListGroup.Item>
-                          <Container>
-                            <Row>
-                              <Col className="p-0">{transaction.order_date}</Col>
-                              <Col>
-                                <Badge bg="secondary" className="">
-                                  {transaction.claim_status}
-                                </Badge>{" "}
-                              </Col>
-                            </Row>
-
-                            <Row>
-                              Ceo Comment:
-                              <br />
-                              {transaction.ceo_comment}
-                            </Row>
-
-                          </Container>
-                        </ListGroup.Item>
-                      );
-                    })}
-                  </ListGroup>
-                ) : (
-                  <p className="ms-3">No available transaction</p>
-                )}
-              </Tab>
-            </Tabs>
-
-          </div>
-        </div>
+        </Row>
 
         <div className="col-1 mt-2 ps-4 ms-3">
 
@@ -411,13 +420,13 @@ export const TransactionList = () => {
                         <p className="card-text fs-4" id="small-header">{transaction.claim_description}</p>
                       </Row>
 
-                      
-                    </Col>
-                   
-                  
 
-                  
-                      
+                    </Col>
+
+
+
+
+
                   </Row>
 
                   <Row className="my-5 mx-1 d-flex ">
@@ -427,7 +436,7 @@ export const TransactionList = () => {
                         <Form.Control
                           as="textarea"
                           placeholder="Add comment"
-                          rows={5} 
+                          rows={5}
                           //value={comment}
                           onChange={(delta) => {
                             setComment(delta.target.value);
@@ -442,10 +451,10 @@ export const TransactionList = () => {
                         >
                           Add Comment
                         </Button>
-                        
+
                       </Form.Group>
-                   
-                        <div className="mt-3">
+
+                      <div className="mt-3">
                         <Button
                           className="btn-success me-1"
                           onClick={() => {
@@ -462,20 +471,20 @@ export const TransactionList = () => {
                         >
                           Deny
                         </Button>
-                        </div>
+                      </div>
                     </Col>
 
-                   
+
                     <Col className="">
-                    <div className="reimburse ms-5">
+                      <div className="reimburse ms-5">
                         {transaction.claim_status === "Accepted" && (
                           <div className="my-5 col-3 text-center">
-                            <Form.Label className = "fs4" id="header">Amount to Reimburse</Form.Label>
+                            <Form.Label className="fs4" id="header">Amount to Reimburse</Form.Label>
                             <Form.Group
                               className="col-lg"
                               controlId="amount_requested"
-                              
-                              
+
+
                             >
 
                               <Form.Control
@@ -495,7 +504,7 @@ export const TransactionList = () => {
                             </Form.Group>
                           </div>
                         )}
-                      
+
                       </div>
                     </Col>
                   </Row>
