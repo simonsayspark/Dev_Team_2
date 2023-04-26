@@ -57,7 +57,7 @@ export const HomePage = ({ setCurrentUser }) => {
           </NavLink>
         </Container>
 
-        <Container className="mt-3">
+        <Container className="mt-5">
           <Row className="display-1 text-center">
             <p>{currentUser.cname}'s Dashboard</p>
           </Row>
@@ -70,7 +70,7 @@ export const HomePage = ({ setCurrentUser }) => {
                     Approve and Deny Transactions
                   </Card.Title>
                   <Card.Text>
-                    Here, you can view all of the pending reimbursement requests
+                    View all of the pending reimbursement requests
                     submitted by employees in your company.
                   </Card.Text>
                   <Button className="mt-auto submitButton" onClick={() => navigate("/viewTransactions")}>View Reimbursement Requests</Button>
@@ -84,7 +84,7 @@ export const HomePage = ({ setCurrentUser }) => {
                     Add/Remove Employees
                   </Card.Title>
                   <Card.Text>
-                    Here, you can view all of the employees in your company,
+                    View all of the employees in your company,
                     as well as add or remove any employees.
                   </Card.Text>
                   <Button className="mt-auto submitButton" onClick={() => navigate("/removeEmployees")}>Add or remove an employee</Button>
@@ -127,7 +127,7 @@ export const HomePage = ({ setCurrentUser }) => {
           </Container>
         </Navbar>
 
-        <Container className="mt-3">
+        <Container className="mt-5">
           <Row className="display-1 text-center">
             <p>{currentUser.ename}'s Dashboard</p>
           </Row>
@@ -139,7 +139,7 @@ export const HomePage = ({ setCurrentUser }) => {
                   Approve and Deny Transactions
                 </Card.Title>
                 <Card.Text>
-                  Here, you can view all of the pending reimbursement requests
+                  View all of the pending reimbursement requests
                   submitted by employees in your company.
                 </Card.Text>
                 <Button className="mt-auto submitButton"
@@ -200,7 +200,7 @@ export const HomePage = ({ setCurrentUser }) => {
                     Submit Transactions
                   </Card.Title>
                   <Card.Text className="fs-4" id="small-header" >
-                    Here, you can submit a reimbursement request for a business
+                    Submit a reimbursement request for a business
                     expense that you made on behalf of your company.
                   </Card.Text>
                   <Button className=" fs-5 mt-auto submitButton" id="small-header" onClick={() => navigate("/addTransaction")}>Submit a transaction</Button>
@@ -214,7 +214,7 @@ export const HomePage = ({ setCurrentUser }) => {
                     View Transactions
                   </Card.Title>
                   <Card.Text className="fs-4" id="small-header">
-                    Here, you can view all of your previous reimbursement requests,
+                    View all previous reimbursement requests,
                     as well as edit, delete, or appeal your submitted transactions.
                   </Card.Text>
                   <Button className="mt-auto submitButton fs-5" id="small-header" onClick={() => navigate("/viewTransactions")}>View your transactions</Button>

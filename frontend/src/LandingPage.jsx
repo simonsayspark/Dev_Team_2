@@ -189,7 +189,7 @@ export const LandingPage = () => {
             <div className="display-6 text-white" id="header">Employee</div>
             <p className="fs-3 p-3 text-white" id="small-header">
               {" "}
-              As an employee, you can submit claims for reimbursement,
+              As an employee, you can submit requests for reimbursement,
               which will then be reviewed by a financial manager or the CEO.
             </p>
           </Col>
@@ -286,10 +286,10 @@ export const LandingPage = () => {
       <Container
         fluid
         ref={contactUsRef}
-        className={`m-0 p-0 ${contactLoaded ? "unhideIt" : "hideIt"}`}
+        className={`m-0 p-0`}
       >
         <Row className="contact_us m-0">
-          <div className="display-6 text-center mb-3 pt-3 text-light" id="header">Contact Us
+          <div className="display-6 text-center mt-3 mb-3 pt-3 text-light" id="header">Contact Us
 
           </div>
 
@@ -321,7 +321,7 @@ export const LandingPage = () => {
 
               <p className="text-center">
                 <strong className="fs-4 text-light" id="header">Number:</strong>
-                <span className="fs-4 text-light"> 123-456-789</span>
+                <span className="fs-4 text-light"> 123-456-7890</span>
               </p>
 
             </div>
