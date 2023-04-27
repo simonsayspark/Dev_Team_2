@@ -173,3 +173,16 @@ code {
   background-color: #D9D9D9;
   height: 105vh;
 }
+
+/* .tab-color {
+  color: #3c6e71;
+} */
+
+.nav-tabs .nav-link {
+  color: #418485 !important;
+}
+
+.nav-tabs .nav-link.active {
+  border-bottom: solid 4px white !important;
+  font-weight: bold;
+}

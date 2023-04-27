@@ -250,45 +250,40 @@ export const TransactionList = () => {
                         <Card className="h-100 p-3">
 
                           <div className="ms-3">
-
-
                             <Row>
                               <Col xs={13} sm={5} md={4} lg={3} xl={3} xxl={5}>
-                              <strong>Order Date:</strong>
-                              <br />
-
-                              {transaction.order_date.split("T")[0]}
-                              
+                                <strong>Order Date:</strong>
+                                <br />
+                                {transaction.order_date.split("T")[0]}
                               </Col>
-                                
 
-
-                              <Col xs={9} sm={5} md={4} lg={7} xl={6} xxl={6} >
+                              <Col xs={9} sm={5} md={4} lg={7} xl={6} xxl={6}>
                                 <strong >Amount Requested: </strong>
                                 ${transaction.amount_requested}
                               </Col>
-
-                          
                             </Row>
 
                             <Row className="mt-4 pb-5">
-                            <Col>
-                              <strong>Claim Description:</strong>
+                              <Col xs={13} sm={5} md={4} lg={3} xl={3} xxl={5}>
+                                <strong>Claim Description:</strong>
 
-                              <p> {transaction.claim_description}</p>
+                                <p> {transaction.claim_description}</p>
+                              </Col>
+                              <Col xs={9} sm={5} md={4} lg={7} xl={6} xxl={6}>
+                                <strong>Category: </strong>
+                                <p>{transaction.category}</p>
                               </Col>
 
-                              
                             </Row>
 
                             <Row>
                               <Col>
 
-                                <Button className=" submitButton px-3 pt-2" type="button" onClick={() => {
+                                <Button className=" submitButton px-3 pt-2 me-2" type="button" onClick={() => {
                                   navigate('/editTransaction', { state: { transaction } });
                                 }}>Edit</Button>
 
-                                <Button variant ="danger" type="button" onClick={() => {
+                                <Button variant="danger" type="button" onClick={() => {
                                   deleteTransaction(transaction.claim_number);
                                   setDeleteClicked(!deleteClicked);
                                 }}>Delete</Button>
@@ -297,10 +292,10 @@ export const TransactionList = () => {
                               <Col className="" >
                                 <Badge bg="secondary rounded-2 mx-5" >
                                   {transaction.claim_status}
-                                </Badge>{" "} 
+                                </Badge>{" "}
                               </Col>
 
-                              
+
                             </Row>
                           </div>
 
@@ -327,16 +322,22 @@ export const TransactionList = () => {
                           <Row>
                             <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                             <Col>
-                              <Badge bg="secondary" className="">
+                              <Badge bg="success" className="">
                                 {transaction.claim_status}
                               </Badge>{" "}
                             </Col>
                           </Row>
 
                           <Row>
-                            Comment:
-                            <br />
-                            {transaction.ceo_comment}
+                            Amount Requested: ${transaction.amount_requested}
+                          </Row>
+
+                          <Row>
+                            Category: {transaction.category}
+                          </Row>
+
+                          <Row>
+                            Comment: {transaction.ceo_comment}
                           </Row>
                         </Container>
                       </ListGroup.Item>
@@ -360,19 +361,25 @@ export const TransactionList = () => {
                           <Row>
                             <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                             <Col>
-                              <Badge bg="secondary" className="">
+                              <Badge bg="danger" className="">
                                 {transaction.claim_status}
                               </Badge>{" "}
                             </Col>
                           </Row>
 
                           <Row>
-                            Ceo Comment:
-                            <br />
-                            {transaction.ceo_comment}
+                            Amount Requested: ${transaction.amount_requested}
                           </Row>
 
-                          <Button className="" type="button" onClick={() => {
+                          <Row>
+                            Category: {transaction.category}
+                          </Row>
+
+                          <Row>
+                            Ceo Comment: {transaction.ceo_comment}
+                          </Row>
+
+                          <Button className="mt-3" type="button" onClick={() => {
                             navigate('/appealTransaction', { state: { transaction } });
 
                           }}>Appeal</Button>
@@ -403,9 +410,15 @@ export const TransactionList = () => {
                           </Row>
 
                           <Row>
-                            Ceo Comment:
-                            <br />
-                            {transaction.ceo_comment}
+                            Amount Requested: ${transaction.amount_requested}
+                          </Row>
+
+                          <Row>
+                            Category: {transaction.category}
+                          </Row>
+
+                          <Row>
+                            Ceo Comment: {transaction.ceo_comment}
                           </Row>
 
                         </Container>
@@ -474,21 +487,23 @@ export const TransactionList = () => {
                             <Row>
                               <strong>Order Date:</strong>
                               <Col className="">{transaction.order_date.split("T")[0]}</Col>
-
                             </Row>
 
                             <Row>
                               <strong>Amount Requested: </strong>
-                              <p> ${transaction.amount_requested}</p>
+                              <p>${transaction.amount_requested}</p>
                             </Row>
 
                             <Row>
                               <Col>
                                 <strong>Claim Description:</strong>
-
-                                <p> {transaction.claim_description}</p>
+                                <p>{transaction.claim_description}</p>
                               </Col>
+                            </Row>
 
+                            <Row>
+                              <strong>Category: </strong>
+                              <p>{transaction.category}</p>
                             </Row>
                           </Container>
                           <Row className="mb-3 mx-1">
@@ -589,16 +604,22 @@ export const TransactionList = () => {
                             <Row>
                               <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                               <Col>
-                                <Badge bg="secondary" className="">
+                                <Badge bg="success" className="">
                                   {transaction.claim_status}
                                 </Badge>{" "}
                               </Col>
                             </Row>
 
                             <Row>
-                              Comment:
-                              <br />
-                              {transaction.ceo_comment}
+                              Amount Requested: ${transaction.amount_requested}
+                            </Row>
+
+                            <Row>
+                              Category: {transaction.category}
+                            </Row>
+
+                            <Row>
+                              Comment: {transaction.ceo_comment}
                             </Row>
                           </Container>
                         </ListGroup.Item>
@@ -622,16 +643,22 @@ export const TransactionList = () => {
                             <Row>
                               <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                               <Col>
-                                <Badge bg="secondary" className="">
+                                <Badge bg="danger" className="">
                                   {transaction.claim_status}
                                 </Badge>{" "}
                               </Col>
                             </Row>
 
                             <Row>
-                              Ceo Comment:
-                              <br />
-                              {transaction.ceo_comment}
+                              Amount Requested: ${transaction.amount_requested}
+                            </Row>
+
+                            <Row>
+                              Category: {transaction.category}
+                            </Row>
+
+                            <Row>
+                              Ceo Comment: {transaction.ceo_comment}
                             </Row>
 
                           </Container>
@@ -661,9 +688,15 @@ export const TransactionList = () => {
                             </Row>
 
                             <Row>
-                              Ceo Comment:
-                              <br />
-                              {transaction.ceo_comment}
+                              Amount Requested: ${transaction.amount_requested}
+                            </Row>
+
+                            <Row>
+                              Category: {transaction.category}
+                            </Row>
+
+                            <Row>
+                              Ceo Comment: {transaction.ceo_comment}
                             </Row>
 
                           </Container>
@@ -681,9 +714,6 @@ export const TransactionList = () => {
         </div>
 
         <div className="col-1 mt-2 ps-4 ms-3">
-
-
-
           <Dropdown
             className="dropdown1"
             onSelect={(e) => {

@@ -55,7 +55,7 @@ export const TransactionForm = () => {
         </Button>
       </Container>
       
-      <Container className="mt-3">
+      <Container className="mt-3 mb-3">
         <div className="card ">
           <div className="card-header py-3 submitButton">
             <h1 className="fs-2 text-white p-0 my-2" id="header">Submit a Transaction</h1>
