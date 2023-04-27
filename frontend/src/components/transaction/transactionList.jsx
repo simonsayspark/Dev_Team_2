@@ -754,6 +754,7 @@ export const TransactionList = () => {
                                         controlId="amount_requested"
                                       >
                                         <Form.Control
+                                        
                                           type="number"
                                           className="mb-1"
                                           onChange={(delta) => {
