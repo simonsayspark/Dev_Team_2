@@ -46,6 +46,7 @@ export const TransactionList = () => {
   const [reimburseAmount, setReimburseAmount] = useState();
   const [deleteClicked, setDeleteClicked] = useState(true);
   const [ceoCompany, setCeoCompany] = useState(0);
+  const [disableApprove, setDisableApprove] = useState(true);
 
   const navigate = useNavigate();
 
@@ -199,6 +200,14 @@ export const TransactionList = () => {
       }
     }
   }, [sortValue, update, deleteClicked]);
+
+  useEffect(() => {
+    if (reimburseAmount) {
+      setDisableApprove(false);
+    } else {
+      setDisableApprove(true);
+    }
+  }, [reimburseAmount])
 
 
   const sortBy = (e) => {
@@ -562,6 +571,7 @@ export const TransactionList = () => {
                                     controlId="amount_requested"
                                   >
                                     <Form.Control
+                                      value={reimburseAmount}
                                       className="mb-2"
                                       onChange={(delta) => {
                                         setReimburseAmount(delta.target.value)
@@ -591,6 +601,7 @@ export const TransactionList = () => {
                           <Row className="my-3 mx-1">
                             <Col>
                               <Button
+                                disabled={disableApprove}
                                 className="btn-success mx-1"
                                 onClick={() => {
                                   approve(transaction.claim_number);
