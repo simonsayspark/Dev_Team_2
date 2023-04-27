@@ -46,67 +46,67 @@ export const TransactionList = () => {
   const [reimburseAmount, setReimburseAmount] = useState();
   const [deleteClicked, setDeleteClicked] = useState(true);
   const [ceoCompany, setCeoCompany] = useState(0);
-  const[status, setStatus] = useState(undefined);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (currentUser.role === "Employee") {
-      getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
-        setaTransactions(x)
-      );
-      getTransactionByStatus(currentUser.employee_id, "Denied").then((x) =>
-        setdTransactions(x)
-      );
-      getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
-        setpTransactions(x)
-      );
-      getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) =>
-        setapTransactions(x)
-      );
-    } else {
-      if (currentUser.role === "Financial Manager") {
-        let company = currentUser.company_id
-        getCompanyTransactionByStatus(company, "Accepted").then((x) =>
-          setaTransactions(x)
-        );
-        getCompanyTransactionByStatus(company, "Denied").then((x) =>
-          setdTransactions(x)
-        );
-        getCompanyTransactionByStatus(company, "Pending").then((x) =>
-          setpTransactions(x)
-        );
-        getCompanyTransactionByStatus(company, "Appealed").then((x) =>
-          setapTransactions(x)
-        );
-      } else { //CEO
-        getCompanies().then((allCompanies) => {
-          allCompanies.forEach((aCompany, index) => {
-            if (aCompany.ceo_id === currentUser.ceo_id) {
-              getCompanyTransactionByStatus(aCompany.company_id, "Accepted").then((x) =>
-                setaTransactions(x)
-              );
-              getCompanyTransactionByStatus(aCompany.company_id, "Denied").then((x) =>
-                setdTransactions(x)
-              );
-              getCompanyTransactionByStatus(aCompany.company_id, "Pending").then((x) =>
-                setpTransactions(x)
-              );
-              getCompanyTransactionByStatus(aCompany.company_id, "Appealed").then((x) =>
-                setapTransactions(x)
-              );
-              setCeoCompany(aCompany.company_id);
-            }
-          });
-        })
-      }
-    }
+  // useEffect(() => {
+  //   if (currentUser.role === "Employee") {
+  //     getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
+  //       setaTransactions(x)
+  //     );
+  //     getTransactionByStatus(currentUser.employee_id, "Denied").then((x) =>
+  //       setdTransactions(x)
+  //     );
+  //     getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
+  //       setpTransactions(x)
+  //     );
+  //     getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) =>
+  //       setapTransactions(x)
+  //     );
+  //   } else {
+  //     if (currentUser.role === "Financial Manager") {
+  //       let company = currentUser.company_id
+  //       getCompanyTransactionByStatus(company, "Accepted").then((x) =>
+  //         setaTransactions(x)
+  //       );
+  //       getCompanyTransactionByStatus(company, "Denied").then((x) =>
+  //         setdTransactions(x)
+  //       );
+  //       getCompanyTransactionByStatus(company, "Pending").then((x) =>
+  //         setpTransactions(x)
+  //       );
+  //       getCompanyTransactionByStatus(company, "Appealed").then((x) =>
+  //         setapTransactions(x)
+  //       );
+  //     } else { //CEO
+  //       getCompanies().then((allCompanies) => {
+  //         allCompanies.forEach((aCompany, index) => {
+  //           if (aCompany.ceo_id === currentUser.ceo_id) {
+  //             getCompanyTransactionByStatus(aCompany.company_id, "Accepted").then((x) =>
+  //               setaTransactions(x)
+  //             );
+  //             getCompanyTransactionByStatus(aCompany.company_id, "Denied").then((x) =>
+  //               setdTransactions(x)
+  //             );
+  //             getCompanyTransactionByStatus(aCompany.company_id, "Pending").then((x) =>
+  //               setpTransactions(x)
+  //             );
+  //             getCompanyTransactionByStatus(aCompany.company_id, "Appealed").then((x) =>
+  //               setapTransactions(x)
+  //             );
+  //             setCeoCompany(aCompany.company_id);
+  //           }
+  //         });
+  //       })
+  //     }
+  //   }
 
-  }, [status]);
+  // }, [status]);
 
   useEffect(() => {
     if (currentUser.role === "Employee") {
       if (sortValue != "Sort By") {
+        console.log('NOT SUPPOSED TO BE HERE')
         getSortTransactionByStatus(
           currentUser.employee_id,
           "Accepted",
@@ -129,17 +129,32 @@ export const TransactionList = () => {
         ).then((x) => setapTransactions(x));
 
       } else {
-        getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
+        getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) => {
           setaTransactions(x)
+          console.log('Accepted is:')
+          console.log(x)
+        }
+          
         );
-        getTransactionByStatus(currentUser.employee_id, "Denied").then((x) =>
+        getTransactionByStatus(currentUser.employee_id, "Denied").then((x) => {
           setdTransactions(x)
+          console.log('Denied is:')
+          console.log(x)
+        }
+          
         );
-        getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
+        getTransactionByStatus(currentUser.employee_id, "Pending").then((x) => {
           setpTransactions(x)
+          console.log('Pending is:')
+          console.log(x)
+        }
         );
-        getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) =>
+        getTransactionByStatus(currentUser.employee_id, "Appeal").then((x) => {
+          console.log('Inside Appeal')
           setapTransactions(x)
+          console.log('Appeal is:')
+          console.log(x)
+        }
         );
       }
 
@@ -165,7 +180,7 @@ export const TransactionList = () => {
           console.log(x)
         }
         );
-        getSortCompanyTransactionByStatus(companyID, "Appealed", sortValue).then((x) =>
+        getSortCompanyTransactionByStatus(companyID, "Appeal", sortValue).then((x) =>
           setapTransactions(x)
         );
       } else {
@@ -178,7 +193,7 @@ export const TransactionList = () => {
         getCompanyTransactionByStatus(companyID, "Pending").then((x) =>
           setpTransactions(x)
         );
-        getCompanyTransactionByStatus(companyID, "Appealed").then((x) =>
+        getCompanyTransactionByStatus(companyID, "Appeal").then((x) =>
           setapTransactions(x)
         );
       }
@@ -203,12 +218,12 @@ export const TransactionList = () => {
       updateTransactionStatus(transactionNumber, "Accepted").then((y) =>
         updateTransactionReimbursed(transactionNumber, reimburseAmount).then((z) => {
           console.log("Success");
-          setStatus("Accepted");
+          setUpdate(!update);
         }))
     }
     );
     setComment("");
-    setStatus("");
+    //setStatus("");
     setReimburseAmount(0);
   };
 
@@ -217,14 +232,14 @@ export const TransactionList = () => {
       updateTransactionStatus(transactionNumber, "Denied").then((y) =>
         updateTransactionReimbursed(transactionNumber, reimburseAmount).then((z) => {
           console.log("Success");
-          setStatus("Denied");
+          setUpdate(!update);
         }))
       }
     );
   };
   const appeal = (transactionNumber) => {
-    updateTransactionStatus(transactionNumber, "Appealed").then((x) =>
-      setStatus("Appealed"))
+    updateTransactionStatus(transactionNumber, "Appeal").then((x) =>
+      setUpdate(!update))
 
   }
 
