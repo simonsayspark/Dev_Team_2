@@ -291,19 +291,21 @@ export const LandingPage = () => {
 
           </div>
 
-          <Col>
+        <div className=" mx-5">
 
-            <div id="small-header" className="fs-4 text-light">
+          <Col className=" fs-4 text-light"xs={6} sm={3} md={3} lg={4} xl={3} xxl={3}>
 
-              <p className="text-center">
-                <strong id="header">Email:</strong> DoughBack@gmail.com
-              </p>
+           
+              <p className = "text-center">
+              
+                <strong id="header">Email:</strong> <span id ="small-header">DoughBack@gmail.com</span>
+                </p>
 
-            </div>
+            
           </Col>
-          <Col>
+          <Col  xs={8} sm={8} md={4} lg={4} xl={6} xxl={6}>
 
-            <div id="small-header" className="fs-4 text-light">
+            <div id="small-header" className="fs-4 text-light text-center">
 
 
               <p className="text-center">
@@ -312,18 +314,20 @@ export const LandingPage = () => {
 
             </div>
           </Col>
-          <Col>
+          <Col  xs={7} sm={8} md={5} lg={4} xl={3} xxl={3}>
 
             <div id="small-header" >
 
 
-              <p className="text-center">
+              <p className="text-center" >
                 <strong className="fs-4 text-light" id="header">Number:</strong>
                 <span className="fs-4 text-light"> 123-456-7890</span>
               </p>
 
             </div>
           </Col>
+          </div>
+        
         </Row>
       </Container >
     </>
