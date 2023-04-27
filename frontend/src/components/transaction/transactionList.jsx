@@ -49,6 +49,8 @@ export const TransactionList = () => {
   const [disableStates, setDisableStates] = useState([]);
   const [reimburseAmounts2, setReimburseAmounts2] = useState([]);
   const [disableStates2, setDisableStates2] = useState([]);
+  const [disableSet, setDisableSet] = useState(false);
+  const [disableSet2, setDisableSet2] = useState(false);
 
   const navigate = useNavigate();
 
@@ -112,15 +114,19 @@ export const TransactionList = () => {
       console.log('Resetting States and Amounts!')
       setDisableStates(Array(pTransactions.length).fill(true));
       setReimburseAmounts(Array(pTransactions.length).fill(''));
+      console.log(pTransactions.length)
+      setDisableSet(true);
     }
   }, [pTransactions]);
 
   useEffect(() => {
     console.log('ap Transactions were changed')
-    if (pTransactions) {
+    if (apTransactions) {
       console.log('Resetting States and Amounts2!')
       setDisableStates2(Array(pTransactions.length).fill(true));
       setReimburseAmounts2(Array(pTransactions.length).fill(''));
+      console.log(apTransactions.length)
+      setDisableSet2(true);
     }
   }, [apTransactions]);
 
@@ -293,7 +299,13 @@ export const TransactionList = () => {
   }
 
   //create 3 different api requests
-  if (!aTransactions || !dTransactions || !pTransactions || !apTransactions || (pTransactions && (disableStates.length === 0)) || (apTransactions && (disableStates2.length === 0))) {
+  if (!aTransactions || !dTransactions || !pTransactions || !apTransactions || !disableSet || !disableSet2) {
+    console.log(!aTransactions)
+    console.log(!dTransactions)
+    console.log(!pTransactions)
+    console.log(!apTransactions)
+    console.log((pTransactions && (disableStates.length === 0)))
+    console.log((apTransactions && (disableStates2.length === 0)))
     return (
       <>
         <p>Loading...</p>
@@ -303,6 +315,7 @@ export const TransactionList = () => {
   if (currentUser.role === "Employee")
     return (
       <>
+      
         <Row>
           <Tabs
             defaultActiveKey="pending"
@@ -310,6 +323,7 @@ export const TransactionList = () => {
             className="mb-3"
             fill
           >
+            
             <Tab eventKey="pending" title="Pending">
 
               {pTransactions.length !== 0 ? (
@@ -389,7 +403,7 @@ export const TransactionList = () => {
                 </>
 
               ) : (
-                <p>No available transaction</p>
+                <p className="ms-3" id ="header">No available transaction</p>
               )}
             </Tab>
 
@@ -498,7 +512,7 @@ export const TransactionList = () => {
                   </Container>
                 </>
               ) : (
-                <p className="ms-3">No available transaction</p>
+                <p id = "header" className="ms-3">No available transaction</p>
               )}
             </Tab>
 
@@ -595,7 +609,7 @@ export const TransactionList = () => {
                   </Container>
                 </>
               ) : (
-                <p className="ms-3">No available transaction</p>
+                <p id ="header" className="ms-3">No available transaction</p>
               )}
             </Tab>
 
@@ -682,7 +696,9 @@ export const TransactionList = () => {
 
                 </>
               ) : (
-                <p className="ms-3">No available transaction</p>
+
+              <p id = "header" className="ms-3">No available transaction</p>
+
               )}
             </Tab>
           </Tabs>
@@ -792,6 +808,61 @@ export const TransactionList = () => {
                                         }}
                                       />
                                     </Form.Group>
+
+                                  </Row>
+                                  <Row className="mt-3">
+                                    <Col>
+                                      <Button
+                                        disabled={disableStates[index]}
+                                        className="btn-success px-3 pt-2 me-2 submitButton"
+                                        id="small-header"
+                                        onClick={() => {
+                                          approve(transaction.claim_number, reimburseAmounts[index]);
+                                          console.log(transaction);
+                                        }}
+                                      >
+                                        Approve
+                                      </Button>
+                                      <Button
+                                        className="btn-danger px-2"
+                                        id="small-header"
+                                        onClick={() => {
+                                          deny(transaction.claim_number);
+                                        }}
+                                      >
+                                        Deny
+                                      </Button>
+
+                                    </Col>
+                                  </Row>
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          </Col>
+                        );
+                      })}
+                    </Row>
+                  </Container>
+                ) : (
+                  <p id ="header" className="ms-3">No available transaction</p>
+                )}
+              </Tab>
+
+              <Tab eventKey="accepted" title="Accepted">
+                {aTransactions.length !== 0 ? (
+                  <Container>
+                    <Row>
+                      {aTransactions.map((transaction, index) => {
+                        return (
+                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card>
+                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                                <Row>
+                                  <Col>
+                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  </Col>
+                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                    <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
                                   </Col>
                                 </Row>
 
@@ -992,7 +1063,6 @@ export const TransactionList = () => {
                 <p className="ms-3">No available transaction</p>
               )}
             </Tab>
-
             <Tab eventKey="appeal" title="Appealed">
               {apTransactions.length !== 0 ? (
                 <Container fluid>
@@ -1080,7 +1150,6 @@ export const TransactionList = () => {
                                     </Form.Group>
                                   </Col>
                                 </Row>
-
                                 <Row className="my-2">
                                   <Form.Group controlId="comment" className="col-12">
                                     <Form.Label>Comment</Form.Label>

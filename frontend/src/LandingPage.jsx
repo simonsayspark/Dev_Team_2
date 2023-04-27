@@ -109,11 +109,9 @@ export const LandingPage = () => {
                 Contact
               </Nav.Link>
             </Nav>
-            <div className="nav-font">
-              <Link to={"/login"} className="nav-link text-light mx-5">
-                Log in
-              </Link>
-            </div>
+            <Link to={"/login"} className="nav-font nav-link text-light mx-5">
+              Log in
+            </Link>
           </NavbarCollapse>
         </Container>
       </Navbar>
