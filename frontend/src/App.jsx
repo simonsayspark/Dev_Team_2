@@ -9,6 +9,7 @@ import { AddTransaction } from './components/transaction/addTransaction';
 import { EditTransaction } from './components/transaction/editTransaction';
 import { ViewListTransaction } from './components/transaction/viewListTransaction';
 import { AppealTransaction } from './components/transaction/appealTransaction';
+import { EmployeeList } from './components/employeeList';
 
 
 export const UserContext = createContext();
@@ -50,6 +51,7 @@ export const App = () => {
                     <Route path='/editTransaction' element={ <EditTransaction setCurrentUser={ _setCurrentUser }/>}/>
                     <Route path='/viewTransactions' element= {<ViewListTransaction setCurrentUser={ _setCurrentUser }/>}/>
                     <Route path='/appealTransaction' element= {<AppealTransaction setCurrentUser={ _setCurrentUser }/>}/>
+                    <Route path='/employeeList' element = {<EmployeeList setCurrentUser={_setCurrentUser}/>}/>
                 </Routes>
             </Router>
         </UserContext.Provider>

@@ -46,10 +46,19 @@ export const TransactionForm = () => {
 
   return (
     <>
+      <Container className="mt-3 mb-3">
+        <Button id="small-header" className="fs-5 btn btn-secondary"
+          onClick={() => {
+            navigate("/home");
+          }}>
+          Back to Home
+        </Button>
+      </Container>
+      
       <Container className="mt-3">
         <div className="card ">
           <div className="card-header py-3 submitButton">
-            <h1 className="fs-2 text-white" id="header">Submit a Transaction</h1>
+            <h1 className="fs-2 text-white p-0 my-2" id="header">Submit a Transaction</h1>
           </div>
           <div className="card-body">
             <Form>
@@ -143,14 +152,7 @@ export const TransactionForm = () => {
         </div>
       </Container>
 
-      <Container className="mt-3">
-        <Button id="small-header" className="fs-5 btn btn-secondary"
-          onClick={() => {
-            navigate("/home");
-          }}>
-          Back to Home
-        </Button>
-      </Container>
+
     </>
   );
 };
