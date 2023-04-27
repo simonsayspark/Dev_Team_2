@@ -739,101 +739,76 @@ export const TransactionList = () => {
     console.log(reimburseAmounts)
     return (
       <>
-        <div className="row">
-          <div className="col-10 p-0 ms-5">
-            <Tabs
-              defaultActiveKey="pending"
-              id="uncontrolled-tab-example"
-              className="mb-3"
-              fill
+        <Row>
 
-            >
-              <Tab eventKey="pending" title="Pending">
-                {pTransactions.length !== 0 ? (
-                  <Container fluid className="">
-                    <Row>
-                      {pTransactions?.map((transaction, index) => {
-                        return (
-                          <Col key={index} xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                            <Card>
-                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+          <Tabs
+            defaultActiveKey="pending"
+            id="uncontrolled-tab-example"
+            className="mb-3"
+            fill
+
+          >
+            <Tab eventKey="pending" title="Pending">
+              {pTransactions.length !== 0 ? (
+                <Container fluid className="">
+                  <Row>
+                    {pTransactions?.map((transaction, index) => {
+                      return (
+                        <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                          <Card>
+                            <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                              <Row>
+                                <Col>
+                                  <div id="header">Claim# {transaction.claim_number}</div>
+                                </Col>
+                                <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                  <div id="header" className="text-end">{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                </Col>
+                              </Row>
+                            </Card.Header>
+                            <Card.Body>
+                              <Card.Text>
                                 <Row>
-                                  <Col>
-                                    <div id="header">Claim# {transaction.claim_number}</div>
+                                  <Col className="mb-3">
+                                    <div id="header">Amount Requested:</div>
+                                    <span id="small-header"> ${transaction.amount_requested}</span>
                                   </Col>
-                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
-                                    <div id="header" className="text-end">{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                  <Col className="mb-3">
+                                    <div id="header">Category:</div>
+                                    <span id="small-header">{transaction.category}</span>
+                                  </Col>
+                                  <Col className=" text-end" xs={12} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                    <Badge bg="secondary" className="rounded-2 px-2 fs-6"  >
+                                      <span id="small-header">{transaction.claim_status}</span>
+                                    </Badge>
+                                  </Col>
+                                  <hr />
+                                </Row>
+
+                                <Row className="mt-1 pb-2">
+                                  <Col>
+                                    <div id="header">Claim Description:</div>
+                                    <div id="small-header" className="fs-6">{transaction.claim_description}</div>
                                   </Col>
                                 </Row>
-                              </Card.Header>
-                              <Card.Body>
-                                <Card.Text>
-                                  <Row>
-                                    <Col className="mb-3">
-                                      <div id="header">Amount Requested:</div>
-                                      <span id="small-header"> ${transaction.amount_requested}</span>
-                                    </Col>
-                                    <Col className="mb-3">
-                                      <div id="header">Category:</div>
-                                      <span id="small-header">{transaction.category}</span>
-                                    </Col>
-                                    <Col className=" text-end" xs={12} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                      <Badge bg="secondary" className="rounded-2 px-2 fs-6"  >
-                                        <span id="small-header">{transaction.claim_status}</span>
-                                      </Badge>
-                                    </Col>
-                                    <hr />
-                                  </Row>
 
-                                  <Row className="mt-1 pb-2">
-                                    <Col>
-                                      <div id="header">Claim Description:</div>
-                                      <div id="small-header" className="fs-6">{transaction.claim_description}</div>
-                                    </Col>
-                                  </Row>
-
-                                  <Row>
-                                    <Col>
-                                      <Form>
-                                        <Form.Label id="header">Amount to Reimburse: </Form.Label>
-                                        <Form.Group
-                                          className="col-2"
-                                          controlId="reimburseAmount"
-                                        >
-                                          <Form.Control
-                                            value={reimburseAmounts[index]}
-                                            type="number"
-                                            min="0.00"
-                                            step="0.01"
-                                            onChange={(delta) => {
-                                              const newReimburseAmounts = [...reimburseAmounts];
-                                              newReimburseAmounts[index] = delta.target.value;
-                                              setReimburseAmounts(newReimburseAmounts);
-                                              if (!delta.target.value || delta.target.value == 0) {
-                                                updateDisableState(index, true);
-                                              } else {
-                                                updateDisableState(index, false);
-                                              }
-                                            }}
-                                          />
-                                        </Form.Group>
-                                      </Form>
-                                    </Col>
-                                  </Row>
-
-                                  <Row className="my-2">
-                                    <Form.Group controlId="comment" className="col-12">
-                                      <Form.Label>Comment</Form.Label>
+                                <Row>
+                                  <Col>
+                                    <Form.Label>Amount to Reimburse</Form.Label>
+                                    <Form.Group
+                                      className="col-2"
+                                      controlId="amount_requested"
+                                    >
                                       <Form.Control
-                                        as="textarea"
-                                        placeholder="Add comment"
-                                        rows={5}
-                                        //value={comment}
+
+                                        type="number"
+                                        className="mb-1"
                                         onChange={(delta) => {
-                                          setComment(delta.target.value);
+                                          setReimburseAmounts(delta.target.value)
                                         }}
                                       />
                                     </Form.Group>
+
                                   </Row>
                                   <Row className="mt-3">
                                     <Col>
@@ -890,282 +865,344 @@ export const TransactionList = () => {
                                     <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
                                   </Col>
                                 </Row>
-                              </Card.Header>
 
-                              <Card.Body>
-                                <Card.Text>
-                                  <Row>
-                                    <Col className="mb-3">
-                                      <div id="header">Amount Requested: </div>
-                                      <span id="small-header">${transaction.amount_requested}</span>
-                                    </Col>
-
-                                    <Col className="mb-3">
-                                      <div id="header">Amount Reimbursed: </div>
-                                      <span id="small-header">${transaction.amount_reimbursed}</span>
-                                    </Col>
-
-                                    <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                      <Badge bg="success" className="rounded-2 px-2 fs-6"  >
-                                        <span id="small-header">{transaction.claim_status}</span>
-                                      </Badge>
-                                    </Col>
-                                    <hr />
-                                  </Row>
-
-                                  <Row>
-                                    <Col className="mb-3">
-                                      <div id="header">Category: </div>
-                                      <span id="small-header"> {transaction.category}</span>
-
-                                    </Col>
-                                    <hr />
-                                  </Row>
-
-                                  <Row className="mt-1 pb-1">
-                                    <Col>
-                                      <div id="header">Claim Description:</div>
-                                      <div id="small-header" className="fs-6">{transaction.claim_description}</div>
-                                    </Col>
-                                  </Row>
-
-                                  <hr />
-
-                                  <Row className=" pb-3">
-                                    <Col>
-                                      <div id="header">Comment:</div>
-                                      <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
-                                    </Col>
-                                  </Row>
-                                </Card.Text>
-                              </Card.Body>
-                            </Card>
-                          </Col>
-                        );
-                      })}
-                    </Row>
-                  </Container>
-                ) : (
-                  <p className="ms-3" id="header">No available transaction</p>
-                )}
-              </Tab>
-
-
-
-              <Tab eventKey="denied" title="Denied">
-                {dTransactions.length !== 0 ? (
-                  <Container>
-                    <Row>
-                      {dTransactions.map((transaction, index) => {
-                        return (
-                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                            <Card>
-                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
-                                <Row>
+                                <Row className="my-2">
+                                  <Form.Group controlId="comment" className="col-12">
+                                    <Form.Label>Comment</Form.Label>
+                                    <Form.Control
+                                      as="textarea"
+                                      placeholder="Add comment"
+                                      rows={5}
+                                      //value={comment}
+                                      onChange={(delta) => {
+                                        setComment(delta.target.value);
+                                      }}
+                                    />
+                                  </Form.Group>
+                                </Row>
+                                <Row className="mt-3">
                                   <Col>
-                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
-                                  </Col>
-                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
-                                    <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                    <Button
+                                      className="btn-success px-3 pt-2 me-2 submitButton"
+                                      id="small-header"
+                                      onClick={() => {
+                                        approve(transaction.claim_number);
+                                        console.log(transaction);
+                                      }}
+                                    >
+                                      Approve
+                                    </Button>
+                                    <Button
+                                      className="btn-danger px-2"
+                                      id="small-header"
+                                      onClick={() => {
+                                        deny(transaction.claim_number);
+                                      }}
+                                    >
+                                      Deny
+                                    </Button>
+
                                   </Col>
                                 </Row>
-                              </Card.Header>
+                              </Card.Text>
+                            </Card.Body>
+                          </Card>
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                </Container>
+              ) : (
+                <p>No available transaction</p>
+              )}
+            </Tab>
 
-                              <Card.Body>
-                                <Card.Text>
-                                  <Row>
-                                    <Col className="mb-3">
-                                      <div id="header">Amount Requested: </div>
-                                      <span id="small-header">${transaction.amount_requested}</span>
-                                    </Col>
+            <Tab eventKey="accepted" title="Accepted">
+              {aTransactions.length !== 0 ? (
+                <Container fluid>
+                  <Row>
+                    {aTransactions.map((transaction, index) => {
+                      return (
+                        <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                          <Card>
+                            <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                              <Row>
+                                <Col>
+                                  <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                </Col>
+                                <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                  <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                </Col>
+                              </Row>
+                            </Card.Header>
 
-                                    <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                      <Badge bg="danger" className="rounded-2 px-2 fs-6"  >
-                                        <span id="small-header">{transaction.claim_status}</span>
-                                      </Badge>
-                                    </Col>
-                                    <hr />
-                                  </Row>
-
-                                  <Row>
-                                    <Col className="mb-3">
-                                      <div id="header">Category: </div>
-                                      <span id="small-header"> {transaction.category}</span>
-                                    </Col>
-                                    <hr />
-                                  </Row>
-
-                                  <Row className="mt-1 pb-1">
-                                    <Col>
-                                      <div id="header">Claim Description:</div>
-                                      <div id="small-header" className="fs-6">{transaction.claim_description}</div>
-                                    </Col>
-                                  </Row>
-
-                                  <hr />
-
-                                  <Row className=" pb-3">
-                                    <Col>
-                                      <div id="header">Comment:</div>
-                                      <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
-                                    </Col>
-                                  </Row>
-                                </Card.Text>
-                              </Card.Body>
-                            </Card>
-                          </Col>
-                        );
-                      })}
-                    </Row>
-                  </Container>
-                ) : (
-                  <p className="ms-3" id ="header">No available transaction</p>
-                )}
-              </Tab>
-
-              <Tab eventKey="appeal" title="Appealed">
-                {apTransactions.length !== 0 ? (
-                  <Container>
-                    <Row>
-                      {apTransactions.map((transaction, index) => {
-                        return (
-                          <Col key={index} className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                            <Card>
-                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                            <Card.Body>
+                              <Card.Text>
                                 <Row>
-                                  <Col>
-                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  <Col className="mb-3">
+                                    <div id="header">Amount Requested: </div>
+                                    <span id="small-header">${transaction.amount_requested}</span>
                                   </Col>
-                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
-                                    <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+
+                                  <Col className="mb-3">
+                                    <div id="header">Amount Reimbursed: </div>
+                                    <span id="small-header">${transaction.amount_reimbursed}</span>
+                                  </Col>
+
+                                  <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                    <Badge bg="success" className="rounded-2 px-2 fs-6"  >
+                                      <span id="small-header">{transaction.claim_status}</span>
+                                    </Badge>
+                                  </Col>
+                                  <hr />
+                                </Row>
+
+                                <Row>
+                                  <Col className="mb-3">
+                                    <div id="header">Category: </div>
+                                    <span id="small-header"> {transaction.category}</span>
+
+                                  </Col>
+                                  <hr />
+                                </Row>
+
+                                <Row className="mt-1 pb-1">
+                                  <Col>
+                                    <div id="header">Claim Description:</div>
+                                    <div id="small-header" className="fs-6">{transaction.claim_description}</div>
                                   </Col>
                                 </Row>
-                              </Card.Header>
 
-                              <Card.Body>
-                                <Card.Text>
-                                  <Row>
-                                    <Col className="mb-3">
-                                      <div id="header">Amount Requested: </div>
-                                      <span id="small-header">${transaction.amount_requested}</span>
-                                    </Col>
+                                <hr />
 
-                                    <Col className="mb-3">
-                                      <div id="header">Category:</div>
-                                      <span id="small-header">{transaction.category}</span>
-                                    </Col>
+                                <Row className=" pb-3">
+                                  <Col>
+                                    <div id="header">Comment:</div>
+                                    <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
+                                  </Col>
+                                </Row>
+                              </Card.Text>
+                            </Card.Body>
+                          </Card>
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                </Container>
+              ) : (
+                <p className="ms-3">No available transaction</p>
+              )}
+            </Tab>
+            <Tab eventKey="denied" title="Denied">
+              {dTransactions.length !== 0 ? (
+                <Container fluid>
+                  <Row>
+                    {dTransactions.map((transaction, index) => {
+                      return (
+                        <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                          <Card>
+                            <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                              <Row>
+                                <Col>
+                                  <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                </Col>
+                                <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                  <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                </Col>
+                              </Row>
+                            </Card.Header>
 
-                                    <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                      <Badge className="rounded-2 px-2 fs-6 text-black" bg="warning">
-                                        <span id="small-header">{transaction.claim_status}</span>
-                                      </Badge>
-                                    </Col>
-                                  </Row>
+                            <Card.Body>
+                              <Card.Text>
+                                <Row>
+                                  <Col className="mb-3">
+                                    <div id="header">Amount Requested: </div>
+                                    <span id="small-header">${transaction.amount_requested}</span>
+                                  </Col>
+
+                                  <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                    <Badge bg="danger" className="rounded-2 px-2 fs-6"  >
+                                      <span id="small-header">{transaction.claim_status}</span>
+                                    </Badge>
+                                  </Col>
                                   <hr />
+                                </Row>
 
-                                  <Row className="mt-1 pb-1">
-                                    <Col>
-                                      <div id="header">Claim Description:</div>
-                                      <div id="small-header" className="fs-6">{transaction.claim_description}</div>
-                                    </Col>
-
-                                  </Row>
-
+                                <Row>
+                                  <Col className="mb-3">
+                                    <div id="header">Category: </div>
+                                    <span id="small-header"> {transaction.category}</span>
+                                  </Col>
                                   <hr />
-                                  
-                                  <Row>
-                                    <Col>
-                                      <div id="header">Appeal Comment:</div>
-                                      <div id="small-header" className="fs-6">  {transaction.appeal_comment}</div>
-                                    </Col>
-                                  </Row>
+                                </Row>
 
-                                  <hr />
+                                <Row className="mt-1 pb-1">
+                                  <Col>
+                                    <div id="header">Claim Description:</div>
+                                    <div id="small-header" className="fs-6">{transaction.claim_description}</div>
+                                  </Col>
+                                </Row>
 
-                                  <Row>
-                                    <Col>
-                                      <Form.Label>Amount to Reimburse: </Form.Label>
-                                      <Form.Group
-                                        className="col-2"
-                                        controlId="amount_requested"
-                                      >
-                                        <Form.Control
-                                            value={reimburseAmounts2[index]}
-                                            type="number"
-                                            min="0.00"
-                                            step="0.01"
-                                            onChange={(delta) => {
-                                              const newReimburseAmounts = [...reimburseAmounts2];
-                                              newReimburseAmounts[index] = delta.target.value;
-                                              setReimburseAmounts2(newReimburseAmounts);
-                                              if (!delta.target.value || delta.target.value == 0) {
-                                                updateDisableState2(index, true);
-                                              } else {
-                                                updateDisableState2(index, false);
-                                              }
-                                            }}
-                                          />
-                                      </Form.Group>
-                                    </Col>
-                                  </Row>
+                                <hr />
 
-                                  <Row className="my-2">
-                                    <Form.Group controlId="comment" className="col-12">
-                                      <Form.Label>Comment</Form.Label>
+                                <Row className=" pb-3">
+                                  <Col>
+                                    <div id="header">Comment:</div>
+                                    <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
+                                  </Col>
+                                </Row>
+                              </Card.Text>
+                            </Card.Body>
+                          </Card>
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                </Container>
+              ) : (
+                <p className="ms-3">No available transaction</p>
+              )}
+            </Tab>
+            <Tab eventKey="appeal" title="Appealed">
+              {apTransactions.length !== 0 ? (
+                <Container fluid>
+                  <Row>
+                    {apTransactions.map((transaction, index) => {
+                      return (
+                        <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                          <Card>
+                            <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                              <Row>
+                                <Col>
+                                  <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                </Col>
+                                <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                  <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                </Col>
+                              </Row>
+                            </Card.Header>
+
+                            <Card.Body>
+                              <Card.Text>
+                                <Row>
+                                  <Col className="mb-3">
+                                    <div id="header">Amount Requested: </div>
+                                    <span id="small-header">${transaction.amount_requested}</span>
+                                  </Col>
+
+                                  <Col className="mb-3">
+                                    <div id="header">Category:</div>
+                                    <span id="small-header">{transaction.category}</span>
+                                  </Col>
+
+                                  <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                    <Badge className="rounded-2 px-2 fs-6 text-black" bg="warning">
+                                      <span id="small-header">{transaction.claim_status}</span>
+                                    </Badge>
+                                  </Col>
+                                </Row>
+                                <hr />
+
+                                <Row className="mt-1 pb-1">
+                                  <Col>
+                                    <div id="header">Claim Description:</div>
+                                    <div id="small-header" className="fs-6">{transaction.claim_description}</div>
+                                  </Col>
+
+                                </Row>
+
+                                <hr />
+
+
+
+                                <Row>
+                                  <Col>
+                                    <div id="header">Appeal Comment:</div>
+                                    <div id="small-header" className="fs-6">  {transaction.appeal_comment}</div>
+                                  </Col>
+                                </Row>
+
+                                <hr />
+
+                                <Row>
+                                  <Col>
+                                    <Form.Label>Amount to Reimburse: </Form.Label>
+                                    <Form.Group
+                                      className="col-2"
+                                      controlId="amount_requested"
+                                    >
                                       <Form.Control
-                                        as="textarea"
-                                        placeholder="Add comment"
-                                        rows={5}
-                                        //value={comment}
+                                        value={reimburseAmounts2[index]}
+                                        type="number"
+                                        min="0.00"
+                                        step="0.01"
                                         onChange={(delta) => {
-                                          setComment(delta.target.value);
+                                          const newReimburseAmounts = [...reimburseAmounts2];
+                                          newReimburseAmounts[index] = delta.target.value;
+                                          setReimburseAmounts2(newReimburseAmounts);
+                                          if (!delta.target.value || delta.target.value == 0) {
+                                            updateDisableState2(index, true);
+                                          } else {
+                                            updateDisableState2(index, false);
+                                          }
                                         }}
                                       />
                                     </Form.Group>
-                                  </Row>
+                                  </Col>
+                                </Row>
+                                <Row className="my-2">
+                                  <Form.Group controlId="comment" className="col-12">
+                                    <Form.Label>Comment</Form.Label>
+                                    <Form.Control
+                                      as="textarea"
+                                      placeholder="Add comment"
+                                      rows={5}
+                                      //value={comment}
+                                      onChange={(delta) => {
+                                        setComment(delta.target.value);
+                                      }}
+                                    />
+                                  </Form.Group>
+                                </Row>
+                                <Row className="mt-3">
+                                  <Col>
+                                    <Button
+                                      disabled={disableStates2[index]}
+                                      className="btn-success px-3 pt-2 me-2 submitButton fs-6"
+                                      id="small-header"
+                                      onClick={() => {
+                                        approve(transaction.claim_number, reimburseAmounts2[index]);
+                                        console.log(transaction);
+                                      }}
+                                    >
+                                      Approve
+                                    </Button>
+                                    <Button
+                                      className="btn-danger px-2 fs-6"
+                                      id="small-header"
+                                      onClick={() => {
+                                        deny(transaction.claim_number);
+                                      }}
+                                    >
+                                      Deny
+                                    </Button>
 
-
-                                  <Row className="mt-3">
-                                    <Col>
-                                      <Button
-                                        disabled={disableStates2[index]}
-                                        className="btn-success px-3 pt-2 me-2 submitButton fs-6"
-                                        id="small-header"
-                                        onClick={() => {
-                                          approve(transaction.claim_number, reimburseAmounts2[index]);
-                                          console.log(transaction);
-                                        }}
-                                      >
-                                        Approve
-                                      </Button>
-                                      <Button
-                                        className="btn-danger px-2 fs-6"
-                                        id="small-header"
-                                        onClick={() => {
-                                          deny(transaction.claim_number);
-                                        }}
-                                      >
-                                        Deny
-                                      </Button>
-
-                                    </Col>
-                                  </Row>
-                                </Card.Text>
-                              </Card.Body>
-                            </Card>
-                          </Col>
-                        );
-                      })}
-                    </Row>
-                  </Container>
-                ) : (
-                  <p className="ms-3" id="header">No available transaction</p>
-                )}
-              </Tab>
-            </Tabs>
-
-          </div>
-        </div >
+                                  </Col>
+                                </Row>
+                              </Card.Text>
+                            </Card.Body>
+                          </Card>
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                </Container>
+              ) : (
+                <p className="ms-3">No available transaction</p>
+              )}
+            </Tab>
+          </Tabs>
+        </Row >
 
 
 
