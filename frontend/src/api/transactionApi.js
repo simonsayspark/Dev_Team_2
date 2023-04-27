@@ -39,7 +39,6 @@ export const getTransactionByStatus = (employee_id, status) =>
   });
 
 export const getSortTransactionByStatus = (employee_id, status, sortBy) => new Promise((resolve, reject) => {
-
   axios.get(`${apiEndpoint}/claims?employee_id=${employee_id}&claim_status=${status}&sortBy=${sortBy}`)
     .then(x => resolve(x.data))
     .catch(x => {

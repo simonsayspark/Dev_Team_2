@@ -92,7 +92,7 @@ export const EditTransaction = ({ setCurrentUser }) => {
 
       <Container className="mt-3 mb-3">
         <div className="card">
-          <div className="card-header py-3 submitButton">
+          <div className="card-header py-3 main-bg">
             <h1 className="fs-2 text-white p-0 my-2" id="header">Edit Transaction</h1>
           </div>
           <div className="card-body">

@@ -29,6 +29,10 @@ code {
   padding-bottom: .75rem;
 }
 
+#accepted{
+  background-color: #49a078;
+}
+
 #small-header {
   font-family: "Overpass", sans-serif;
   font-weight: 100;
