@@ -62,7 +62,7 @@ export const TransactionList = () => {
     getTransactionsByCompany(currentUser.company_id).then((x) => {
       setTransactions(x);
     });
-  }, [status]);
+  }, [status],[deleteClicked]);
 
   useEffect(() => {
     if (sortValue != "Sort By") {
@@ -178,57 +178,65 @@ export const TransactionList = () => {
             <Tab eventKey="pending" title="Pending">
 
               {pTransactions.length !== 0 ? (
-                <Row className="mx-3">
+                <Row className="mx-5">
                   {pTransactions?.map((transaction, index) => {
                     return (
                       <Col className="col-6">
-                        <Card className="h-100">
+                        <Card className="h-100 p-3">
 
                           <div className="ms-3">
 
 
                             <Row>
+                              <Col xs={13} sm={5} md={4} lg={3} xl={3} xxl={5}>
                               <strong>Order Date:</strong>
-                              <Col className="">{transaction.order_date}</Col>
+                              <br />
 
+                              {transaction.order_date}
+                              
+                              </Col>
+                                
+
+
+                              <Col xs={9} sm={5} md={4} lg={7} xl={6} xxl={6} >
+                                <strong >Amount Requested:</strong>
+                                ${transaction.amount_requested}
+                              </Col>
+
+                          
                             </Row>
 
-                            <Row>
-                              <strong >Amount Requested:</strong>
-                              <p> ${transaction.amount_requested}</p>
-                            </Row>
-
-                            <Row>
-
+                            <Row className="mt-4 pb-5">
+                            <Col>
                               <strong>Claim Description:</strong>
 
                               <p> {transaction.claim_description}</p>
+                              </Col>
 
-
+                              
                             </Row>
 
+                            <Row>
+                              <Col>
 
-                            <Col>
-
-                              <div className="">
-                                <Badge bg="secondary" className="">
-                                  {transaction.claim_status}
-                                </Badge>{" "}
-
-
-                                <Button className=" submitButton" type="button" onClick={() => {
+                                <Button className=" submitButton px-3 pt-2" type="button" onClick={() => {
                                   navigate('/editTransaction', { state: { transaction } });
                                 }}>Edit</Button>
 
-                                <Button className="" type="button" onClick={() => {
+                                <Button variant ="danger" type="button" onClick={() => {
                                   deleteTransaction(transaction.claim_number);
                                   setDeleteClicked(!deleteClicked);
                                 }}>Delete</Button>
 
+                              </Col>
+                              <Col className="" >
+                                <Badge bg="secondary rounded-2 mx-5" >
+                                  {transaction.claim_status}
+                                </Badge>{" "} 
+                              </Col>
 
-
-                              </div>
-                            </Col>
+                              
+                            </Row>
                           </div>
 
                         </Card>
@@ -298,7 +306,7 @@ export const TransactionList = () => {
                             <br />
                             {transaction.ceo_comment}
                           </Row>
-                          
+
                           <Button className="" type="button" onClick={() => {
                             navigate('/appealTransaction', { state: { transaction } });
 
@@ -360,8 +368,8 @@ export const TransactionList = () => {
             }}
           >
             <Dropdown.Toggle
-              className="mt-2"
-              variant="info"
+              className=""
+              variant="secondary"
               id="dropdown-menu"
             >
               {sortValue}
