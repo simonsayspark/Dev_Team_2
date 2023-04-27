@@ -14,7 +14,7 @@ import { ViewListTransaction } from "./viewListTransaction";
 export const AppealTransaction = () => {
   const currentUser = useContext(UserContext);
   const location = useLocation();
-  
+
   const [appeal_description, setAppeal_description] = useState("");
 
 
@@ -28,8 +28,6 @@ export const AppealTransaction = () => {
 
   return (
     <>
-   
-
       <Container className="mt-3">
         <div className="card">
           <div className="card-header py-3">
@@ -38,13 +36,13 @@ export const AppealTransaction = () => {
           <div className="card-body">
             <Form>
               <div className="row mb-3">
-            
+
               </div>
               <div className="row mb-3">
-               
+
               </div>
               <div className="row mb-3">
-               
+
               </div>
               <div className="row mb-3">
                 <Form.Group controlId="claim_description">
@@ -53,7 +51,7 @@ export const AppealTransaction = () => {
                     as="textarea"
                     rows={5}
                     placeholder="Describe reasoning for appeal"
-                    
+
                     onChange={(delta) => {
                       setAppeal_description(delta.target.value);
                     }}
@@ -65,7 +63,7 @@ export const AppealTransaction = () => {
             <Button
               type="button"
               onClick={() => {
-               ApTransaction();
+                ApTransaction();
               }}
             >
               Submit

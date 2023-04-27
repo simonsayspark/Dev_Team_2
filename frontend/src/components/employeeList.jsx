@@ -47,7 +47,7 @@ export const EmployeeList = ({ setCurrentUser }) => {
             </>
         )
     }
-    
+
 
     console.log(employees);
     return (
@@ -80,7 +80,8 @@ export const EmployeeList = ({ setCurrentUser }) => {
                     </NavbarCollapse>
                 </Container>
             </Navbar>
-            <Container className="mt-4 px-0 mx-5">
+            <Container className="d-flex justify-content-center mt-4 flex-column">
+                <div className="display-4 mb-4 ">Employees List</div>
                 {employees.length === 0 && (
                     "No Employees"
                 )}
@@ -88,7 +89,7 @@ export const EmployeeList = ({ setCurrentUser }) => {
                     <Row>
                         {employees.map((employee, index) => {
                             return (
-                                <Col className="col-4 d-inline-block">
+                                <Col className="d-inline-block mb-3" xs={12} sm={12} md={4} lg={4} xl={4} xxl={4}>
                                     <Card className="h-100">
                                         <Card.Body>
                                             <Card.Title>{employee.ename}</Card.Title>
