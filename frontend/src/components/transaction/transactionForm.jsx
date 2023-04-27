@@ -7,6 +7,8 @@ import { addTransaction } from "../../api/transactionApi";
 import Container from "react-bootstrap/esm/Container";
 import { useNavigate } from "react-router-dom";
 import "../../index.css";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 export const TransactionForm = () => {
   const currentUser = useContext(UserContext);
@@ -60,36 +62,45 @@ export const TransactionForm = () => {
           </div>
           <div className="card-body">
             <Form>
-              <div className="row mb-3">
-                <Form.Group className="col-3 inline" controlId="order_date">
-                  <Form.Label id="header">Date</Form.Label>
-                  <Form.Control
-                    type="date"
-                    value={order_date}
-                    className="w-100 col-4"
-                    onChange={(delta) => {
-                      setOrder_date(delta.target.value);
-                    }}
-                  />
-                </Form.Group>
-              </div>
-              <div className="row mb-3">
-                <Form.Group className="col-3" controlId="amount_requested">
-                  <Form.Label id="header">Amount Requested</Form.Label>
-                  <Form.Control
-                    type="number"
-                    min="0.00"
-                    step="0.01"
-                    placeholder="Enter amount spent"
-                    value={amount_requested}
-                    onChange={(delta) => {
-                      setAmount_requested(delta.target.value);
-                    }}
-                  />
-                </Form.Group>
-              </div>
-              <div className="row mb-3">
-                <div className="col-md-2">
+              <Row className="mb-3">
+                <Col xs={5} sm={5} md={4} lg={3} xl={3} xxl={2} >
+                  <Form.Group className="" controlId="order_date">
+                    <Form.Label id="header">Date</Form.Label>
+                    <Form.Control
+
+                      type="date"
+                      value={order_date}
+                      className="w-100"
+
+
+                      onChange={(delta) => {
+                        setOrder_date(delta.target.value);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+
+              <Row className="mb-3">
+                <Col xs={5} sm={5} md={4} lg={3} xl={3} xxl={2}>
+                  <Form.Group className="" controlId="amount_requested">
+                    <Form.Label id="header">Amount Requested</Form.Label>
+                    <Form.Control
+                      type="number"
+                      min="0.00"
+                      step="0.01"
+                      placeholder="Enter amount spent"
+                      value={amount_requested}
+                      onChange={(delta) => {
+                        setAmount_requested(delta.target.value);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+            
+              <Row className="mb-3">
+                <Col xs={5} sm={5} md={4} lg={3} xl={3} xxl={2}>
                   <Form.Group controlId="category">
                     <Form.Label id="header">Category</Form.Label>
                     <Form.Select
@@ -107,8 +118,9 @@ export const TransactionForm = () => {
                       <option>Events</option>
                     </Form.Select>
                   </Form.Group>
-                </div>
-              </div>
+                </Col>
+              </Row>
+
               <div className="row mb-3">
                 <Form.Group controlId="claim_description">
                   <Form.Label id="header">Claim Description</Form.Label>
