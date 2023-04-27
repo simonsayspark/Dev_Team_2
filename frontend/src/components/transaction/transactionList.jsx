@@ -126,7 +126,7 @@ export const TransactionList = () => {
         ).then((x) => setpTransactions(x));
         getSortTransactionByStatus(
           currentUser.employee_id,
-          "Appealed",
+          "Appeal",
           sortValue
         ).then((x) => setapTransactions(x));
 
@@ -273,6 +273,7 @@ export const TransactionList = () => {
   if (currentUser.role === "Employee")
     return (
       <>
+      
         <Row>
           <Tabs
             defaultActiveKey="pending"
@@ -280,6 +281,7 @@ export const TransactionList = () => {
             className="mb-3"
             fill
           >
+            
             <Tab eventKey="pending" title="Pending">
 
               {pTransactions.length !== 0 ? (
@@ -363,7 +365,7 @@ export const TransactionList = () => {
                 </>
 
               ) : (
-                <p>No available transaction</p>
+                <p className="ms-3" id ="header">No available transaction</p>
               )}
             </Tab>
 
@@ -472,7 +474,7 @@ export const TransactionList = () => {
                   </Container>
                 </>
               ) : (
-                <p className="ms-3">No available transaction</p>
+                <p id = "header" className="ms-3">No available transaction</p>
               )}
             </Tab>
 
@@ -569,7 +571,7 @@ export const TransactionList = () => {
                   </Container>
                 </>
               ) : (
-                <p className="ms-3">No available transaction</p>
+                <p id ="header" className="ms-3">No available transaction</p>
               )}
             </Tab>
 
@@ -656,7 +658,7 @@ export const TransactionList = () => {
               
                 </>
               ) : (
-              <p className="ms-3">No available transaction</p>
+              <p id = "header" className="ms-3">No available transaction</p>
               )}
             </Tab>
           </Tabs>
@@ -811,7 +813,7 @@ export const TransactionList = () => {
                     </Row>
                   </Container>
                 ) : (
-                  <p>No available transaction</p>
+                  <p id ="header" className="ms-3">No available transaction</p>
                 )}
               </Tab>
 
@@ -888,7 +890,7 @@ export const TransactionList = () => {
                     </Row>
                   </Container>
                 ) : (
-                  <p className="ms-3">No available transaction</p>
+                  <p className="ms-3" id="header">No available transaction</p>
                 )}
               </Tab>
 
@@ -961,7 +963,7 @@ export const TransactionList = () => {
                     </Row>
                   </Container>
                 ) : (
-                  <p className="ms-3">No available transaction</p>
+                  <p className="ms-3" id ="header">No available transaction</p>
                 )}
               </Tab>
 
@@ -999,7 +1001,7 @@ export const TransactionList = () => {
                     })}
                   </ListGroup>
                 ) : (
-                  <p className="ms-3">No available transaction</p>
+                  <p className="ms-3" id="header">No available transaction</p>
                 )}
               </Tab>
             </Tabs>
