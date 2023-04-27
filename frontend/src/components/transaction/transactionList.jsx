@@ -808,7 +808,7 @@ export const TransactionList = () => {
                                         }}
                                       />
                                     </Form.Group>
-
+                                  </Col>
                                   </Row>
                                   <Row className="mt-3">
                                     <Col>
@@ -847,75 +847,6 @@ export const TransactionList = () => {
                   <p id ="header" className="ms-3">No available transaction</p>
                 )}
               </Tab>
-
-              <Tab eventKey="accepted" title="Accepted">
-                {aTransactions.length !== 0 ? (
-                  <Container>
-                    <Row>
-                      {aTransactions.map((transaction, index) => {
-                        return (
-                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                            <Card>
-                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
-                                <Row>
-                                  <Col>
-                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
-                                  </Col>
-                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
-                                    <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
-                                  </Col>
-                                </Row>
-
-                                <Row className="my-2">
-                                  <Form.Group controlId="comment" className="col-12">
-                                    <Form.Label>Comment</Form.Label>
-                                    <Form.Control
-                                      as="textarea"
-                                      placeholder="Add comment"
-                                      rows={5}
-                                      //value={comment}
-                                      onChange={(delta) => {
-                                        setComment(delta.target.value);
-                                      }}
-                                    />
-                                  </Form.Group>
-                                </Row>
-                                <Row className="mt-3">
-                                  <Col>
-                                    <Button
-                                      className="btn-success px-3 pt-2 me-2 submitButton"
-                                      id="small-header"
-                                      onClick={() => {
-                                        approve(transaction.claim_number);
-                                        console.log(transaction);
-                                      }}
-                                    >
-                                      Approve
-                                    </Button>
-                                    <Button
-                                      className="btn-danger px-2"
-                                      id="small-header"
-                                      onClick={() => {
-                                        deny(transaction.claim_number);
-                                      }}
-                                    >
-                                      Deny
-                                    </Button>
-
-                                  </Col>
-                                </Row>
-                              </Card.Text>
-                            </Card.Body>
-                          </Card>
-                        </Col>
-                      );
-                    })}
-                  </Row>
-                </Container>
-              ) : (
-                <p>No available transaction</p>
-              )}
-            </Tab>
 
             <Tab eventKey="accepted" title="Accepted">
               {aTransactions.length !== 0 ? (
