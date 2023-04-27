@@ -58,12 +58,12 @@ export const HomePage = ({ setCurrentUser }) => {
         </Container>
 
         <Container className="mt-5">
-          <Row className="display-1 text-center">
+          <Row className="display-3 text-center mb-3">
             <p>{currentUser.cname}'s Dashboard</p>
           </Row>
 
           <Row className="w-100">
-            <Col className="bg-light text-center me-1 homePageCards">
+            <Col className="text-center me-1 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
                   <Card.Title>
@@ -77,14 +77,14 @@ export const HomePage = ({ setCurrentUser }) => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col className="bg-light text-center ms-1 homePageCards">
+            <Col className="text-center ms-1 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
                   <Card.Title>
                     Add/Remove Employees
                   </Card.Title>
                   <Card.Text>
-                    View all of the employees in your company,
+                    View all employees in your company,
                     as well as add or remove any employees.
                   </Card.Text>
                   <Button className="mt-auto submitButton" onClick={() => navigate("/employeeList")}>Add or remove an employee</Button>
@@ -128,18 +128,18 @@ export const HomePage = ({ setCurrentUser }) => {
         </Navbar>
 
         <Container className="mt-5">
-          <Row className="display-1 text-center">
+          <Row className="display-3 text-center mb-3">
             <p>{currentUser.ename}'s Dashboard</p>
           </Row>
 
           <Row className="w-100">
-            <Card className="bg-light text-center homePageCards">
+            <Card className="text-center homePageCards">
               <Card.Body className="d-flex flex-column">
                 <Card.Title>
                   Approve and Deny Transactions
                 </Card.Title>
                 <Card.Text>
-                  View all of the pending reimbursement requests
+                  View all pending reimbursement requests
                   submitted by employees in your company.
                 </Card.Text>
                 <Button className="mt-auto submitButton"
@@ -187,13 +187,13 @@ export const HomePage = ({ setCurrentUser }) => {
           </Container>
         </Navbar>
 
-        <Container className="mt-3">
-          <Row className="display-1 text-center">
+        <Container className="mt-5">
+          <Row className="display-3 text-center mb-3">
             <p id="header" className="">{currentUser.ename}'s Dashboard</p>
           </Row>
 
           <Row className="w-100">
-            <Col className="bg-light text-center me-1 homePageCards">
+            <Col className="text-center me-1 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fs-3" id="header">
@@ -201,13 +201,13 @@ export const HomePage = ({ setCurrentUser }) => {
                   </Card.Title>
                   <Card.Text className="fs-4" id="small-header" >
                     Submit a reimbursement request for a business
-                    expense that you made on behalf of your company.
+                    expense you made on behalf of your company.
                   </Card.Text>
                   <Button className=" fs-5 mt-auto submitButton" id="small-header" onClick={() => navigate("/addTransaction")}>Submit a transaction</Button>
                 </Card.Body>
               </Card>
             </Col>
-            <Col className="bg-light text-center ms-1 homePageCards">
+            <Col className="text-center ms-1 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fs-3" id="header">

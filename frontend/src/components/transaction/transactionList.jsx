@@ -257,14 +257,14 @@ export const TransactionList = () => {
                               <strong>Order Date:</strong>
                               <br />
 
-                              {transaction.order_date}
+                              {transaction.order_date.split("T")[0]}
                               
                               </Col>
                                 
 
 
                               <Col xs={9} sm={5} md={4} lg={7} xl={6} xxl={6} >
-                                <strong >Amount Requested:</strong>
+                                <strong >Amount Requested: </strong>
                                 ${transaction.amount_requested}
                               </Col>
 
@@ -325,7 +325,7 @@ export const TransactionList = () => {
                       <ListGroup.Item>
                         <Container>
                           <Row>
-                            <Col className="p-0">{transaction.order_date}</Col>
+                            <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                             <Col>
                               <Badge bg="secondary" className="">
                                 {transaction.claim_status}
@@ -358,7 +358,7 @@ export const TransactionList = () => {
                       <ListGroup.Item>
                         <Container>
                           <Row>
-                            <Col className="p-0">{transaction.order_date}</Col>
+                            <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                             <Col>
                               <Badge bg="secondary" className="">
                                 {transaction.claim_status}
@@ -394,7 +394,7 @@ export const TransactionList = () => {
                       <ListGroup.Item>
                         <Container>
                           <Row>
-                            <Col className="p-0">{transaction.order_date}</Col>
+                            <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                             <Col>
                               <Badge bg="secondary" className="">
                                 {transaction.claim_status}
@@ -448,29 +448,8 @@ export const TransactionList = () => {
 
           <div className="mt-1">
             <Button id="small-header" className="button btn btn-secondary text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
-          </Col>
-          <Col className="col-lg-1 col-sm-1 p-0">
-            <Dropdown
-              className="dropdown1"
-              onSelect={(e) => {
-                setSortValue(e);
-              }}
-            >
-              <Dropdown.Toggle
-                className="dropdown-bg text-white"
-                variant="info"
-                id="small-header"
-              >
-                {sortValue}
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="">
-                <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
-                <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
-                <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </>
     );
   else if (currentUser.ceo_id || currentUser.role === "Financial Manager") {
@@ -499,7 +478,7 @@ export const TransactionList = () => {
                             </Row>
 
                             <Row>
-                              <strong>Amount Requested:</strong>
+                              <strong>Amount Requested: </strong>
                               <p> ${transaction.amount_requested}</p>
                             </Row>
 
@@ -610,7 +589,7 @@ export const TransactionList = () => {
                             <Row>
                               <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                               <Col>
-                                <Badge bg="success" className="">
+                                <Badge bg="secondary" className="">
                                   {transaction.claim_status}
                                 </Badge>{" "}
                               </Col>
@@ -643,7 +622,7 @@ export const TransactionList = () => {
                             <Row>
                               <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
                               <Col>
-                                <Badge bg="danger" className="">
+                                <Badge bg="secondary" className="">
                                   {transaction.claim_status}
                                 </Badge>{" "}
                               </Col>
@@ -701,32 +680,34 @@ export const TransactionList = () => {
           </div>
         </div>
 
-        <Row className="mt-2 ps-4 ms-3">
-          <Col className="col-lg-1 col-sm-1 p-0">
-            <Dropdown
-              className="dropdown1"
-              onSelect={(e) => {
-                setSortValue(e);
-              }}
+        <div className="col-1 mt-2 ps-4 ms-3">
+
+
+
+          <Dropdown
+            className="dropdown1"
+            onSelect={(e) => {
+              setSortValue(e);
+            }}
+          >
+            <Dropdown.Toggle
+              className="mt-2 dropdown-bg text-white"
+              variant="info"
+              id="small-header"
             >
-              <Dropdown.Toggle
-                className="dropdown-bg text-white"
-                variant="info"
-                id="small-header"
-              >
-                {sortValue}
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="">
-                <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
-                <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
-                <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-          <Col className="col-lg-1 col-sm-1 p-0">
+              {sortValue}
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="">
+              <Dropdown.Item eventKey="Date">Date</Dropdown.Item>
+              <Dropdown.Item eventKey="Amount">Amount</Dropdown.Item>
+              <Dropdown.Item eventKey="Category">Category</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+
+          <div className="mt-1">
             <Button id="small-header" className="button btn submitButton text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
-          </Col>
-        </Row>
+          </div>
+        </div>
 
       </>
 
