@@ -49,59 +49,59 @@ export const TransactionList = () => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (currentUser.role === "Employee") {
-  //     getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
-  //       setaTransactions(x)
-  //     );
-  //     getTransactionByStatus(currentUser.employee_id, "Denied").then((x) =>
-  //       setdTransactions(x)
-  //     );
-  //     getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
-  //       setpTransactions(x)
-  //     );
-  //     getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) =>
-  //       setapTransactions(x)
-  //     );
-  //   } else {
-  //     if (currentUser.role === "Financial Manager") {
-  //       let company = currentUser.company_id
-  //       getCompanyTransactionByStatus(company, "Accepted").then((x) =>
-  //         setaTransactions(x)
-  //       );
-  //       getCompanyTransactionByStatus(company, "Denied").then((x) =>
-  //         setdTransactions(x)
-  //       );
-  //       getCompanyTransactionByStatus(company, "Pending").then((x) =>
-  //         setpTransactions(x)
-  //       );
-  //       getCompanyTransactionByStatus(company, "Appealed").then((x) =>
-  //         setapTransactions(x)
-  //       );
-  //     } else { //CEO
-  //       getCompanies().then((allCompanies) => {
-  //         allCompanies.forEach((aCompany, index) => {
-  //           if (aCompany.ceo_id === currentUser.ceo_id) {
-  //             getCompanyTransactionByStatus(aCompany.company_id, "Accepted").then((x) =>
-  //               setaTransactions(x)
-  //             );
-  //             getCompanyTransactionByStatus(aCompany.company_id, "Denied").then((x) =>
-  //               setdTransactions(x)
-  //             );
-  //             getCompanyTransactionByStatus(aCompany.company_id, "Pending").then((x) =>
-  //               setpTransactions(x)
-  //             );
-  //             getCompanyTransactionByStatus(aCompany.company_id, "Appealed").then((x) =>
-  //               setapTransactions(x)
-  //             );
-  //             setCeoCompany(aCompany.company_id);
-  //           }
-  //         });
-  //       })
-  //     }
-  //   }
+  useEffect(() => {
+    if (currentUser.role === "Employee") {
+      getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
+        setaTransactions(x)
+      );
+      getTransactionByStatus(currentUser.employee_id, "Denied").then((x) =>
+        setdTransactions(x)
+      );
+      getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
+        setpTransactions(x)
+      );
+      getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) =>
+        setapTransactions(x)
+      );
+    } else {
+      if (currentUser.role === "Financial Manager") {
+        let company = currentUser.company_id
+        getCompanyTransactionByStatus(company, "Accepted").then((x) =>
+          setaTransactions(x)
+        );
+        getCompanyTransactionByStatus(company, "Denied").then((x) =>
+          setdTransactions(x)
+        );
+        getCompanyTransactionByStatus(company, "Pending").then((x) =>
+          setpTransactions(x)
+        );
+        getCompanyTransactionByStatus(company, "Appealed").then((x) =>
+          setapTransactions(x)
+        );
+      } else { //CEO
+        getCompanies().then((allCompanies) => {
+          allCompanies.forEach((aCompany, index) => {
+            if (aCompany.ceo_id === currentUser.ceo_id) {
+              getCompanyTransactionByStatus(aCompany.company_id, "Accepted").then((x) =>
+                setaTransactions(x)
+              );
+              getCompanyTransactionByStatus(aCompany.company_id, "Denied").then((x) =>
+                setdTransactions(x)
+              );
+              getCompanyTransactionByStatus(aCompany.company_id, "Pending").then((x) =>
+                setpTransactions(x)
+              );
+              getCompanyTransactionByStatus(aCompany.company_id, "Appealed").then((x) =>
+                setapTransactions(x)
+              );
+              setCeoCompany(aCompany.company_id);
+            }
+          });
+        })
+      }
+    }
 
-  // }, [status]);
+  }, []);
 
   useEffect(() => {
     if (currentUser.role === "Employee") {
@@ -214,7 +214,14 @@ export const TransactionList = () => {
   };
 
   const approve = (transactionNumber) => {
-    updateTransactionComment(transactionNumber, comment).then((x) => {
+    let newComment = "";
+    if (comment) {
+      newComment = comment;
+    } else {
+      newComment = "Transaction Approved.";
+    }
+    updateTransactionComment(transactionNumber, newComment).then((x) => {
+      console.log('Comment added')
       updateTransactionStatus(transactionNumber, "Accepted").then((y) =>
         updateTransactionReimbursed(transactionNumber, reimburseAmount).then((z) => {
           console.log("Success");
@@ -228,9 +235,15 @@ export const TransactionList = () => {
   };
 
   const deny = (transactionNumber) => {
-    updateTransactionComment(transactionNumber, comment).then((x) => {
+    let newComment = "";
+    if (comment) {
+      newComment = comment;
+    } else {
+      newComment = "Transaction Denied.";
+    }
+    updateTransactionComment(transactionNumber, newComment).then((x) => {
       updateTransactionStatus(transactionNumber, "Denied").then((y) =>
-        updateTransactionReimbursed(transactionNumber, reimburseAmount).then((z) => {
+        updateTransactionReimbursed(transactionNumber, 0).then((z) => {
           console.log("Success");
           setUpdate(!update);
         }))
