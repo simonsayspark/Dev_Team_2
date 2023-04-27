@@ -2,16 +2,11 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
-import { Link, NavLink } from "react-router-dom";
-import Carousel from "react-bootstrap/Carousel";
+import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
-import AnchorLink from "react-anchor-link-smooth-scroll"; // npm install react-anchor-link-smooth-scroll
-import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
-import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 
 export const LandingPage = () => {
@@ -55,7 +50,7 @@ export const LandingPage = () => {
     if (position >= howItWorksRef4.current.offsetTop) {
       setWorksLoaded4(true);
     }
-    if (position >= contactUsRef.current.offsetTop) {
+    if ((position + (window.innerHeight * 0.1)) >= contactUsRef.current.offsetTop) {
       setContactLoaded(true);
     }
 
@@ -154,25 +149,7 @@ export const LandingPage = () => {
         </Row>
       </Container>
 
-      {/* 
-        Add more content down here, such as an about section, a mission
-        statement, etc.
-        Examples of what I think would look good: 
-        https://www.etecc.com/
-        https://evrone.com/
-        https://nomadictribe.com/
-      */}
       <Container fluid className="main-bg">
-        {/* <Row
-          ref={howItWorksRef1}
-          className={`text-center mt-5 mb-4 ${worksLoaded1 ? "unhideIt" : "hideIt"
-            }`}
-        >
-          <Col className="pt-2 display-4" id="header"> How it Works</Col>
-        </Row>
-
-        <br /> */}
-
         <Row
           ref={howItWorksRef2}
           className={` main-bg ${worksLoaded2 ? "unhideIt" : "hideIt"}`}
@@ -206,7 +183,6 @@ export const LandingPage = () => {
             xl
             xxl
           >
-
             <div className="display-6 text-white" id="header" >Financial Manager</div>
             <p className="fs-3 p-3 text-white" id="small-header">
               {" "}
@@ -240,51 +216,10 @@ export const LandingPage = () => {
         </Row>
       </Container>
 
-      {/* <Container> Commenting out for now
-        <Row>
-          <Col>
-            <p className="display-4 text-center mt-4">Our Partners</p>
-            <Carousel className="mt-4">
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="/google.png"
-                  alt="Shrek slide"
-                />
-                <Carousel.Caption>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="/walmort.png"
-                  alt="Second slide"
-                />
-
-                <Carousel.Caption>
-
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100 mb-5 pb-   3 pt-0 "
-                  src="/target.png"
-                  alt="Third slide"
-                />
-
-                <Carousel.Caption>
-
-                </Carousel.Caption>
-              </Carousel.Item>
-            </Carousel>
-          </Col>
-        </Row>
-      </Container> */}
-
       <Container
         fluid
         ref={contactUsRef}
-        className={`m-0 p-0`}
+        className={`${contactLoaded ? "unhideIt" : "hideIt"} m-0 p-0`}
       >
         <Row className="contact_us m-0">
           <div className="display-6 text-center mt-3 mb-3 pt-3 text-light" id="header">Contact Us</div>
