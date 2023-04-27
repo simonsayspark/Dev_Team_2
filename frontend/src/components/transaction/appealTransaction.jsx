@@ -16,9 +16,6 @@ export const AppealTransaction = () => {
   const location = useLocation();
 
   const [appeal_description, setAppeal_description] = useState("");
-
-
-
   const navigate = useNavigate();
 
   const ApTransaction = () => {
