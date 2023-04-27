@@ -132,8 +132,8 @@ export const HomePage = ({ setCurrentUser }) => {
             <p id="header">{currentUser.ename}'s Dashboard</p>
           </Row>
 
-          <Row className="w-100">
-            <Card className="bg-light text-center homePageCards">
+          <Row className="w-100 align-content-center">
+            <Card className="text-center me-1 homePageCards">
               <Card.Body className="d-flex flex-column">
                 <Card.Title id ="header" className="fs-3">
                   Approve and Deny Transactions
