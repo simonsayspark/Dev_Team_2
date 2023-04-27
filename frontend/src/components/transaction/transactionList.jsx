@@ -136,14 +136,14 @@ export const TransactionList = () => {
           console.log('Accepted is:')
           console.log(x)
         }
-          
+
         );
         getTransactionByStatus(currentUser.employee_id, "Denied").then((x) => {
           setdTransactions(x)
           console.log('Denied is:')
           console.log(x)
         }
-          
+
         );
         getTransactionByStatus(currentUser.employee_id, "Pending").then((x) => {
           setpTransactions(x)
@@ -376,36 +376,46 @@ export const TransactionList = () => {
 
             <Tab eventKey="accepted" title="Accepted">
               {aTransactions.length !== 0 ? (
-                <ListGroup>
-                  {aTransactions.map((transaction, index) => {
-                    return (
-                      <ListGroup.Item>
-                        <Container>
-                          <Row>
-                            <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
-                            <Col>
-                              <Badge bg="success" className="">
-                                {transaction.claim_status}
-                              </Badge>{" "}
-                            </Col>
-                          </Row>
+                <Container>
+                  <Row>
+                    {aTransactions.map((transaction, index) => {
+                      return (
+                        <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                          <Card>
+                            <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                              <Row>
+                                <Col>
+                                  <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                </Col>
+                                <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                  <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                </Col>
+                              </Row>
+                            </Card.Header>
 
-                          <Row>
-                            Amount Requested: ${transaction.amount_requested}
-                          </Row>
+                            <Row>
+                              <Col>
+                                Amount Requested: ${transaction.amount_requested}
+                              </Col>
+                              <Col className="mb-3">
+                                <div id="header">Amount Reimbursed: </div>
+                                <span id="small-header">${transaction.amount_reimbursed}</span>
+                              </Col>
+                            </Row>
 
-                          <Row>
-                            Category: {transaction.category}
-                          </Row>
+                            <Row>
+                              Category: {transaction.category}
+                            </Row>
 
-                          <Row>
-                            Comment: {transaction.ceo_comment}
-                          </Row>
-                        </Container>
-                      </ListGroup.Item>
-                    );
-                  })}
-                </ListGroup>
+                            <Row>
+                              Comment: {transaction.ceo_comment}
+                            </Row>
+                          </Card>
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                </Container>
               ) : (
                 <p className="ms-3">No available transaction</p>
               )}
@@ -651,40 +661,76 @@ export const TransactionList = () => {
 
               <Tab eventKey="accepted" title="Accepted">
                 {aTransactions.length !== 0 ? (
-                  <ListGroup>
-                    {aTransactions.map((transaction, index) => {
-                      return (
-                        <ListGroup.Item>
-                          <Container>
-                            <Row>
-                              <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
-                              <Col>
-                                <Badge bg="success" className="">
-                                  {transaction.claim_status}
-                                </Badge>{" "}
-                              </Col>
-                            </Row>
+                  <Container>
+                    <Row>
+                      {aTransactions.map((transaction, index) => {
+                        return (
+                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card>
+                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                                <Row>
+                                  <Col>
+                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  </Col>
+                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                    <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                  </Col>
+                                </Row>
+                              </Card.Header>
 
-                            <Row className="my-1">
-                              <Col className="p-0">
-                                <strong>Amount Reimbursed: </strong>
-                                {transaction.amount_reimbursed}
-                              </Col>
-                            </Row>
+                              <Card.Body>
+                                <Card.Text>
+                                  <Row>
+                                    <Col className="mb-3">
+                                      <div id="header">Amount Requested: </div>
+                                      <span id="small-header">${transaction.amount_requested}</span>
+                                    </Col>
 
-                            <Row className="my-1">
-                              <Col className="p-0">
-                                <strong>Comment:</strong>
-                                <br />
-                                {transaction.ceo_comment}
+                                    <Col className="mb-3">
+                                      <div id="header">Amount Reimbursed: </div>
+                                      <span id="small-header">${transaction.amount_reimbursed}</span>
+                                    </Col>
 
-                              </Col>
-                            </Row>
-                          </Container>
-                        </ListGroup.Item>
-                      );
-                    })}
-                  </ListGroup>
+                                    <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                      <Badge bg="success" className="rounded-2 px-2 fs-6"  >
+                                        <span id="small-header">{transaction.claim_status}</span>
+                                      </Badge>
+                                    </Col>
+                                    <hr />
+                                  </Row>
+
+                                  <Row>
+                                    <Col className="mb-3">
+                                      <div id="header">Category: </div>
+                                      <span id="small-header"> {transaction.category}</span>
+
+                                    </Col>
+                                    <hr />
+                                  </Row>
+
+                                  <Row className="mt-1 pb-1">
+                                    <Col>
+                                      <div id="header">Claim Description:</div>
+                                      <div id="small-header" className="fs-6">{transaction.claim_description}</div>
+                                    </Col>
+                                  </Row>
+
+                                  <hr />
+
+                                  <Row className=" pb-3">
+                                    <Col>
+                                      <div id="header">Comment:</div>
+                                      <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
+                                    </Col>
+                                  </Row>
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          </Col>
+                        );
+                      })}
+                    </Row>
+                  </Container>
                 ) : (
                   <p className="ms-3">No available transaction</p>
                 )}
@@ -694,37 +740,70 @@ export const TransactionList = () => {
 
               <Tab eventKey="denied" title="Denied">
                 {dTransactions.length !== 0 ? (
-                  <ListGroup>
-                    {dTransactions.map((transaction, index) => {
-                      return (
-                        <ListGroup.Item>
-                          <Container>
-                            <Row>
-                              <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
-                              <Col>
-                                <Badge bg="danger" className="">
-                                  {transaction.claim_status}
-                                </Badge>{" "}
-                              </Col>
-                            </Row>
+                  <Container>
+                    <Row>
+                      {aTransactions.map((transaction, index) => {
+                        return (
+                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card>
+                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                                <Row>
+                                  <Col>
+                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  </Col>
+                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                    <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                  </Col>
+                                </Row>
+                              </Card.Header>
 
-                            <Row>
-                              Amount Requested: ${transaction.amount_requested}
-                            </Row>
+                              <Card.Body>
+                                <Card.Text>
+                                  <Row>
+                                    <Col className="mb-3">
+                                      <div id="header">Amount Requested: </div>
+                                      <span id="small-header">${transaction.amount_requested}</span>
+                                    </Col>
 
-                            <Row>
-                              Category: {transaction.category}
-                            </Row>
+                                    <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                      <Badge bg="danger" className="rounded-2 px-2 fs-6"  >
+                                        <span id="small-header">{transaction.claim_status}</span>
+                                      </Badge>
+                                    </Col>
+                                    <hr />
+                                  </Row>
 
-                            <Row>
-                              Ceo Comment: {transaction.ceo_comment}
-                            </Row>
+                                  <Row>
+                                    <Col className="mb-3">
+                                      <div id="header">Category: </div>
+                                      <span id="small-header"> {transaction.category}</span>
+                                    </Col>
+                                    <hr />
+                                  </Row>
 
-                          </Container>
-                        </ListGroup.Item>
-                      );
-                    })}
-                  </ListGroup>
+                                  <Row className="mt-1 pb-1">
+                                    <Col>
+                                      <div id="header">Claim Description:</div>
+                                      <div id="small-header" className="fs-6">{transaction.claim_description}</div>
+                                    </Col>
+                                  </Row>
+
+                                  <hr />
+
+                                  <Row className=" pb-3">
+                                    <Col>
+                                      <div id="header">Comment:</div>
+                                      <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
+                                    </Col>
+                                  </Row>
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          </Col>
+                        );
+                      })}
+                    </Row>
+                  </Container>
                 ) : (
                   <p className="ms-3">No available transaction</p>
                 )}
