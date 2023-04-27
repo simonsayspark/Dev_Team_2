@@ -1084,19 +1084,6 @@ export const TransactionList = () => {
                                   </Col>
                                 </Row>
 
-                                <Row className="my-2">
-                                  <Form.Group controlId="comment" className="col-12">
-                                    <Form.Label>Comment</Form.Label>
-                                    <Form.Control
-                                      type="number"
-                                      className="mb-1"
-                                      onChange={(delta) => {
-                                        setReimburseAmounts2(delta.target.value)
-                                      }}
-                                    />
-                                  </Form.Group>
-                              </Row>
-
                               <Row className="my-2">
                                 <Form.Group controlId="comment" className="col-12">
                                   <Form.Label>Comment</Form.Label>
