@@ -17,6 +17,12 @@ code {
     monospace;
 }
 
+#card-body{
+  background: #353535;
+
+}
+
+
 #header {
   font-family: "Overpass", sans-serif;
   font-weight: 700;
