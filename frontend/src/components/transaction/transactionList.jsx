@@ -49,6 +49,8 @@ export const TransactionList = () => {
   const [disableStates, setDisableStates] = useState([]);
   const [reimburseAmounts2, setReimburseAmounts2] = useState([]);
   const [disableStates2, setDisableStates2] = useState([]);
+  const [disableSet, setDisableSet] = useState(false);
+  const [disableSet2, setDisableSet2] = useState(false);
 
   const navigate = useNavigate();
 
@@ -112,15 +114,19 @@ export const TransactionList = () => {
       console.log('Resetting States and Amounts!')
       setDisableStates(Array(pTransactions.length).fill(true));
       setReimburseAmounts(Array(pTransactions.length).fill(''));
+      console.log(pTransactions.length)
+      setDisableSet(true);
     }
   }, [pTransactions]);
 
   useEffect(() => {
     console.log('ap Transactions were changed')
-    if (pTransactions) {
+    if (apTransactions) {
       console.log('Resetting States and Amounts2!')
       setDisableStates2(Array(pTransactions.length).fill(true));
       setReimburseAmounts2(Array(pTransactions.length).fill(''));
+      console.log(apTransactions.length)
+      setDisableSet2(true);
     }
   }, [apTransactions]);
 
@@ -293,7 +299,13 @@ export const TransactionList = () => {
   }
 
   //create 3 different api requests
-  if (!aTransactions || !dTransactions || !pTransactions || !apTransactions || (pTransactions && (disableStates.length === 0)) || (apTransactions && (disableStates2.length === 0))) {
+  if (!aTransactions || !dTransactions || !pTransactions || !apTransactions || !disableSet || !disableSet2) {
+    console.log(!aTransactions)
+    console.log(!dTransactions)
+    console.log(!pTransactions)
+    console.log(!apTransactions)
+    console.log((pTransactions && (disableStates.length === 0)))
+    console.log((apTransactions && (disableStates2.length === 0)))
     return (
       <>
         <p>Loading...</p>
