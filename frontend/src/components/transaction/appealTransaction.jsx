@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { addAppeal } from "../../api/transactionApi";
 import { useLocation } from "react-router-dom";
 import { ViewListTransaction } from "./viewListTransaction";
+import { TransactionList } from "./transactionList";
 //Dont allow for empty submits (change required)
 //Find a way to default to empty, for category
 
@@ -25,25 +26,24 @@ export const AppealTransaction = () => {
 
   return (
     <>
+    <Container className="mt-3 mb-3">
+        <Button id="small-header" className="fs-5 btn btn-secondary"
+          onClick={() => {
+            navigate("/viewTransactions");
+          }}>
+          Back to Transactions
+        </Button>
+      </Container>
       <Container className="mt-3">
         <div className="card">
-          <div className="card-header py-3">
-            <h1 className="display-5">Appeal Transaction</h1>
+          <div className="card-header py-3 main-bg">
+            <h1 className="fs-2 text-white p-0 my-2" id = "header">Appeal Transaction</h1>
           </div>
           <div className="card-body">
-            <Form>
-              <div className="row mb-3">
-
-              </div>
-              <div className="row mb-3">
-
-              </div>
-              <div className="row mb-3">
-
-              </div>
+          <Form>
               <div className="row mb-3">
                 <Form.Group controlId="claim_description">
-                  <Form.Label>Reason for appeal</Form.Label>
+                  <Form.Label id ="header">Reason for appeal</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={5}
@@ -59,6 +59,8 @@ export const AppealTransaction = () => {
 
             <Button
               type="button"
+              id="small-header"
+              className="submitButton fs-5"
               onClick={() => {
                 ApTransaction();
               }}
