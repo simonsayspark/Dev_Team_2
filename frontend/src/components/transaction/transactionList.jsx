@@ -50,24 +50,6 @@ export const TransactionList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
-      setaTransactions(x)
-    );
-    getTransactionByStatus(currentUser.employee_id, "Denied").then((x) =>
-      setdTransactions(x)
-    );
-    getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
-      setpTransactions(x)
-    );
-    getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) =>
-      setapTransactions(x)
-    );
-    getTransactionsByCompany(currentUser.company_id).then((x) => {
-      setTransactions(x);
-    });
-  }, [status],[deleteClicked]);
-
-  useEffect(() => {
     if (currentUser.role === "Employee") {
       getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
         setaTransactions(x)
@@ -200,7 +182,7 @@ export const TransactionList = () => {
         );
       }
     }
-  }, [sortValue, status]);
+  }, [sortValue, status, deleteClicked]);
 
 
   const sortBy = (e) => {
