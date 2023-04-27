@@ -243,72 +243,72 @@ export const TransactionList = () => {
             <Tab eventKey="pending" title="Pending">
 
               {pTransactions.length !== 0 ? (
-                <Row className="mx-5">
-                  {pTransactions?.map((transaction, index) => {
-                    return (
-                      <Col className="col-6">
-                        <Card className="h-100 p-3">
+                <>
+                  <Container fluid className="">
+                    <Row>
+                      {pTransactions.map((transaction, index) => {
+                        return (
+                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card>
+                              <Card.Title>
+                                {/*Maybe put something in here???*/}
+                              </Card.Title>
+                              <Card.Body>
+                                <Card.Text>
+                                  <Row>
+                                    <Col xs={8} sm={8} md={8} lg={9} xl={10} xxl={10}>
+                                      <strong>Order Date: </strong>
+                                      <br />
+                                      {transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}
+                                    </Col>
+                                    <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                      <Badge bg="secondary" className="rounded-2" >
+                                        {transaction.claim_status}
+                                      </Badge>
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col>
+                                      <strong >Amount Requested: </strong>
+                                      ${transaction.amount_requested}
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col>
+                                      <strong >Category: </strong>
+                                      {transaction.category}
+                                    </Col>
+                                  </Row>
 
-                          <div className="ms-3">
+                                  <Row className="mt-4 pb-5">
+                                    <Col>
+                                      <strong>Claim Description:</strong>
 
+                                      <p>{transaction.claim_description}</p>
+                                    </Col>
+                                  </Row>
 
-                            <Row>
-                              <Col xs={13} sm={5} md={4} lg={3} xl={3} xxl={5}>
-                              <strong>Order Date:</strong>
-                              <br />
+                                  <Row>
+                                    <Col>
+                                      <Button className=" submitButton px-3 pt-2" type="button" onClick={() => {
+                                        navigate('/editTransaction', { state: { transaction } });
+                                      }}>Edit</Button>
 
-                              {transaction.order_date}
-                              
-                              </Col>
-                                
-
-
-                              <Col xs={9} sm={5} md={4} lg={7} xl={6} xxl={6} >
-                                <strong >Amount Requested:</strong>
-                                ${transaction.amount_requested}
-                              </Col>
-
-                          
-                            </Row>
-
-                            <Row className="mt-4 pb-5">
-                            <Col>
-                              <strong>Claim Description:</strong>
-
-                              <p> {transaction.claim_description}</p>
-                              </Col>
-
-                              
-                            </Row>
-
-                            <Row>
-                              <Col>
-
-                                <Button className=" submitButton px-3 pt-2" type="button" onClick={() => {
-                                  navigate('/editTransaction', { state: { transaction } });
-                                }}>Edit</Button>
-
-                                <Button variant ="danger" type="button" onClick={() => {
-                                  deleteTransaction(transaction.claim_number);
-                                  setDeleteClicked(!deleteClicked);
-                                }}>Delete</Button>
-
-                              </Col>
-                              <Col className="" >
-                                <Badge bg="secondary rounded-2 mx-5" >
-                                  {transaction.claim_status}
-                                </Badge>{" "} 
-                              </Col>
-
-                              
-                            </Row>
-                          </div>
-
-                        </Card>
-                      </Col>
-                    );
-                  })}
-                </Row>
+                                      <Button variant="danger" type="button" onClick={() => {
+                                        deleteTransaction(transaction.claim_number);
+                                        setDeleteClicked(!deleteClicked);
+                                      }}>Delete</Button>
+                                    </Col>
+                                  </Row>
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          </Col>
+                        );
+                      })}
+                    </Row>
+                  </Container>
+                </>
 
               ) : (
                 <p>No available transaction</p>
