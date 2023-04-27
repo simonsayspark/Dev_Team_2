@@ -581,7 +581,7 @@ export const TransactionList = () => {
                     <Row>
                       {apTransactions.map((transaction, index) => {
                         return (
-                     
+
                           <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
                             <Card>
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
@@ -644,19 +644,19 @@ export const TransactionList = () => {
                                   </Row>
 
 
-                                 
+
                                 </Card.Text>
                               </Card.Body>
                             </Card>
                           </Col>
-                    );
+                        );
                       })}
-                   </Row>
+                    </Row>
                   </Container>
-              
+
                 </>
               ) : (
-              <p className="ms-3">No available transaction</p>
+                <p className="ms-3">No available transaction</p>
               )}
             </Tab>
           </Tabs>
@@ -782,7 +782,7 @@ export const TransactionList = () => {
                                   <Row className="mt-3">
                                     <Col>
                                       <Button
-                                        className="btn-success px-3 pt-2 me-2"
+                                        className="btn-success px-3 pt-2 me-2 submitButton"
                                         id="small-header"
                                         onClick={() => {
                                           approve(transaction.claim_number);
@@ -899,7 +899,7 @@ export const TransactionList = () => {
                 {dTransactions.length !== 0 ? (
                   <Container>
                     <Row>
-                      {aTransactions.map((transaction, index) => {
+                      {dTransactions.map((transaction, index) => {
                         return (
                           <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
                             <Card>
@@ -1004,7 +1004,7 @@ export const TransactionList = () => {
                                       </Badge>
                                     </Col>
                                   </Row>
-                                    <hr />
+                                  <hr />
 
                                   <Row className="mt-1 pb-1">
                                     <Col>
@@ -1014,7 +1014,9 @@ export const TransactionList = () => {
 
                                   </Row>
 
-                                  <hr/>
+                                  <hr />
+
+
 
                                   <Row>
                                     <Col>
@@ -1024,6 +1026,24 @@ export const TransactionList = () => {
                                   </Row>
 
                                   <hr />
+
+                                  <Row>
+                                    <Col>
+                                      <Form.Label>Amount to Reimburse</Form.Label>
+                                      <Form.Group
+                                        className="col-2"
+                                        controlId="amount_requested"
+                                      >
+                                        <Form.Control
+                                          type="number"
+                                          className="mb-1"
+                                          onChange={(delta) => {
+                                            setReimburseAmount(delta.target.value)
+                                          }}
+                                        />
+                                      </Form.Group>
+                                    </Col>
+                                  </Row>
 
                                   <Row className="my-2">
                                     <Form.Group controlId="comment" className="col-12">
