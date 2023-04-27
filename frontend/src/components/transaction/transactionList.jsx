@@ -194,6 +194,7 @@ export const TransactionList = () => {
   const addComment = (transactionNumber) => {
     updateTransactionComment(transactionNumber, comment).then((x) =>
       setComment("")
+      //test
     );
   };
 
