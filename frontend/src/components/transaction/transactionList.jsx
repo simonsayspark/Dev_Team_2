@@ -93,7 +93,7 @@ export const TransactionList = () => {
               getCompanyTransactionByStatus(aCompany.company_id, "Pending").then((x) =>
                 setpTransactions(x)
               );
-              getCompanyTransactionByStatus(aCompany.company_id, "Appealed").then((x) =>
+              getCompanyTransactionByStatus(aCompany.company_id, "Appeal").then((x) =>
                 setapTransactions(x)
               );
               setCeoCompany(aCompany.company_id);
@@ -146,7 +146,7 @@ export const TransactionList = () => {
           console.log(x)
         }
         );
-        getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) => {
+        getTransactionByStatus(currentUser.employee_id, "Appeal").then((x) => {
           console.log('Inside Appeal')
           setapTransactions(x)
           console.log('Appeal is:')
@@ -177,7 +177,7 @@ export const TransactionList = () => {
           console.log(x)
         }
         );
-        getSortCompanyTransactionByStatus(companyID, "Appealed", sortValue).then((x) =>
+        getSortCompanyTransactionByStatus(companyID, "Appeal", sortValue).then((x) =>
           setapTransactions(x)
         );
       } else {
@@ -190,7 +190,7 @@ export const TransactionList = () => {
         getCompanyTransactionByStatus(companyID, "Pending").then((x) =>
           setpTransactions(x)
         );
-        getCompanyTransactionByStatus(companyID, "Appealed").then((x) =>
+        getCompanyTransactionByStatus(companyID, "Appeal").then((x) =>
           setapTransactions(x)
         );
       }
