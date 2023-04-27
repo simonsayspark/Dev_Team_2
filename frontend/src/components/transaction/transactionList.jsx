@@ -594,7 +594,7 @@ export const TransactionList = () => {
                     <Row>
                       {apTransactions.map((transaction, index) => {
                         return (
-                     
+
                           <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
                             <Card>
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
@@ -657,19 +657,19 @@ export const TransactionList = () => {
                                   </Row>
 
 
-                                 
+
                                 </Card.Text>
                               </Card.Body>
                             </Card>
                           </Col>
-                    );
+                        );
                       })}
-                   </Row>
+                    </Row>
                   </Container>
-              
+
                 </>
               ) : (
-              <p className="ms-3">No available transaction</p>
+                <p className="ms-3">No available transaction</p>
               )}
             </Tab>
           </Tabs>
@@ -765,27 +765,30 @@ export const TransactionList = () => {
 
                                   <Row>
                                     <Col>
-                                      <Form.Label>Amount to Reimburse</Form.Label>
-                                      <Form.Group
-                                        className="col-2"
-                                        controlId="amount_requested"
-                                      >
-                                        <Form.Control
-                                          value={reimburseAmounts[index]}
-                                          type="number"
-                                          className="mb-1"
-                                          onChange={(delta) => {
-                                            const newReimburseAmounts = [...reimburseAmounts];
-                                            newReimburseAmounts[index] = delta.target.value;
-                                            setReimburseAmounts(newReimburseAmounts);
-                                            if (!delta.target.value || delta.target.value == 0) {
-                                              updateDisableState(index, true);
-                                            } else {
-                                              updateDisableState(index, false);
-                                            }
-                                          }}
-                                        />
-                                      </Form.Group>
+                                      <Form>
+                                        <Form.Label id="header">Amount to Reimburse: </Form.Label>
+                                        <Form.Group
+                                          className="col-2"
+                                          controlId="reimburseAmount"
+                                        >
+                                          <Form.Control
+                                            value={reimburseAmounts[index]}
+                                            type="number"
+                                            min="0.00"
+                                            step="0.01"
+                                            onChange={(delta) => {
+                                              const newReimburseAmounts = [...reimburseAmounts];
+                                              newReimburseAmounts[index] = delta.target.value;
+                                              setReimburseAmounts(newReimburseAmounts);
+                                              if (!delta.target.value || delta.target.value == 0) {
+                                                updateDisableState(index, true);
+                                              } else {
+                                                updateDisableState(index, false);
+                                              }
+                                            }}
+                                          />
+                                        </Form.Group>
+                                      </Form>
                                     </Col>
                                   </Row>
 
@@ -1029,7 +1032,7 @@ export const TransactionList = () => {
                                       </Badge>
                                     </Col>
                                   </Row>
-                                    <hr />
+                                  <hr />
 
                                   <Row className="mt-1 pb-1">
                                     <Col>
@@ -1039,7 +1042,7 @@ export const TransactionList = () => {
 
                                   </Row>
 
-                                  <hr/>
+                                  <hr />
 
                                   <Row>
                                     <Col>
