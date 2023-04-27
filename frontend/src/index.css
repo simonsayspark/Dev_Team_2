@@ -8,7 +8,7 @@ body {
 
 }
 
-.title-font{
+.title-font {
   font-family: "";
 }
 
@@ -53,13 +53,11 @@ code {
 /*background-color: #284B63;*/
 .color-nav {
   background: rgb(32, 55, 70);
-  background: linear-gradient(
-    90deg,
-    rgba(32, 55, 70, 1) 0%,
-    rgba(63, 95, 103, 1) 42%,
-    rgba(60, 110, 113, 1) 87%,
-    rgba(104, 125, 126, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(32, 55, 70, 1) 0%,
+      rgba(63, 95, 103, 1) 42%,
+      rgba(60, 110, 113, 1) 87%,
+      rgba(104, 125, 126, 1) 100%);
 }
 
 .logo {
@@ -79,24 +77,29 @@ code {
 
 /* this is for the puzzle block style */
 
-.puzzle_block{  
+.puzzle_block {
   background-color: #284B63;
 }
 
-.contact_us{
+.contact_us {
   background-color: #353535;
 
 }
 
 .main-bg {
   background: rgb(32, 55, 70);
-  background: linear-gradient(
-    90deg,
-    rgba(32, 55, 70, 1) 0%,
-    rgba(63, 95, 103, 1) 42%,
-    rgba(60, 110, 113, 1) 87%,
-    rgba(104, 125, 126, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(32, 55, 70, 1) 0%,
+      rgba(63, 95, 103, 1) 42%,
+      rgba(60, 110, 113, 1) 87%,
+      rgba(104, 125, 126, 1) 100%);
+}
+
+.removeButton {
+  background-color: rgba(60, 110, 113, 1) !important;
+  outline: none !important;
+  border: none !important;
+
 }
 
 .addPadding {
@@ -113,7 +116,7 @@ code {
   opacity: 0;
   transition: opacity .25s;
   opacity: 1;
-  }
+}
 
 .pos-relative {
   position: relative;
@@ -126,7 +129,7 @@ code {
   width: 100%;
 }
 
-.reimburse{
+.reimburse {
   top: 4rem;
 }
 
@@ -134,29 +137,34 @@ code {
   color: #275f6d;
   font-weight: bold;
 }
+
 .sign-up:hover {
   color: #98a0a2;
 }
 
 .submitButton {
   background-color: #3f5f67 !important;
-  outline: none !important;  
+  outline: none !important;
   border: none !important;
 }
 
 .dropdown-bg {
   background-color: #3c6e71 !important;
-  outline-color: none !important;  
+  outline-color: none !important;
   border: none !important;
 }
 
-.dropdown1 .dropdown-menu .dropdown-item:active {background-color: #3c6e71 !important;}
+.dropdown1 .dropdown-menu .dropdown-item:active {
+  background-color: #3c6e71 !important;
+}
 
-.dropdown2 .dropdown-menu .dropdown-item:active {background-color: #697d7e !important;}
+.dropdown2 .dropdown-menu .dropdown-item:active {
+  background-color: #697d7e !important;
+}
 
 .dropdown-bg-1 {
   background-color: #697d7e !important;
-  outline: none !important;  
+  outline: none !important;
   border: none !important;
 }
 
@@ -169,6 +177,7 @@ code {
   background-color: #D9D9D9;
   height: 100vh;
 }
+
 .light-bg {
   background-color: #D9D9D9;
   height: 105vh;
