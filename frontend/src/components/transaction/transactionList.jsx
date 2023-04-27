@@ -130,9 +130,11 @@ export const TransactionList = () => {
       } else {
         getTransactionByStatus(currentUser.employee_id, "Accepted").then((x) =>
           setaTransactions(x)
+
         );
         getTransactionByStatus(currentUser.employee_id, "Denied").then((x) =>
           setdTransactions(x)
+
         );
         getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
           setpTransactions(x)
@@ -218,10 +220,10 @@ export const TransactionList = () => {
           console.log("Success");
           setStatus("Denied");
         }))
-      }
+    }
     );
   };
-  
+
   const appeal = (transactionNumber) => {
     updateTransactionStatus(transactionNumber, "Appealed").then((x) =>
       setStatus("Appealed"))
@@ -256,63 +258,63 @@ export const TransactionList = () => {
                         return (
                           <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
                             <Card>
-                              <Card.Header className ="pb-0 pt-3 main-bg text-white" id="">
+                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                                 <Row>
                                   <Col>
-                                <div id="header" className=" ">Claim# {transaction.claim_number} </div>
-                                </Col>
-                                <Col  xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
-                                      <div id ="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
-                                      </Col>
-                                      </Row>
+                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  </Col>
+                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                    <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                  </Col>
+                                </Row>
                               </Card.Header>
                               <Card.Body>
                                 <Card.Text >
-                                <Row>
-                                   
-                                   
-                                  
-                              
+                                  <Row>
+
+
+
+
                                     <Col className="mb-3">
                                       <div id="header">Amount Requested: </div>
                                       <span id="small-header">${transaction.amount_requested}</span>
-                                      
+
                                     </Col>
-                                    
+
                                     <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
                                       <Badge bg="secondary" className="rounded-2 px-2 fs-6"  >
-                                       <span id="small-header">{transaction.claim_status}</span> 
+                                        <span id="small-header">{transaction.claim_status}</span>
                                       </Badge>
                                     </Col>
                                     <hr />
-                                    
+
                                   </Row>
                                   <Row>
                                     <Col className="mb-3">
                                       <div id="header">Category: </div>
 
-                                     <span id ="small-header"> {transaction.category}</span>
-                                     
+                                      <span id="small-header"> {transaction.category}</span>
+
                                     </Col>
-                                    <hr/>
+                                    <hr />
                                   </Row>
 
                                   <Row className="mt-1 pb-5">
                                     <Col>
                                       <div id="header">Claim Description:</div>
 
-                                      <div id ="small-header" className="fs-6">{transaction.claim_description}</div>
+                                      <div id="small-header" className="fs-6">{transaction.claim_description}</div>
                                     </Col>
                                   </Row>
 
                                   <Row>
-                                    
+
                                     <Col>
-                                      <Button className=" submitButton px-3 pt-2 me-2" id ="small-header" type="button" onClick={() => {
+                                      <Button className=" submitButton px-3 pt-2 me-2" id="small-header" type="button" onClick={() => {
                                         navigate('/editTransaction', { state: { transaction } });
                                       }}>Edit</Button>
 
-                                      <Button variant="danger" className="px-2" type="button" id = "small-header" onClick={() => {
+                                      <Button variant="danger" className="px-2" type="button" id="small-header" onClick={() => {
                                         deleteTransaction(transaction.claim_number);
                                         setDeleteClicked(!deleteClicked);
                                       }}>Delete</Button>
@@ -337,36 +339,106 @@ export const TransactionList = () => {
 
             <Tab eventKey="accepted" title="Accepted">
               {aTransactions.length !== 0 ? (
-                <ListGroup>
-                  {aTransactions.map((transaction, index) => {
-                    return (
-                      <ListGroup.Item>
-                        <Container>
-                          <Row>
-                            <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
-                            <Col>
-                              <Badge bg="success" className="">
-                                {transaction.claim_status}
-                              </Badge>{" "}
-                            </Col>
-                          </Row>
+                <>
 
-                          <Row>
-                            Amount Requested: ${transaction.amount_requested}
-                          </Row>
+                  <Container fluid className="">
+                    <Row>
+                      {aTransactions.map((transaction, index) => {
+                        return (
 
-                          <Row>
-                            Category: {transaction.category}
-                          </Row>
+                          //   <Row>
+                          //   Amount Requested: ${transaction.amount_requested}
+                          // </Row>
 
-                          <Row>
-                            Comment: {transaction.ceo_comment}
-                          </Row>
-                        </Container>
-                      </ListGroup.Item>
-                    );
-                  })}
-                </ListGroup>
+                          // <Row>
+                          //   Category: {transaction.category}
+                          // </Row>
+
+
+                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card>
+                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                                <Row>
+                                  <Col>
+                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  </Col>
+                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                    <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                  </Col>
+                                </Row>
+                              </Card.Header>
+                              <Card.Body>
+                                <Card.Text >
+                                  <Row>
+
+
+
+
+                                    <Col className="mb-3">
+                                      <div id="header">Amount Requested: </div>
+                                      <span id="small-header">${transaction.amount_requested}</span>
+
+                                    </Col>
+
+                                    <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                      <Badge bg="success" className="rounded-2 px-2 fs-6"  >
+                                        <span id="small-header">{transaction.claim_status}</span>
+                                      </Badge>
+                                    </Col>
+                                    <hr />
+
+                                  </Row>
+                                  <Row>
+                                    <Col className="mb-3">
+                                      <div id="header">Category: </div>
+
+                                      <span id="small-header"> {transaction.category}</span>
+
+                                    </Col>
+                                    <hr />
+                                  </Row>
+
+                                  <Row className="mt-1 pb-1">
+                                    <Col>
+                                      <div id="header">Claim Description:</div>
+
+                                      <div id="small-header" className="fs-6">{transaction.claim_description}</div>
+                                    </Col>
+                                  </Row>
+
+                                  <hr />
+
+
+                                  <Row className=" pb-3">
+                                    <Col>
+                                    <div id="header">Comment:</div>
+                                     <div id = "small-header"  className="fs-6">  {transaction.ceo_comment}</div>
+                                    </Col>
+                                  </Row>
+                                  
+
+                                  <Row>
+
+                                    <Col className="">
+                                      <Button className=" submitButton px-3 pt-2 me-2" id="small-header" type="button" onClick={() => {
+                                        navigate('/editTransaction', { state: { transaction } });
+                                      }}>Edit</Button>
+
+                                      <Button variant="danger" className="px-2" type="button" id="small-header" onClick={() => {
+                                        deleteTransaction(transaction.claim_number);
+                                        setDeleteClicked(!deleteClicked);
+                                      }}>Delete</Button>
+                                    </Col>
+                                  </Row>
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          </Col>
+                        );
+                      })}
+                    </Row>
+                  </Container>
+                </>
               ) : (
                 <p className="ms-3">No available transaction</p>
               )}
@@ -376,41 +448,94 @@ export const TransactionList = () => {
 
             <Tab eventKey="denied" title="Denied">
               {dTransactions.length !== 0 ? (
-                <ListGroup>
+                <>
+                <Container fluid className="">
+                <Row>
                   {dTransactions.map((transaction, index) => {
                     return (
-                      <ListGroup.Item>
-                        <Container>
-                          <Row>
-                            <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
-                            <Col>
-                              <Badge bg="danger" className="">
-                                {transaction.claim_status}
-                              </Badge>{" "}
-                            </Col>
-                          </Row>
+                    
 
-                          <Row>
-                            Amount Requested: ${transaction.amount_requested}
-                          </Row>
+                          
+                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card>
+                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                                <Row>
+                                  <Col>
+                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  </Col>
+                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                    <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                  </Col>
+                                </Row>
+                              </Card.Header>
+                              <Card.Body>
+                                <Card.Text >
+                                  <Row>
 
-                          <Row>
-                            Category: {transaction.category}
-                          </Row>
 
-                          <Row>
-                            Ceo Comment: {transaction.ceo_comment}
-                          </Row>
 
-                          <Button className="mt-3" type="button" onClick={() => {
+
+                                    <Col className="mb-3">
+                                      <div id="header">Amount Requested: </div>
+                                      <span id="small-header">${transaction.amount_requested}</span>
+
+                                    </Col>
+
+                                    <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                      <Badge bg="danger" className="rounded-2 px-2 fs-6"  >
+                                        <span id="small-header">{transaction.claim_status}</span>
+                                      </Badge>
+                                    </Col>
+                                    <hr />
+
+                                  </Row>
+                                  <Row>
+                                    <Col className="mb-3">
+                                      <div id="header">Category: </div>
+
+                                      <span id="small-header"> {transaction.category}</span>
+
+                                    </Col>
+                                    <hr />
+                                  </Row>
+
+                                  <Row className="mt-1 pb-1">
+                                    <Col>
+                                      <div id="header">Claim Description:</div>
+
+                                      <div id="small-header" className="fs-6">{transaction.claim_description}</div>
+                                    </Col>
+                                  </Row>
+
+                                  <hr />
+
+
+                                  <Row className=" pb-3">
+                                    <Col>
+                                    <div id="header">Comment:</div>
+                                     <div id = "small-header"  className="fs-6">  {transaction.ceo_comment}</div>
+                                    </Col>
+                                  </Row>
+                                  
+
+                                  <Row>
+                                <Col>
+                                  <Button className="mt-3 submitButton" type="button" onClick={() => {
                             navigate('/appealTransaction', { state: { transaction } });
 
                           }}>Appeal</Button>
-                        </Container>
-                      </ListGroup.Item>
+                          </Col>
+                                  </Row>
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          </Col>
+                    
                     );
                   })}
-                </ListGroup>
+                 </Row>
+                  </Container>
+                </>
               ) : (
                 <p className="ms-3">No available transaction</p>
               )}
@@ -455,7 +580,7 @@ export const TransactionList = () => {
               )}
             </Tab>
           </Tabs>
-        </Row>
+        </Row >
 
         <div className="col-1 mt-1  ms-3">
           <Dropdown

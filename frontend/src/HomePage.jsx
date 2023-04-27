@@ -129,24 +129,24 @@ export const HomePage = ({ setCurrentUser }) => {
 
         <Container className="mt-5">
           <Row className="display-1 text-center">
-            <p>{currentUser.ename}'s Dashboard</p>
+            <p id="header">{currentUser.ename}'s Dashboard</p>
           </Row>
 
           <Row className="w-100">
             <Card className="bg-light text-center homePageCards">
               <Card.Body className="d-flex flex-column">
-                <Card.Title>
+                <Card.Title id ="header" className="fs-3">
                   Approve and Deny Transactions
                 </Card.Title>
-                <Card.Text>
+                <Card.Text id="small-header" className="fs-4">
                   View all of the pending reimbursement requests
                   submitted by employees in your company.
                 </Card.Text>
-                <Button className="mt-auto submitButton"
+                <Button id="small-header" className="mt-auto submitButton fs-5"
                   onClick={() => {
                     navigate("/viewTransactions")
                   }}>
-                  View Reimbursement Requests
+                  View Reimbursement Requests 
                 </Button>
               </Card.Body>
             </Card>
