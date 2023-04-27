@@ -40,8 +40,7 @@ export const TransactionForm = () => {
       category: category,
       claim_description: claim_description,
     };
-    addTransaction(n_transaction);
-    navigate('/home');
+    addTransaction(n_transaction).then(navigate('/home'));
   };
 
   return (
@@ -56,7 +55,7 @@ export const TransactionForm = () => {
       </Container>
       
       <Container className="mt-3 mb-3">
-        <div className="card ">
+        <div className="card">
           <div className="card-header py-3 submitButton">
             <h1 className="fs-2 text-white p-0 my-2" id="header">Submit a Transaction</h1>
           </div>
@@ -67,12 +66,9 @@ export const TransactionForm = () => {
                   <Form.Group className="" controlId="order_date">
                     <Form.Label id="header">Date</Form.Label>
                     <Form.Control
-
                       type="date"
                       value={order_date}
                       className="w-100"
-
-
                       onChange={(delta) => {
                         setOrder_date(delta.target.value);
                       }}

@@ -9,6 +9,8 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import { updateTransaction } from "../../api/transactionApi";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 export const EditTransaction = ({ setCurrentUser }) => {
   const currentUser = useContext(UserContext);
@@ -45,8 +47,7 @@ export const EditTransaction = ({ setCurrentUser }) => {
       claim_status: currentTransaction.claim_status,
       ceo_comment: currentTransaction.ceo_comment
     };
-    updateTransaction(u_transaction);
-    navigate('/viewTransactions');
+    updateTransaction(u_transaction).then(navigate('/viewTransactions'));
   };
 
   return (
@@ -80,44 +81,58 @@ export const EditTransaction = ({ setCurrentUser }) => {
         </Container>
       </Navbar>
 
-      <Container className="mt-3">
+      <Container className="mt-3 mb-3">
+        <Button id="small-header" className="fs-5 btn btn-secondary"
+          onClick={() => {
+            navigate("/viewTransactions");
+          }}>
+          Back to Transactions
+        </Button>
+      </Container>
+
+      <Container className="mt-3 mb-3">
         <div className="card">
-          <div className="card-header py-3">
-            <h1 className="display-5">Edit Transaction</h1>
+          <div className="card-header py-3 submitButton">
+            <h1 className="fs-2 text-white p-0 my-2" id="header">Edit Transaction</h1>
           </div>
           <div className="card-body">
             <Form>
-              <div className="row mb-3">
-                <Form.Group className="col-3 inline" controlId="order_date">
-                  <Form.Label>Date</Form.Label>
-                  <Form.Control
-                    type="date"
-                    value={order_date}
-                    onChange={(delta) => {
-                      setOrder_date(delta.target.value);
-                    }}
-                  />
-                </Form.Group>
-              </div>
-              <div className="row mb-3">
-                <Form.Group className="col-3" controlId="amount_requested">
-                  <Form.Label>Amount Requested</Form.Label>
-                  <Form.Control
-                    type="number"
-                    min="0.00"
-                    step="0.01"
-                    placeholder="Enter amount spent"
-                    value={amount_requested}
-                    onChange={(delta) => {
-                      setAmount_requested(delta.target.value);
-                    }}
-                  />
-                </Form.Group>
-              </div>
-              <div className="row mb-3">
-                <div className="col-md-2">
+              <Row className="mb-3">
+                <Col xs={5} sm={5} md={4} lg={3} xl={3} xxl={2} >
+                  <Form.Group className="" controlId="order_date">
+                    <Form.Label id="header">Date</Form.Label>
+                    <Form.Control
+                      type="date"
+                      value={order_date}
+                      className="w-100"
+                      onChange={(delta) => {
+                        setOrder_date(delta.target.value);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col xs={5} sm={5} md={4} lg={3} xl={3} xxl={2}>
+                  <Form.Group className="" controlId="amount_requested">
+                    <Form.Label  id="header">Amount Requested</Form.Label>
+                    <Form.Control
+                      type="number"
+                      min="0.00"
+                      step="0.01"
+                      placeholder="Enter amount spent"
+                      value={amount_requested}
+                      onChange={(delta) => {
+                        setAmount_requested(delta.target.value);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col xs={5} sm={5} md={4} lg={3} xl={3} xxl={2}>
                   <Form.Group controlId="category">
-                    <Form.Label>Category</Form.Label>
+                    <Form.Label id="header">Category</Form.Label>
                     <Form.Select
                       type="category"
                       placeholder="Select category"
@@ -132,11 +147,11 @@ export const EditTransaction = ({ setCurrentUser }) => {
                       <option>Events</option>
                     </Form.Select>
                   </Form.Group>
-                </div>
-              </div>
+                </Col>
+              </Row>
               <div className="row mb-3">
                 <Form.Group controlId="claim_description">
-                  <Form.Label>Claim Description</Form.Label>
+                  <Form.Label id="header">Claim Description</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={5}
@@ -151,9 +166,10 @@ export const EditTransaction = ({ setCurrentUser }) => {
             </Form>
 
             <Button
-              className="submitButton"
-              disabled={disableButton}              
+              className="submitButton fs-5"
+              disabled={disableButton}
               type="button"
+              id="small-header"
               onClick={() => {
                 editTransaction();
               }}
