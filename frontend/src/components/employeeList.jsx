@@ -80,7 +80,7 @@ export const EmployeeList = ({ setCurrentUser }) => {
                     </NavbarCollapse>
                 </Container>
             </Navbar>
-            <Container className="mt-3">
+            <Container className="mt-4 px-0 mx-5">
                 {employees.length === 0 && (
                     "No Employees"
                 )}
