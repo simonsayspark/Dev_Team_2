@@ -303,10 +303,6 @@ export const TransactionList = () => {
                               <Card.Body>
                                 <Card.Text >
                                   <Row>
-
-
-
-
                                     <Col className="mb-3">
                                       <div id="header">Amount Requested: </div>
                                       <span id="small-header">${transaction.amount_requested}</span>
@@ -573,7 +569,7 @@ export const TransactionList = () => {
               )}
             </Tab>
 
-            <Tab eventKey="appeal" title="appeal">
+            <Tab eventKey="appeal" title="Appeal">
               {console.log(apTransactions)}
               {apTransactions.length !== 0 ? (
                 <>
