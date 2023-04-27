@@ -109,7 +109,7 @@ export const LandingPage = () => {
                 Contact
               </Nav.Link>
             </Nav>
-            <Link to={"/login"} className="nav-font nav-link text-light me-5 ms-0">
+            <Link to={"/login"} className="nav-font nav-link text-light mx-5">
               Log in
             </Link>
           </NavbarCollapse>
@@ -287,47 +287,24 @@ export const LandingPage = () => {
         className={`m-0 p-0`}
       >
         <Row className="contact_us m-0">
-          <div className="display-6 text-center mt-3 mb-3 pt-3 text-light" id="header">Contact Us
+          <div className="display-6 text-center mt-3 mb-3 pt-3 text-light" id="header">Contact Us</div>
 
-          </div>
-
-        <div className=" mx-5">
-
-          <Col className=" fs-4 text-light"xs={6} sm={3} md={3} lg={4} xl={3} xxl={3}>
-
-           
-              <p className = "text-center">
-              
-                <strong id="header">Email:</strong> <span id ="small-header">DoughBack@gmail.com</span>
-                </p>
-
-            
+          <Col xs={12} sm={12} md={12} lg={12} xl xxl id="small-header" className="fs-4 text-light">
+              <p className="text-center">
+                <strong id="header">Email:</strong> DoughBack@gmail.com
+              </p>
           </Col>
-          <Col  xs={8} sm={8} md={4} lg={4} xl={6} xxl={6}>
-
-            <div id="small-header" className="fs-4 text-light text-center">
-
-
+          <Col xs={12} sm={12} md={12} lg={12} xl xxl id="small-header" className="fs-4 text-light">
               <p className="text-center">
                 <strong id="header">Address:</strong> 6425 Boaz Lane Dallas TX 75205
               </p>
-
-            </div>
           </Col>
-          <Col  xs={7} sm={8} md={5} lg={4} xl={3} xxl={3}>
-
-            <div id="small-header" >
-
-
-              <p className="text-center" >
+          <Col xs={12} sm={12} md={12} lg={12} xl xxl id="small-header">
+              <p className="text-center">
                 <strong className="fs-4 text-light" id="header">Number:</strong>
                 <span className="fs-4 text-light"> 123-456-7890</span>
               </p>
-
-            </div>
-          </Col>
-          </div>
-        
+          </Col>        
         </Row>
       </Container >
     </>
