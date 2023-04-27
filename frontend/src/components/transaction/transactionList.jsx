@@ -101,7 +101,6 @@ export const TransactionList = () => {
         })
       }
     }
-
   }, [status]);
 
   useEffect(() => {
@@ -222,6 +221,7 @@ export const TransactionList = () => {
       }
     );
   };
+  
   const appeal = (transactionNumber) => {
     updateTransactionStatus(transactionNumber, "Appealed").then((x) =>
       setStatus("Appealed"))
@@ -417,6 +417,7 @@ export const TransactionList = () => {
             </Tab>
 
             <Tab eventKey="appealed" title="Appealed">
+              {console.log(apTransactions)}
               {apTransactions.length !== 0 ? (
                 <ListGroup>
                   {apTransactions.map((transaction, index) => {
