@@ -58,33 +58,33 @@ export const HomePage = ({ setCurrentUser }) => {
         </Container>
 
         <Container className="mt-5">
-          <Row className="display-1 text-center">
+          <Row className="display-3 text-center mb-3">
             <p>{currentUser.cname}'s Dashboard</p>
           </Row>
 
           <Row className="w-100">
-            <Col className="bg-light text-center me-1 homePageCards">
+            <Col className="text-center me-1 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
                   <Card.Title>
                     Approve and Deny Transactions
                   </Card.Title>
                   <Card.Text>
-                    View all of the pending reimbursement requests
+                    View all pending reimbursement requests
                     submitted by employees in your company.
                   </Card.Text>
                   <Button className="mt-auto submitButton" onClick={() => navigate("/viewTransactions")}>View Reimbursement Requests</Button>
                 </Card.Body>
               </Card>
             </Col>
-            <Col className="bg-light text-center ms-1 homePageCards">
+            <Col className="text-center ms-1 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
                   <Card.Title>
                     Add/Remove Employees
                   </Card.Title>
-                  <Card.Text>
-                    View all of the employees in your company,
+                  <Card.Text className="pt-2">
+                    View all employees in your company,
                     as well as add or remove any employees.
                   </Card.Text>
                   <Button className="mt-auto submitButton" onClick={() => navigate("/employeeList")}>Add or remove an employee</Button>

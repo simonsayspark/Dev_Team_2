@@ -184,3 +184,15 @@ code {
   margin-left: 15% !important;
   margin-right: 15% !important;
 } */
+/* .tab-color {
+  color: #3c6e71;
+} */
+
+.nav-tabs .nav-link {
+  color: #418485 !important;
+}
+
+.nav-tabs .nav-link.active {
+  border-bottom: solid 4px white !important;
+  font-weight: bold;
+}
