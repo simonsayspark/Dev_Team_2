@@ -47,6 +47,8 @@ export const TransactionList = () => {
   const [ceoCompany, setCeoCompany] = useState(0);
   const [reimburseAmounts, setReimburseAmounts] = useState([]);
   const [disableStates, setDisableStates] = useState([]);
+  const [reimburseAmounts2, setReimburseAmounts2] = useState([]);
+  const [disableStates2, setDisableStates2] = useState([]);
 
   const navigate = useNavigate();
 
@@ -113,10 +115,25 @@ export const TransactionList = () => {
     }
   }, [pTransactions]);
 
+  useEffect(() => {
+    console.log('ap Transactions were changed')
+    if (pTransactions) {
+      console.log('Resetting States and Amounts2!')
+      setDisableStates2(Array(pTransactions.length).fill(true));
+      setReimburseAmounts2(Array(pTransactions.length).fill(''));
+    }
+  }, [apTransactions]);
+
   const updateDisableState = (index, newState) => {
     const newDisableStates = [...disableStates];
     newDisableStates[index] = newState;
     setDisableStates(newDisableStates);
+  };
+
+  const updateDisableState2 = (index, newState) => {
+    const newDisableStates = [...disableStates2];
+    newDisableStates[index] = newState;
+    setDisableStates2(newDisableStates);
   };
 
   useEffect(() => {
@@ -276,7 +293,7 @@ export const TransactionList = () => {
   }
 
   //create 3 different api requests
-  if (!aTransactions || !dTransactions || !pTransactions || !apTransactions || (pTransactions && (disableStates.length === 0))) {
+  if (!aTransactions || !dTransactions || !pTransactions || !apTransactions || (pTransactions && (disableStates.length === 0)) || (apTransactions && (disableStates2.length === 0))) {
     return (
       <>
         <p>Loading...</p>
@@ -996,7 +1013,7 @@ export const TransactionList = () => {
                     <Row>
                       {apTransactions.map((transaction, index) => {
                         return (
-                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                          <Col key={index} className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
                             <Card>
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                                 <Row>
@@ -1051,18 +1068,27 @@ export const TransactionList = () => {
 
                                   <Row>
                                     <Col>
-                                      <Form.Label>Amount to Reimburse</Form.Label>
+                                      <Form.Label>Amount to Reimburse: </Form.Label>
                                       <Form.Group
                                         className="col-2"
                                         controlId="amount_requested"
                                       >
                                         <Form.Control
-                                          type="number"
-                                          className="mb-1"
-                                          onChange={(delta) => {
-                                            setReimburseAmount(delta.target.value)
-                                          }}
-                                        />
+                                            value={reimburseAmounts2[index]}
+                                            type="number"
+                                            min="0.00"
+                                            step="0.01"
+                                            onChange={(delta) => {
+                                              const newReimburseAmounts = [...reimburseAmounts2];
+                                              newReimburseAmounts[index] = delta.target.value;
+                                              setReimburseAmounts2(newReimburseAmounts);
+                                              if (!delta.target.value || delta.target.value == 0) {
+                                                updateDisableState2(index, true);
+                                              } else {
+                                                updateDisableState2(index, false);
+                                              }
+                                            }}
+                                          />
                                       </Form.Group>
                                     </Col>
                                   </Row>
@@ -1086,10 +1112,11 @@ export const TransactionList = () => {
                                   <Row className="mt-3">
                                     <Col>
                                       <Button
+                                        disabled={disableStates2[index]}
                                         className="btn-success px-3 pt-2 me-2 submitButton fs-6"
                                         id="small-header"
                                         onClick={() => {
-                                          approve(transaction.claim_number);
+                                          approve(transaction.claim_number, reimburseAmounts2[index]);
                                           console.log(transaction);
                                         }}
                                       >
