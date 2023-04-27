@@ -101,7 +101,7 @@ export const TransactionList = () => {
       }
     }
 
-  }, []);
+  }, [status]);
 
   useEffect(() => {
     if (currentUser.role === "Employee") {
@@ -189,39 +189,42 @@ export const TransactionList = () => {
     setSortValue(e);
   };
 
-  const reimburse = (transactionNumber) => {
-    console.log(reimburse);
-    updateTransactionReimbursed(transactionNumber, reimburseAmount).then((x) =>
-      console.log("Success")
-    );
-  };
 
   const addComment = (transactionNumber) => {
     updateTransactionComment(transactionNumber, comment).then((x) =>
-      setComment(comment)
+      setComment("")
     );
   };
 
   const approve = (transactionNumber) => {
-    updateTransactionStatus(transactionNumber, "Accepted").then((x) =>
-      setStatus("Accepted")
+    updateTransactionComment(transactionNumber, comment).then((x) => {
+      updateTransactionStatus(transactionNumber, "Accepted").then((y) =>
+        updateTransactionReimbursed(transactionNumber, reimburseAmount).then((z) => {
+          console.log("Success");
+          setStatus("Accepted");
+        }))
+    }
     );
-    updateTransactionComment(transactionNumber, comment).then((x) =>
-      setComment(comment)
-    )
+    setComment("");
+    setStatus("");
+    setReimburseAmount(0);
   };
 
   const deny = (transactionNumber) => {
-    updateTransactionStatus(transactionNumber, "Denied").then((x) =>
-      setStatus("Denied")
+    updateTransactionComment(transactionNumber, comment).then((x) => {
+      updateTransactionStatus(transactionNumber, "Denied").then((y) =>
+        updateTransactionReimbursed(transactionNumber, reimburseAmount).then((z) => {
+          console.log("Success");
+          setStatus("Denied");
+        }))
+      }
     );
-
-    const appeal = (transactionNumber) => {
-      updateTransactionStatus(transactionNumber, "Appealed").then((x) =>
-        setStatus("Appealed"))
-
-    }
   };
+  const appeal = (transactionNumber) => {
+    updateTransactionStatus(transactionNumber, "Appealed").then((x) =>
+      setStatus("Appealed"))
+
+  }
 
   //create 3 different api requests
   if (!aTransactions || !dTransactions || !pTransactions || !apTransactions) {
@@ -235,8 +238,6 @@ export const TransactionList = () => {
     return (
       <>
         <Row>
-
-
           <Tabs
             defaultActiveKey="pending"
             id="uncontrolled-tab-example"
@@ -257,13 +258,13 @@ export const TransactionList = () => {
 
                             <Row>
                               <Col xs={13} sm={5} md={4} lg={3} xl={3} xxl={5}>
-                              <strong>Order Date:</strong>
-                              <br />
+                                <strong>Order Date:</strong>
+                                <br />
 
-                              {transaction.order_date}
-                              
+                                {transaction.order_date}
+
                               </Col>
-                                
+
 
 
                               <Col xs={9} sm={5} md={4} lg={7} xl={6} xxl={6} >
@@ -271,17 +272,17 @@ export const TransactionList = () => {
                                 ${transaction.amount_requested}
                               </Col>
 
-                          
+
                             </Row>
 
                             <Row className="mt-4 pb-5">
-                            <Col>
-                              <strong>Claim Description:</strong>
+                              <Col>
+                                <strong>Claim Description:</strong>
 
-                              <p> {transaction.claim_description}</p>
+                                <p> {transaction.claim_description}</p>
                               </Col>
 
-                              
+
                             </Row>
 
                             <Row>
@@ -291,7 +292,7 @@ export const TransactionList = () => {
                                   navigate('/editTransaction', { state: { transaction } });
                                 }}>Edit</Button>
 
-                                <Button variant ="danger" type="button" onClick={() => {
+                                <Button variant="danger" type="button" onClick={() => {
                                   deleteTransaction(transaction.claim_number);
                                   setDeleteClicked(!deleteClicked);
                                 }}>Delete</Button>
@@ -300,10 +301,10 @@ export const TransactionList = () => {
                               <Col className="" >
                                 <Badge bg="secondary rounded-2 mx-5" >
                                   {transaction.claim_status}
-                                </Badge>{" "} 
+                                </Badge>{" "}
                               </Col>
 
-                              
+
                             </Row>
                           </div>
 
@@ -421,14 +422,9 @@ export const TransactionList = () => {
               )}
             </Tab>
           </Tabs>
-
-
         </Row>
 
         <div className="col-1 mt-2 ps-4 ms-3">
-
-
-
           <Dropdown
             className="dropdown1"
             onSelect={(e) => {
@@ -473,80 +469,49 @@ export const TransactionList = () => {
                     {pTransactions?.map((transaction, index) => {
                       return (
                         <ListGroup.Item>
-                          <Container className="d-flex ">
-                            <Row>
+                          <Row className="mx-1">
+                            <Col className="">
                               <strong>Order Date:</strong>
-                              <Col className="">{transaction.order_date}</Col>
-
-                            </Row>
-
-                            <Row>
+                              <p>{transaction.order_date}</p>
+                            </Col>
+                            <Col>
                               <strong>Amount Requested:</strong>
                               <p> ${transaction.amount_requested}</p>
-                            </Row>
+                            </Col>
+                            <Col className="">
+                              <strong>Claim Description:</strong>
+                              <p> {transaction.claim_description}</p>
+                            </Col>
 
-                            <Row>
-                              <Col>
-                                <strong>Claim Description:</strong>
+                            <Col>
+                              <strong>Category:</strong>
+                              <p>{transaction.category}</p>
+                            </Col>
 
-                                <p> {transaction.claim_description}</p>
-                              </Col>
+                          </Row>
 
-                            </Row>
-                          </Container>
-                          <Row className="mb-3 mx-1">
+                          <Row className="mb-2 mx-1">
                             <Col className="col-4">
-                              <Row className="float-end position-relative">
-                                <div className="float-end position-relative">
-                                  <Button
-                                    className="btn-success mx-1"
-                                    onClick={() => {
-                                      approve(transaction.claim_number);
-                                    }}
+                              <Row className="">
+                                <div className="my-2 col-12">
+                                  <Form.Label>Amount to Reimburse</Form.Label>
+                                  <Form.Group
+                                    className="col-lg"
+                                    controlId="amount_requested"
                                   >
-                                    Approve
-                                  </Button>
-                                  <Button
-                                    className="btn-danger"
-                                    onClick={() => {
-                                      deny(transaction.claim_number);
-                                    }}
-                                  >
-                                    Deny
-                                  </Button>
-                                </div>
-                                <div className="float-end position-absolute reimburse">
-                                  {transaction.claim_status === "Accepted" && (
-                                    <div className="my-2 col-12">
-                                      <Form.Label>Amount to Reimburse</Form.Label>
-                                      <Form.Group
-                                        className="col-lg"
-                                        controlId="amount_requested"
-                                      >
-
-                                        <Form.Control
-                                          className="mb-2"
-                                          onChange={(delta) => {
-                                            setReimburseAmount(delta.target.value)
-                                          }}
-                                        />
-                                        <Button
-                                          className="btn-primary mb-1"
-                                          onClick={() =>
-                                            reimburse(transaction.claim_number)
-                                          }
-                                        >
-                                          Reimburse
-                                        </Button>
-                                      </Form.Group>
-                                    </div>
-                                  )}
+                                    <Form.Control
+                                      className="mb-2"
+                                      onChange={(delta) => {
+                                        setReimburseAmount(delta.target.value)
+                                      }}
+                                    />
+                                  </Form.Group>
                                 </div>
                               </Row>
                             </Col>
                           </Row>
 
-                          <Row className="my-5 mx-1">
+                          <Row className="my-1 mx-1">
                             <Form.Group controlId="comment">
                               <Form.Label>Comment</Form.Label>
                               <Form.Control
@@ -558,16 +523,30 @@ export const TransactionList = () => {
                                   setComment(delta.target.value);
                                 }}
                               />
-                              <Button
-                                type="button"
-                                onClick={() => {
-                                  addComment(transaction.claim_number);
-                                }}
-                                className="mt-3 btn-primary"
-                              >
-                                Add Comment
-                              </Button>
                             </Form.Group>
+                          </Row>
+
+                          <Row className="my-3 mx-1">
+                            <Col>
+                              <Button
+                                className="btn-success mx-1"
+                                onClick={() => {
+                                  approve(transaction.claim_number);
+                                  console.log(transaction);
+                                }}
+                              >
+                                Approve
+                              </Button>
+                              <Button
+                                className="btn-danger"
+                                onClick={() => {
+                                  deny(transaction.claim_number);
+                                }}
+                              >
+                                Deny
+                              </Button>
+
+                            </Col>
                           </Row>
 
 
@@ -589,7 +568,7 @@ export const TransactionList = () => {
                       return (
                         <ListGroup.Item>
                           <Container>
-                            <Row>
+                            <Row className="my-1">
                               <Col className="p-0">{transaction.order_date}</Col>
                               <Col>
                                 <Badge bg="secondary" className="">
@@ -598,10 +577,20 @@ export const TransactionList = () => {
                               </Col>
                             </Row>
 
-                            <Row>
-                              Comment:
-                              <br />
-                              {transaction.ceo_comment}
+                            <Row className="my-1">
+                              <Col className="p-0">
+                                <strong>Amount Reimbursed: </strong>
+                                {transaction.amount_reimbursed}
+                              </Col>
+                            </Row>
+
+                            <Row className="my-1">
+                              <Col className="p-0">
+                                <strong>Comment:</strong>
+                                <br />
+                                {transaction.ceo_comment}
+
+                              </Col>
                             </Row>
                           </Container>
                         </ListGroup.Item>
@@ -683,10 +672,9 @@ export const TransactionList = () => {
           </div>
         </div>
 
+
+
         <div className="col-1 mt-2 ps-4 ms-3">
-
-
-
           <Dropdown
             className="dropdown1"
             onSelect={(e) => {
