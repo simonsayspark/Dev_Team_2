@@ -316,10 +316,6 @@ export const TransactionList = () => {
                               <Card.Body>
                                 <Card.Text >
                                   <Row>
-
-
-
-
                                     <Col className="mb-3">
                                       <div id="header">Amount Requested: </div>
                                       <span id="small-header">${transaction.amount_requested}</span>
@@ -586,7 +582,7 @@ export const TransactionList = () => {
               )}
             </Tab>
 
-            <Tab eventKey="appeal" title="appeal">
+            <Tab eventKey="appeal" title="Appeal">
               {console.log(apTransactions)}
               {apTransactions.length !== 0 ? (
                 <>
@@ -810,7 +806,7 @@ export const TransactionList = () => {
                                     <Col>
                                       <Button
                                         disabled={disableStates[index]}
-                                        className="btn-success px-3 pt-2 me-2"
+                                        className="btn-success px-3 pt-2 me-2 submitButton"
                                         id="small-header"
                                         onClick={() => {
                                           approve(transaction.claim_number, reimburseAmounts[index]);
@@ -927,7 +923,7 @@ export const TransactionList = () => {
                 {dTransactions.length !== 0 ? (
                   <Container>
                     <Row>
-                      {aTransactions.map((transaction, index) => {
+                      {dTransactions.map((transaction, index) => {
                         return (
                           <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
                             <Card>
@@ -1043,7 +1039,7 @@ export const TransactionList = () => {
                                   </Row>
 
                                   <hr />
-
+                                  
                                   <Row>
                                     <Col>
                                       <div id="header">Appeal Comment:</div>
@@ -1052,6 +1048,24 @@ export const TransactionList = () => {
                                   </Row>
 
                                   <hr />
+
+                                  <Row>
+                                    <Col>
+                                      <Form.Label>Amount to Reimburse</Form.Label>
+                                      <Form.Group
+                                        className="col-2"
+                                        controlId="amount_requested"
+                                      >
+                                        <Form.Control
+                                          type="number"
+                                          className="mb-1"
+                                          onChange={(delta) => {
+                                            setReimburseAmount(delta.target.value)
+                                          }}
+                                        />
+                                      </Form.Group>
+                                    </Col>
+                                  </Row>
 
                                   <Row className="my-2">
                                     <Form.Group controlId="comment" className="col-12">
