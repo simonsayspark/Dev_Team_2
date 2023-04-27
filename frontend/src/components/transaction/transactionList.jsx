@@ -42,7 +42,7 @@ export const TransactionList = () => {
   const [apTransactions, setapTransactions] = useState(undefined);
   const [sortValue, setSortValue] = useState("Sort By");
   const [comment, setComment] = useState("");
-  const [status, setStatus] = useState();
+  const [update, setUpdate] = useState(true);
   const [reimburseAmount, setReimburseAmount] = useState();
   const [deleteClicked, setDeleteClicked] = useState(true);
   const [ceoCompany, setCeoCompany] = useState(0);
@@ -182,7 +182,7 @@ export const TransactionList = () => {
         );
       }
     }
-  }, [sortValue, status, deleteClicked]);
+  }, [sortValue, update, deleteClicked]);
 
 
   const sortBy = (e) => {
@@ -197,25 +197,28 @@ export const TransactionList = () => {
   };
 
   const addComment = (transactionNumber) => {
-    updateTransactionComment(transactionNumber, comment).then((x) =>
-      setComment(comment)
+    updateTransactionComment(transactionNumber, comment).then((x) => {
+      setComment("")
+      setUpdate(!update)
+    }
     );
   };
 
   const approve = (transactionNumber) => {
     updateTransactionStatus(transactionNumber, "Accepted").then((x) =>
-      setStatus("Accepted")
+      setUpdate(!update)
     );
   };
 
   const deny = (transactionNumber) => {
     updateTransactionStatus(transactionNumber, "Denied").then((x) =>
-      setStatus("Denied")
+      setUpdate(!update)
     );
 
     const appeal = (transactionNumber) => {
       updateTransactionStatus(transactionNumber, "Appealed").then((x) =>
-        setStatus("Appealed"))
+        setUpdate(!update)
+      )
 
     }
   };
@@ -562,30 +565,37 @@ export const TransactionList = () => {
                               </Row>
                             </Col>
                           </Row>
-
-                          <Row className="my-5 mx-1">
-                            <Form.Group controlId="comment">
-                              <Form.Label>Comment</Form.Label>
-                              <Form.Control
-                                as="textarea"
-                                placeholder="Add comment"
-                                rows={5}
-                                //value={comment}
-                                onChange={(delta) => {
-                                  setComment(delta.target.value);
-                                }}
-                              />
-                              <Button
-                                type="button"
-                                onClick={() => {
-                                  addComment(transaction.claim_number);
-                                }}
-                                className="mt-3 btn-primary"
-                              >
-                                Add Comment
-                              </Button>
-                            </Form.Group>
-                          </Row>
+                          {!transaction.ceo_comment ? <>
+                            <Row className="my-5 mx-1">
+                              <Form.Group controlId="comment">
+                                <Form.Label>Comment</Form.Label>
+                                <Form.Control
+                                  as="textarea"
+                                  placeholder="Add comment"
+                                  rows={5}
+                                  //value={comment}
+                                  onChange={(delta) => {
+                                    setComment(delta.target.value);
+                                  }}
+                                />
+                                <Button
+                                  type="button"
+                                  onClick={() => {
+                                    addComment(transaction.claim_number);
+                                  }}
+                                  className="mt-3 btn-primary"
+                                >
+                                  Add Comment
+                                </Button>
+                              </Form.Group>
+                            </Row>
+                          </>
+                            :
+                            <>
+                              <Row className="my-5 mx-1">
+                                {transaction.ceo_comment}
+                              </Row>
+                            </>}
 
 
                         </ListGroup.Item>
