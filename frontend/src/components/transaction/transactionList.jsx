@@ -922,9 +922,6 @@ export const TransactionList = () => {
                 <p className="ms-3">No available transaction</p>
               )}
             </Tab>
-
-
-
             <Tab eventKey="denied" title="Denied">
               {dTransactions.length !== 0 ? (
                 <Container fluid>
@@ -1084,59 +1081,59 @@ export const TransactionList = () => {
                                   </Col>
                                 </Row>
 
-                              <Row className="my-2">
-                                <Form.Group controlId="comment" className="col-12">
-                                  <Form.Label>Comment</Form.Label>
-                                  <Form.Control
-                                    as="textarea"
-                                    placeholder="Add comment"
-                                    rows={5}
-                                    //value={comment}
-                                    onChange={(delta) => {
-                                      setComment(delta.target.value);
-                                    }}
-                                  />
-                                </Form.Group>
-                              </Row>
-                              <Row className="mt-3">
-                                <Col>
-                                  <Button
-                                    disabled={disableStates2[index]}
-                                    className="btn-success px-3 pt-2 me-2 submitButton fs-6"
-                                    id="small-header"
-                                    onClick={() => {
-                                      approve(transaction.claim_number, reimburseAmounts2[index]);
-                                      console.log(transaction);
-                                    }}
-                                  >
-                                    Approve
-                                  </Button>
-                                  <Button
-                                    className="btn-danger px-2 fs-6"
-                                    id="small-header"
-                                    onClick={() => {
-                                      deny(transaction.claim_number);
-                                    }}
-                                  >
-                                    Deny
-                                  </Button>
+                                <Row className="my-2">
+                                  <Form.Group controlId="comment" className="col-12">
+                                    <Form.Label>Comment</Form.Label>
+                                    <Form.Control
+                                      as="textarea"
+                                      placeholder="Add comment"
+                                      rows={5}
+                                      //value={comment}
+                                      onChange={(delta) => {
+                                        setComment(delta.target.value);
+                                      }}
+                                    />
+                                  </Form.Group>
+                                </Row>
+                                <Row className="mt-3">
+                                  <Col>
+                                    <Button
+                                      disabled={disableStates2[index]}
+                                      className="btn-success px-3 pt-2 me-2 submitButton fs-6"
+                                      id="small-header"
+                                      onClick={() => {
+                                        approve(transaction.claim_number, reimburseAmounts2[index]);
+                                        console.log(transaction);
+                                      }}
+                                    >
+                                      Approve
+                                    </Button>
+                                    <Button
+                                      className="btn-danger px-2 fs-6"
+                                      id="small-header"
+                                      onClick={() => {
+                                        deny(transaction.claim_number);
+                                      }}
+                                    >
+                                      Deny
+                                    </Button>
 
-                                </Col>
-                              </Row>
-                            </Card.Text>
-                          </Card.Body>
-                        </Card>
+                                  </Col>
+                                </Row>
+                              </Card.Text>
+                            </Card.Body>
+                          </Card>
                         </Col>
-                  );
+                      );
                     })}
-                </Row>
+                  </Row>
                 </Container>
-            ) : (
-            <p className="ms-3">No available transaction</p>
+              ) : (
+                <p className="ms-3">No available transaction</p>
               )}
-          </Tab>
-        </Tabs>
-      </Row >
+            </Tab>
+          </Tabs>
+        </Row >
 
 
 
