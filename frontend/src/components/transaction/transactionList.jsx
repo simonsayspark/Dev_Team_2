@@ -61,7 +61,7 @@ export const TransactionList = () => {
       getTransactionByStatus(currentUser.employee_id, "Pending").then((x) =>
         setpTransactions(x)
       );
-      getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) =>
+      getTransactionByStatus(currentUser.employee_id, "Appeal").then((x) =>
         setapTransactions(x)
       );
     } else {
@@ -76,7 +76,7 @@ export const TransactionList = () => {
         getCompanyTransactionByStatus(company, "Pending").then((x) =>
           setpTransactions(x)
         );
-        getCompanyTransactionByStatus(company, "Appealed").then((x) =>
+        getCompanyTransactionByStatus(company, "Appeal").then((x) =>
           setapTransactions(x)
         );
       } else { //CEO
@@ -92,7 +92,7 @@ export const TransactionList = () => {
               getCompanyTransactionByStatus(aCompany.company_id, "Pending").then((x) =>
                 setpTransactions(x)
               );
-              getCompanyTransactionByStatus(aCompany.company_id, "Appealed").then((x) =>
+              getCompanyTransactionByStatus(aCompany.company_id, "Appeal").then((x) =>
                 setapTransactions(x)
               );
               setCeoCompany(aCompany.company_id);
@@ -105,9 +105,11 @@ export const TransactionList = () => {
   }, []);
 
   useEffect(() => {
+    console.log('P Transactions were changed')
     if (pTransactions) {
+      console.log('Resetting States and Amounts!')
       setDisableStates(Array(pTransactions.length).fill(true));
-      setReimburseAmounts(Array(pTransactions.length).fill(undefined));
+      setReimburseAmounts(Array(pTransactions.length).fill(''));
     }
   }, [pTransactions]);
 
@@ -138,7 +140,7 @@ export const TransactionList = () => {
         ).then((x) => setpTransactions(x));
         getSortTransactionByStatus(
           currentUser.employee_id,
-          "Appealed",
+          "Appeal",
           sortValue
         ).then((x) => setapTransactions(x));
 
@@ -548,6 +550,8 @@ export const TransactionList = () => {
   else if (currentUser.ceo_id || currentUser.role === "Financial Manager") {
     console.log('disableStates:')
     console.log(disableStates)
+    console.log('reimburseAmounts:')
+    console.log(reimburseAmounts)
     return (
       <>
         <div className="row">
