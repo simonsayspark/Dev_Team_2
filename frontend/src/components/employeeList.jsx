@@ -94,7 +94,7 @@ export const EmployeeList = ({ setCurrentUser }) => {
                                             <Card.Title>{employee.ename}</Card.Title>
                                             <Card.Text>Role: {employee.role}</Card.Text>
                                             <Card.Text>ID: {employee.employee_id}</Card.Text>
-                                            <Button className="btn btn-warning" onClick={remove(employee.employee_id)}>Remove Employee from Company</Button>
+                                            <Button className="btn removeButton" onClick={() => remove(employee.employee_id)}>Remove Employee from Company</Button>
                                         </Card.Body>
                                     </Card>
                                 </Col>

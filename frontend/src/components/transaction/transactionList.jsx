@@ -209,6 +209,9 @@ export const TransactionList = () => {
     updateTransactionStatus(transactionNumber, "Accepted").then((x) =>
       setStatus("Accepted")
     );
+    updateTransactionComment(transactionNumber, comment).then((x) =>
+      setComment(comment)
+    )
   };
 
   const deny = (transactionNumber) => {
