@@ -145,7 +145,7 @@ export const TransactionList = () => {
           console.log(x)
         }
         );
-        getTransactionByStatus(currentUser.employee_id, "Appeal").then((x) => {
+        getTransactionByStatus(currentUser.employee_id, "Appealed").then((x) => {
           console.log('Inside Appeal')
           setapTransactions(x)
           console.log('Appeal is:')
@@ -176,7 +176,7 @@ export const TransactionList = () => {
           console.log(x)
         }
         );
-        getSortCompanyTransactionByStatus(companyID, "Appeal", sortValue).then((x) =>
+        getSortCompanyTransactionByStatus(companyID, "Appealed", sortValue).then((x) =>
           setapTransactions(x)
         );
       } else {
@@ -189,7 +189,7 @@ export const TransactionList = () => {
         getCompanyTransactionByStatus(companyID, "Pending").then((x) =>
           setpTransactions(x)
         );
-        getCompanyTransactionByStatus(companyID, "Appeal").then((x) =>
+        getCompanyTransactionByStatus(companyID, "Appealed").then((x) =>
           setapTransactions(x)
         );
       }
@@ -256,7 +256,7 @@ export const TransactionList = () => {
   };
 
   const appeal = (transactionNumber) => {
-    updateTransactionStatus(transactionNumber, "Appeal").then((x) =>
+    updateTransactionStatus(transactionNumber, "Appealed").then((x) =>
       setUpdate(!update))
 
   }
@@ -442,11 +442,11 @@ export const TransactionList = () => {
 
                                   <Row className=" pb-3">
                                     <Col>
-                                    <div id="header">Comment:</div>
-                                     <div id = "small-header"  className="fs-6">  {transaction.ceo_comment}</div>
+                                      <div id="header">Comment:</div>
+                                      <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
                                     </Col>
                                   </Row>
-                                  
+
 
                                   <Row>
 
@@ -480,13 +480,13 @@ export const TransactionList = () => {
             <Tab eventKey="denied" title="Denied">
               {dTransactions.length !== 0 ? (
                 <>
-                <Container fluid className="">
-                <Row>
-                  {dTransactions.map((transaction, index) => {
-                    return (
-                    
+                  <Container fluid className="">
+                    <Row>
+                      {dTransactions.map((transaction, index) => {
+                        return (
 
-                          
+
+
                           <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
                             <Card>
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
@@ -543,28 +543,28 @@ export const TransactionList = () => {
 
                                   <Row className=" pb-3">
                                     <Col>
-                                    <div id="header">Comment:</div>
-                                     <div id = "small-header"  className="fs-6">  {transaction.ceo_comment}</div>
+                                      <div id="header">Ceo Comment:</div>
+                                      <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
                                     </Col>
                                   </Row>
-                                  
+
 
                                   <Row>
-                                <Col>
-                                  <Button className="mt-3 submitButton" type="button" onClick={() => {
-                            navigate('/appealTransaction', { state: { transaction } });
+                                    <Col>
+                                      <Button className="mt-3 submitButton" type="button" onClick={() => {
+                                        navigate('/appealTransaction', { state: { transaction } });
 
-                          }}>Appeal</Button>
-                          </Col>
+                                      }}>Appeal</Button>
+                                    </Col>
                                   </Row>
                                 </Card.Text>
                               </Card.Body>
                             </Card>
                           </Col>
-                    
-                    );
-                  })}
-                 </Row>
+
+                        );
+                      })}
+                    </Row>
                   </Container>
                 </>
               ) : (
@@ -575,39 +575,87 @@ export const TransactionList = () => {
             <Tab eventKey="appealed" title="Appealed">
               {console.log(apTransactions)}
               {apTransactions.length !== 0 ? (
-                <ListGroup>
-                  {apTransactions.map((transaction, index) => {
-                    return (
-                      <ListGroup.Item>
-                        <Container>
-                          <Row>
-                            <Col className="p-0">{transaction.order_date.split("T")[0]}</Col>
-                            <Col>
-                              <Badge bg="secondary" className="">
-                                {transaction.claim_status}
-                              </Badge>{" "}
-                            </Col>
-                          </Row>
+                <>
+                  <Container fluid className="">
+                    <Row>
+                      {apTransactions.map((transaction, index) => {
+                        return (
+                     
+                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card>
+                              <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                                <Row>
+                                  <Col>
+                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  </Col>
+                                  <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
+                                    <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
+                                  </Col>
+                                </Row>
+                              </Card.Header>
+                              <Card.Body>
+                                <Card.Text >
+                                  <Row>
 
-                          <Row>
-                            Amount Requested: ${transaction.amount_requested}
-                          </Row>
 
-                          <Row>
-                            Category: {transaction.category}
-                          </Row>
 
-                          <Row>
-                            Ceo Comment: {transaction.ceo_comment}
-                          </Row>
 
-                        </Container>
-                      </ListGroup.Item>
+                                    <Col className="mb-3">
+                                      <div id="header">Amount Requested: </div>
+                                      <span id="small-header">${transaction.amount_requested}</span>
+
+                                    </Col>
+
+                                    <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                      <Badge bg="warning" className="rounded-2 px-2 fs-6"  >
+                                        <span id="small-header">{transaction.claim_status}</span>
+                                      </Badge>
+                                    </Col>
+                                    <hr />
+
+                                  </Row>
+                                  <Row>
+                                    <Col className="mb-3">
+                                      <div id="header">Category: </div>
+
+                                      <span id="small-header"> {transaction.category}</span>
+
+                                    </Col>
+                                    <hr />
+                                  </Row>
+
+                                  <Row className="mt-1 pb-1">
+                                    <Col>
+                                      <div id="header">Claim Description:</div>
+
+                                      <div id="small-header" className="fs-6">{transaction.claim_description}</div>
+                                    </Col>
+                                  </Row>
+
+                                  <hr />
+
+
+                                  <Row className=" pb-3">
+                                    <Col>
+                                      <div id="header">Ceo Comment:</div>
+                                      <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
+                                    </Col>
+                                  </Row>
+
+
+                                 
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          </Col>
                     );
-                  })}
-                </ListGroup>
+                      })}
+                   </Row>
+                  </Container>
+              
+                </>
               ) : (
-                <p className="ms-3">No available transaction</p>
+              <p className="ms-3">No available transaction</p>
               )}
             </Tab>
           </Tabs>
