@@ -16,10 +16,6 @@ export const HomePage = ({ setCurrentUser }) => {
   const currentUser = useContext(UserContext);
   const navigate = useNavigate();
 
-  function logout() {
-    setCurrentUser(undefined);
-  }
-
   if (currentUser.ceo_id) { //CEO homepage
     return (
       <>

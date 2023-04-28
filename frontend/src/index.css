@@ -190,22 +190,7 @@ code {
 
 .light-bg {
   background-color: #D9D9D9;
-  height: 105vh;
 }
-
-/* .square {
-  max-height: 0 !important;
-  max-width: 95% !important;
-  padding-bottom: 95% !important;
-} */
-
-/* .containerMargin {
-  margin-left: 15% !important;
-  margin-right: 15% !important;
-} */
-/* .tab-color {
-  color: #3c6e71;
-} */
 
 .nav-tabs .nav-link {
   color: #418485 !important;

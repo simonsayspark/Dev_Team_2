@@ -89,7 +89,7 @@ export const LoginPage = ({ setCurrentUser }) => {
       </Navbar>
 
       <div className="pt-5">
-        <div className="bg-light rounded p-3 mx-auto p-md-5 pb-md-3 col-lg-5 col-sm-8">
+        <div className="light-bg rounded p-3 mx-auto p-md-5 pb-md-3 col-lg-5 col-sm-8">
           {error !== "" && (
             <Alert key={"danger"} variant={"danger"}>
               {error}
