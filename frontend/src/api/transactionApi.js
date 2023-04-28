@@ -146,3 +146,16 @@ new Promise((resolve, reject) => {
       reject(x);
     });
 });
+
+export const deleteTransactionByEmployee = (employee_id) =>
+new Promise((resolve, reject) => {
+  axios
+    .delete(
+      `${apiEndpoint}/claims?employee_id=${employee_id}`
+    )
+    .then((x) => resolve(x.data))
+    .catch((x) => {
+      alert(x);
+      reject(x);
+    });
+});

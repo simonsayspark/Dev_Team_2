@@ -13,6 +13,7 @@ import Nav from "react-bootstrap/Nav";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import { NavLink, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
+import { deleteTransactionByEmployee } from "../api/transactionApi";
 
 
 
@@ -31,14 +32,15 @@ export const EmployeeList = ({ setCurrentUser }) => {
                     setCeoCompany(aCompany.company_id);
                     getEmployeeByCompId(aCompany.company_id).then((x) => setEmployees(x));
                 }
-
             })
         })
     }, [deleteClicked])
 
     const remove = (employee_id) => {
-        removeEmployee(employee_id).then((x) => {
-            console.log(x);
+        deleteTransactionByEmployee(employee_id).then(() => {
+            removeEmployee(employee_id).then((x) => {
+                setDeleteClicked(!deleteClicked);
+            })
         })
     }
 
@@ -50,8 +52,6 @@ export const EmployeeList = ({ setCurrentUser }) => {
         )
     }
 
-
-    console.log(employees);
     return (
         <>
             <Navbar sticky="top" className="color-nav" expand="md" collapseOnSelect>
@@ -99,7 +99,6 @@ export const EmployeeList = ({ setCurrentUser }) => {
                                             <Card.Text id="small-header">ID: {employee.employee_id}</Card.Text>
                                             <Button className="btn submitButton" id="small-header" onClick={() => {
                                                 remove(employee.employee_id);
-                                                setDeleteClicked(!deleteClicked);
                                             }}>Remove Employee from Company</Button>
                                         </Card.Body>
                                     </Card>
