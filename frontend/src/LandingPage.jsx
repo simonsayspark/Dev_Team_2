@@ -161,7 +161,7 @@ export const LandingPage = () => {
             ></Image>
           </Col>
           <Col className="p-0 my-auto text-center">
-            <div className="display-6 text-white" id="header">Employee</div>
+            <div className="mt-4 display-6 text-white" id="header">Employee</div>
             <p className="fs-3 p-3 text-white" id="small-header">
               {" "}
               As an employee, you can submit requests for reimbursement,
@@ -183,7 +183,7 @@ export const LandingPage = () => {
             xl
             xxl
           >
-            <div className="display-6 text-white" id="header" >Financial Manager</div>
+            <div className="mt-4 display-6 text-white" id="header" >Financial Manager</div>
             <p className="fs-3 p-3 text-white" id="small-header">
               {" "}
               As a financial manager, you can approve or deny
@@ -204,10 +204,10 @@ export const LandingPage = () => {
 
           <Col className="p-0 my-auto text-center">
             <div className="">
-              <div className="display-6 text-white" id="header">CEO</div>
+              <div className="mt-4 display-6 text-white" id="header">CEO</div>
               <p className="fs-3 p-3 text-white" id="small-header">
                 As a CEO, you can add your company and approve or deny
-                reimbursement requests. You can also add or remove
+                reimbursement requests. You can also remove
                 employees from the company.
               </p>
             </div>
