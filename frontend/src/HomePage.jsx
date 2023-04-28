@@ -68,8 +68,8 @@ export const HomePage = ({ setCurrentUser }) => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col className="text-center mx-2 homePageCards">
-              <Card className="mt-4">
+            <Col className="text-center mx-2 homePageCards mt-4 mt-md-0">
+              <Card className="" >
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fs-3" id="header">
                     Add/Remove Employees

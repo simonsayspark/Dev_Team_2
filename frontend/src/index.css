@@ -201,6 +201,14 @@ code {
   font-weight: bold;
 }
 
+
+.overflowTab{
+  overflow-y: hidden;
+}
+
+.width{
+  width: 100%;
+}
 /* * {
   overflow: hidden;
 }

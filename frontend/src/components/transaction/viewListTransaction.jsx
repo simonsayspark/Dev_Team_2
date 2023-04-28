@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 export const ViewListTransaction = ({ setCurrentUser }) => {
   return (
     <>
-      <Navbar sticky="top" className="color-nav" expand="md" collapseOnSelect>
+      <Navbar sticky="top" className="color-nav overflowTab" expand="md" collapseOnSelect>
         <Container fluid className="m-0">
           <Navbar.Brand className="theBrand">
             <NavLink to={"/home"} className="nav-link">
