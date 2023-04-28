@@ -400,19 +400,6 @@ export const TransactionList = () => {
                                       <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
                                     </Col>
                                   </Row>
-
-                                  <Row>
-                                    <Col className="">
-                                      <Button className=" submitButton px-3 pt-2 me-2" id="small-header" type="button" onClick={() => {
-                                        navigate('/editTransaction', { state: { transaction } });
-                                      }}>Edit</Button>
-
-                                      <Button variant="danger" className="px-2" type="button" id="small-header" onClick={() => {
-                                        deleteTransaction(transaction.claim_number);
-                                        setDeleteClicked(!deleteClicked);
-                                      }}>Delete</Button>
-                                    </Col>
-                                  </Row>
                                 </Card.Text>
                               </Card.Body>
                             </Card>
