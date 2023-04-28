@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 .title-font {
@@ -17,7 +16,7 @@ code {
     monospace;
 }
 
-#card-body{
+#card-body {
   background: #353535;
 
 }
@@ -29,7 +28,7 @@ code {
   padding-bottom: .75rem;
 }
 
-#accepted{
+#accepted {
   background-color: #49a078;
 }
 
@@ -190,6 +189,7 @@ code {
 
 .light-bg {
   background-color: #D9D9D9;
+  height: 87vh;
 }
 
 .nav-tabs .nav-link {

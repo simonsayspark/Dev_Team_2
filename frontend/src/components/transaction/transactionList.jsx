@@ -273,7 +273,7 @@ export const TransactionList = () => {
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                                 <Row>
                                   <Col>
-                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                    <div id="header" className=" ">Claim #{transaction.claim_number} </div>
                                   </Col>
                                   <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
                                     <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
@@ -290,7 +290,7 @@ export const TransactionList = () => {
                                     </Col>
 
                                     <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                      <Badge bg="secondary" className="rounded-2 px-2 fs-6"  >
+                                      <Badge bg="secondary" className="rounded-pill px-2 fs-6"  >
                                         <span id="small-header">{transaction.claim_status}</span>
                                       </Badge>
                                     </Col>
@@ -355,7 +355,7 @@ export const TransactionList = () => {
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                                 <Row>
                                   <Col>
-                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                    <div id="header" className=" ">Claim #{transaction.claim_number} </div>
                                   </Col>
                                   <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
                                     <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
@@ -371,7 +371,7 @@ export const TransactionList = () => {
                                     </Col>
 
                                     <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                      <Badge bg="success" className="rounded-2 px-2 fs-6"  >
+                                      <Badge bg="success" className="rounded-pill px-2 fs-6"  >
                                         <span id="small-header">{transaction.claim_status}</span>
                                       </Badge>
                                     </Col>
@@ -439,7 +439,7 @@ export const TransactionList = () => {
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                                 <Row>
                                   <Col>
-                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                    <div id="header" className=" ">Claim #{transaction.claim_number} </div>
                                   </Col>
                                   <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
                                     <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
@@ -479,7 +479,7 @@ export const TransactionList = () => {
                                   <hr />
                                   <Row className=" pb-3">
                                     <Col>
-                                      <div id="header">Ceo Comment:</div>
+                                      <div id="header">CEO Comment:</div>
                                       <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
                                     </Col>
                                   </Row>
@@ -518,7 +518,7 @@ export const TransactionList = () => {
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                                 <Row>
                                   <Col>
-                                    <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                    <div id="header" className=" ">Claim #{transaction.claim_number} </div>
                                   </Col>
                                   <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
                                     <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
@@ -558,7 +558,7 @@ export const TransactionList = () => {
                                   <hr />
                                   <Row className=" pb-3">
                                     <Col>
-                                      <div id="header">Ceo Comment:</div>
+                                      <div id="header">CEO Comment:</div>
                                       <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
                                     </Col>
                                   </Row>
@@ -627,7 +627,7 @@ export const TransactionList = () => {
                             <Card.Header className="pb-0 pt-3 main-bg text-white">
                               <Row>
                                 <Col>
-                                  <div id="header">Claim# {transaction.claim_number}</div>
+                                  <div id="header">Claim #{transaction.claim_number}</div>
                                 </Col>
                                 <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
                                   <div id="header" className="text-end">{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
@@ -646,7 +646,7 @@ export const TransactionList = () => {
                                     <span id="small-header">{transaction.category}</span>
                                   </Col>
                                   <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                    <Badge bg="secondary" className="rounded-2 px-2 fs-6"  >
+                                    <Badge bg="secondary" className="rounded-pill px-2 fs-6"  >
                                       <span id="small-header">{transaction.claim_status}</span>
                                     </Badge>
                                   </Col>
@@ -755,7 +755,7 @@ export const TransactionList = () => {
                             <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                               <Row>
                                 <Col>
-                                  <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  <div id="header" className=" ">Claim #{transaction.claim_number} </div>
                                 </Col>
                                 <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
                                   <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
@@ -777,7 +777,7 @@ export const TransactionList = () => {
                                   </Col>
 
                                   <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                    <Badge bg="success" className="rounded-2 px-2 fs-6"  >
+                                    <Badge bg="success" className="rounded-pill px-2 fs-6"  >
                                       <span id="small-header">{transaction.claim_status}</span>
                                     </Badge>
                                   </Col>
@@ -831,7 +831,7 @@ export const TransactionList = () => {
                             <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                               <Row>
                                 <Col>
-                                  <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  <div id="header" className=" ">Claim #{transaction.claim_number} </div>
                                 </Col>
                                 <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
                                   <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
@@ -901,7 +901,7 @@ export const TransactionList = () => {
                             <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                               <Row>
                                 <Col>
-                                  <div id="header" className=" ">Claim# {transaction.claim_number} </div>
+                                  <div id="header" className=" ">Claim #{transaction.claim_number} </div>
                                 </Col>
                                 <Col xs={7} sm={8} md={8} lg={4} xl={3} xxl={3}>
                                   <div id="header" className="text-end" >{transaction.order_date.substring(0, transaction.order_date.indexOf("T"))}</div>
