@@ -26,8 +26,8 @@ create table employees (
     foreign key(company_id) references companies(company_id)
 );
 
-create table claims ( --look for this --
-    claim_number int auto_increment primary key,  --dont worry about this--    
+create table claims (
+    claim_number int auto_increment primary key,
     employee_id int,
     company_id int,
     order_date date,
@@ -50,5 +50,3 @@ create table favoriteClaims (
     foreign key(employee_id) references employees(employee_id),
     foreign key(claim_number) references claims(claim_number)
 );
-
---possibly will add financial table in future
