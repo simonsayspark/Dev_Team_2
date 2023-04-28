@@ -54,8 +54,8 @@ export const HomePage = ({ setCurrentUser }) => {
           </Row>
 
           <Row className="w-100">
-            <Col className="text-center mx-2 homePageCards">
-              <Card>
+            <Col className="text-center homePageCards">
+              <Card className="ms-3">
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fs-3" id="header">
                     Approve and Deny Transactions
@@ -68,8 +68,8 @@ export const HomePage = ({ setCurrentUser }) => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col className="text-center mx-2 homePageCards mt-4 mt-md-0">
-              <Card className="" >
+            <Col className="text-center homePageCards mt-4 mt-md-0">
+              <Card className="ms-3" >
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fs-3" id="header">
                     Add/Remove Employees
