@@ -877,7 +877,7 @@ export const TransactionList = () => {
                 <p ip="header" className="ms-3 text-center fs-3">No available transactions</p>
               )}
             </Tab>
-            <Tab eventKey="appeal" title="Appealed">
+            <Tab eventKey="appeal" title="Appeal">
               {apTransactions.length !== 0 ? (
                 <Container fluid>
                   <Row>
