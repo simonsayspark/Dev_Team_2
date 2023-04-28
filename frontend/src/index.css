@@ -18,7 +18,6 @@ code {
 
 #card-body {
   background: #353535;
-
 }
 
 
@@ -189,7 +188,7 @@ code {
 
 .light-bg {
   background-color: #D9D9D9;
-  height: 87vh;
+  height: 100vh;
 }
 
 .nav-tabs .nav-link {

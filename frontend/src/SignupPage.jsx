@@ -213,6 +213,7 @@ export const SignupPage = ({ setCurrentUser }) => {
 
   return (
     <>
+    <div className="light-bg">
       <Navbar sticky="top" className="color-nav" expand="lg">
         <Container fluid className="m-0">
           <Navbar.Brand>
@@ -228,7 +229,7 @@ export const SignupPage = ({ setCurrentUser }) => {
         </Container>
       </Navbar>
 
-      <div className="pt-4 mx-0 px-0 light-bg1 scroll-overflow">
+      <div className="pt-4 mx-0 px-0 scroll-overflow">
         <div className="bg-light rounded p-3 mx-auto p-md-5 pb-md-3 col-lg-6 col-sm-8 ">
           {error !== "" && (
             <Alert key={"danger"} variant={"danger"}>
@@ -434,6 +435,7 @@ export const SignupPage = ({ setCurrentUser }) => {
             </Container>
           </Form>
         </div>
+      </div>
       </div>
     </>
   );

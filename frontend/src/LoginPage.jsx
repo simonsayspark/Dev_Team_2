@@ -79,6 +79,7 @@ export const LoginPage = ({ setCurrentUser }) => {
 
   return (
     <>
+    <div className="light-bg">
       <Navbar sticky="top" className="color-nav" expand="lg">
         <Container fluid className="m-0">
           <Navbar.Brand>
@@ -94,7 +95,7 @@ export const LoginPage = ({ setCurrentUser }) => {
         </Container>
       </Navbar>
 
-      <div className="pt-5 light-bg">
+      <div className="pt-5">
         <div className="bg-light rounded p-3 mx-auto p-md-5 pb-md-3 col-lg-5 col-sm-8">
           {error !== "" && (
             <Alert key={"danger"} variant={"danger"}>
@@ -156,6 +157,7 @@ export const LoginPage = ({ setCurrentUser }) => {
             </Container>
           </Form>
         </div>
+      </div>
       </div>
     </>
   );
