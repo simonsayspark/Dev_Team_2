@@ -39,7 +39,7 @@ export const EmployeeList = ({ setCurrentUser }) => {
     const remove = (employee_id) => {
         deleteTransactionByEmployee(employee_id).then(() => {
             removeEmployee(employee_id).then((x) => {
-                console.log(x);
+                setDeleteClicked(!deleteClicked);
             })
         })
     }
@@ -99,7 +99,6 @@ export const EmployeeList = ({ setCurrentUser }) => {
                                             <Card.Text id="small-header">ID: {employee.employee_id}</Card.Text>
                                             <Button className="btn submitButton" id="small-header" onClick={() => {
                                                 remove(employee.employee_id);
-                                                setDeleteClicked(!deleteClicked);
                                             }}>Remove Employee from Company</Button>
                                         </Card.Body>
                                     </Card>
