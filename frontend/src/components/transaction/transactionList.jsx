@@ -404,8 +404,6 @@ export const TransactionList = () => {
               )}
             </Tab>
 
-
-
             <Tab eventKey="accepted" title="Accepted">
               {aTransactions.length !== 0 ? (
                 <>
@@ -692,7 +690,7 @@ export const TransactionList = () => {
                       return (
                         <Col className="d-flex mb-4" key={index} xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
                           <Card className="flex-fill">
-                            <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
+                            <Card.Header className="pb-0 pt-3 main-bg text-white">
                               <Row>
                                 <Col>
                                   <div id="header">Claim# {transaction.claim_number}</div>
@@ -713,7 +711,7 @@ export const TransactionList = () => {
                                     <div id="header">Category:</div>
                                     <span id="small-header">{transaction.category}</span>
                                   </Col>
-                                  <Col className=" text-end" xs={12} sm={4} md={4} lg={3} xl={2} xxl={2}>
+                                  <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
                                     <Badge bg="secondary" className="rounded-2 px-2 fs-6"  >
                                       <span id="small-header">{transaction.claim_status}</span>
                                     </Badge>
