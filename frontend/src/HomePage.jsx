@@ -72,13 +72,13 @@ export const HomePage = ({ setCurrentUser }) => {
               <Card className="ms-3" >
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fs-3" id="header">
-                    Add/Remove Employees
+                    View Employees
                   </Card.Title>
                   <Card.Text className="fs-4" id="small-header">
                     View all employees in your company,
-                    as well as add or remove any employees.
+                    as well as remove any employees.
                   </Card.Text>
-                  <Button className="fs-5 mt-auto submitButton" id="small-header" onClick={() => navigate("/employeeList")}>Add or remove an employee</Button>
+                  <Button className="fs-5 mt-auto submitButton" id="small-header" onClick={() => navigate("/employeeList")}>Remove an employee</Button>
                 </Card.Body>
               </Card>
             </Col>
