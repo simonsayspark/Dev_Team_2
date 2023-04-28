@@ -54,7 +54,7 @@ export const HomePage = ({ setCurrentUser }) => {
           </Row>
 
           <Row className="w-100">
-            <Col className="text-center me-1 homePageCards">
+            <Col className="text-center mx-2 homePageCards">
               <Card>
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fs-3" id="header">
@@ -68,8 +68,8 @@ export const HomePage = ({ setCurrentUser }) => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col className="text-center ms-1 homePageCards">
-              <Card>
+            <Col className="text-center mx-2 homePageCards">
+              <Card className="mt-4">
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fs-3" id="header">
                     Add/Remove Employees
@@ -124,7 +124,7 @@ export const HomePage = ({ setCurrentUser }) => {
           </Row>
 
           <Row className="w-100 align-content-center">
-            <Card className="text-center me-1 homePageCards">
+            <Card className="text-center ms-2 homePageCards">
               <Card.Body className="d-flex flex-column">
                 <Card.Title id ="header" className="fs-3">
                   Approve and Deny Transactions
@@ -184,8 +184,8 @@ export const HomePage = ({ setCurrentUser }) => {
           </Row>
 
           <Row className="w-100">
-            <Col className="text-center me-1 homePageCards">
-              <Card>
+            <Col className="text-center homePageCards ">
+              <Card className="ms-3 mt-4">
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fs-3" id="header">
                     Submit Transactions
@@ -198,8 +198,8 @@ export const HomePage = ({ setCurrentUser }) => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col className="text-center ms-1 homePageCards">
-              <Card>
+            <Col className="text-center homePageCards">
+              <Card className="ms-3 mt-4">
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fs-3" id="header">
                     View Transactions

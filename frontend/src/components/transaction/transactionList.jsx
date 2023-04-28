@@ -945,7 +945,7 @@ export const TransactionList = () => {
                                 <hr />
                                 <Row>
                                   <Col>
-                                    <Form.Label>Amount to Reimburse: </Form.Label>
+                                    <Form.Label id = "header" >Amount to Reimburse: </Form.Label>
                                     <Form.Group
                                       className="col-2"
                                       controlId="amount_requested"
@@ -972,7 +972,7 @@ export const TransactionList = () => {
 
                                 <Row className="my-2">
                                   <Form.Group controlId="comment" className="col-12">
-                                    <Form.Label>Comment</Form.Label>
+                                    <Form.Label id="header" className="mt-2">Comment</Form.Label>
                                     <Form.Control
                                       as="textarea"
                                       placeholder="Add comment"
@@ -1000,7 +1000,7 @@ export const TransactionList = () => {
                                       Approve
                                     </Button>
                                     <Button
-                                      className="btn-danger px-2 fs-6"
+                                      className="btn-danger px-4 fs-6"
                                       id="small-header"
                                       onClick={() => {
                                         deny(transaction.claim_number, comments2[index]);
