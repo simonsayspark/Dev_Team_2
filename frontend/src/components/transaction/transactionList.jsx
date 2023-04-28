@@ -32,7 +32,6 @@ export const TransactionList = () => {
   const [pTransactions, setpTransactions] = useState(undefined);
   const [apTransactions, setapTransactions] = useState(undefined);
   const [sortValue, setSortValue] = useState("Sort By");
-  const [comment, setComment] = useState("");
   const [update, setUpdate] = useState(true);
   const [deleteClicked, setDeleteClicked] = useState(true);
   const [ceoCompany, setCeoCompany] = useState(0);
@@ -42,6 +41,9 @@ export const TransactionList = () => {
   const [disableStates2, setDisableStates2] = useState([]);
   const [disableSet, setDisableSet] = useState(false);
   const [disableSet2, setDisableSet2] = useState(false);
+
+  const [comments, setComments] = useState();
+  const [comments2, setComments2] = useState();
 
   const navigate = useNavigate();
 
@@ -96,21 +98,22 @@ export const TransactionList = () => {
         })
       }
     }
-
   }, []);
 
   useEffect(() => {
     if (pTransactions) {
       setDisableStates(Array(pTransactions.length).fill(true));
       setReimburseAmounts(Array(pTransactions.length).fill(''));
+      setComments(Array(pTransactions.length).fill(''));
       setDisableSet(true);
     }
   }, [pTransactions]);
 
   useEffect(() => {
     if (apTransactions) {
-      setDisableStates2(Array(pTransactions.length).fill(true));
-      setReimburseAmounts2(Array(pTransactions.length).fill(''));
+      setDisableStates2(Array(apTransactions.length).fill(true));
+      setReimburseAmounts2(Array(apTransactions.length).fill(''));
+      setComments2(Array(apTransactions.length).fill(''));
       setDisableSet2(true);
     }
   }, [apTransactions]);
@@ -209,17 +212,10 @@ export const TransactionList = () => {
     }
   }, [sortValue, update, deleteClicked]);
 
-  const addComment = (transactionNumber) => {
-    updateTransactionComment(transactionNumber, comment).then((x) =>
-      setComment("")
-      //test
-    );
-  };
-
-  const approve = (transactionNumber, reimburseAmount) => {
+  const approve = (transactionNumber, reimburseAmount, theComment) => {
     let newComment = "";
-    if (comment) {
-      newComment = comment;
+    if (theComment) {
+      newComment = theComment;
     } else {
       newComment = "Transaction Approved.";
     }
@@ -230,13 +226,12 @@ export const TransactionList = () => {
         }))
     }
     );
-    setComment("");
   };
 
-  const deny = (transactionNumber) => {
+  const deny = (transactionNumber, theComment) => {
     let newComment = "";
-    if (comment) {
-      newComment = comment;
+    if (theComment) {
+      newComment = theComment;
     } else {
       newComment = "Transaction Denied.";
     }
@@ -701,9 +696,12 @@ export const TransactionList = () => {
                                         as="textarea"
                                         name="pendingComment"
                                         placeholder="Add comment"
+                                        value={comments[index]}
                                         rows={5}
                                         onChange={(delta) => {
-                                          setComment(delta.target.value);
+                                          const newComments = [...comments];
+                                          newComments[index] = delta.target.value;
+                                          setComments(newComments);
                                         }}
                                       />
                                     </Form.Group>
@@ -717,7 +715,7 @@ export const TransactionList = () => {
                                         className="btn-success px-3 pt-2 me-2 submitButton"
                                         id="small-header"
                                         onClick={() => {
-                                          approve(transaction.claim_number, reimburseAmounts[index]);
+                                          approve(transaction.claim_number, reimburseAmounts[index], comments[index]);
                                         }}
                                       >
                                         Approve
@@ -726,7 +724,7 @@ export const TransactionList = () => {
                                         className="btn-danger px-2"
                                         id="small-header"
                                         onClick={() => {
-                                          deny(transaction.claim_number);
+                                          deny(transaction.claim_number, comments[index]);
                                         }}
                                       >
                                         Deny
@@ -931,28 +929,20 @@ export const TransactionList = () => {
                                   </Col>
                                 </Row>
                                 <hr />
-
                                 <Row className="mt-1 pb-1">
                                   <Col>
                                     <div id="header">Claim Description:</div>
                                     <div id="small-header" className="fs-6">{transaction.claim_description}</div>
                                   </Col>
-
                                 </Row>
-
                                 <hr />
-
-
-
                                 <Row>
                                   <Col>
                                     <div id="header">Appeal Comment:</div>
                                     <div id="small-header" className="fs-6">  {transaction.appeal_comment}</div>
                                   </Col>
                                 </Row>
-
                                 <hr />
-
                                 <Row>
                                   <Col>
                                     <Form.Label>Amount to Reimburse: </Form.Label>
@@ -979,6 +969,7 @@ export const TransactionList = () => {
                                     </Form.Group>
                                   </Col>
                                 </Row>
+
                                 <Row className="my-2">
                                   <Form.Group controlId="comment" className="col-12">
                                     <Form.Label>Comment</Form.Label>
@@ -986,13 +977,16 @@ export const TransactionList = () => {
                                       as="textarea"
                                       placeholder="Add comment"
                                       rows={5}
-                                      //value={comment}
+                                      value={comments2[index]}
                                       onChange={(delta) => {
-                                        setComment(delta.target.value);
+                                        const newComments = [...comments2];
+                                        newComments[index] = delta.target.value;
+                                        setComments2(newComments);
                                       }}
                                     />
                                   </Form.Group>
                                 </Row>
+
                                 <Row className="mt-3">
                                   <Col>
                                     <Button
@@ -1000,7 +994,7 @@ export const TransactionList = () => {
                                       className="btn-success px-3 pt-2 me-2 submitButton fs-6"
                                       id="small-header"
                                       onClick={() => {
-                                        approve(transaction.claim_number, reimburseAmounts2[index]);
+                                        approve(transaction.claim_number, reimburseAmounts2[index], comments2[index]);
                                       }}
                                     >
                                       Approve
@@ -1009,12 +1003,11 @@ export const TransactionList = () => {
                                       className="btn-danger px-2 fs-6"
                                       id="small-header"
                                       onClick={() => {
-                                        deny(transaction.claim_number);
+                                        deny(transaction.claim_number, comments2[index]);
                                       }}
                                     >
                                       Deny
                                     </Button>
-
                                   </Col>
                                 </Row>
                               </Card.Text>
