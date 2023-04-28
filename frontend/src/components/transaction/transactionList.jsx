@@ -754,7 +754,7 @@ export const TransactionList = () => {
                   <Row>
                     {pTransactions?.map((transaction, index) => {
                       return (
-                        <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                        <Col key={index} xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
                           <Card>
                             <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                               <Row>
@@ -793,23 +793,50 @@ export const TransactionList = () => {
                                 </Row>
 
                                 <Row>
-                                  <Col>
-                                    <Form.Label>Amount to Reimburse</Form.Label>
-                                    <Form.Group
-                                      className="col-2"
-                                      controlId="amount_requested"
-                                    >
-                                      <Form.Control
+                                    <Col>
+                                      <Form>
+                                        <Form.Label id="header">Amount to Reimburse: </Form.Label>
+                                        <Form.Group
+                                          className="col-2"
+                                          controlId="reimburseAmount"
+                                        >
+                                          <Form.Control
+                                            value={reimburseAmounts[index]}
+                                            type="number"
+                                            min="0.00"
+                                            step="0.01"
+                                            onChange={(delta) => {
+                                              const newReimburseAmounts = [...reimburseAmounts];
+                                              newReimburseAmounts[index] = delta.target.value;
+                                              setReimburseAmounts(newReimburseAmounts);
+                                              if (!delta.target.value || delta.target.value == 0) {
+                                                updateDisableState(index, true);
+                                              } else {
+                                                updateDisableState(index, false);
+                                              }
+                                            }}
+                                          />
+                                        </Form.Group>
+                                      </Form>
+                                    </Col>
+                                  </Row>
 
-                                        type="number"
-                                        className="mb-1"
+                                  <Row className="my-2">
+                                    <Form.Group controlId="comment" className="col-12">
+                                      <Form.Label>Comment</Form.Label>
+                                      <Form.Control
+                                        as="textarea"
+                                        placeholder="Add comment"
+                                        rows={5}
+                                        //value={comment}
                                         onChange={(delta) => {
-                                          setReimburseAmounts(delta.target.value)
+                                          setComment(delta.target.value);
                                         }}
                                       />
                                     </Form.Group>
-                                  </Col>
                                   </Row>
+
+
                                   <Row className="mt-3">
                                     <Col>
                                       <Button
