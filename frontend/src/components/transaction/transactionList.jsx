@@ -315,7 +315,6 @@ export const TransactionList = () => {
   if (currentUser.role === "Employee")
     return (
       <>
-      
         <Row>
           <Tabs
             defaultActiveKey="pending"
@@ -323,17 +322,15 @@ export const TransactionList = () => {
             className="mb-3"
             fill
           >
-            
             <Tab eventKey="pending" title="Pending">
-
               {pTransactions.length !== 0 ? (
                 <>
                   <Container fluid className="">
                     <Row>
                       {pTransactions.map((transaction, index) => {
                         return (
-                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                            <Card>
+                          <Col className="d-flex mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card className="flex-fill">
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                                 <Row>
                                   <Col>
@@ -412,23 +409,12 @@ export const TransactionList = () => {
             <Tab eventKey="accepted" title="Accepted">
               {aTransactions.length !== 0 ? (
                 <>
-
                   <Container fluid className="">
                     <Row>
                       {aTransactions.map((transaction, index) => {
                         return (
-
-                          //   <Row>
-                          //   Amount Requested: ${transaction.amount_requested}
-                          // </Row>
-
-                          // <Row>
-                          //   Category: {transaction.category}
-                          // </Row>
-
-
-                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                            <Card>
+                          <Col className="d-flex mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card className="flex-fill">
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                                 <Row>
                                   <Col>
@@ -442,14 +428,9 @@ export const TransactionList = () => {
                               <Card.Body>
                                 <Card.Text >
                                   <Row>
-
-
-
-
                                     <Col className="mb-3">
                                       <div id="header">Amount Requested: </div>
                                       <span id="small-header">${transaction.amount_requested}</span>
-
                                     </Col>
 
                                     <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
@@ -458,14 +439,12 @@ export const TransactionList = () => {
                                       </Badge>
                                     </Col>
                                     <hr />
-
                                   </Row>
+
                                   <Row>
                                     <Col className="mb-3">
                                       <div id="header">Category: </div>
-
                                       <span id="small-header"> {transaction.category}</span>
-
                                     </Col>
                                     <hr />
                                   </Row>
@@ -477,10 +456,7 @@ export const TransactionList = () => {
                                       <div id="small-header" className="fs-6">{transaction.claim_description}</div>
                                     </Col>
                                   </Row>
-
                                   <hr />
-
-
                                   <Row className=" pb-3">
                                     <Col>
                                       <div id="header">Comment:</div>
@@ -488,9 +464,7 @@ export const TransactionList = () => {
                                     </Col>
                                   </Row>
 
-
                                   <Row>
-
                                     <Col className="">
                                       <Button className=" submitButton px-3 pt-2 me-2" id="small-header" type="button" onClick={() => {
                                         navigate('/editTransaction', { state: { transaction } });
@@ -516,20 +490,15 @@ export const TransactionList = () => {
               )}
             </Tab>
 
-
-
             <Tab eventKey="denied" title="Denied">
               {dTransactions.length !== 0 ? (
                 <>
-                  <Container fluid className="">
+                  <Container fluid>
                     <Row>
                       {dTransactions.map((transaction, index) => {
                         return (
-
-
-
-                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                            <Card>
+                          <Col className="d-flex mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card className="flex-fill">
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                                 <Row>
                                   <Col>
@@ -543,14 +512,9 @@ export const TransactionList = () => {
                               <Card.Body>
                                 <Card.Text >
                                   <Row>
-
-
-
-
                                     <Col className="mb-3">
                                       <div id="header">Amount Requested: </div>
                                       <span id="small-header">${transaction.amount_requested}</span>
-
                                     </Col>
 
                                     <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
@@ -559,14 +523,12 @@ export const TransactionList = () => {
                                       </Badge>
                                     </Col>
                                     <hr />
-
                                   </Row>
+
                                   <Row>
                                     <Col className="mb-3">
                                       <div id="header">Category: </div>
-
                                       <span id="small-header"> {transaction.category}</span>
-
                                     </Col>
                                     <hr />
                                   </Row>
@@ -574,21 +536,16 @@ export const TransactionList = () => {
                                   <Row className="mt-1 pb-1">
                                     <Col>
                                       <div id="header">Claim Description:</div>
-
                                       <div id="small-header" className="fs-6">{transaction.claim_description}</div>
                                     </Col>
                                   </Row>
-
                                   <hr />
-
-
                                   <Row className=" pb-3">
                                     <Col>
                                       <div id="header">Ceo Comment:</div>
                                       <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
                                     </Col>
                                   </Row>
-
 
                                   <Row>
                                     <Col>
@@ -602,7 +559,6 @@ export const TransactionList = () => {
                               </Card.Body>
                             </Card>
                           </Col>
-
                         );
                       })}
                     </Row>
@@ -621,9 +577,8 @@ export const TransactionList = () => {
                     <Row>
                       {apTransactions.map((transaction, index) => {
                         return (
-
-                          <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                            <Card>
+                          <Col className="d-flex mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                            <Card className="flex-fill">
                               <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                                 <Row>
                                   <Col>
@@ -637,14 +592,9 @@ export const TransactionList = () => {
                               <Card.Body>
                                 <Card.Text >
                                   <Row>
-
-
-
-
                                     <Col className="mb-3">
                                       <div id="header">Amount Requested: </div>
                                       <span id="small-header">${transaction.amount_requested}</span>
-
                                     </Col>
 
                                     <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
@@ -653,14 +603,12 @@ export const TransactionList = () => {
                                       </Badge>
                                     </Col>
                                     <hr />
-
                                   </Row>
+
                                   <Row>
                                     <Col className="mb-3">
                                       <div id="header">Category: </div>
-
                                       <span id="small-header"> {transaction.category}</span>
-
                                     </Col>
                                     <hr />
                                   </Row>
@@ -668,23 +616,16 @@ export const TransactionList = () => {
                                   <Row className="mt-1 pb-1">
                                     <Col>
                                       <div id="header">Claim Description:</div>
-
                                       <div id="small-header" className="fs-6">{transaction.claim_description}</div>
                                     </Col>
                                   </Row>
-
                                   <hr />
-
-
                                   <Row className=" pb-3">
                                     <Col>
                                       <div id="header">Ceo Comment:</div>
                                       <div id="small-header" className="fs-6">  {transaction.ceo_comment}</div>
                                     </Col>
                                   </Row>
-
-
-
                                 </Card.Text>
                               </Card.Body>
                             </Card>
@@ -693,12 +634,9 @@ export const TransactionList = () => {
                       })}
                     </Row>
                   </Container>
-
                 </>
               ) : (
-
               <p id = "header" className="ms-3">No available transaction</p>
-
               )}
             </Tab>
           </Tabs>
@@ -740,22 +678,20 @@ export const TransactionList = () => {
     return (
       <>
         <Row>
-
           <Tabs
             defaultActiveKey="pending"
             id="uncontrolled-tab-example"
             className="mb-3"
             fill
-
           >
             <Tab eventKey="pending" title="Pending">
               {pTransactions.length !== 0 ? (
-                <Container fluid className="">
+                <Container fluid>
                   <Row>
                     {pTransactions?.map((transaction, index) => {
                       return (
-                        <Col key={index} xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                          <Card>
+                        <Col className="d-flex mb-4" key={index} xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                          <Card className="flex-fill">
                             <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                               <Row>
                                 <Col>
@@ -881,8 +817,8 @@ export const TransactionList = () => {
                   <Row>
                     {aTransactions.map((transaction, index) => {
                       return (
-                        <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                          <Card>
+                        <Col className="d-flex mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                          <Card className="flex-fill">
                             <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                               <Row>
                                 <Col>
@@ -957,8 +893,8 @@ export const TransactionList = () => {
                   <Row>
                     {dTransactions.map((transaction, index) => {
                       return (
-                        <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                          <Card>
+                        <Col className="d-flex mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                          <Card className="flex-fill">
                             <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                               <Row>
                                 <Col>
@@ -1027,8 +963,8 @@ export const TransactionList = () => {
                   <Row>
                     {apTransactions.map((transaction, index) => {
                       return (
-                        <Col className="mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
-                          <Card>
+                        <Col className="d-flex mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+                          <Card className="flex-fill">
                             <Card.Header className="pb-0 pt-3 main-bg text-white" id="">
                               <Row>
                                 <Col>

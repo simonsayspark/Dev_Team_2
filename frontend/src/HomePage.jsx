@@ -48,11 +48,6 @@ export const HomePage = ({ setCurrentUser }) => {
           </Container>
         </Navbar>
 
-        <Container className="mt-3">
-          <NavLink to={"/viewTransactions"} className="d-flex mb-3">
-          </NavLink>
-        </Container>
-
         <Container className="mt-5">
           <Row className="display-3 text-center mb-3">
             <p id="header">{currentUser.cname}'s Dashboard</p>
