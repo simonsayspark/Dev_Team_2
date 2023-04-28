@@ -290,7 +290,7 @@ export const TransactionList = () => {
                                     </Col>
 
                                     <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                      <Badge bg="secondary" className="rounded-pill px-2 fs-6"  >
+                                      <Badge bg="secondary" className="rounded-pill px-3 fs-6"  >
                                         <span id="small-header">{transaction.claim_status}</span>
                                       </Badge>
                                     </Col>
@@ -371,7 +371,7 @@ export const TransactionList = () => {
                                     </Col>
 
                                     <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                      <Badge bg="success" className="rounded-pill px-2 fs-6"  >
+                                      <Badge bg="success" className="rounded-pill px-3 fs-6"  >
                                         <span id="small-header">{transaction.claim_status}</span>
                                       </Badge>
                                     </Col>
@@ -455,7 +455,7 @@ export const TransactionList = () => {
                                     </Col>
 
                                     <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                      <Badge bg="danger" className="rounded-2 px-2 fs-6"  >
+                                      <Badge bg="danger" className="rounded-pill px-3 fs-6"  >
                                         <span id="small-header">{transaction.claim_status}</span>
                                       </Badge>
                                     </Col>
@@ -534,7 +534,7 @@ export const TransactionList = () => {
                                     </Col>
 
                                     <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                      <Badge bg="warning" className="rounded-2 px-2 fs-6"  >
+                                      <Badge bg="warning" className="rounded-pill px-3 fs-6"  >
                                         <span id="small-header">{transaction.claim_status}</span>
                                       </Badge>
                                     </Col>
@@ -646,7 +646,7 @@ export const TransactionList = () => {
                                     <span id="small-header">{transaction.category}</span>
                                   </Col>
                                   <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                    <Badge bg="secondary" className="rounded-pill px-2 fs-6"  >
+                                    <Badge bg="secondary" className="rounded-pill px-3 fs-6"  >
                                       <span id="small-header">{transaction.claim_status}</span>
                                     </Badge>
                                   </Col>
@@ -777,7 +777,7 @@ export const TransactionList = () => {
                                   </Col>
 
                                   <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                    <Badge bg="success" className="rounded-pill px-2 fs-6"  >
+                                    <Badge bg="success" className="rounded-pill px-3 fs-6"  >
                                       <span id="small-header">{transaction.claim_status}</span>
                                     </Badge>
                                   </Col>
@@ -848,7 +848,7 @@ export const TransactionList = () => {
                                   </Col>
 
                                   <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                    <Badge bg="danger" className="rounded-2 px-2 fs-6"  >
+                                    <Badge bg="danger" className="rounded-pill px-3 fs-6"  >
                                       <span id="small-header">{transaction.claim_status}</span>
                                     </Badge>
                                   </Col>
@@ -923,7 +923,7 @@ export const TransactionList = () => {
                                   </Col>
 
                                   <Col className=" text-end" xs={4} sm={4} md={4} lg={3} xl={2} xxl={2}>
-                                    <Badge className="rounded-2 px-2 fs-6 text-black" bg="warning">
+                                    <Badge className="rounded-pill px-3 fs-6 text-black" bg="warning">
                                       <span id="small-header">{transaction.claim_status}</span>
                                     </Badge>
                                   </Col>

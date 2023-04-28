@@ -126,10 +126,10 @@ export const LandingPage = () => {
         className={`${homeLoaded ? "unhideIt" : "hideIt"} main-bg`}
       >
         <Row className="text-left addPadding px-auto mx-auto">
-          <Row className="display-1 text-white" id="header">
+          <Row className="display-1 text-white ms-1" id="header">
             Expense reimbursements<br/>made simple
           </Row>
-          <Row className="display-6 text-white px-3" id="small-header">
+          <Row className="display-6 text-white px-3 ms-1" id="small-header">
             for every business lunch and beyond
           </Row>
         </Row>

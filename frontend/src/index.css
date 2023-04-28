@@ -184,7 +184,7 @@ code {
 
 .light-bg1 {
   background-color: #D9D9D9;
-  height: 100vh;
+  height: 111vh;
 }
 
 .light-bg {
@@ -200,3 +200,11 @@ code {
   border-bottom: solid 4px white !important;
   font-weight: bold;
 }
+
+/* * {
+  overflow: hidden;
+}
+
+.scroll-overflow {
+  overflow: scroll;
+} */
