@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.wrapper
-{
-  height: 100vh;
-}
-
 .hideIt {
   opacity: 0;
   transform: translate(0, 2vh);
