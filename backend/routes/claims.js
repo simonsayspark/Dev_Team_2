@@ -108,6 +108,11 @@ router.delete('/', async (req, res, next) => {
         res.json(DelClaimByNum);
         next();
     }
+    if (req.query.employee_id) {
+        const DelClaimByEmployee = await req.models.claims.DeleteClaimByEmployee(req.query.employee_id);
+        res.json(DelClaimByEmployee);
+        next();
+    }
 })
 
 module.exports = router;
