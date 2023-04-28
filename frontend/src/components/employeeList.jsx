@@ -85,7 +85,7 @@ export const EmployeeList = ({ setCurrentUser }) => {
             <Container className="d-flex justify-content-center mt-4 flex-column">
                 <div className="fs-1 mb-4" id="header">Employees List</div>
                 {employees.length === 0 && (
-                    "No Employees"
+                    <p id="header" className="text-center fs-3">No Employees</p>
                 )}
                 {employees.length !== 0 && (
                     <Row>
