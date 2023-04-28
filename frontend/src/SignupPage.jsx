@@ -288,7 +288,7 @@ export const SignupPage = ({ setCurrentUser }) => {
               {values.password && !passwordValid && (
                 <Container className=" text-muted">
                   <Row className="text-center">
-                    <span className="text-center">
+                    <span className="text-center mt-2">
                       Password Requirements:
                     </span>
                     {checkLength === true ? (
