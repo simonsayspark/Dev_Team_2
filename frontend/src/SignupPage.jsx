@@ -213,7 +213,7 @@ export const SignupPage = ({ setCurrentUser }) => {
 
   return (
     <>
-    <div className="light-bg">
+    <div className="light-bg1">
       <Navbar sticky="top" className="color-nav" expand="lg">
         <Container fluid className="m-0">
           <Navbar.Brand>

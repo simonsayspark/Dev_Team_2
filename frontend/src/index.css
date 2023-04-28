@@ -180,15 +180,15 @@ code {
   border: none;
   outline: none;
 }
-/* 
+
 .light-bg1 {
   background-color: #D9D9D9;
-  height: 111vh;
-} */
+  height: auto;
+}
 
 .light-bg {
   background-color: #D9D9D9;
-  height: auto;
+  height: 100vh;
 }
 
 .nav-tabs .nav-link {
