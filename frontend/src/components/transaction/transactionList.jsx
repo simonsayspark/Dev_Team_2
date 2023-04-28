@@ -254,7 +254,7 @@ export const TransactionList = () => {
   if (currentUser.role === "Employee")
     return (
       <>
-        <Row>
+        <Row className="width">
           <Tabs
             defaultActiveKey="pending"
             id="uncontrolled-tab-example"
@@ -427,7 +427,7 @@ export const TransactionList = () => {
               )}
             </Tab>
 
-            <Tab eventKey="denied" title="Denied">
+            <Tab eventKey="denied" title="Denied" >
               {dTransactions.length !== 0 ? (
                 <>
                   <Container fluid>
@@ -600,7 +600,7 @@ export const TransactionList = () => {
             </Dropdown.Menu>
           </Dropdown>
 
-          <div className="mt-2">
+          <div className="mt-2 mb-2">
             <Button id="small-header" className="button btn btn-secondary " onClick={() => navigate("/Home")}>Back</Button>
           </div>
         </div>
@@ -609,17 +609,17 @@ export const TransactionList = () => {
   else if (currentUser.ceo_id || currentUser.role === "Financial Manager") {
     return (
       <>
-        <Row>
+        <Row className="width ">
           <Tabs
             defaultActiveKey="pending"
             id="uncontrolled-tab-example"
-            className="mb-3"
+            className="mb-3 "
             fill
           >
-            <Tab eventKey="pending" title="Pending">
+            <Tab eventKey="pending" title="Pending" className="">
               {pTransactions.length !== 0 ? (
-                <Container fluid>
-                  <Row>
+                <Container fluid className="">
+                  <Row className="">
                     {pTransactions?.map((transaction, index) => {
                       return (
                         <Col className="d-flex mb-4" key={index} xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
@@ -746,8 +746,8 @@ export const TransactionList = () => {
 
             <Tab eventKey="accepted" title="Accepted">
               {aTransactions.length !== 0 ? (
-                <Container fluid>
-                  <Row>
+                <Container fluid className="">
+                  <Row className="">
                     {aTransactions.map((transaction, index) => {
                       return (
                         <Col className="d-flex mb-4" xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
@@ -1048,7 +1048,7 @@ export const TransactionList = () => {
             </Dropdown.Menu>
           </Dropdown>
 
-          <div className="mt-1">
+          <div className="mt-1 mb-3">
             <Button id="small-header" className="display-4 button btn submitButton text-decoration-none" onClick={() => navigate("/Home")}>Back</Button>
           </div>
         </div>
