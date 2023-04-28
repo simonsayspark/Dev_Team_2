@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { UserContext } from "../../App";
-import { TransactionForm } from "./transactionForm";
-import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   getTransactionByStatus,
@@ -15,8 +13,6 @@ import {
 } from "../../api/transactionApi";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import ListGroup from "react-bootstrap/ListGroup";
-import ListGroupItem from "react-bootstrap/esm/ListGroupItem";
 import Badge from "react-bootstrap/Badge";
 import Dropdown from "react-bootstrap/Dropdown";
 import Row from "react-bootstrap/Row";
@@ -24,18 +20,13 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
-import { EditTransaction } from "./editTransaction";
-import { AppealTransaction } from "./appealTransaction";
+import { useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { getCompanies } from "../../api/companiesApi";
-
-//ONLY for pending, allow for edits of the transaction details
 
 export const TransactionList = () => {
   const currentUser = useContext(UserContext);
 
-  const [transactions, setTransactions] = useState(undefined);
   const [aTransactions, setaTransactions] = useState(undefined);
   const [dTransactions, setdTransactions] = useState(undefined);
   const [pTransactions, setpTransactions] = useState(undefined);
@@ -109,23 +100,17 @@ export const TransactionList = () => {
   }, []);
 
   useEffect(() => {
-    console.log('P Transactions were changed')
     if (pTransactions) {
-      console.log('Resetting States and Amounts!')
       setDisableStates(Array(pTransactions.length).fill(true));
       setReimburseAmounts(Array(pTransactions.length).fill(''));
-      console.log(pTransactions.length)
       setDisableSet(true);
     }
   }, [pTransactions]);
 
   useEffect(() => {
-    console.log('ap Transactions were changed')
     if (apTransactions) {
-      console.log('Resetting States and Amounts2!')
       setDisableStates2(Array(pTransactions.length).fill(true));
       setReimburseAmounts2(Array(pTransactions.length).fill(''));
-      console.log(apTransactions.length)
       setDisableSet2(true);
     }
   }, [apTransactions]);
@@ -145,7 +130,6 @@ export const TransactionList = () => {
   useEffect(() => {
     if (currentUser.role === "Employee") {
       if (sortValue != "Sort By") {
-        console.log('NOT SUPPOSED TO BE HERE')
         getSortTransactionByStatus(
           currentUser.employee_id,
           "Accepted",
@@ -179,15 +163,10 @@ export const TransactionList = () => {
         );
         getTransactionByStatus(currentUser.employee_id, "Pending").then((x) => {
           setpTransactions(x)
-          console.log('Pending is:')
-          console.log(x)
         }
         );
         getTransactionByStatus(currentUser.employee_id, "Appeal").then((x) => {
-          console.log('Inside Appeal')
           setapTransactions(x)
-          console.log('Appeal is:')
-          console.log(x)
         }
         );
       }
@@ -200,8 +179,6 @@ export const TransactionList = () => {
         companyID = ceoCompany;
       }
       if (sortValue != "Sort By") {
-        console.log('SORTING!!!')
-        console.log(sortValue)
         getSortCompanyTransactionByStatus(companyID, "Accepted", sortValue).then((x) =>
           setaTransactions(x)
         );
@@ -210,8 +187,6 @@ export const TransactionList = () => {
         );
         getSortCompanyTransactionByStatus(companyID, "Pending", sortValue).then((x) => {
           setpTransactions(x)
-          console.log('PENDING')
-          console.log(x)
         }
         );
         getSortCompanyTransactionByStatus(companyID, "Appeal", sortValue).then((x) =>
@@ -234,20 +209,6 @@ export const TransactionList = () => {
     }
   }, [sortValue, update, deleteClicked]);
 
-  // useEffect(() => {
-  //   if (reimburseAmount) {
-  //     setDisableApprove(false);
-  //   } else {
-  //     setDisableApprove(true);
-  //   }
-  // }, [reimburseAmount])
-
-
-  const sortBy = (e) => {
-    setSortValue(e);
-  };
-
-
   const addComment = (transactionNumber) => {
     updateTransactionComment(transactionNumber, comment).then((x) =>
       setComment("")
@@ -263,16 +224,13 @@ export const TransactionList = () => {
       newComment = "Transaction Approved.";
     }
     updateTransactionComment(transactionNumber, newComment).then((x) => {
-      console.log('Comment added')
       updateTransactionStatus(transactionNumber, "Accepted").then((y) =>
         updateTransactionReimbursed(transactionNumber, reimburseAmount).then((z) => {
-          console.log("Success");
           setUpdate(!update);
         }))
     }
     );
     setComment("");
-    //setStatus("");
   };
 
   const deny = (transactionNumber) => {
@@ -285,27 +243,13 @@ export const TransactionList = () => {
     updateTransactionComment(transactionNumber, newComment).then((x) => {
       updateTransactionStatus(transactionNumber, "Denied").then((y) =>
         updateTransactionReimbursed(transactionNumber, 0).then((z) => {
-          console.log("Success");
           setUpdate(!update);
         }))
     }
     );
   };
 
-  const appeal = (transactionNumber) => {
-    updateTransactionStatus(transactionNumber, "Appealed").then((x) =>
-      setUpdate(!update))
-
-  }
-
-  //create 3 different api requests
   if (!aTransactions || !dTransactions || !pTransactions || !apTransactions || !disableSet || !disableSet2) {
-    console.log(!aTransactions)
-    console.log(!dTransactions)
-    console.log(!pTransactions)
-    console.log(!apTransactions)
-    console.log((pTransactions && (disableStates.length === 0)))
-    console.log((apTransactions && (disableStates2.length === 0)))
     return (
       <>
         <p>Loading...</p>
@@ -568,7 +512,6 @@ export const TransactionList = () => {
             </Tab>
 
             <Tab eventKey="appeal" title="Appeal">
-              {console.log(apTransactions)}
               {apTransactions.length !== 0 ? (
                 <>
                   <Container fluid className="">
@@ -669,10 +612,6 @@ export const TransactionList = () => {
       </>
     );
   else if (currentUser.ceo_id || currentUser.role === "Financial Manager") {
-    console.log('disableStates:')
-    console.log(disableStates)
-    console.log('reimburseAmounts:')
-    console.log(reimburseAmounts)
     return (
       <>
         <Row>
@@ -757,12 +696,12 @@ export const TransactionList = () => {
 
                                   <Row className="my-2">
                                     <Form.Group controlId="comment" className="col-12">
-                                      <Form.Label>Comment</Form.Label>
+                                      <Form.Label id="header">Comment:</Form.Label>
                                       <Form.Control
                                         as="textarea"
+                                        name="pendingComment"
                                         placeholder="Add comment"
                                         rows={5}
-                                        //value={comment}
                                         onChange={(delta) => {
                                           setComment(delta.target.value);
                                         }}
@@ -779,7 +718,6 @@ export const TransactionList = () => {
                                         id="small-header"
                                         onClick={() => {
                                           approve(transaction.claim_number, reimburseAmounts[index]);
-                                          console.log(transaction);
                                         }}
                                       >
                                         Approve
@@ -793,7 +731,6 @@ export const TransactionList = () => {
                                       >
                                         Deny
                                       </Button>
-
                                     </Col>
                                   </Row>
                                 </Card.Text>
@@ -1064,7 +1001,6 @@ export const TransactionList = () => {
                                       id="small-header"
                                       onClick={() => {
                                         approve(transaction.claim_number, reimburseAmounts2[index]);
-                                        console.log(transaction);
                                       }}
                                     >
                                       Approve
