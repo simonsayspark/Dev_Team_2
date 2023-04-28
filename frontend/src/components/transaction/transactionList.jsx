@@ -339,7 +339,7 @@ export const TransactionList = () => {
                 </>
 
               ) : (
-                <p className="ms-3" id ="header">No available transaction</p>
+                <p id ="header" className="ms-3 text-center fs-3">No available transactions</p>
               )}
             </Tab>
 
@@ -423,7 +423,7 @@ export const TransactionList = () => {
                   </Container>
                 </>
               ) : (
-                <p id = "header" className="ms-3">No available transaction</p>
+                <p id = "header" className="ms-3 text-center fs-3">No available transactions</p>
               )}
             </Tab>
 
@@ -502,7 +502,7 @@ export const TransactionList = () => {
                   </Container>
                 </>
               ) : (
-                <p id ="header" className="ms-3">No available transaction</p>
+                <p id ="header" className="ms-3 text-center fs-3">No available transactions</p>
               )}
             </Tab>
 
@@ -572,7 +572,7 @@ export const TransactionList = () => {
                   </Container>
                 </>
               ) : (
-              <p id = "header" className="ms-3">No available transaction</p>
+              <p id = "header" className="ms-3 text-center fs-3">No available transactions</p>
               )}
             </Tab>
           </Tabs>
@@ -740,7 +740,7 @@ export const TransactionList = () => {
                     </Row>
                   </Container>
                 ) : (
-                  <p id ="header" className="ms-3">No available transaction</p>
+                  <p id ="header" className="ms-3 text-center fs-3">No available transactions</p>
                 )}
               </Tab>
 
@@ -817,7 +817,7 @@ export const TransactionList = () => {
                   </Row>
                 </Container>
               ) : (
-                <p className="ms-3">No available transaction</p>
+                <p id="header" className="ms-3 text-center fs-3">No available transactions</p>
               )}
             </Tab>
             <Tab eventKey="denied" title="Denied">
@@ -887,7 +887,7 @@ export const TransactionList = () => {
                   </Row>
                 </Container>
               ) : (
-                <p className="ms-3">No available transaction</p>
+                <p ip="header" className="ms-3 text-center fs-3">No available transactions</p>
               )}
             </Tab>
             <Tab eventKey="appeal" title="Appealed">
@@ -1019,7 +1019,7 @@ export const TransactionList = () => {
                   </Row>
                 </Container>
               ) : (
-                <p className="ms-3">No available transaction</p>
+                <p id="header" className="ms-3 text-center fs-3">No available transactions</p>
               )}
             </Tab>
           </Tabs>
