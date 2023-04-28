@@ -240,7 +240,7 @@ export const LandingPage = () => {
           </Col>
           <Col xs={12} sm={12} md={12} lg={12} xl xxl id="small-header" className="fs-4 text-light">
               <p className="text-center">
-                <strong id="header">Address:</strong> 66 Tauntaun Ave Hoth Planet 1138 
+                <strong id="header">Address:</strong>  6425 Boaz Lane Dallas TX 75205
               </p>
           </Col>
           <Col xs={12} sm={12} md={12} lg={12} xl xxl id="small-header">
