@@ -26,6 +26,8 @@ export const LandingPage = () => {
   const [worksLoaded4, setWorksLoaded4] = useState(false);
   const [contactLoaded, setContactLoaded] = useState(false);
 
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
   //inspired by code found at: https://stackoverflow.com/questions/53158796/get-scroll-position-with-reactjs
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
@@ -68,12 +70,19 @@ export const LandingPage = () => {
     }
   }
 
+  const handleResize = () => {
+    setViewportWidth(window.innerWidth);
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     setHomeLoaded(true); //automatically loads the home section when the page loads
 
+    window.addEventListener('resize', handleResize);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -104,7 +113,7 @@ export const LandingPage = () => {
                 Contact
               </Nav.Link>
             </Nav>
-            <Link to={"/login"} className="nav-font nav-link text-light mx-5">
+            <Link to={"/login"} className={`${viewportWidth >= 1400 ? 'me-4' : 'mx-5'} nav-font nav-link text-light`}>
               Log in
             </Link>
           </NavbarCollapse>
