@@ -229,7 +229,7 @@ export const SignupPage = ({ setCurrentUser }) => {
         </Container>
       </Navbar>
 
-      <div className="pt-4 mx-0 px-0 scroll-overflow">
+      <div className="pt-4 bottom-padding mx-0 px-0">
         <div className="bg-light rounded p-3 mx-auto p-md-5 pb-md-3 col-lg-6 col-sm-8">
           {error !== "" && (
             <Alert key={"danger"} variant={"danger"}>

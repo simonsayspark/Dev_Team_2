@@ -208,6 +208,11 @@ code {
 .width{
   width: 100%;
 }
+
+.bottom-padding {
+  padding-bottom: 1.4%;
+}
+
 /* * {
   overflow: hidden;
 }
